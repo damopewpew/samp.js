@@ -1,0 +1,3 @@
+[submodule "deps/depot_tools"]
+	path = deps/depot_tools
+	url = https://github.com/v8/v8-git-mirror
