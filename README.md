@@ -2,7 +2,7 @@
 
 samp.js is a plugin which allows you to write scripts and gamemodes for [San Andreas Multiplayer](http://sa-mp.com/) in JavaScript.
 
-### Server Setup
+##### Server Setup
 
 Add samp.js.(dll/so) to your plugins folder. Add samp.js.(dll/so) to the plugins line in your server.cfg. You will also need to add a samp.js.amx filterscript file or gamemode. See FilterScripts/GameModes section
 
@@ -10,7 +10,7 @@ Create a new line in server.cfg and add jsfiles yourscript.js
 
 Each script on the jsfiles line will be loaded by samp.js and be each given their own context, scripts in different contexts cannot access each others variables. 
 
-#### Example server.cfg
+###### Example server.cfg
 ````
 echo Executing Server Config...
 lanmode 0
