@@ -15,8 +15,8 @@ function template(name, params, param) {
     var prms = [];
     var callback = false;
     var callback_info = [];
-    var comments = "/**\n * " + name + "\n";
-
+    var comments = "/**\n * " + name + "\n\n";
+	comments+= "{@link https://wiki.sa-mp.com/wiki/"+name+"}\n\n";
     var prm = "";
     for (var i in params) {
         if (params[i].name == "function") params[i].name = "func";
@@ -85,7 +85,8 @@ function template(name, params, param) {
         }
 
 
-    } else comments += " * @return {Number} retval\n";
+    } else comments += " * @return {Number} retval\n\n";
+	
     comments += "*/\n";
 
     prms = prms.join(', ');
