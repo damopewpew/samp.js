@@ -9,7 +9,7 @@ var output = "";
 
 var files = ['a_actor.inc', 'a_http.inc', 'a_npc.inc', 'a_objects.inc', 'a_players.inc', 'a_samp.inc', 'a_sampdb.inc', 'a_vehicles.inc'];
 
-var ignoreFuncs = ["print"];
+var ignoreFuncs = ["print","printf","AllowAdminTeleport"];
 
 function template(name, params, param) {
     var prms = [];
@@ -153,10 +153,11 @@ function checkFunc(func) {
             if (func.params[(i * 1) + 1] && func.params[(i * 1) + 1].name == 'len') {
                 func.params[i].type = 'S';
                 func.params[i].reference = true;
-                func.params[(i * 1) + 1].ignore = true;
+                func.params[(i * 1) + 1].type = "i";
+                func.params[(i * 1) + 1].hasDefaultValue = true;
+                func.params[(i * 1) + 1].defaultValue = 256;
+                // func.params[(i * 1) + 1].ignore = true;
             }
-
-
         }
         param += func.params[i].type;
     }
@@ -230,7 +231,7 @@ for (var j in files) {
                             p.hasDefaultValue = true;
                             // Catch 
                             if(value.indexOf("sizeof") > -1) {
-                                p.defaultValue = 0;
+                                p.defaultValue = 256;
                                 sizeofMatches = value.match(sizeofReg);
                                 // Set reference to true for the referenced value
                                 for(var i in func.params) {
@@ -285,14 +286,13 @@ for (var j in files) {
         funcs[i] = checkFunc(funcs[i]);
         output += template(funcs[i].func, funcs[i].params, funcs[i].param);
         invoke += invokeTemplate(funcs[i].func, funcs[i].params);
-
     }
 
     invoke += "\t#pragma unused iVar, fVar, Str\n";
 
     invoke += "}\n";
 
-    fs.writeFile('scriptfiles/js/include/' + files[j] + '.js', output, 'utf8');
+    fs.writeFile('js/include/' + files[j] + '.js', output, 'utf8');
     fs.writeFile('include/js/sampJS.' + files[j], invoke, 'utf8');
 
 }
