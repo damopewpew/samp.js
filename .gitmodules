@@ -1,3 +1,6 @@
 [submodule "deps/depot_tools"]
 	path = deps/depot_tools
 	url = https://chromium.googlesource.com/chromium/tools/depot_tools.git
+[submodule "lib/samp-plugin-sdk"]
+	path = lib/samp-plugin-sdk
+	url = https://github.com/maddinat0r/samp-plugin-sdk

@@ -9,7 +9,7 @@ var output = "";
 
 var files = ['a_actor.inc', 'a_http.inc', 'a_npc.inc', 'a_objects.inc', 'a_players.inc', 'a_samp.inc', 'a_sampdb.inc', 'a_vehicles.inc'];
 
-var ignoreFuncs = ["print","printf","AllowAdminTeleport"];
+var ignoreFuncs = ["print","printf","AllowAdminTeleport", "SetTimer"];
 
 function template(name, params, param) {
     var prms = [];
