@@ -47,8 +47,6 @@ exports = {
 					matches.push({ id: (i*1)+400, name: vehicleNames[i]});	
 				}
 			}
-			
-			print(matches);
 			return matches;
 		}
 	},
