@@ -4,6 +4,7 @@
 
 #include "sdk.h"
 
+#include <string>
 #include <vector>
 #include <list> 
 #include <include/v8.h>
