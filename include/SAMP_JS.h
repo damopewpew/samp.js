@@ -13,7 +13,7 @@
 
 
 #include <string>
-
+#include <cstring>
 #include "include/v8.h"
 #include <stdio.h>
 #include <map> 
