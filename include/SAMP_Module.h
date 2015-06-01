@@ -1,0 +1,3 @@
+class SAMP_Module {
+
+};
