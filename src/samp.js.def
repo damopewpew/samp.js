@@ -1,3 +1,5 @@
+LIBRARY "samp.js"
+
 EXPORTS
 	Supports
 	Load
