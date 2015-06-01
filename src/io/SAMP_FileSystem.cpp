@@ -5,6 +5,7 @@
 #include <iostream>
 #include <sstream>
 #include <ostream>
+#include <fstream>
 
 #include <locale>
 namespace fs = boost::filesystem;
