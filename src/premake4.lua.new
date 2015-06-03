@@ -1,0 +1,22 @@
+#!lua
+solution "samp.js"
+        configurations { "Release" }
+
+        project "samp.js"
+                kind "SharedLib"
+                language "C++"
+                includedirs { "../include", "../lib", "../deps/v8" }
+                files { "**.h", "**.cpp" }
+                buildoptions "-std=c++0x"
+                configuration "Release"
+                        defines { "NDEBUG", "LINUX", "__LINUX__", "__LINUX" }
+                        linkoptions "-static-libgcc -static-libstdc++"
+                        links { 
+								"../deps/v8/lib/libv8_base.a",
+								"../deps/v8/lib/libv8_libbase.a",
+								"../deps/v8/lib/libv8_snapshot.a",
+								"../deps/v8/lib/libv8_libplatform.a",
+								"../deps/v8/lib/libicuuc.a",
+								"../deps/v8/lib/libicui18n.a", 
+								"../deps/v8/lib/libicudata.a"
+						}
