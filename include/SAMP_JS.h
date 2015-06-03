@@ -1,13 +1,6 @@
 #ifndef __SAMP_JS__
 #define __SAMP_JS__
 
-#pragma comment(lib, "v8_base_0.lib")
-#pragma comment(lib, "v8_base_1.lib")
-#pragma comment(lib, "v8_base_2.lib")
-#pragma comment(lib, "v8_base_3.lib")
-#pragma comment(lib, "v8_libbase.lib")
-#pragma comment(lib, "v8_libplatform.lib")
-#pragma comment(lib, "v8_nosnapshot.lib")
 
 #include "sdk.h"
 
@@ -83,7 +76,7 @@ public:
 	int repeat = 0;
 
 	SAMP_Timer(time_ms duration_, Local<Function> func_, int repeat_ = 0){
-		this->func.Reset(func_->GetIsolate(), func_);
+		this->func.Reset(func_->CreationContext()->GetIsolate(), func_);
 		this->duration = duration_;
 		this->start = TimeMS();
 		this->repeat = repeat_;
