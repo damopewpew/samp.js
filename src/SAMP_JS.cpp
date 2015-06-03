@@ -29,8 +29,12 @@ SAMP_JS* SAMP_JS::GetInstance(Local<Context> context){
 
 
 SAMP_JS::SAMP_JS():_time_count(0){
+
+	
 	// Initialize V8
 	if (!initiated){
+		ArrayBufferAllocator array_buffer_allocator;
+		V8::SetArrayBufferAllocator(&array_buffer_allocator);
 		initiated = true;
 		V8::InitializeICU();
 		Platform* platform = v8::platform::CreateDefaultPlatform();
@@ -39,9 +43,8 @@ SAMP_JS::SAMP_JS():_time_count(0){
 		
 	}
 	
-	ArrayBufferAllocator array_buffer_allocator;
+	
 	Isolate::CreateParams create_params;
-	create_params.array_buffer_allocator = &array_buffer_allocator;
 	_isolate = Isolate::New(create_params);
 
 	Locker v8Locker(_isolate);
@@ -607,8 +610,8 @@ Local<Value> SAMP_JS::LoadScript(std::string filename){
 
 		Local<Object> global = context->Global();
 
-		Handle<String> source = String::NewFromUtf8(_isolate, buffer.str().c_str());
-		Handle<String> name = String::NewFromUtf8(_isolate, filename.c_str());
+		Local<String> source = String::NewFromUtf8(_isolate, buffer.str().c_str());
+		Local<String> name = String::NewFromUtf8(_isolate, filename.c_str());
 
 		TryCatch try_catch;
 		ScriptOrigin origin(name);
@@ -636,7 +639,7 @@ Local<Value> SAMP_JS::LoadScript(std::string filename){
 		else {
 			printf("[samp.js] Loaded %s\n", filename.c_str());
 			TryCatch try_catch;
-			Handle<Value> result = script->Run();
+			Local<Value> result = script->Run();
 			if (try_catch.HasCaught()){
 				String::Utf8Value exception(try_catch.Exception());
 				const char* exception_string = *exception;
