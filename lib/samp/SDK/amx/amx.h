@@ -21,20 +21,23 @@
 *  Version: $Id: amx.h,v 1.5 2006/03/26 16:56:15 spookie Exp $
 */
 
+#ifndef AMX_H_INCLUDED
+#define AMX_H_INCLUDED
+
+#if defined __linux || defined __linux__
+#define __LINUX__
+#endif
 #if defined FREEBSD && !defined __FreeBSD__
 #define __FreeBSD__
 #endif
-#if defined LINUX || defined __FreeBSD__ || defined __OpenBSD__
+#if defined __LINUX__ || defined __FreeBSD__ || defined __OpenBSD__
 #include "sclinux.h"
 #endif
-
-#ifndef AMX_H_INCLUDED
-#define AMX_H_INCLUDED
 
 #if defined HAVE_STDINT_H
 #include <stdint.h>
 #else
-#if defined __LCC__ || defined __DMC__ || defined LINUX
+#if defined __LCC__ || defined __DMC__ || defined __LINUX__ || (defined __WATCOMC__ && __WATCOMC__ >= 1200)
 #if defined HAVE_INTTYPES_H
 #include <inttypes.h>
 #else
@@ -47,18 +50,18 @@
 #if defined __MACH__
 #include <ppc/types.h>
 typedef unsigned short int  uint16_t;
-typedef unsigned long int   __uint32_t;
+typedef unsigned long int   uint32_t;
 #elif defined __FreeBSD__
 #include <inttypes.h>
 #else
 typedef short int           int16_t;
 typedef unsigned short int  uint16_t;
 #if defined SN_TARGET_PS2
-typedef int               __int32_t;
-typedef unsigned int      __uint32_t;
+typedef int               int32_t;
+typedef unsigned int      uint32_t;
 #else
-typedef long int          __int32_t;
-typedef unsigned long int __uint32_t;
+typedef __int32          int32_t;
+typedef unsigned __int32 uint32_t;
 #endif
 #if defined __WIN32__ || defined _WIN32 || defined WIN32
 typedef __int64	          int64_t;
@@ -82,11 +85,11 @@ typedef unsigned long long uint64_t;
 #if HAVE_ALLOCA_H
 #include <alloca.h>
 #endif
-#if defined __WIN32__ || defined _WIN32 || defined WIN32 /* || defined __MSDOS__ */
+/*#if defined __WIN32__ || defined _WIN32 || defined WIN32
 #if !defined alloca
-#define alloca(n)   _alloca(n)
+#define xalloca(n)   _alloca(n)
 #endif
-#endif
+#endif*/
 
 #if !defined arraysize
 #define arraysize(array)  (sizeof(array) / sizeof((array)[0]))
@@ -147,8 +150,8 @@ extern  "C" {
 	typedef uint16_t  ucell;
 	typedef int16_t   cell;
 #elif PAWN_CELL_SIZE==32
-	typedef __uint32_t  ucell;
-	typedef __int32_t   cell;
+	typedef uint32_t  ucell;
+	typedef int32_t   cell;
 #elif PAWN_CELL_SIZE==64
 	typedef uint64_t  ucell;
 	typedef int64_t   cell;
@@ -182,13 +185,13 @@ extern  "C" {
 #endif
 
 #if defined __GNUC__
-#define PACKED        __attribute__((packed))
+#define _PACKED        __attribute__((packed))
 #else
-#define PACKED
+#define _PACKED
 #endif
 
 #if !defined AMX_NO_ALIGN
-#if defined LINUX || defined __FreeBSD__
+#if defined __LINUX__ || defined __FreeBSD__
 #pragma pack(1)         /* structures must be packed (byte-aligned) */
 #elif defined MACOS && defined __MWERKS__
 #pragma options align=mac68k
@@ -202,82 +205,82 @@ extern  "C" {
 #endif
 
 	typedef struct tagAMX_NATIVE_INFO {
-		const char _FAR *name PACKED;
-		AMX_NATIVE func       PACKED;
-	} PACKED AMX_NATIVE_INFO;
+		const char _FAR *name _PACKED;
+		AMX_NATIVE func       _PACKED;
+	} _PACKED AMX_NATIVE_INFO;
 
 #define AMX_USERNUM     4
 #define sEXPMAX         19      /* maximum name length for file version <= 6 */
 #define sNAMEMAX        31      /* maximum name length of symbol name */
 
 	typedef struct tagAMX_FUNCSTUB {
-		ucell address         PACKED;
-		char name[sEXPMAX + 1]  PACKED;
-	} PACKED AMX_FUNCSTUB;
+		ucell address         _PACKED;
+		char name[sEXPMAX + 1];
+	} _PACKED AMX_FUNCSTUB;
 
 	typedef struct tagFUNCSTUBNT {
-		ucell address         PACKED;
-		__uint32_t nameofs      PACKED;
-	} PACKED AMX_FUNCSTUBNT;
+		ucell address         _PACKED;
+		uint32_t nameofs      _PACKED;
+	} _PACKED AMX_FUNCSTUBNT;
 
 	/* The AMX structure is the internal structure for many functions. Not all
 	* fields are valid at all times; many fields are cached in local variables.
 	*/
 	typedef struct tagAMX {
-		unsigned char _FAR *base PACKED; /* points to the AMX header plus the code, optionally also the data */
-		unsigned char _FAR *data PACKED; /* points to separate data+stack+heap, may be NULL */
-		AMX_CALLBACK callback PACKED;
-		AMX_DEBUG debug       PACKED; /* debug callback */
+		unsigned char _FAR *base _PACKED; /* points to the AMX header plus the code, optionally also the data */
+		unsigned char _FAR *data _PACKED; /* points to separate data+stack+heap, may be NULL */
+		AMX_CALLBACK callback _PACKED;
+		AMX_DEBUG debug       _PACKED; /* debug callback */
 		/* for external functions a few registers must be accessible from the outside */
-		cell cip              PACKED; /* instruction pointer: relative to base + amxhdr->cod */
-		cell frm              PACKED; /* stack frame base: relative to base + amxhdr->dat */
-		cell hea              PACKED; /* top of the heap: relative to base + amxhdr->dat */
-		cell hlw              PACKED; /* bottom of the heap: relative to base + amxhdr->dat */
-		cell stk              PACKED; /* stack pointer: relative to base + amxhdr->dat */
-		cell stp              PACKED; /* top of the stack: relative to base + amxhdr->dat */
-		int flags             PACKED; /* current status, see amx_Flags() */
+		cell cip              _PACKED; /* instruction pointer: relative to base + amxhdr->cod */
+		cell frm              _PACKED; /* stack frame base: relative to base + amxhdr->dat */
+		cell hea              _PACKED; /* top of the heap: relative to base + amxhdr->dat */
+		cell hlw              _PACKED; /* bottom of the heap: relative to base + amxhdr->dat */
+		cell stk              _PACKED; /* stack pointer: relative to base + amxhdr->dat */
+		cell stp              _PACKED; /* top of the stack: relative to base + amxhdr->dat */
+		int flags             _PACKED; /* current status, see amx_Flags() */
 		/* user data */
-		long usertags[AMX_USERNUM] PACKED;
-		void _FAR *userdata[AMX_USERNUM] PACKED;
+		long usertags[AMX_USERNUM] _PACKED;
+		void _FAR *userdata[AMX_USERNUM] _PACKED;
 		/* native functions can raise an error */
-		int error             PACKED;
+		int error             _PACKED;
 		/* passing parameters requires a "count" field */
 		int paramcount;
 		/* the sleep opcode needs to store the full AMX status */
-		cell pri              PACKED;
-		cell alt              PACKED;
-		cell reset_stk        PACKED;
-		cell reset_hea        PACKED;
-		cell sysreq_d         PACKED; /* relocated address/value for the SYSREQ.D opcode */
+		cell pri              _PACKED;
+		cell alt              _PACKED;
+		cell reset_stk        _PACKED;
+		cell reset_hea        _PACKED;
+		cell sysreq_d         _PACKED; /* relocated address/value for the SYSREQ.D opcode */
 #if defined JIT
 		/* support variables for the JIT */
-		int reloc_size      PACKED; /* required temporary buffer for relocations */
-		long code_size      PACKED; /* estimated memory footprint of the native code */
+		int reloc_size      _PACKED; /* required temporary buffer for relocations */
+		long code_size      _PACKED; /* estimated memory footprint of the native code */
 #endif
-	} PACKED AMX;
+	} _PACKED AMX;
 
 	/* The AMX_HEADER structure is both the memory format as the file format. The
 	* structure is used internaly.
 	*/
 	typedef struct tagAMX_HEADER {
-		__int32_t size          PACKED; /* size of the "file" */
-		uint16_t magic        PACKED; /* signature */
-		char    file_version  PACKED; /* file format version */
-		char    amx_version   PACKED; /* required version of the AMX */
-		int16_t flags         PACKED;
-		int16_t defsize       PACKED; /* size of a definition record */
-		__int32_t cod           PACKED; /* initial value of COD - code block */
-		__int32_t dat           PACKED; /* initial value of DAT - data block */
-		__int32_t hea           PACKED; /* initial value of HEA - start of the heap */
-		__int32_t stp           PACKED; /* initial value of STP - stack top */
-		__int32_t cip           PACKED; /* initial value of CIP - the instruction pointer */
-		__int32_t publics       PACKED; /* offset to the "public functions" table */
-		__int32_t natives       PACKED; /* offset to the "native functions" table */
-		__int32_t libraries     PACKED; /* offset to the table of libraries */
-		__int32_t pubvars       PACKED; /* the "public variables" table */
-		__int32_t tags          PACKED; /* the "public tagnames" table */
-		__int32_t nametable     PACKED; /* name table */
-	} PACKED AMX_HEADER;
+		int32_t size          _PACKED; /* size of the "file" */
+		uint16_t magic        _PACKED; /* signature */
+		char    file_version;         /* file format version */
+		char    amx_version;          /* required version of the AMX */
+		int16_t flags         _PACKED;
+		int16_t defsize       _PACKED; /* size of a definition record */
+		int32_t cod           _PACKED; /* initial value of COD - code block */
+		int32_t dat           _PACKED; /* initial value of DAT - data block */
+		int32_t hea           _PACKED; /* initial value of HEA - start of the heap */
+		int32_t stp           _PACKED; /* initial value of STP - stack top */
+		int32_t cip           _PACKED; /* initial value of CIP - the instruction pointer */
+		int32_t publics       _PACKED; /* offset to the "public functions" table */
+		int32_t natives       _PACKED; /* offset to the "native functions" table */
+		int32_t libraries     _PACKED; /* offset to the table of libraries */
+		int32_t pubvars       _PACKED; /* the "public variables" table */
+		int32_t tags          _PACKED; /* the "public tagnames" table */
+		int32_t nametable     _PACKED; /* name table */
+	} _PACKED AMX_HEADER;
 
 #if PAWN_CELL_SIZE==16
 #define AMX_MAGIC     0xf1e2
@@ -287,7 +290,8 @@ extern  "C" {
 #define AMX_MAGIC     0xf1e1
 #endif
 
-	enum {
+	enum
+	{
 		AMX_ERR_NONE,
 		/* reserve the first 15 error codes for exit codes of the abstract machine */
 		AMX_ERR_EXIT,         /* forced exit */
@@ -363,7 +367,7 @@ extern  "C" {
 	    } while (0)
 
 	uint16_t * AMXAPI amx_Align16(uint16_t *v);
-	__uint32_t * AMXAPI amx_Align32(__uint32_t *v);
+	uint32_t * AMXAPI amx_Align32(uint32_t *v);
 #if defined _I64_MAX || defined HAVE_I64
 	uint64_t * AMXAPI amx_Align64(uint64_t *v);
 #endif
@@ -423,7 +427,7 @@ extern  "C" {
   amx_Register((amx), amx_NativeInfo((name),(func)), 1);
 
 #if !defined AMX_NO_ALIGN
-#if defined LINUX || defined __FreeBSD__
+#if defined __LINUX__ || defined __FreeBSD__
 #pragma pack()    /* reset default packing */
 #elif defined MACOS && defined __MWERKS__
 #pragma options align=reset
