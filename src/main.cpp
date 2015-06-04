@@ -87,8 +87,10 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 #include "samp/SAMP_Natives.h"
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
-	
-	amx_Register(amx, PluginNatives, -1);
+	printf("Register PluginNatives\n");
+	if (amx_Register(amx, PluginNatives, -1)){
+		printf("Register Failed :(\n");
+	}
 
 	int idx;
 	if (!amx_FindPublic(amx, "SAMPJS_Init", &idx)){
