@@ -122,7 +122,6 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
-	std::cout << "AMX UNLOADED" << std::endl;
 	for (auto it = SAMP_JS::_scripts.begin(); it != SAMP_JS::_scripts.end();){
 		if (it->second->GetAMX() == amx){
 			it->second->Shutdown();
