@@ -4,7 +4,7 @@ samp.js is a plugin which allows you to write scripts and gamemodes for [San And
 
 ##### Server Setup
 
-Add samp.js.(dll/so) to your plugins folder. Add samp.js.(dll/so) to the plugins line in your server.cfg. You will also need to add a samp.js.amx filterscript file or gamemode. See <a href="#gamemodesfilterscripts">FilterScripts/GameModes</a> section
+Add samp.js.(dll/so) to your plugins folder. Add samp.js.(dll/so) to the plugins line in your server.cfg. You will also need to add a samp.js.amx filterscript file or gamemode. See [FilterScripts/GameModes](#gamemodesfilterscripts) section
 
 Create a new line in server.cfg and add jsfiles yourscript.js
 
