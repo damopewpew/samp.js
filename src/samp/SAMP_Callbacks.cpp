@@ -6,7 +6,6 @@
 using namespace v8;
 
 cell AMX_NATIVE_CALL SAMP_Callbacks::OnGameModeInit(AMX* amx, cell* params){
-	printf("On Game Mode Init\n");
 	for (auto& script : SAMP_JS::_scripts){
 		if (!script.second->EventManager()->FireNative("GameModeInit", "", {}, amx, params)){
 			return 0;
