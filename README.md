@@ -11,27 +11,26 @@ Create a new line in server.cfg and add jsfiles yourscript.js
 Each script on the jsfiles line will be loaded by samp.js and be each given their own context, scripts in different contexts cannot access each others variables. 
 
 ###### Example server.cfg
-
->echo Executing Server Config...
->lanmode 0
->rcon_password changeme
->maxplayers 50
->port 7777
->hostname samp.js server
->gamemode0 blank 1
->filterscripts **samp.js**
->query 1
->chatlogging 0
->weburl www.sa-mp.com
->onfoot_rate 40
->incar_rate 40
->weapon_rate 40
->stream_distance 300.0
->stream_rate 1000
->maxnpc 0
->logtimeformat [%H:%M:%S]
->language English
->plugins **samp.js.dll**
->**jsfiles main.js commands.js admin.js**
-
-
+<pre>
+echo Executing Server Config...
+lanmode 0
+rcon_password changeme
+maxplayers 50
+port 7777
+hostname samp.js server
+gamemode0 blank 1
+filterscripts **samp.js**
+query 1
+chatlogging 0
+weburl www.sa-mp.com
+onfoot_rate 40
+incar_rate 40
+weapon_rate 40
+stream_distance 300.0
+stream_rate 1000
+maxnpc 0
+logtimeformat [%H:%M:%S]
+language English
+plugins **samp.js.dll**
+**jsfiles main.js commands.js admin.js**
+</pre>
