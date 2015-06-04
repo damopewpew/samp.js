@@ -215,10 +215,10 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 				case 'd':
 				case 'i':
 				{
-					if (!args[k]->IsInt32() && !args[k]->IsUint32() && !args[k]->IsString() && !args[k]->IsUndefined() && !args[k]->IsBoolean()){
-						printf("[samp.js] Error: CallNative %s, argument %i does not match type (int)\n", func_name.c_str(), i );
-						return;
-					}
+					//if (!args[k]->IsObject() && !args[k]->IsInt32() && !args[k]->IsUint32() && !args[k]->IsString() && !args[k]->IsUndefined() && !args[k]->IsBoolean()){
+					//	printf("[samp.js] Error: CallNative %s, argument %i does not match type (int)\n", func_name.c_str(), i );
+					//	return;
+				//	}
 					int val = 0;
 					if (!args[k]->IsUndefined()) val = args[k]->Int32Value();
 					params[j++] = val;
@@ -228,10 +228,10 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 				}
 				case 'f':
 				{
-					if (!args[k]->IsNumber() && !args[k]->IsString() && !args[k]->IsUndefined()){
-						printf("[samp.js] Error: CallNative %s, argument %i does not match type (float)\n", func_name.c_str(), i);
-						return;
-					}
+					//if (!args[k]->IsNumber() && !args[k]->IsString() && !args[k]->IsUndefined()){
+				//		printf("[samp.js] Error: CallNative %s, argument %i does not match type (float)\n", func_name.c_str(), i);
+				//		return;
+				//	}
 					float val = 0.0;
 					if (!args[k]->IsUndefined()) val = (float)args[k]->NumberValue();
 					params[j++] = amx_ftoc(val);
@@ -241,10 +241,10 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 				}
 				case 's':
 				{
-					if (!args[k]->IsString() && !args[k]->IsUndefined()){
-						printf("[samp.js] Error: CallNative %s, argument %i does not match type (string)\n", func_name.c_str(), i);
-						return;
-					}
+					//if (!args[k]->IsString() && !args[k]->IsUndefined()){
+					//	printf("[samp.js] Error: CallNative %s, argument %i does not match type (string)\n", func_name.c_str(), i);
+					//	return;
+					//}
 
 					std::string str = "";
 					if (!args[k]->IsUndefined()) str = JS2STRING(args[k]);
