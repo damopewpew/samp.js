@@ -11,7 +11,7 @@ Create a new line in server.cfg and add jsfiles yourscript.js
 Each script on the jsfiles line will be loaded by samp.js and be each given their own context, scripts in different contexts cannot access each others variables. 
 
 ###### Example server.cfg
-````
+>
 echo Executing Server Config...
 lanmode 0
 rcon_password changeme
@@ -33,5 +33,5 @@ logtimeformat [%H:%M:%S]
 language English
 plugins **samp.js.dll**
 **jsfiles main.js commands.js admin.js**
-````
+<
 
