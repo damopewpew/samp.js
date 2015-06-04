@@ -10,7 +10,7 @@ Create a new line in server.cfg and add jsfiles yourscript.js
 
 Each script on the jsfiles line will be loaded by samp.js and be each given their own context, scripts in different contexts cannot access each others variables. 
 
-###### Example server.cfg
+##### Example server.cfg
 <pre>
 echo Executing Server Config...
 lanmode 0
@@ -35,7 +35,7 @@ plugins <b>samp.js.dll</b>
 <b>jsfiles main.js commands.js admin.js</b>
 </pre>
 
-###### <a name="gamemodesfilterscripts"></a>GameModes/FilterScripts
+##### <a name="gamemodesfilterscripts"></a>GameModes/FilterScripts
 
 With samp.js you should only have one samp.js filterscript or gamemode, not both. We recommend you use a filterscript otherwise OnRconCommand may not work. 
 
