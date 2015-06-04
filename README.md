@@ -19,7 +19,7 @@ maxplayers 50
 port 7777
 hostname samp.js server
 gamemode0 blank 1
-filterscripts **samp.js**
+filterscripts <b>samp.js</b>
 query 1
 chatlogging 0
 weburl www.sa-mp.com
@@ -31,6 +31,6 @@ stream_rate 1000
 maxnpc 0
 logtimeformat [%H:%M:%S]
 language English
-plugins **samp.js.dll**
-**jsfiles main.js commands.js admin.js**
+plugins <b>samp.js.dll</b>
+<b>jsfiles main.js commands.js admin.js</b>
 </pre>
