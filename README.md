@@ -91,7 +91,7 @@ You can register as many of these events as many times as you want in any script
 Returning 0 will stop event propagation for that event ( except for in the case of OnPlayerCommandText and OnRconCommand ).
 
 
-###### The Player Object
+##### The Player Object
 
 Any event which would normally pass a playerid now passes in a player object instead. This player object can either be used as an object or can be used in the old playerid fashion.
 
