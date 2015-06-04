@@ -269,7 +269,7 @@ $PLAYER = {
 	Local<Object> player = Local<Object>::Cast(script->Run());
 
 	if (player.IsEmpty()){
-		printf("Why am I empty???\n");
+		//printf("Why am I empty???\n");
 	}
 	playerObj.Reset(sampjs->GetIsolate(), player);
 
@@ -344,15 +344,15 @@ void SAMP_Players::AddPlayer(int playerid){
 	//Local<Value> player = SAMP_Player::CreatePlayer(playerid,_sampjs);
 
 
-	printf("Adding Player\n");
+//	printf("Adding Player\n");
 	Local<Integer> playerido = Integer::New(_sampjs->GetIsolate(), playerid);
-	printf("Adding Player2 \n");
+//	printf("Adding Player2 \n");
 	Local<Object> obj = Local<Object>::New(_sampjs->GetIsolate(), playerObj)->Clone();
-	printf("Clone\n");
+//	printf("Clone\n");
 	obj->Set(String::NewFromUtf8(_sampjs->GetIsolate(), "id"), playerido);
-	printf("Set On Clone\n");
+//	printf("Set On Clone\n");
 	_sampjs->GetGlobalObject("$players")->Set(playerid, obj);
-	printf("Set Global\n");
+//	printf("Set Global\n");
 }
 
 void SAMP_Players::RemovePlayer( int playerid){
