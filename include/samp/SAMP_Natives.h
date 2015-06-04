@@ -1,5 +1,5 @@
 
- extern "C" const AMX_NATIVE_INFO PluginNatives[] = {
+AMX_NATIVE_INFO PluginNatives[] = {
 	{ "sJS_OnGameModeInit", SAMP_Callbacks::OnGameModeInit },
 	{ "sJS_OnGameModeExit", SAMP_Callbacks::OnGameModeExit },
 	{ "sJS_OnFilterScriptInit", SAMP_Callbacks::OnFilterScriptInit },
