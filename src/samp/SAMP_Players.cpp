@@ -8,6 +8,8 @@ SAMP_Players::SAMP_Players(SAMP_JS* sampjs){
 	Local<Array> player_arr = Array::New(sampjs->GetIsolate(),0);
 	sampjs->SetGlobalObject("$players", player_arr);
 
+	
+
 	std::string src = R"(
 $PLAYER = {
 	id: -1,
@@ -235,9 +237,6 @@ $PLAYER = {
 	}
 };
 
-
-
-
 )";
 	
 	Local<String> source = String::NewFromUtf8(sampjs->GetIsolate(), src.c_str());
@@ -273,7 +272,51 @@ $PLAYER = {
 	}
 	playerObj.Reset(sampjs->GetIsolate(), player);
 
+	sampjs->SetGlobalObject("$PLAYER", player);
+	std::string src2 = R"(
+		var $server = {
+			checkPlayers: function(){
+				for(var i = 0; i < 1000; i++){
+					if(CallNative("IsPlayerConnected", "i", i)){
+						$server.AddPlayer(i);
+					}
+				}
+			}
+		};
+		/*$events.on("RconCommand", function(cmd){
+			var args = cmd.split(' ');
+			cmd = args.shift();
+			if(cmd == "loadjs"){
+				if(args.length > 0) load(args[0]);
+				return 1;
+			} else if(cmd == "unloadjs"){
+				if(args.length > 0) unload(args[0]);
+				return 1;
+			} else if(cmd == "reloadjs"){
+				if(args.length > 0) reload(args[0]);
+				return 1;
+			}
+		}); */
+	)";
+	Local<String> source2 = String::NewFromUtf8(sampjs->GetIsolate(), src2.c_str());
+	Local<String> name2 = String::NewFromUtf8(sampjs->GetIsolate(), "[server.js]");
 
+	Local<Script> script2 = Script::Compile(source2, name2);
+
+	script2->Run();
+
+	Local<Object> server = sampjs->GetGlobalObject("$server");
+
+	Local<FunctionTemplate> fntmp = FunctionTemplate::New(sampjs->GetIsolate(), SAMP_Players::CreatePlayer);
+	server->Set(String::NewFromUtf8(sampjs->GetIsolate(),"AddPlayer"), fntmp->GetFunction());
+	
+
+}
+
+void SAMP_Players::CreatePlayer(const FunctionCallbackInfo<Value> & args){
+	SAMP_JS* sampjs = SAMP_JS::GetInstance(args.GetIsolate()->GetCallingContext());
+	SAMP_Players *players = (SAMP_Players*)sampjs->GetModule("players");
+	players->AddPlayer(args[0]->Int32Value());
 }
 
 Local<Object> SAMP_Players::GetPlayerObject(int playerid){

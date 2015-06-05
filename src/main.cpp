@@ -3,11 +3,9 @@
 
 #include "sdk.h"
 
-#include "samp/SAMP_Callbacks.h"
+
 #include "SAMP_JS.h"
-#include "utils/SAMP_Utils.h"
-#include "io/SAMP_FileSystem.h"
-#include "samp/SAMP_Players.h"
+#include "samp/SAMP_Callbacks.h"
 
 #define NOMINMAX
 
@@ -18,6 +16,8 @@
 #include <iostream>
 #include <string> 
 #include <map>
+
+#include "utils/Helpers.h"
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
@@ -31,16 +31,7 @@ extern void *pAMXFunctions;
 std::vector<std::string> js_scripts;
 
 
-std::vector<std::string> split(std::string str){
-	std::regex re("[\\s,]+");
-	std::sregex_token_iterator it(str.begin(), str.end(), re, -1);
-	std::sregex_token_iterator reg_end;
-	std::vector<std::string> arr;
-	for (; it != reg_end; ++it) {
-		arr.push_back(it->str());
-	}
-	return arr;
-}
+
 
 void ReadConfig(){
 	std::ifstream config("server.cfg");
@@ -50,7 +41,7 @@ void ReadConfig(){
 	else {
 		std::string line;
 		while (std::getline(config, line)){
-			std::vector<std::string> args = split(line);
+			std::vector<std::string> args = sjs::string::split(line);
 			if (args.size() > 1){
 				if (args[0] == "jsfiles"){
 					for (unsigned int i = 1; i < args.size(); i++){
@@ -61,6 +52,7 @@ void ReadConfig(){
 		}
 	}
 }
+
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports(){
 	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES | SUPPORTS_PROCESS_TICK;
@@ -96,20 +88,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	if (!amx_FindPublic(amx, "SAMPJS_Init", &idx)){
 		if (js_scripts.size() > 0){
 			for (unsigned int i = 0; i < js_scripts.size(); i++){
-				SAMP_JS* jsfile = new SAMP_JS();
-				jsfile->SetAMX(amx);
-
-				jsfile->AddModule("utils", new SAMP_Utils(jsfile));
-				jsfile->AddModule("$fs",new SAMP_FileSystem(jsfile));
-				jsfile->AddModule("players", new SAMP_Players(jsfile));
-				
-				JS_SCOPE(jsfile->GetIsolate())
-				JS_CONTEXT(jsfile->GetIsolate(), jsfile->_context)
-				Local<Value> ret = jsfile->LoadScript("js/"+js_scripts[i]);
-				String::Utf8Value jsStr(ret);
-				char* str = *jsStr;
-				SAMP_JS::_scripts[js_scripts[i]] = jsfile;
-
+				SAMP_JS::New(js_scripts[i], amx);
 			}
 			std::cout << std::endl;
 		}

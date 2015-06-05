@@ -1,4 +1,5 @@
 #include "samp/SAMP_Callbacks.h"
+#include "utils/Helpers.h"
 #include"SAMP_JS.h"
 #include "samp/SAMP_Events.h"
 
@@ -166,6 +167,37 @@ cell AMX_NATIVE_CALL SAMP_Callbacks::OnPlayerLeaveRaceCheckpoint(AMX* amx, cell*
 	return 1;
 }
 cell AMX_NATIVE_CALL SAMP_Callbacks::OnRconCommand(AMX* amx, cell* params){
+	/**
+	 * Parse our own rcon commands here first /loadjs /unloadjs /reloadjs
+	 **/
+	cell* addr = NULL;
+	int len = 0;
+	amx_GetAddr(amx, params[1], &addr);
+	amx_StrLen(addr, &len);
+	char* val = new char[len + 2];
+	amx_GetString(val, addr, 0, len + 2);
+	std::string cmd(val);
+	std::vector<std::string> args = sjs::string::split(cmd);
+
+	if (args[0] == "loadjs"){
+		if (args.size() > 1){
+			SAMP_JS::New(args[1], amx);
+		}
+		return 1;
+	}
+	else if (args[0] == "unloadjs"){
+		if (args.size() > 1){
+			SAMP_JS::Unload(args[1]);
+		}
+		return 1;
+	}
+	else if (args[0] == "reloadjs"){
+		if (args.size() > 1){
+			SAMP_JS::Reload(args[1], amx);
+		}
+		return 1;
+	}
+
 	for (auto& script : SAMP_JS::_scripts){
 		if (script.second->EventManager()->FireNative("RconCommand", "s", { "cmd" }, amx, params)){
 			return 1;

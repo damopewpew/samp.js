@@ -43,8 +43,8 @@ public:
 	float _angle;
 
 	static Local<Object> CreatePlayer(int playerid, SAMP_JS *sampjs);
-	static void Get(Local<Name> name, const PropertyCallbackInfo<Value>& info);
-	static void Set(Local<Name> name, Local<Value> value, const PropertyCallbackInfo<Value>& info);
+	static void Get(Local<String> name, const PropertyCallbackInfo<Value>& info);
+	static void Set(Local<String> name, Local<Value> value, const PropertyCallbackInfo<Value>& info);
 
 	static void GetName(const v8::FunctionCallbackInfo<v8::Value>& args);
 	static void GetPos(const v8::FunctionCallbackInfo<v8::Value>& args);

@@ -11,6 +11,10 @@
 
 #include <tinydir/tinydir.h>
 
+#include "utils/SAMP_Utils.h"
+#include "io/SAMP_FileSystem.h"
+#include "samp/SAMP_Players.h"
+
 std::map<std::string, SAMP_JS*> SAMP_JS::_scripts;
 std::map<std::string, int> SAMP_JS::_native_func_cache;
 
@@ -24,6 +28,77 @@ SAMP_JS* SAMP_JS::GetInstance(Local<Context> context){
 
 	SAMP_JS* sampjs = static_cast<SAMP_JS*>(ptr);
 	return sampjs;
+}
+
+void SAMP_JS::New(std::string filename, AMX *amx){
+
+	if (SAMP_JS::_scripts.find(filename) != SAMP_JS::_scripts.end()){
+		printf("[samp.js] load: Script already loaded (%s)\n", filename.c_str());
+		return;
+	}
+	SAMP_JS* jsfile = new SAMP_JS();
+	jsfile->SetAMX(amx);
+
+	jsfile->AddModule("utils", new SAMP_Utils(jsfile));
+	jsfile->AddModule("$fs", new SAMP_FileSystem(jsfile));
+	jsfile->AddModule("players", new SAMP_Players(jsfile));
+
+	JS_SCOPE(jsfile->GetIsolate())
+	JS_CONTEXT(jsfile->GetIsolate(), jsfile->_context)
+	Local<Value> ret = jsfile->LoadScript("js/" + filename);
+	String::Utf8Value jsStr(ret);
+	char* str = *jsStr;
+	SAMP_JS::_scripts[filename] = jsfile;
+}
+
+void SAMP_JS::Unload(std::string filename){
+	if (SAMP_JS::_scripts.find(filename) == SAMP_JS::_scripts.end()){
+		// Script not found
+		printf("[samp.js] unload: Script not loaded (%s)\n", filename.c_str());
+		return;
+	}
+	SAMP_JS::_scripts.erase(filename);
+}
+void SAMP_JS::Reload(std::string filename, AMX *amx){
+	if (SAMP_JS::_scripts.find(filename) == SAMP_JS::_scripts.end()){
+		// Script not found
+		printf("[samp.js] reload: Script not loaded (%s)\n", filename.c_str());
+	}
+	SAMP_JS::_scripts.erase(filename);
+	SAMP_JS::New(filename, amx );
+}
+
+void SAMP_JS::JS_LoadScript(const FunctionCallbackInfo<Value> & args){
+	if (args.Length() < 1) return;
+	if (!args[0]->IsString()) return;
+
+	JS_SCOPE(args.GetIsolate());
+	SAMP_JS* sampjs = SAMP_JS::GetInstance(args.GetIsolate()->GetCallingContext());
+
+	std::string file = JS2STRING(args[0]);
+
+	SAMP_JS::New(file, sampjs->GetAMX());
+
+}
+void SAMP_JS::JS_UnloadScript(const FunctionCallbackInfo<Value> & args){
+	if (args.Length() < 1) return;
+	if (!args[0]->IsString()) return;
+
+	JS_SCOPE(args.GetIsolate());
+	std::string file = JS2STRING(args[0]);
+
+	Unload(file);
+	
+
+}
+void SAMP_JS::JS_ReloadScript(const FunctionCallbackInfo<Value> & args){
+	if (args.Length() < 1) return;
+	if (!args[0]->IsString()) return;
+
+	JS_SCOPE(args.GetIsolate());
+	std::string file = JS2STRING(args[0]);
+	SAMP_JS* sampjs = SAMP_JS::GetInstance(args.GetIsolate()->GetCallingContext());
+	Reload(file, sampjs->GetAMX());
 }
 
 
@@ -80,6 +155,10 @@ SAMP_JS::SAMP_JS():_time_count(0){
 	SetGlobalFunction("CallNative", SAMP_JS::CallNative);
 	SetGlobalFunction("SetTimer", SAMP_JS::SetTimer);
 	SetGlobalFunction("CancelTimer", SAMP_JS::CancelTimer);
+
+	SetGlobalFunction("load", SAMP_JS::JS_LoadScript);
+	SetGlobalFunction("unload", SAMP_JS::JS_UnloadScript);
+	SetGlobalFunction("reload", SAMP_JS::JS_ReloadScript);
 
 	SetGlobalObject("$modules", module);
 

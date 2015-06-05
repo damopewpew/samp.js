@@ -13,6 +13,8 @@ public:
 	SAMP_Players(SAMP_JS* sampjs);
 	void GetPlayer(const FunctionCallbackInfo<Value> & args);
 
+	static void CreatePlayer(const FunctionCallbackInfo<Value> & args);
+
 	Local<Object> GetPlayerObject(int playerid);
 
 	void AddPlayer(int playerid);

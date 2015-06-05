@@ -93,10 +93,18 @@ public:
 	static std::map<std::string,int> _native_func_cache;
 	static std::map<std::string, SAMP_JS*> _scripts;
 
+	static void New(std::string filename, AMX *amx);
+	static void Unload(std::string filename);
+	static void Reload(std::string filename, AMX *amx);
+
 	static int GetNativeAddr(AMX *amx, std::string name);
 	
 	static bool initiated;
 	static SAMP_JS* GetInstance(Local<Context> context);
+	static void JS_LoadScript(const FunctionCallbackInfo<Value> & args);
+	static void JS_UnloadScript(const FunctionCallbackInfo<Value> & args);
+	static void JS_ReloadScript(const FunctionCallbackInfo<Value> & args);
+
 	static void Require(const FunctionCallbackInfo<Value> & args);
 	static void Include(const FunctionCallbackInfo<Value> & args);
 	static void CallNative(const FunctionCallbackInfo<Value>& args);

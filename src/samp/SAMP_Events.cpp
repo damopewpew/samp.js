@@ -56,6 +56,14 @@ int SAMP_Events::FireNative(std::string name, std::string param_types, std::vect
 	Local<Object> events = _sampjs->GetGlobalObject("$events");
 	Local<Value> fire = events->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "fire"));
 	Local<Function> fn = Local<Function>::Cast(fire);
+
+	if (name == "FilterScriptInit"){
+		Local<Object> server = _sampjs->GetGlobalObject("$server");
+		Local<Value> check = server->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "checkPlayers"));
+		Local<Function> cpfn = Local<Function>::Cast(check);
+		cpfn->Call(events, 0, NULL);
+	}	
+
 	if (fn->IsFunction()){
 		Local<Value>* argv = NULL;
 		unsigned int argc = param_types.length() + 1;
@@ -82,7 +90,7 @@ int SAMP_Events::FireNative(std::string name, std::string param_types, std::vect
 						int playerid = params[i];
 						SAMP_Module* module = _sampjs->GetModule("players");
 						if (module != NULL){
-							SAMP_Players* players = (SAMP_Players*)(module);
+							SAMP_Players *players = (SAMP_Players*)(module);
 							Local<Object> player = players->GetPlayerObject(playerid);
 							
 							argv[i] = player;
