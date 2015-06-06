@@ -15,28 +15,27 @@
 #include "utils/SAMP_Utils.h"
 #include "io/SAMP_FileSystem.h"
 #include "samp/SAMP_Players.h"
-#include "io/SAMP_uvFileSystem.h"
+//uv #include "io/SAMP_uvFileSystem.h"
 
 #include <stdio.h>
 
 std::map<std::string, SAMP_JS*> SAMP_JS::_scripts;
 std::map<std::string, int> SAMP_JS::_native_func_cache;
 
-uv_loop_t *SAMP_JS::uv_loop;
-uv_idle_t SAMP_JS::idle_handle;
-uv_thread_t SAMP_JS::main_thread;
+//uv uv_loop_t *SAMP_JS::uv_loop;
+//uv uv_idle_t SAMP_JS::idle_handle;
+//uv uv_thread_t SAMP_JS::main_thread;
 
 bool SAMP_JS::initiated = false; 
 
 void SAMP_JS::thread_loop(void *args){
-	uv_loop = uv_default_loop();
+//uv	uv_loop = uv_default_loop();
 }
-void SAMP_JS::idle_cb(uv_idle_t* handle){
-}
+//uv void SAMP_JS::idle_cb(uv_idle_t* handle){
+//uv }
 
 void SAMP_JS::InitJS(){
-
-	uv_loop = uv_default_loop();
+//uv	uv_loop = uv_default_loop();
 }
 
 void SAMP_JS::UnloadJS(){
@@ -65,7 +64,7 @@ void SAMP_JS::New(std::string filename, AMX *amx){
 	jsfile->AddModule("utils", new SAMP_Utils(jsfile));
 	jsfile->AddModule("$fs", new SAMP_FileSystem(jsfile));
 	jsfile->AddModule("players", new SAMP_Players(jsfile));
-	jsfile->AddModule("uvfs", new SAMP_uvFileSystem(jsfile));
+	//uv jsfile->AddModule("uvfs", new SAMP_uvFileSystem(jsfile));
 
 	JS_SCOPE(jsfile->GetIsolate())
 	JS_CONTEXT(jsfile->GetIsolate(), jsfile->_context)
