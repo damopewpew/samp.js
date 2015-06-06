@@ -1,5 +1,6 @@
 
 #include "samp/SAMP_Players.h"
+#include "utils/Helpers.h"
 
 SAMP_Players::SAMP_Players(SAMP_JS* sampjs){
 	_sampjs = sampjs;
@@ -232,6 +233,15 @@ $PLAYER = {
 		SetPlayerVelocity(this.id,this.velocity_.x,this.velocity_.y,this.velocity_.z);
 	},
 
+	set vehicle(vehicleid){
+		RemovePlayerFromVehicle(this.id);
+		PutPlayerInVehicle(this.id, vehicleid, 0);
+	},
+
+	get vehicle(){
+		return GetPlayerVehicleID(this.id);
+	},
+
 	valueOf: function(){
 		return this.id;
 	}
@@ -251,16 +261,16 @@ $PLAYER = {
 		Local<Message> message = try_catch.Message();
 
 		if (message.IsEmpty()){
-			printf("%s\n", exception_string);
+			sjs::logger::error("%s\n", exception_string);
 		}
 		else {
 			String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 			const char* filename_string = *filename;
 			int linenum = message->GetLineNumber();
-			printf("%s:%i: %s\n", filename_string, linenum, exception_string);
+			sjs::logger::error("%s:%i: %s\n", filename_string, linenum, exception_string);
 			String::Utf8Value sourceline(message->GetSourceLine());
 			const char* sourceline_string = *sourceline;
-			printf("%s\n", sourceline_string);
+			sjs::logger::error("%s\n", sourceline_string);
 
 		}
 	}
@@ -275,28 +285,40 @@ $PLAYER = {
 	sampjs->SetGlobalObject("$PLAYER", player);
 	std::string src2 = R"(
 		var $server = {
+			weather_: 0,
+			gravity_: 0.008,
+			time_: 0,
 			checkPlayers: function(){
 				for(var i = 0; i < 1000; i++){
 					if(CallNative("IsPlayerConnected", "i", i)){
 						$server.AddPlayer(i);
 					}
 				}
+			},
+			
+			set time(hour){
+				SetWorldTime(hour);
+			},
+
+			get time(){
+				return hour;
+			},
+			set gravity(amount){
+				SetGravity(amount);
+			},
+
+			get gravity(){
+				return GetGravity();
+			},
+
+			set weather(weatherid){
+				SetWeather(weaterid);
+				weather_ = weatherid;
+			},
+			get weather(){
+				return weather_;
 			}
 		};
-		/*$events.on("RconCommand", function(cmd){
-			var args = cmd.split(' ');
-			cmd = args.shift();
-			if(cmd == "loadjs"){
-				if(args.length > 0) load(args[0]);
-				return 1;
-			} else if(cmd == "unloadjs"){
-				if(args.length > 0) unload(args[0]);
-				return 1;
-			} else if(cmd == "reloadjs"){
-				if(args.length > 0) reload(args[0]);
-				return 1;
-			}
-		}); */
 	)";
 	Local<String> source2 = String::NewFromUtf8(sampjs->GetIsolate(), src2.c_str());
 	Local<String> name2 = String::NewFromUtf8(sampjs->GetIsolate(), "[server.js]");
@@ -338,16 +360,16 @@ Local<Object> SAMP_Players::GetPlayerObject(int playerid){
 			Local<Message> message = try_catch.Message();
 
 			if (message.IsEmpty()){
-				printf("Exception: %s\n", exception_string);
+				sjs::logger::error("Exception: %s\n", exception_string);
 			}
 			else {
 				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 				const char* filename_string = *filename;
 				int linenum = message->GetLineNumber();
-				printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+				sjs::logger::error("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
 				String::Utf8Value sourceline(message->GetSourceLine());
 				const char* sourceline_string = *sourceline;
-				printf("%s\n", sourceline_string);
+				sjs::logger::error("%s\n", sourceline_string);
 
 			}
 		}
@@ -363,16 +385,16 @@ Local<Object> SAMP_Players::GetPlayerObject(int playerid){
 			Local<Message> message = try_catch.Message();
 
 			if (message.IsEmpty()){
-				printf("Exception: %s\n", exception_string);
+				sjs::logger::error("Exception: %s\n", exception_string);
 			}
 			else {
 				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 				const char* filename_string = *filename;
 				int linenum = message->GetLineNumber();
-				printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+				sjs::logger::error("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
 				String::Utf8Value sourceline(message->GetSourceLine());
 				const char* sourceline_string = *sourceline;
-				printf("%s\n", sourceline_string);
+				sjs::logger::error("%s\n", sourceline_string);
 
 			}
 		} 
@@ -398,6 +420,8 @@ void SAMP_Players::AddPlayer(int playerid){
 //	printf("Set Global\n");
 }
 
-void SAMP_Players::RemovePlayer( int playerid){
+void SAMP_Players::RemovePlayer(int playerid){
+//	Local<Array> players = Local<Array>::Cast(_sampjs->GetGlobalObject("$players"));
+	//players->Delete(playerid);
 	_sampjs->GetGlobalObject("$players")->Delete(playerid);
 }

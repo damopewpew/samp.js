@@ -1,4 +1,4 @@
-LIBRARY "samp.js"
+LIBRARY 
 
 EXPORTS
 	Supports

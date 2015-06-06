@@ -19,6 +19,8 @@
 #include <iostream>
 #include "SAMP_Module.h"
 
+#include "uv.h" 
+
 class SAMP_Events;
 
 using namespace v8;
@@ -141,7 +143,15 @@ public:
 
 	void AddModule(std::string name, SAMP_Module *module);
 	SAMP_Module *GetModule(std::string name);
-	
+
+	static void thread_loop(void *args);
+	static void idle_cb(uv_idle_t* handle);
+
+	static void InitJS();
+	static void UnloadJS();
+	static uv_loop_t *uv_loop;
+	static uv_idle_t idle_handle;
+	static uv_thread_t main_thread;
 	
 private:
 	std::map<std::string, SAMP_Module*> _modules;
@@ -152,6 +162,9 @@ private:
 
 	int AddTimer(Local<Function> func, int delay, int repeat = 0);
 	void RemoveTimer(int id);
+
+	
+	
 };
 
 #endif

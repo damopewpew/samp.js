@@ -1,5 +1,6 @@
 #include "SAMP_JS.h"
 #include "samp/SAMP_Events.h"
+#include "utils/Helpers.h"
 
 #include <include/libplatform/libplatform.h>
 #include <include/v8-debug.h>
@@ -14,12 +15,34 @@
 #include "utils/SAMP_Utils.h"
 #include "io/SAMP_FileSystem.h"
 #include "samp/SAMP_Players.h"
+#include "io/SAMP_uvFileSystem.h"
+
+#include <stdio.h>
 
 std::map<std::string, SAMP_JS*> SAMP_JS::_scripts;
 std::map<std::string, int> SAMP_JS::_native_func_cache;
 
+uv_loop_t *SAMP_JS::uv_loop;
+uv_idle_t SAMP_JS::idle_handle;
+uv_thread_t SAMP_JS::main_thread;
 
 bool SAMP_JS::initiated = false; 
+
+void SAMP_JS::thread_loop(void *args){
+	uv_loop = uv_default_loop();
+}
+void SAMP_JS::idle_cb(uv_idle_t* handle){
+}
+
+void SAMP_JS::InitJS(){
+
+	uv_loop = uv_default_loop();
+}
+
+void SAMP_JS::UnloadJS(){
+
+}
+
 
 SAMP_JS* SAMP_JS::GetInstance(Local<Context> context){
 	Local<Object> self = Local<Object>::Cast(context->Global()->Get(STRING2JS(context->GetIsolate(), "$sampjs")));
@@ -33,7 +56,7 @@ SAMP_JS* SAMP_JS::GetInstance(Local<Context> context){
 void SAMP_JS::New(std::string filename, AMX *amx){
 
 	if (SAMP_JS::_scripts.find(filename) != SAMP_JS::_scripts.end()){
-		printf("[samp.js] load: Script already loaded (%s)\n", filename.c_str());
+		sjs::logger::error("load: Script already loaded (%s)", filename.c_str());
 		return;
 	}
 	SAMP_JS* jsfile = new SAMP_JS();
@@ -42,6 +65,7 @@ void SAMP_JS::New(std::string filename, AMX *amx){
 	jsfile->AddModule("utils", new SAMP_Utils(jsfile));
 	jsfile->AddModule("$fs", new SAMP_FileSystem(jsfile));
 	jsfile->AddModule("players", new SAMP_Players(jsfile));
+	jsfile->AddModule("uvfs", new SAMP_uvFileSystem(jsfile));
 
 	JS_SCOPE(jsfile->GetIsolate())
 	JS_CONTEXT(jsfile->GetIsolate(), jsfile->_context)
@@ -49,12 +73,13 @@ void SAMP_JS::New(std::string filename, AMX *amx){
 	String::Utf8Value jsStr(ret);
 	char* str = *jsStr;
 	SAMP_JS::_scripts[filename] = jsfile;
+
 }
 
 void SAMP_JS::Unload(std::string filename){
 	if (SAMP_JS::_scripts.find(filename) == SAMP_JS::_scripts.end()){
 		// Script not found
-		printf("[samp.js] unload: Script not loaded (%s)\n", filename.c_str());
+		sjs::logger::error("unload: Script not loaded (%s)", filename.c_str());
 		return;
 	}
 	SAMP_JS::_scripts.erase(filename);
@@ -62,7 +87,7 @@ void SAMP_JS::Unload(std::string filename){
 void SAMP_JS::Reload(std::string filename, AMX *amx){
 	if (SAMP_JS::_scripts.find(filename) == SAMP_JS::_scripts.end()){
 		// Script not found
-		printf("[samp.js] reload: Script not loaded (%s)\n", filename.c_str());
+		sjs::logger::error("reload: Script not loaded (%s)", filename.c_str());
 	}
 	SAMP_JS::_scripts.erase(filename);
 	SAMP_JS::New(filename, amx );
@@ -166,7 +191,7 @@ SAMP_JS::SAMP_JS():_time_count(0){
 }
 
 void SAMP_JS::Shutdown(){
-	printf("Shutting Down Script\n");
+	sjs::logger::debug("Shutting Down Script %s");
 	
 }
 
@@ -224,7 +249,7 @@ int SAMP_JS::GetNativeAddr(AMX *amx, std::string name){
 	if (iter != _native_func_cache.end()) func_idx = iter->second;
 	else {
 		if (amx_FindNative(amx, name.c_str(), &func_idx)){
-			printf("[samp.js] Error: Cannot find native function %s\n", name.c_str());
+			sjs::logger::error("Cannot find native function %s", name.c_str());
 			return -1;
 		}
 		_native_func_cache[name] = func_idx;
@@ -240,7 +265,7 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 	SAMP_JS* sampjs = SAMP_JS::GetInstance(args.GetIsolate()->GetCallingContext());
 
 	if (args.Length() < 1){
-		printf("[samp.js] Error: Function CallNative requires at least 1 argument CallNative(nativeName, params, args);\n");
+		sjs::logger::error("Function CallNative requires at least 1 argument CallNative(nativeName, params, args);");
 		args.GetReturnValue().SetNull();
 		return;
 	}
@@ -254,7 +279,7 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 	if (iter != _native_func_cache.end()) func_idx = iter->second;
 	else {
 		if (amx_FindNative(sampjs->GetAMX(), func_name.c_str(), &func_idx)){
-			printf("[samp.js] Error: Cannot find native function %s\n", func_name.c_str());
+			sjs::logger::error("Cannot find native function %s", func_name.c_str());
 			return;
 		}
 		_native_func_cache[func_name] = func_idx;
@@ -264,7 +289,7 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 
 	if (args.Length() > 1){
 		if (!args[1]->IsString()){
-			printf("[samp.js] Error: CallNative %s, 2nd argument must be a string.", func_name.c_str());
+			sjs::logger::error("CallNative %s, 2nd argument must be a string", func_name.c_str());
 			return;
 		}
 	
@@ -278,7 +303,7 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 		bool multi = false;
 		if ((S_oc + I_oc + F_oc) > 1) multi = true;
 		if (!args[args.Length() - 1]->IsArray() && multi ){
-			printf("[samp.js] Error: CallNative %s, you must supply an array of strings for functions with multiple references\n", func_name.c_str());
+			sjs::logger::error("CallNative %s, you must supply an array of strings for functions with multiple references", func_name.c_str());
 			return;
 		}
 
@@ -427,16 +452,16 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 				Local<Message> message = try_catch.Message();
 
 				if (message.IsEmpty()){
-					printf("Exception: %s\n", exception_string);
+					sjs::logger::error("Exception: %s", exception_string);
 				}
 				else {
 					String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 					const char* filename_string = *filename;
 					int linenum = message->GetLineNumber();
-					printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+					sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
 					String::Utf8Value sourceline(message->GetSourceLine());
 					const char* sourceline_string = *sourceline;
-					printf("%s\n", sourceline_string);
+					sjs::logger::error("%s", sourceline_string);
 
 				}
 				return;
@@ -462,16 +487,16 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 			Local<Message> message = try_catch.Message();
 
 			if (message.IsEmpty()){
-				printf("Exception: %s\n", exception_string);
+				sjs::logger::error("Exception: %s", exception_string);
 			}
 			else {
 				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 				const char* filename_string = *filename;
 				int linenum = message->GetLineNumber();
-				printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+				sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
 				String::Utf8Value sourceline(message->GetSourceLine());
 				const char* sourceline_string = *sourceline;
-				printf("%s\n", sourceline_string);
+				sjs::logger::error("%s", sourceline_string);
 
 			}
 			return;
@@ -479,6 +504,8 @@ void SAMP_JS::CallNative(const FunctionCallbackInfo<Value> &args){
 		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
 		int value = amx_Function(sampjs->GetAMX(), NULL);
 		args.GetReturnValue().Set(value);
+
+		
 		return;
 	}
 }
@@ -492,7 +519,7 @@ int SAMP_JS::AddTimer(Local<Function> func, int delay, int repeat){
 void SAMP_JS::RemoveTimer(int id){
 	auto it = _timers.find(id);
 	if (it == _timers.end()){
-		printf("[samp.js] Error: No timer with that id exists\n");
+		sjs::logger::error("No timer with that id exists");
 	}
 	else{
 		_timers.erase(it);
@@ -505,12 +532,12 @@ void SAMP_JS::SetTimer(const FunctionCallbackInfo<Value>& args){
 
 
 	if (args.Length() < 2){
-		printf("[samp.js] Error: SetTimer takes atleast 2 arguments - SetTimer(function,delay,[repeat=0])\n");
+		sjs::logger::error("SetTimer takes atleast 2 arguments - SetTimer(function,delay,[repeat=0])");
 		return;
 	}
 
 	if (!args[0]->IsFunction()){
-		printf("[samp.js] Error: SetTimer 1st argument must be a function/callback\n");
+		sjs::logger::error("SetTimer 1st argument must be a function/callback");
 		return;
 	}
 
@@ -530,7 +557,7 @@ void SAMP_JS::CancelTimer(const FunctionCallbackInfo<Value>& args){
 	JS_SCOPE(args.GetIsolate());
 	SAMP_JS* sampjs = SAMP_JS::GetInstance(args.GetIsolate()->GetCallingContext());
 	if (args.Length() < 1){
-		printf("[samp.js] Error: CancelTimer takes 1 argument - CancelTimer(timerid);");
+		sjs::logger::error("CancelTimer takes 1 argument - CancelTimer(timerid);");
 		return;
 	}
 	int id = args[0]->Uint32Value();
@@ -569,14 +596,14 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 	
 	std::string filename = SearchModules(name, "js");
 	if (filename == ""){
-		printf("[samp.js] Error: Could not find module %s\n", name.c_str());
+		sjs::logger::error("Could not find module %s", name.c_str());
 		Local<Value> value;
 		return value;
 	}
 
 	std::ifstream t(filename);
 	if (!t){
-		printf("[samp.js] Error: Could not find module %s\n", name.c_str());
+		sjs::logger::error("Could not find module %s", name.c_str());
 		Local<Value> value;
 		return value;
 	}
@@ -587,7 +614,7 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 	
 
 	if (!_cache->GetRealNamedProperty(String::NewFromUtf8(_isolate, filename.c_str())).IsEmpty()){
-		printf("Fetching Cached Module %s\n", filename.c_str());
+		sjs::logger::debug("Loading Cached Module %s", filename.c_str());
 		Local<Value> module = _cache->Get(String::NewFromUtf8(_isolate, filename.c_str()));
 		return module;
 	}
@@ -619,23 +646,23 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 	Local<Script> script = Script::Compile(sourcecode, &origin);
 	if (script.IsEmpty()){
 		_isolate->CancelTerminateExecution();
-		printf("[samp.js] Failed to load Module %s due to errors in the script\n", name.c_str());
+		sjs::logger::error("Failed to load Module %s due to errors in the script", name.c_str());
 		String::Utf8Value exception(try_catch.Exception());
 		const char* exception_string = *exception;
 		Local<Message> message = try_catch.Message();
 
 		if (message.IsEmpty()){
-			printf("%s\n", exception_string);
+			sjs::logger::error("%s", exception_string);
 		}
 		else {
 			String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 			const char* filename_string = *filename;
 			int linenum = message->GetLineNumber();
 
-			printf("%s:%i: %s\n", filename_string, linenum, exception_string);
+			sjs::logger::error("%s:%i: %s", filename_string, linenum, exception_string);
 			String::Utf8Value sourceline(message->GetSourceLine());
 			const char* sourceline_string = *sourceline;
-			printf("%s\n", sourceline_string);
+			sjs::logger::error("%s", sourceline_string);
 
 		}
 		Local<Value> ret;
@@ -644,7 +671,7 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 	else {
 		TryCatch try_catch;
 
-		printf("[samp.js] Loaded Module %s\n", name.c_str());
+		sjs::logger::log("[samp.js] Loaded Module %s", name.c_str());
 		Local<Value> module = script->Run();
 		if (try_catch.HasCaught()){
 			_isolate->CancelTerminateExecution();
@@ -653,17 +680,17 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 			Local<Message> message = try_catch.Message();
 
 			if (message.IsEmpty()){
-				printf("Exception M 2.0: %s\n", exception_string);
+				sjs::logger::error("Exception: %s", exception_string);
 			}
 			else {
 				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 				const char* filename_string = *filename;
 
 				int linenum = message->GetLineNumber();
-				printf("Exception M 2.1: %s:%i: %s\n", filename_string, linenum, exception_string);
+				sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
 				String::Utf8Value sourceline(message->GetSourceLine());
 				const char* sourceline_string = *sourceline;
-				printf("%s\n", sourceline_string);
+				sjs::logger::error("%s", sourceline_string);
 
 			}
 			Local<Value> ret;
@@ -676,7 +703,7 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 Local<Value> SAMP_JS::LoadScript(std::string filename){
 	std::ifstream t(filename);
 	if (!t){
-		printf("[samp.js] Failed to open %s\n", filename.c_str());
+		sjs::logger::error("Failed to open %s", filename.c_str());
 	}
 	else {
 		
@@ -702,21 +729,21 @@ Local<Value> SAMP_JS::LoadScript(std::string filename){
 			Local<Message> message = try_catch.Message();
 
 			if (message.IsEmpty()){
-				printf("%s\n", exception_string);
+				sjs::logger::error("%s", exception_string);
 			}
 			else { 
 				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 				const char* filename_string = *filename;
 				int linenum = message->GetLineNumber();
-				printf("%s:%i: %s\n", filename_string, linenum, exception_string);
+				sjs::logger::error("%s:%i: %s", filename_string, linenum, exception_string);
 				String::Utf8Value sourceline(message->GetSourceLine());
 				const char* sourceline_string = *sourceline;
-				printf("%s\n",sourceline_string);
+				sjs::logger::error("%s", sourceline_string);
 
 			}
 		}
 		else {
-			printf("[samp.js] Loaded %s\n", filename.c_str());
+			sjs::logger::log("Loaded %s", filename.c_str());
 			TryCatch try_catch;
 			Local<Value> result = script->Run();
 			if (try_catch.HasCaught()){
@@ -725,16 +752,16 @@ Local<Value> SAMP_JS::LoadScript(std::string filename){
 				Local<Message> message = try_catch.Message();
 
 				if (message.IsEmpty()){
-					printf("Exception: %s\n", exception_string);
+					sjs::logger::error("Exception: %s", exception_string);
 				}
 				else {
 					String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 					const char* filename_string = *filename;
 					int linenum = message->GetLineNumber();
-					printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+					sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
 					String::Utf8Value sourceline(message->GetSourceLine());
 					const char* sourceline_string = *sourceline;
-					printf("%s\n", sourceline_string);
+					sjs::logger::error("%s", sourceline_string);
 
 				}
 				Local<Value> ret;
@@ -768,16 +795,16 @@ void SAMP_JS::ProcessTick(){
 					Local<Message> message = try_catch.Message();
 
 					if (message.IsEmpty()){
-						printf("Exception: %s\n", exception_string);
+						sjs::logger::error("Exception: %s", exception_string);
 					}
 					else {
 						String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 						const char* filename_string = *filename;
 						int linenum = message->GetLineNumber();
-						printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+						sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
 						String::Utf8Value sourceline(message->GetSourceLine());
 						const char* sourceline_string = *sourceline;
-						printf("%s\n", sourceline_string);
+						sjs::logger::error("%s", sourceline_string);
 
 					}
 				}

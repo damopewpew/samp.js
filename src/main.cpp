@@ -19,6 +19,8 @@
 
 #include "utils/Helpers.h"
 
+#include "uv.h"
+
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
 #define VERSION_BUGFIX 4
@@ -29,8 +31,6 @@ logprintf_t logprintf;
 extern void *pAMXFunctions;
 
 std::vector<std::string> js_scripts;
-
-
 
 
 void ReadConfig(){
@@ -60,14 +60,22 @@ PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports(){
 
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData){
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
-	logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
+	sjs::logger::printf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
+
+	/*
+	std::stringstream buf;
+	std::streambuf * old = std::cout.rdbuf(buf.rdbuf());
 	std::cout << std::endl;
 	std::cout << std::string(30, '-') + " samp.js " + std::string(30, '-') << std::endl;
 	std::cout << "*** Loaded samp.js v" << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUGFIX << " by !damo!spiderman ***" << std::endl;
 	std::cout << std::string(30, '-') + std::string(9,'-') + std::string(30, '-') << std::endl;
-	std::cout << std::endl;
+	std::cout << std::endl; */
 
+	sjs::logger::printf("Testing");
 	ReadConfig();
+
+	SAMP_JS::InitJS();
+	
 	return true;
 }
 
@@ -75,6 +83,8 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 	std::cout << std::endl;
 	std::cout << std::string(30, '-') + " samp.js unloaded " + std::string(30, '-') << std::endl;
 	std::cout << std::endl;
+
+	SAMP_JS::UnloadJS();
 }
 #include "samp/SAMP_Natives.h"
 
