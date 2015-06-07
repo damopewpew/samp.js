@@ -19,7 +19,7 @@
 #include <iostream>
 #include "SAMP_Module.h"
 
-//uv #include "uv.h" 
+#include "uv.h" 
 
 class SAMP_Events;
 
@@ -145,13 +145,13 @@ public:
 	SAMP_Module *GetModule(std::string name);
 
 	static void thread_loop(void *args);
-	//uv static void idle_cb(uv_idle_t* handle);
+	static void idle_cb(uv_idle_t* handle);
 
 	static void InitJS();
 	static void UnloadJS();
-	//uv static uv_loop_t *uv_loop;
-	//uv static uv_idle_t idle_handle;
-	//uv static uv_thread_t main_thread;
+	static uv_loop_t *uv_loop;
+	static uv_idle_t idle_handle;
+	static uv_thread_t main_thread;
 	
 private:
 	std::map<std::string, SAMP_Module*> _modules;

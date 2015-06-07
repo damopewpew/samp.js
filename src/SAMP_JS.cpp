@@ -15,27 +15,27 @@
 #include "utils/SAMP_Utils.h"
 #include "io/SAMP_FileSystem.h"
 #include "samp/SAMP_Players.h"
-//uv #include "io/SAMP_uvFileSystem.h"
+#include "io/SAMP_uvFileSystem.h"
 
 #include <stdio.h>
 
 std::map<std::string, SAMP_JS*> SAMP_JS::_scripts;
 std::map<std::string, int> SAMP_JS::_native_func_cache;
 
-//uv uv_loop_t *SAMP_JS::uv_loop;
-//uv uv_idle_t SAMP_JS::idle_handle;
-//uv uv_thread_t SAMP_JS::main_thread;
+uv_loop_t *SAMP_JS::uv_loop;
+uv_idle_t SAMP_JS::idle_handle;
+uv_thread_t SAMP_JS::main_thread;
 
 bool SAMP_JS::initiated = false; 
 
 void SAMP_JS::thread_loop(void *args){
-//uv	uv_loop = uv_default_loop();
+	uv_loop = uv_default_loop();
 }
-//uv void SAMP_JS::idle_cb(uv_idle_t* handle){
-//uv }
+void SAMP_JS::idle_cb(uv_idle_t* handle){
+}
 
 void SAMP_JS::InitJS(){
-//uv	uv_loop = uv_default_loop();
+	uv_loop = uv_default_loop();
 }
 
 void SAMP_JS::UnloadJS(){
@@ -64,14 +64,23 @@ void SAMP_JS::New(std::string filename, AMX *amx){
 	jsfile->AddModule("utils", new SAMP_Utils(jsfile));
 	jsfile->AddModule("$fs", new SAMP_FileSystem(jsfile));
 	jsfile->AddModule("players", new SAMP_Players(jsfile));
-	//uv jsfile->AddModule("uvfs", new SAMP_uvFileSystem(jsfile));
+	jsfile->AddModule("uvfs", new SAMP_uvFileSystem(jsfile));
 
 	JS_SCOPE(jsfile->GetIsolate())
 	JS_CONTEXT(jsfile->GetIsolate(), jsfile->_context)
 	Local<Value> ret = jsfile->LoadScript("js/" + filename);
+
+	if (ret.IsEmpty()){
+		sjs::logger::error("Could not create new script (%s)", filename.c_str());
+		return;
+	}
+	
+
 	String::Utf8Value jsStr(ret);
 	char* str = *jsStr;
 	SAMP_JS::_scripts[filename] = jsfile;
+
+	SAMP_JS::_scripts[filename]->EventManager()->FireEvent("ScriptInit");
 
 }
 
@@ -81,6 +90,9 @@ void SAMP_JS::Unload(std::string filename){
 		sjs::logger::error("unload: Script not loaded (%s)", filename.c_str());
 		return;
 	}
+
+	_scripts[filename]->EventManager()->FireEvent("ScriptExit");
+
 	SAMP_JS::_scripts.erase(filename);
 }
 void SAMP_JS::Reload(std::string filename, AMX *amx){
@@ -88,6 +100,7 @@ void SAMP_JS::Reload(std::string filename, AMX *amx){
 		// Script not found
 		sjs::logger::error("reload: Script not loaded (%s)", filename.c_str());
 	}
+	_scripts[filename]->EventManager()->FireEvent("ScriptExit");
 	SAMP_JS::_scripts.erase(filename);
 	SAMP_JS::New(filename, amx );
 }
@@ -190,6 +203,7 @@ SAMP_JS::SAMP_JS():_time_count(0){
 }
 
 void SAMP_JS::Shutdown(){
+	EventManager()->FireEvent("ScriptExit");
 	sjs::logger::debug("Shutting Down Script %s");
 	
 }
@@ -624,11 +638,19 @@ Local<Value> SAMP_JS::RequireModule(std::string name){
 	Isolate::Scope isolate_scope(_isolate);
 	EscapableHandleScope handle_scope(_isolate);
 
+	std::vector<std::string> tmp = sjs::string::split(filename, "/");
+	std::string file= tmp[tmp.size() - 1];
+	std::string path = filename.substr(0, filename.length()-file.length() - 1);
+
+	sjs::logger::log("Path: %s - %s", filename.c_str(), path.c_str());
+
 	std::string source = R"(
 		$modules._cache[")"+filename+R"("] = (function(){
 			var exports = {}
 			var module = {
-				name: ")" + name + R"("
+				name: ")" + name + R"(",
+				path: ")" + path + R"(/",
+				file: ")" + file + R"("
 			}; 
 )" + buffer.str() + R"(
 			return exports;

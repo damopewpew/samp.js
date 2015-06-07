@@ -3,6 +3,8 @@
 
 #include "samp/SAMP_Players.h"
 
+#include "utils/Helpers.h"
+
 SAMP_Events::SAMP_Events(SAMP_JS*sampjs) :_sampjs(sampjs){
 	std::string src = R"(
 events = {
@@ -47,6 +49,33 @@ events = {
 
 }
 
+void SAMP_Events::FireEvent(std::string name){
+	FireEvent(name, 0, NULL);
+}
+void SAMP_Events::FireEvent(std::string name, const int argc, Local<Value> argv[]){
+	sjs::logger::log("Firing Event %s", name.c_str());
+	JS_SCOPE(_sampjs->GetIsolate())
+	JS_CONTEXT(_sampjs->GetIsolate(), _sampjs->_context)
+	TryCatch try_catch;
+	Local<Object> events = _sampjs->GetGlobalObject("$events");
+	Local<Value> fire = events->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "fire"));
+	Local<Function> fn = Local<Function>::Cast(fire);
+
+	if (name == "ScriptInit"){
+		Local<Object> server = _sampjs->GetGlobalObject("$server");
+		Local<Value> check = server->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "checkPlayers"));
+		Local<Function> cpfn = Local<Function>::Cast(check);
+		cpfn->Call(events, 0, NULL);
+	}
+	Local<Value> *args = new Local<Value>[argc + 1];
+	args[0] = String::NewFromUtf8(_sampjs->GetIsolate(), name.c_str());
+	if (argc > 0){
+		for (int i = 0; i < argc; i++){
+			args[i + 1] = argv[i];
+		}
+	}
+	fn->Call(events, argc+1, args);
+}
 
 
 int SAMP_Events::FireNative(std::string name, std::string param_types, std::vector<std::string> param_names, AMX* amx, cell* params){
@@ -86,8 +115,10 @@ int SAMP_Events::FireNative(std::string name, std::string param_types, std::vect
 					break;
 				}
 				case 'i':{
-					if (param_names[i-1] == "playerid"){
+					if (param_names[i - 1] == "playerid" || param_names[i - 1] == "killerid"){
+						
 						int playerid = params[i];
+
 						SAMP_Module* module = _sampjs->GetModule("players");
 						if (module != NULL){
 							SAMP_Players *players = (SAMP_Players*)(module);
@@ -125,16 +156,16 @@ int SAMP_Events::FireNative(std::string name, std::string param_types, std::vect
 			Local<Message> message = try_catch.Message();
 
 			if (message.IsEmpty()){
-				printf("Exception: %s\n", exception_string);
+				sjs::logger::error("Exception: %s", exception_string);
 			}
 			else {
 				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
 				const char* filename_string = *filename;
 				int linenum = message->GetLineNumber();
-				printf("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
+				sjs::logger::error("Exception: %s:%i: %s\n", filename_string, linenum, exception_string);
 				String::Utf8Value sourceline(message->GetSourceLine());
 				const char* sourceline_string = *sourceline;
-				printf("%s\n", sourceline_string);
+				sjs::logger::error("%s\n", sourceline_string);
 
 			}
 		}

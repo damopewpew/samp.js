@@ -19,7 +19,7 @@
 
 #include "utils/Helpers.h"
 
-//uv #include "uv.h"
+#include "uv.h"
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1

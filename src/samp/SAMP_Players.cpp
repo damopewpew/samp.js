@@ -13,7 +13,7 @@ SAMP_Players::SAMP_Players(SAMP_JS* sampjs){
 
 	std::string src = R"(
 $PLAYER = {
-	id: -1,
+	id: 65565,
 	name_: "",
 	ip_: null,
 	pos_: {x:0,y:0,z:0,a:0},
@@ -33,6 +33,10 @@ $PLAYER = {
 	wantedLevel_: 0,
 	constructor(id){
 		this.id = id;
+	},
+
+	get isValid(){
+		return (this.id < 65535);
 	},
 	get name(){
 		this.name_ = GetPlayerName(this.id);
@@ -279,6 +283,7 @@ $PLAYER = {
 
 	if (player.IsEmpty()){
 		//printf("Why am I empty???\n");
+
 	}
 	playerObj.Reset(sampjs->GetIsolate(), player);
 
@@ -289,8 +294,10 @@ $PLAYER = {
 			gravity_: 0.008,
 			time_: 0,
 			checkPlayers: function(){
+				print("Checking Players");
 				for(var i = 0; i < 1000; i++){
 					if(CallNative("IsPlayerConnected", "i", i)){
+						print("Player "+i+" is connected");
 						$server.AddPlayer(i);
 					}
 				}
@@ -348,7 +355,10 @@ Local<Object> SAMP_Players::GetPlayerObject(int playerid){
 	EscapableHandleScope handle_scope(_sampjs->GetIsolate());
 	JS_CONTEXT(_sampjs->GetIsolate(), _sampjs->_context)
 
-	
+	if (playerid == 65535){ //INVALID_PLAYER_ID
+		Local<Object> val = _sampjs->GetGlobalObject("$PLAYER");
+		return handle_scope.Escape(val);
+	}
 	Local<Value> val = _sampjs->GetGlobalObject("$players")->Get(playerid);
 
 	if (val->IsObject()){
