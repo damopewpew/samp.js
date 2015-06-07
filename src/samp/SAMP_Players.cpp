@@ -13,7 +13,7 @@ SAMP_Players::SAMP_Players(SAMP_JS* sampjs){
 
 	std::string src = R"(
 $PLAYER = {
-	id: 65565,
+	id: 65535,
 	name_: "",
 	ip_: null,
 	pos_: {x:0,y:0,z:0,a:0},
