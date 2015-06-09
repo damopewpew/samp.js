@@ -56,6 +56,8 @@ $EVENTS.prototype = {
 	}
 };
 
+var $events = new $EVENTS();
+
 )";
 	Local<String> source = String::NewFromUtf8(sampjs->GetIsolate(), src.c_str());
 	Local<String> name = String::NewFromUtf8(sampjs->GetIsolate(), "[events.js]");
