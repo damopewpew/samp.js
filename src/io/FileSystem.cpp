@@ -347,6 +347,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 				data = data.substr(3);
 				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
 			}
+			#ifdef WIN32
 			else if (memcmp(data.c_str(), UTF_16_LE_BOM, 2) == 0){	
 				std::vector<std::uint16_t> result((data.size() + sizeof(std::uint16_t) - 1) / sizeof std::uint16_t);
 				std::copy_n(data.data(), data.size(), reinterpret_cast<char*>(&result[0]));
@@ -356,6 +357,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 				sjs::logger::error("Error reading file %s: UCS-2 Big Endian not supported.", path2.c_str());
 				return;
 			}
+			#endif
 			else {
 				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
 			} 
