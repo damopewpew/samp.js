@@ -1,0 +1,5 @@
+namespace sampjs {
+	class Module {
+
+	};
+};

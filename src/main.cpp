@@ -1,13 +1,13 @@
+#ifdef WIN32
 #pragma comment(lib, "winmm.lib")
-
-
-#include "sdk.h"
-
-
-#include "SAMP_JS.h"
-#include "samp/SAMP_Callbacks.h"
+#endif
 
 #define NOMINMAX
+
+#include "sdk.h"
+#include "Server.h"
+#include "samp/Callbacks.h"
+
 
 
 #include <fstream>
@@ -23,7 +23,7 @@
 
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
-#define VERSION_BUGFIX 4
+#define VERSION_BUGFIX 6
 
 typedef void(*logprintf_t)(char* format, ...);
 logprintf_t logprintf;
@@ -61,20 +61,12 @@ PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports(){
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData){
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	sjs::logger::printf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
+	sjs::logger::log("%s samp.js %s", std::string(30, '-').c_str(),std::string(30, '-').c_str());
+	sjs::logger::log("*** Loaded samp.js v%i.%i.%i by !damo!spiderman ***", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX);
+	sjs::logger::log("%s", std::string(69, '-').c_str());
 
-	/*
-	std::stringstream buf;
-	std::streambuf * old = std::cout.rdbuf(buf.rdbuf());
-	std::cout << std::endl;
-	std::cout << std::string(30, '-') + " samp.js " + std::string(30, '-') << std::endl;
-	std::cout << "*** Loaded samp.js v" << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_BUGFIX << " by !damo!spiderman ***" << std::endl;
-	std::cout << std::string(30, '-') + std::string(9,'-') + std::string(30, '-') << std::endl;
-	std::cout << std::endl; */
-
-	sjs::logger::printf("Testing");
 	ReadConfig();
 
-	SAMP_JS::InitJS();
 	
 	return true;
 }
@@ -84,9 +76,9 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 	std::cout << std::string(30, '-') + " samp.js unloaded " + std::string(30, '-') << std::endl;
 	std::cout << std::endl;
 
-	SAMP_JS::UnloadJS();
+
 }
-#include "samp/SAMP_Natives.h"
+#include "samp/Natives.h"
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	int res = 0;
@@ -98,7 +90,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	if (!amx_FindPublic(amx, "SAMPJS_Init", &idx)){
 		if (js_scripts.size() > 0){
 			for (unsigned int i = 0; i < js_scripts.size(); i++){
-				SAMP_JS::New(js_scripts[i], amx);
+				sampjs::Server::New(js_scripts[i], amx);
 			}
 			std::cout << std::endl;
 		}
@@ -111,10 +103,10 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
-	for (auto it = SAMP_JS::_scripts.begin(); it != SAMP_JS::_scripts.end();){
-		if (it->second->GetAMX() == amx){
-			it->second->Shutdown();
-			SAMP_JS::_scripts.erase(it++);
+	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end();){
+		if (it->second.GetAMX() == amx){
+			it->second.Shutdown();
+			sampjs::Server::_scripts.erase(it++);
 		}
 		else {
 			++it;
@@ -124,8 +116,9 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick(){
-	for (auto it = SAMP_JS::_scripts.begin(); it != SAMP_JS::_scripts.end();++it){
-		it->second->ProcessTick();
+
+	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end(); ++it){
+		it->second.ProcessTick();
 	
 	}
 }

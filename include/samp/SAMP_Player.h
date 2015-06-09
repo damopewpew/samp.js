@@ -4,7 +4,7 @@
 #include "include/v8.h"
 #include "include/libplatform/libplatform.h"
 
-#include "SAMP_JS.h"
+#include "Server.h"
 
 #include "sdk.h"
 
@@ -42,7 +42,7 @@ public:
 	Vector3 _position;
 	float _angle;
 
-	static Local<Object> CreatePlayer(int playerid, SAMP_JS *sampjs);
+	static Local<Object> CreatePlayer(int playerid, Server *sampjs);
 	static void Get(Local<String> name, const PropertyCallbackInfo<Value>& info);
 	static void Set(Local<String> name, Local<Value> value, const PropertyCallbackInfo<Value>& info);
 
