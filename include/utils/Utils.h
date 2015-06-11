@@ -7,6 +7,7 @@ namespace sampjs {
 	class Utils : public Module {
 	public:
 		Utils(Server* sampjs);
+		virtual void Shutdown();
 
 		static void JS_Debug(const FunctionCallbackInfo<Value> & args);
 

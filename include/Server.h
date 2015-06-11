@@ -74,14 +74,14 @@ inline time_ms TimeMS(){
 }
 
 namespace sampjs {
-	class SAMP_Timer {
+	class Timer {
 	public:
 		time_ms start;
 		time_ms duration;
 		Persistent<Function, CopyablePersistentTraits<Function>> func;
 		int repeat = 0;
 
-		SAMP_Timer(time_ms duration_, Local<Function> func_, int repeat_ = 0){
+		Timer(time_ms duration_, Local<Function> func_, int repeat_ = 0){
 			this->func.Reset(func_->CreationContext()->GetIsolate(), func_);
 			this->duration = duration_;
 			this->start = TimeMS();
@@ -97,7 +97,7 @@ namespace sampjs {
 
 	public:
 		static std::map<std::string, int> _native_func_cache;
-		static std::map<std::string, Server> _scripts;
+		static std::map<std::string, Server*> _scripts;
 
 		static void New(std::string filename, AMX *amx);
 		static void Unload(std::string filename);
@@ -110,6 +110,8 @@ namespace sampjs {
 		static void JS_LoadScript(const FunctionCallbackInfo<Value> & args);
 		static void JS_UnloadScript(const FunctionCallbackInfo<Value> & args);
 		static void JS_ReloadScript(const FunctionCallbackInfo<Value> & args);
+
+		static void JS_GarbageCollection(const FunctionCallbackInfo<Value> & args);
 
 		static void Require(const FunctionCallbackInfo<Value> & args);
 		static void Include(const FunctionCallbackInfo<Value> & args);
@@ -133,6 +135,7 @@ namespace sampjs {
 		void SetGlobalFunction(std::string name, FunctionCallback callback);
 		void SetGlobalObject(std::string name, Local<Object> object);
 		Local<Object> GetGlobalObject(std::string name);
+		Local<Function> GetGlobalFunction(std::string name);
 
 		sampjs::Events *EventManager();
 
@@ -154,12 +157,15 @@ namespace sampjs {
 
 
 		static std::thread thread;
+		
+		void SetScriptName(std::string script_name);
 
 	private:
+		std::string script_name;
 		std::map<std::string, Module*> _modules;
 		AMX* _amx;
 		sampjs::Events *_eventManager;
-		std::map<int, SAMP_Timer*> _timers;
+		std::map<int, sampjs::Timer*> _timers;
 		unsigned int _time_count;
 
 		int AddTimer(Local<Function> func, int delay, int repeat = 0);

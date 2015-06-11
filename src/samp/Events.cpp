@@ -10,7 +10,7 @@ using namespace sampjs;
 
 Events::Events(Server*sampjs) :_sampjs(sampjs){
 	std::string src = R"(
-
+"use strict";
 function mixin( obj1, obj2 ){
 	var result = new obj1();
 	for(var property in obj2){
@@ -23,18 +23,18 @@ function mixin( obj1, obj2 ){
 }
 			
 
-function $EVENTS(){
 
-}
-
-$EVENTS.prototype = {
-	ids: {},
-	on: function(events, fn){
+class $EVENTS {
+	constructor(){
+		this.ids = {};
+	}
+	
+	on(events, fn){
 		if(!this.ids[events])this.ids[events] = [];
 		this.ids[events].push(fn);
-	},
+	}
 	
-	fire: function(event ){
+	fire( event ){
 		var args = [];
 		for(var i in arguments){
 			if(i != 0) args.push(arguments[i]);

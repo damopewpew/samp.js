@@ -146,6 +146,10 @@ FileSystem::FileSystem(Server* sampjs) :_sampjs(sampjs){
 
 }
 
+void FileSystem::Shutdown(){
+	// Do Cleanup
+}
+
 void FileSystem::AddFunction(Local<Object> obj, std::string name, FunctionCallback callback){
 	Local<FunctionTemplate> fntmp = FunctionTemplate::New(_sampjs->GetIsolate(), callback);
 	obj->Set(String::NewFromUtf8(_sampjs->GetIsolate(), name.c_str()), fntmp->GetFunction());
@@ -153,7 +157,6 @@ void FileSystem::AddFunction(Local<Object> obj, std::string name, FunctionCallba
 }
 
 void FileSystem::rename(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate());
 	if (args.Length() < 2){
 		printf("[samp.js] Error: $fs::rename() takes 2 arguments - $fs.rename(path_old, path_new);");
 		args.GetReturnValue().Set(false);
@@ -176,7 +179,6 @@ void FileSystem::rename(const FunctionCallbackInfo<Value>& args){
 }
 
 void FileSystem::unlink(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate())
 	if (args.Length() < 1){
 		std::cout << "[samp.js] Error: $fs::unlink() takes 1 argument - $fs.unlink(path)" << std::endl;
 		args.GetReturnValue().Set(false);
@@ -199,7 +201,6 @@ void FileSystem::unlink(const FunctionCallbackInfo<Value>& args){
 }
 
 void FileSystem::rmdir(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate())
 	if (args.Length() < 1){
 		std::cout << "[samp.js] Error: $fs::rmdir() takes 1 argument - $fs.rmdir(path)" << std::endl;
 		args.GetReturnValue().Set(false);
@@ -222,7 +223,6 @@ void FileSystem::rmdir(const FunctionCallbackInfo<Value>& args){
 }
 
 void FileSystem::mkdir(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate())
 	if (args.Length() < 1){
 		std::cout << "[samp.js] Error: $fs::mkdir() takes 1 argument - $fs.mkdir(path)" << std::endl;
 		args.GetReturnValue().Set(false);
@@ -245,13 +245,10 @@ void FileSystem::mkdir(const FunctionCallbackInfo<Value>& args){
 }
 
 void FileSystem::readdir(const FunctionCallbackInfo<Value>& args){
-
-	JS_SCOPE(args.GetIsolate())
-	JS_CTX(args.GetIsolate()->GetCallingContext());
-		if (args.Length() < 1){
-			std::cout << "[samp.js] Error: $fs::readdir() takes 1 argument - $fs.readdir(path)" << std::endl;
-			return;
-		}
+	if (args.Length() < 1){
+		std::cout << "[samp.js] Error: $fs::readdir() takes 1 argument - $fs.readdir(path)" << std::endl;
+		return;
+	}
 
 	const char *path;
 	const String::Utf8Value jsString(args[0]);
@@ -291,12 +288,11 @@ void FileSystem::readdir(const FunctionCallbackInfo<Value>& args){
 
 
 void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
-	//JS_SCOPE(args.GetIsolate())
-		if (args.Length() < 1){
-			std::cout << "[samp.js] Error: $fs::readFile() takes 1 argument - $fs.readFile(path)" << std::endl;
-			args.GetReturnValue().Set(false);
-			return;
-		}
+	if (args.Length() < 1){
+		std::cout << "[samp.js] Error: $fs::readFile() takes 1 argument - $fs.readFile(path)" << std::endl;
+		args.GetReturnValue().Set(false);
+		return;
+	}
 
 	const char *path;
 	const String::Utf8Value jsString(args[0]);
@@ -361,11 +357,6 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 			else {
 				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
 			} 
-
-
-			
-			
-
 			Local<Function> func = Local<Function>::New(callback->isolate, callback->callback);
 
 			TryCatch try_catch;
@@ -397,20 +388,18 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 			args.GetReturnValue().Set(false);
 			return;
 		}
-
-
 		args.GetReturnValue().Set(String::NewFromUtf8(args.GetIsolate(), data.c_str()));
 	}
 
 } 
 
 void FileSystem::writeFile(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate())
-		if (args.Length() < 2){
-			std::cout << "[samp.js] Error: $fs::writeFile() takes 2 arguments - $fs.writeFile(path, data)" << std::endl;
-			args.GetReturnValue().Set(false);
-			return;
-		}
+
+	if (args.Length() < 2){
+		std::cout << "[samp.js] Error: $fs::writeFile() takes 2 arguments - $fs.writeFile(path, data)" << std::endl;
+		args.GetReturnValue().Set(false);
+		return;
+	}
 
 	const char *path;
 	const String::Utf8Value jsString(args[0]);
@@ -436,7 +425,6 @@ void FileSystem::writeFile(const FunctionCallbackInfo<Value>& args){
 
 
 void FileSystem::appendFile(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate())
 	if (args.Length() < 2){
 		std::cout << "[samp.js] Error: $fs::appendFile() takes 2 arguments - $fs.appendFile(path, data)" << std::endl;
 		args.GetReturnValue().Set(false);
@@ -462,14 +450,11 @@ void FileSystem::appendFile(const FunctionCallbackInfo<Value>& args){
 }
 
 void FileSystem::exists(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate())
-		if (args.Length() < 1){
-			std::cout << "[samp.js] Error: $fs::exists() takes 1 argument - $fs.exists(path)" << std::endl;
-			args.GetReturnValue().Set(false);
-			return;
-		}
-
-
+	if (args.Length() < 1){
+		std::cout << "[samp.js] Error: $fs::exists() takes 1 argument - $fs.exists(path)" << std::endl;
+		args.GetReturnValue().Set(false);
+		return;
+	}
 
 	const char *path;
 	const String::Utf8Value jsString(args[0]);

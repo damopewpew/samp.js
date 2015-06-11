@@ -15,12 +15,13 @@
 #include "utils/Utils.h"
 #include "io/FileSystem.h"
 #include "samp/Players.h"
+#include "io/Sockets.h"
 
 #include <stdio.h>
 
 using namespace sampjs;
 
-std::map<std::string, Server> Server::_scripts;
+std::map<std::string, Server *> Server::_scripts;
 std::map<std::string, int> Server::_native_func_cache;
 bool Server::initiated = false; 
 
@@ -50,10 +51,12 @@ void Server::New(std::string filename, AMX *amx){
 	}
 	Server *jsfile = new Server;
 	jsfile->SetAMX(amx);
+	jsfile->SetScriptName(filename);
 
 	jsfile->AddModule("utils", new Utils(jsfile));
 	jsfile->AddModule("$fs", new sampjs::FileSystem(jsfile));
 	jsfile->AddModule("players", new sampjs::Players(jsfile));
+	jsfile->AddModule("$sockets", new sampjs::Sockets(jsfile));
 	
 	JS_SCOPE(jsfile->GetIsolate())
 	
@@ -69,10 +72,14 @@ void Server::New(std::string filename, AMX *amx){
 
 	String::Utf8Value jsStr(ret);
 	char* str = *jsStr;
-	Server::_scripts[filename] = *jsfile;
+	Server::_scripts[filename] = jsfile;
 
-	Server::_scripts[filename].EventManager()->FireEvent("ScriptInit");
+	Server::_scripts[filename]->EventManager()->FireEvent("ScriptInit");
 
+}
+
+void Server::SetScriptName(std::string script_name){
+	this->script_name = script_name;
 }
 
 void Server::Unload(std::string filename){
@@ -81,8 +88,8 @@ void Server::Unload(std::string filename){
 		sjs::logger::error("unload: Script not loaded (%s)", filename.c_str());
 		return;
 	}
-
-	_scripts[filename].EventManager()->FireEvent("ScriptExit");
+	_scripts[filename]->Shutdown();
+	//_scripts[filename]->EventManager()->FireEvent("ScriptExit");
 
 	Server::_scripts.erase(filename);
 }
@@ -92,7 +99,8 @@ void Server::Reload(std::string filename, AMX *amx){
 		sjs::logger::error("reload: Script not loaded (%s)", filename.c_str());
 	}
 	else {
-		_scripts[filename].EventManager()->FireEvent("ScriptExit");
+		//_scripts[filename]->EventManager()->FireEvent("ScriptExit");
+		_scripts[filename]->Shutdown();
 		Server::_scripts.erase(filename);
 	}
 	Server::New(filename, amx );
@@ -129,6 +137,10 @@ void Server::JS_ReloadScript(const FunctionCallbackInfo<Value> & args){
 	std::string file = JS2STRING(args[0]);
 	Server* sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 	Reload(file, sampjs->GetAMX());
+}
+
+void Server::JS_GarbageCollection(const FunctionCallbackInfo<Value> & args){
+	while (!args.GetIsolate()->IdleNotification(5000) ){};
 }
 
 
@@ -172,6 +184,7 @@ Server::Server():_time_count(0){
 
 	SetGlobalObject("$sampjs", sampjs);
 
+
 	Local<ObjectTemplate> module_templ = ObjectTemplate::New(_isolate);
 
 	Local<ObjectTemplate> cache_templ = ObjectTemplate::New(_isolate);
@@ -179,6 +192,8 @@ Server::Server():_time_count(0){
 	module_templ->Set(String::NewFromUtf8(_isolate, "_cache"),cache_templ->NewInstance());
 
 	Local<Object> module = module_templ->NewInstance();
+
+	SetGlobalFunction("gc", Server::JS_GarbageCollection);
 
 	SetGlobalFunction("require", Server::Require);
 	SetGlobalFunction("include", Server::Include);
@@ -197,7 +212,12 @@ Server::Server():_time_count(0){
 
 void Server::Shutdown(){
 	EventManager()->FireEvent("ScriptExit");
-	sjs::logger::debug("Shutting Down Script %s");
+
+	for (auto module : _modules){
+		sjs::logger::debug("Module: %s", module.first.c_str());
+		module.second->Shutdown();
+	}
+	sjs::logger::debug("Shutting Down Script %s",this->script_name.c_str());
 	
 }
 
@@ -518,7 +538,8 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 
 
 int Server::AddTimer(Local<Function> func, int delay, int repeat){
-	_timers[_time_count] = new SAMP_Timer(delay, func, repeat);
+	sjs::logger::debug("Timer Count: %i", _time_count);
+	_timers[_time_count] = new sampjs::Timer(delay, func, repeat);
 	return _time_count++;
 }
 
@@ -533,10 +554,8 @@ void Server::RemoveTimer(int id){
 }
 
 void Server::SetTimer(const FunctionCallbackInfo<Value>& args){
-	JS_SCOPE(args.GetIsolate());
+	sjs::logger::debug("Setting up timer");
 	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
-
-
 	if (args.Length() < 2){
 		sjs::logger::error("SetTimer takes atleast 2 arguments - SetTimer(function,delay,[repeat=0])");
 		return;
@@ -638,6 +657,7 @@ Local<Value> Server::RequireModule(std::string name){
 	sjs::logger::log("Path: %s - %s", filename.c_str(), path.c_str());
 
 	std::string source = R"(
+		"use strict";
 		$modules._cache[")"+filename+R"("] = (function(){
 			var exports = {}
 			var module = {
@@ -725,8 +745,10 @@ Local<Value> Server::LoadScript(std::string filename){
 }
 
 void Server::ProcessTick(){
+
 	auto it = _timers.begin();
 	if (it != _timers.end()){
+		
 		time_ms current = TimeMS();
 		while (it != _timers.end()){
 		
@@ -738,23 +760,7 @@ void Server::ProcessTick(){
 				Local<Function> func = Local<Function>::New(_isolate, it->second->func);
 				func->Call(func->CreationContext()->Global(), 0, NULL);
 				if (try_catch.HasCaught()){
-					String::Utf8Value exception(try_catch.Exception());
-					const char* exception_string = *exception;
-					Local<Message> message = try_catch.Message();
-
-					if (message.IsEmpty()){
-						sjs::logger::error("Exception: %s", exception_string);
-					}
-					else {
-						String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
-						const char* filename_string = *filename;
-						int linenum = message->GetLineNumber();
-						sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
-						String::Utf8Value sourceline(message->GetSourceLine());
-						const char* sourceline_string = *sourceline;
-						sjs::logger::error("%s", sourceline_string);
-
-					}
+					Utils::PrintException(&try_catch);
 				}
 				if (it->second->repeat == 0) _timers.erase(it++);
 				else {
@@ -784,6 +790,16 @@ void Server::SetGlobalObject(std::string name, Local<Object> object){
 	JS_SCOPE(_isolate)
 		JS_CONTEXT(_isolate, _context)
 	context->Global()->Set(String::NewFromUtf8(_isolate, name.c_str()), object);
+}
+
+Local<Function> Server::GetGlobalFunction(std::string name){
+	Locker locker(_isolate);
+	Isolate::Scope isolate_scope(_isolate);
+	EscapableHandleScope handle_scope(_isolate);
+
+	JS_CONTEXT(_isolate, _context)
+	Local<Function> obj = Local<Function>::Cast(context->Global()->Get(STRING2JS(_isolate, name)));
+	return handle_scope.Escape(obj);
 }
 
 Local<Object> Server::GetGlobalObject(std::string name){
