@@ -102,8 +102,8 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
 	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end();){
-		if (it->second.GetAMX() == amx){
-			it->second.Shutdown();
+		if (it->second->GetAMX() == amx){
+			it->second->Shutdown();
 			sampjs::Server::_scripts.erase(it++);
 		}
 		else {
@@ -116,7 +116,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick(){
 
 	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end(); ++it){
-		it->second.ProcessTick();
+		it->second->ProcessTick();
 	
 	}
 }

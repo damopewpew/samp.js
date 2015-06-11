@@ -11,6 +11,8 @@ namespace sampjs {
 	public:
 
 		Players(Server* sampjs);
+		virtual void Shutdown();
+
 		void GetPlayer(const FunctionCallbackInfo<Value> & args);
 
 		static void CreatePlayer(const FunctionCallbackInfo<Value> & args);

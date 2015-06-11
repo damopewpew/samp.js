@@ -8,6 +8,10 @@ sampjs::Utils::Utils(Server* sampjs){
 	sampjs->SetGlobalFunction("print", sampjs::Utils::Print);
 }
 
+void sampjs::Utils::Shutdown(){
+	// Do Cleanup
+}
+
 void sampjs::Utils::JS_Debug(const FunctionCallbackInfo<Value> & args){
 	if (args.Length() > 0){
 		sjs::logger::DEBUG = args[0]->BooleanValue();

@@ -21,6 +21,7 @@ namespace sampjs {
 	class FileSystem : public Module {
 	public:
 		FileSystem(Server* sampjs);
+		virtual void Shutdown();
 
 		static void rename(const FunctionCallbackInfo<Value>& args);
 		static void unlink(const FunctionCallbackInfo<Value>& args);
