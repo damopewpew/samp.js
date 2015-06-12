@@ -46,6 +46,17 @@ void ReadConfig(){
 						js_scripts.push_back(args[i]);
 					}
 				}
+				else if (args[0] == "jsflags"){
+					
+					if (args.size() > 1){
+						std::string flags;
+						for (unsigned int i = 1; i < args.size(); i++){
+							flags += args[i] + " ";
+						}
+
+						sampjs::Server::v8flags = flags;
+					}
+				}
 			}
 		}
 	}

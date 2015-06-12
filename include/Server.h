@@ -113,12 +113,15 @@ namespace sampjs {
 
 		static void JS_GarbageCollection(const FunctionCallbackInfo<Value> & args);
 
+		static void JS_GetMemory(const FunctionCallbackInfo<Value> & args);
+
 		static void Require(const FunctionCallbackInfo<Value> & args);
 		static void Include(const FunctionCallbackInfo<Value> & args);
 		static void CallNative(const FunctionCallbackInfo<Value>& args);
 
 		static void SetTimer(const FunctionCallbackInfo<Value>& args);
 		static void CancelTimer(const FunctionCallbackInfo<Value>& args);
+
 
 		Server();
 
@@ -155,12 +158,14 @@ namespace sampjs {
 		static void InitJS();
 		static void UnloadJS();
 
+		static std::string v8flags;
 
 		static std::thread thread;
 		
 		void SetScriptName(std::string script_name);
 
 	private:
+		
 		std::string script_name;
 		std::map<std::string, Module*> _modules;
 		AMX* _amx;
@@ -170,6 +175,8 @@ namespace sampjs {
 
 		int AddTimer(Local<Function> func, int delay, int repeat = 0);
 		void RemoveTimer(int id);
+
+
 
 
 
