@@ -241,17 +241,20 @@ void Socket::JS_On(const FunctionCallbackInfo<Value> & args){
 	if (args.Length() < 2){
 		return;
 	}
-
+	TryCatch try_catch;
 	Local<Object> ids = Local<Object>::Cast(args.Holder()->Get(String::NewFromUtf8(args.GetIsolate(), "ids")));
 
 	if (!ids->Get(args[0]->ToString())->IsArray()){
-		sjs::logger::debug("Array doesn't exist, creating");
 		ids->Set(args[0]->ToString(), Array::New(args.GetIsolate(), 0));
 	}
 
 	Local<Array> ar = Local<Array>::Cast(ids->Get(args[0]->ToString()));
-	sjs::logger::debug("Array On Size: %i", ar->Length());
 	ar->Set(ar->Length(), args[1]);
+
+	if (try_catch.HasCaught()){
+		args.GetIsolate()->CancelTerminateExecution();
+		Utils::PrintException(&try_catch);
+	}
 }
 
 void Socket::JS_Fire(const FunctionCallbackInfo<Value> & args){

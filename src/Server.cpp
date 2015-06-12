@@ -3,6 +3,7 @@
 #include "utils/Helpers.h"
 
 #include <include/libplatform/libplatform.h>
+#include <include/v8-profiler.h>
 #include <include/v8-debug.h>
 
 #include <fstream>
@@ -17,12 +18,15 @@
 #include "samp/Players.h"
 #include "io/Sockets.h"
 
+#include "utils/SysInfo.h"
+
 #include <stdio.h>
 
 using namespace sampjs;
 
 std::map<std::string, Server *> Server::_scripts;
 std::map<std::string, int> Server::_native_func_cache;
+std::string Server::v8flags;
 bool Server::initiated = false; 
 
 void Server::InitJS(){
@@ -143,6 +147,19 @@ void Server::JS_GarbageCollection(const FunctionCallbackInfo<Value> & args){
 	while (!args.GetIsolate()->IdleNotification(5000) ){};
 }
 
+void Server::JS_GetMemory(const FunctionCallbackInfo<Value> & args){
+	
+	size_t peak = sampjs::getPeakRSS();
+	size_t current = sampjs::getCurrentRSS();
+
+	Local<Object> mem = Object::New(args.GetIsolate());
+
+	mem->Set(String::NewFromUtf8(args.GetIsolate(), "current"), Integer::New(args.GetIsolate(),current));
+	mem->Set(String::NewFromUtf8(args.GetIsolate(), "peak"), Integer::New(args.GetIsolate(), peak));
+	
+	args.GetReturnValue().Set(mem);
+}
+
 
 
 Server::Server():_time_count(0){
@@ -152,17 +169,28 @@ Server::Server():_time_count(0){
 	if (!initiated){
 		ArrayBufferAllocator array_buffer_allocator;
 		V8::SetArrayBufferAllocator(&array_buffer_allocator);
+		
+		v8flags += " --expose-gc ";
+		if(v8flags.length() > 0)V8::SetFlagsFromString(v8flags.c_str(), v8flags.length());
 		initiated = true;
 		V8::InitializeICU();
 		Platform* platform = v8::platform::CreateDefaultPlatform();
+
 		V8::InitializePlatform(platform);
 		V8::Initialize();	
+		
+		
+		
 		
 	}
 	
 	
 	Isolate::CreateParams create_params;
 	_isolate = Isolate::New(create_params);
+
+	
+	//HeapProfiler *heap = _isolate->GetHeapProfiler();
+
 
 	Locker v8Locker(_isolate);
 	Isolate::Scope isolate_scope(_isolate);
@@ -193,7 +221,8 @@ Server::Server():_time_count(0){
 
 	Local<Object> module = module_templ->NewInstance();
 
-	SetGlobalFunction("gc", Server::JS_GarbageCollection);
+	SetGlobalFunction("memory", Server::JS_GetMemory);
+//	SetGlobalFunction("gc", Server::JS_GarbageCollection);
 
 	SetGlobalFunction("require", Server::Require);
 	SetGlobalFunction("include", Server::Include);
@@ -218,6 +247,9 @@ void Server::Shutdown(){
 		module.second->Shutdown();
 	}
 	sjs::logger::debug("Shutting Down Script %s",this->script_name.c_str());
+
+	_context.Reset();
+	_isolate->Dispose();
 	
 }
 
@@ -403,8 +435,18 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 			}
 		}
 
-		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
-		int value = amx_Function(sampjs->GetAMX(), params);
+		
+		int value;
+		try{
+			amx_Function_t amx_Function = (amx_Function_t)amx_addr;
+			value = amx_Function(sampjs->GetAMX(), params);
+		}
+		catch (const std::exception &e){
+			std::cout << e.what();
+		}
+		catch (...){
+			std::cout << "Other Error" << std::endl;
+		}
 
 		if (variables){
 			Local<Object> retobj;
@@ -473,23 +515,8 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 			}
 
 			if (try_catch.HasCaught()){
-				String::Utf8Value exception(try_catch.Exception());
-				const char* exception_string = *exception;
-				Local<Message> message = try_catch.Message();
-
-				if (message.IsEmpty()){
-					sjs::logger::error("Exception: %s", exception_string);
-				}
-				else {
-					String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
-					const char* filename_string = *filename;
-					int linenum = message->GetLineNumber();
-					sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
-					String::Utf8Value sourceline(message->GetSourceLine());
-					const char* sourceline_string = *sourceline;
-					sjs::logger::error("%s", sourceline_string);
-
-				}
+				args.GetIsolate()->CancelTerminateExecution();
+				Utils::PrintException(&try_catch);
 				return;
 			}
 			if (multi){
@@ -508,23 +535,8 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 	}
 	else {
 		if (try_catch.HasCaught()){
-			String::Utf8Value exception(try_catch.Exception());
-			const char* exception_string = *exception;
-			Local<Message> message = try_catch.Message();
-
-			if (message.IsEmpty()){
-				sjs::logger::error("Exception: %s", exception_string);
-			}
-			else {
-				String::Utf8Value filename(message->GetScriptOrigin().ResourceName());
-				const char* filename_string = *filename;
-				int linenum = message->GetLineNumber();
-				sjs::logger::error("Exception: %s:%i: %s", filename_string, linenum, exception_string);
-				String::Utf8Value sourceline(message->GetSourceLine());
-				const char* sourceline_string = *sourceline;
-				sjs::logger::error("%s", sourceline_string);
-
-			}
+			args.GetIsolate()->CancelTerminateExecution();
+			Utils::PrintException(&try_catch);
 			return;
 		}
 		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
@@ -721,6 +733,7 @@ Local<Value> Server::LoadScript(std::string filename){
 		TryCatch try_catch;
 		ScriptOrigin origin(name);
 		Handle<Script> script = Script::Compile(source, &origin);
+	
 		if (script.IsEmpty()){
 			_isolate->CancelTerminateExecution();
 			Utils::PrintException(&try_catch);
