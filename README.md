@@ -79,11 +79,11 @@ Use the following code to register an event in your JavaScript.
  *	All SAMP events have On removed from them
  *	function(){} is a callback which carries the same arguments as normal SAMP callbacks with the exception of playerid
 ***/
-$events.on("GameModeInit",function(){
+$server.on("GameModeInit",function(){
 
 });
 
-$events.on("PlayerConnect", function(player/playerid){
+$server.on("PlayerConnect", function(player/playerid){
 	
 });
 ```
