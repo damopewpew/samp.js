@@ -20,7 +20,7 @@ V8FLAGS := \
 	../deps/v8/lib/libv8_libplatform.a 
 	
 samp.js.so: amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o
-	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o Server.o Utils.o FileSystem.o Sockets.o Callbacks.o Events.o Players.o Helpers.o Timers.o HTTP.o $(V8FLAGS) $(BOOST) $(LIBS)
+	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o $(V8FLAGS) $(BOOST) $(LIBS)
 
 main.o: main.cpp SAMPJS.cpp Script.cpp samp/Server.cpp utils/Utils.cpp utils/Helpers.cpp samp/Callbacks.cpp samp/Events.cpp samp/Players.cpp io/FileSystem.cpp io/Sockets.cpp io/HTTP.cpp io/Timers.cpp ../lib/samp/SDK/amxplugin.cpp 
 	$(CXX) $(CFLAGS) $(INCLUDES) -c main.cpp $(LIBS)
