@@ -65,7 +65,7 @@ string HTTP::Get(string url){
 	tcp::iostream s(parsed.host, parsed.protocol);
 
 	if (!s){
-		sjs::logger::error("Could not connect to %s", parsed.host);
+		sjs::logger::error("Could not connect to %s", parsed.host.c_str());
 	}
 	s << "GET " << parsed.path << " HTTP/1.0\r\n"
 		<< "Host: " << parsed.host << "\r\n"
