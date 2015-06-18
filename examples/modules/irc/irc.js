@@ -9,13 +9,18 @@ class Irc extends $EVENTS {
 		this.nick_ = nick;
 		this.socket = new $io.socket();	
 		this.count = 0;
+		this.channels = [];
 	}
 	
 	connect(){
-		this.socket.on("connect", function(){
-			this.fire("connect");
-			this.send("USER "+this.nick_+" "+this.nick_+" "+this.nick_+" :"+this.nick_+"\r\n");
-			this.nick = this.nick_;
+		this.socket.on("connect", function(err){
+			if(err){
+				this.fire("connect", err);
+			} else {
+				this.fire("connect");
+				this.send("USER "+this.nick_+" "+this.nick_+" "+this.nick_+" :"+this.nick_+"\r\n");
+				this.nick = this.nick_;
+			}
 
 		}.bind(this));
 		
@@ -24,13 +29,24 @@ class Irc extends $EVENTS {
 	}
 	
 	parseUser(mask){
-		
+		let modes = [ '~','&','@','%','+' ];
 		if(mask[0] == ':') mask = mask.substr(1);
-		var tmp = mask.split('@');
-		var host = tmp[1];
-		var tmp = tmp[0].split('!');
+		let tmp = mask.split('!');
+		let host = '';
+		let user = '';
+		let nick = tmp[0];
+		let mode = '';
+		if(modes.indexOf(nick[0]) > -1){
+			mode = nick[0];
+			nick = nick.substr(1);
+		}
+		if(tmp.length > 1){
+			let tmp2 = tmp[1].split('@');
+			host = tmp2[1];
+			user = tmp2[0];
+		}
 		
-		return {nick: tmp[0], user: tmp[1], host: host };
+		return {nick: nick, user: user, host: host, mode: mode };
 	}
 	
 	onRead(data){
@@ -42,8 +58,14 @@ class Irc extends $EVENTS {
 			this.send(`PONG ${parts[1]}\r\n`);	
 		}
 		else if(parts[1] == "001"){
-			if(this.password_) this.identify(this.password_);
+			if(this.password_) this.identify(this.password_);	
+			this.send("PROTOCTL UHNAMES\r\n");
+		
 			this.fire("registered");
+		} else if(parts[1] == "005"){
+			if(parts.indexOf("UHNAMES")){
+				this.send("PROTOCTL UHNAMES\r\n");
+			}
 		}
 		
 		else if(parts.length > 2){
@@ -57,22 +79,55 @@ class Irc extends $EVENTS {
 						let args = msg.split(' ');
 						let cmd = args.shift().substr(1);
 						let message = args.join(' ');
-						this.fire("command", user, channel, cmd, args, message, data );
+						this.fire("command", this.channels[channel].users[user.nick], this.channels[channel], cmd, args, message, data );
 					}else {
-						this.fire("message", user, channel, msg, data );
+						this.fire("message",  this.channels[channel].users[user.nick], this.channels[channel], msg, data );
 					}
 					break;
+				}
+					
+				case "353":{
+					let spl = data.trim().split(':');
+					let users = spl[2].split(' ');
+					let chspl = spl[1].split(' ');
+					let channel = chspl[4];
+				
+					
+					if(!this.channels[channel]) this.channels[channel] = { users: [], name: channel };
+					for(let user of users ){
+						user = this.parseUser(user);
+						this.channels[channel].users[user.nick] = user;
+				
+					}
+
+					break;
+				}
+					
+				case 'MODE':{
+					// Send an NAMES command so we can update all our users modes
+					let channel = parts[2];
+					this.send("NAMES "+channel+"\r\n");
+					
+					break;	
 				}
 				
 				case "JOIN":{
 					let channel = parts[2].substr(1);
-					this.fire("join", user, channel );
+					if(user.nick == this.nick_){
+						this.channels[channel] = { name: channel, users:[] };
+					}
+					this.channels[channel].users[user.nick] = user;
+					this.fire("join", this.channels[channel].users[user.nick], this.channels[channel]);
 					break;
 				}
 				
 				case "PART":{
 					let channel = parts[2].substr(1).trim();
-					this.fire("part", user, channel );
+					
+					this.fire("part",  this.channels[channel].users[user.nick], this.channels[channel] );
+					if(user.nick == this.nick_){
+						delete this.channels[channel];
+					}
 					break;	
 				}
 				
@@ -85,7 +140,13 @@ class Irc extends $EVENTS {
 					if(user.nick == this.nick_){
 						this.nick_ = parts[3];
 					}
-					this.fire("nick", user, parts[3] );
+					
+					this.channels[channel].users[parts[3]] = this.channels[channel].users[user.nick];
+					this.channels[channel].users[parts[3]].nick = parts[3];
+					
+					let olduser = this.channels[channel].users[user.nick];
+					delete this.channels[channel].users[user.nick];
+					this.fire("nick", olduser, this.channels[channel].users[parts[3]] );
 					break;	
 				}
 					
