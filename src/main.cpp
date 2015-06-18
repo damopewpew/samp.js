@@ -90,7 +90,7 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	int res = 0;
-	if (res = amx_Register(amx, PluginNatives, -1)){
+	if ((res = amx_Register(amx, PluginNatives, -1))){
 		printf("Failed to register samp.js natives.\n");
 	}
 
