@@ -138,7 +138,7 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 		size_t S_oc = std::count(param.begin(), param.end(), 'S');
 		size_t I_oc = std::count(param.begin(), param.end(), 'I');
 		size_t F_oc = std::count(param.begin(), param.end(), 'F');
-		size_t s_oc = std::count(param.begin(), param.end(), 's');
+		
 
 		bool multi = false;
 		if ((S_oc + I_oc + F_oc) > 1) multi = true;
