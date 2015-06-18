@@ -1,8 +1,8 @@
 CXX = g++
 INCLUDES = -I../include -I../lib -I../lib/samp/SDK/amx -I../deps/v8 -I../deps/boost_1_58_0
-CFLAGS = -fPIC -m32 -O3 -Wall -DLINUX -D__LINUX__
+CFLAGS = -fPIC -m32 -Os -Wall -DLINUX -D__linux___
 LIBS = -lrt -lpthread -static-libgcc -static-libstdc++ -std=c++11 
-LDFLAGS = -shared -fPIC -m32 -static-libgcc -static-libstdc++
+LDFLAGS = -shared -fPIC -Os -m32 -static-libgcc -static-libstdc++
 BOOST_DIR = ../deps/boost_1_58_0/stage/lib
 BOOST := \
 	$(BOOST_DIR)/libboost_system.a \
@@ -17,10 +17,7 @@ V8FLAGS := \
 	../deps/v8/lib/libv8_base.a \
 	../deps/v8/lib/libv8_libbase.a \
 	../deps/v8/lib/libv8_snapshot.a \
-	../deps/v8/lib/libv8_libplatform.a \
-	../deps/boost_1_58_0/stage/lib/libboost_filesystem.a \
-	../deps/boost_1_58_0/stage/lib/libboost_system.a \
-	../deps/boost_1_58_0/stage/lib/
+	../deps/v8/lib/libv8_libplatform.a 
 	
 samp.js.so: amxplugin.o main.o Server.o Utils.o FileSystem.o Sockets.o Socket.o Callbacks.o Events.o Players.o Helpers.o
 	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o Server.o Utils.o FileSystem.o Sockets.o Socket.o Callbacks.o Events.o Players.o Helpers.o $(V8FLAGS) $(BOOST) $(LIBS)
