@@ -44,8 +44,9 @@ void SAMPJS::Shutdown(){
 	for (auto script : scripts){
 		script.second->Unload();
 		script.second.reset();
+		scripts.erase(script.first);
 	}
-	scripts.empty();
+
 	sjs::logger::debug("SAMPJS Shutdown");
 	V8::ShutdownPlatform();
 }

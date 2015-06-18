@@ -290,13 +290,7 @@ class $PLAYER extends $EVENTS {
 				this.splice(this.indexOf(playerid),1);
 			}
 		};
-
-		
-
 		var $players = new $PLAYERS();
-		$players.get(0);
-
-		print("Fuck Shit");
 )";
 	
 	Local<String> source = String::NewFromUtf8(isolate, src.c_str());

@@ -153,6 +153,13 @@ void FileSystem::Init(Local<Context> context){
 
 void FileSystem::Shutdown(){
 	// Do Cleanup
+	for (auto callback : _callbacks){
+		if (callback.second->isolate == isolate){
+			callback.second->callback.Reset();
+			callback.second->context.Reset();
+			_callbacks.erase(callback.first);
+		}
+	}
 }
 
 void FileSystem::AddFunction(Local<Object> obj, std::string name, FunctionCallback callback){
@@ -374,6 +381,8 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 					Utils::PrintException(&try_catch);
 				}
 			}
+
+			FileSystem::_callbacks.erase(id);
 
 		});
 

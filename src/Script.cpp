@@ -108,11 +108,10 @@ void sampjs::Script::Unload(){
 	for (auto module : modules){
 		module.second->Shutdown();
 		module.second.reset();
+		modules.erase(module.first);
 	}
-
 	context.Reset();
 	isolate->Dispose();
-	sjs::logger::debug("Script Shutdown");
 }
 
 void sampjs::Script::Tick(){

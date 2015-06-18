@@ -24,7 +24,11 @@ void HTTP::Init(Local<Context> context){
 }
 
 void HTTP::Shutdown(){
-	
+	for (auto request : requests){
+		request.second->callback.Reset();
+		request.second->context.Reset();
+		requests.erase(request.first);
+	}
 }
 
 void HTTP::JS_Get(const FunctionCallbackInfo<Value> & args){
@@ -49,6 +53,8 @@ void HTTP::JS_Get(const FunctionCallbackInfo<Value> & args){
 
 			Local<Value> argv[1] = { String::NewFromUtf8(request->isolate, data.c_str()) };
 			func->Call(func, 1, argv);
+
+			HTTP::requests.erase(id);
 		});
 		return;
 	}

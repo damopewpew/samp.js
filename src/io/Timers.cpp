@@ -28,6 +28,11 @@ void Timers::Init(Local<Context> ctx){
 }
 
 void Timers::Shutdown(){
+	// Loop through timers and delete them
+	for (auto timer : timers){
+		timer.second->callback.Reset();
+		timers.erase(timer.first);
+	}
 	context.Reset();
 }
 
