@@ -19,27 +19,35 @@ V8FLAGS := \
 	../deps/v8/lib/libv8_snapshot.a \
 	../deps/v8/lib/libv8_libplatform.a 
 	
-samp.js.so: amxplugin.o main.o Server.o Utils.o FileSystem.o Sockets.o Socket.o Callbacks.o Events.o Players.o Helpers.o
-	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o Server.o Utils.o FileSystem.o Sockets.o Socket.o Callbacks.o Events.o Players.o Helpers.o $(V8FLAGS) $(BOOST) $(LIBS)
+samp.js.so: amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o
+	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o Server.o Utils.o FileSystem.o Sockets.o Callbacks.o Events.o Players.o Helpers.o Timers.o HTTP.o $(V8FLAGS) $(BOOST) $(LIBS)
 
-main.o: main.cpp Server.cpp utils/Utils.cpp samp/Callbacks.cpp samp/Events.cpp samp/Players.cpp io/FileSystem.cpp io/Sockets.cpp io/Socket.cpp ../lib/samp/SDK/amxplugin.cpp utils/Helpers.cpp
+main.o: main.cpp SAMPJS.cpp Script.cpp samp/Server.cpp utils/Utils.cpp utils/Helpers.cpp samp/Callbacks.cpp samp/Events.cpp samp/Players.cpp io/FileSystem.cpp io/Sockets.cpp io/HTTP.cpp io/Timers.cpp ../lib/samp/SDK/amxplugin.cpp 
 	$(CXX) $(CFLAGS) $(INCLUDES) -c main.cpp $(LIBS)
 
-Server.o: Server.cpp 
-	$(CXX) $(CFLAGS) $(INCLUDES) -c Server.cpp $(LIBS)
+
+SAMPJS.o: SAMPJS.cpp
+	$(CXX) $(CFLAGS) $(INCLUDES) -c SAMPJS.cpp $(LIBS)
 	
-Utils.o: utils/Utils.cpp
-	$(CXX) $(CFLAGS) $(INCLUDES) -c utils/Utils.cpp $(LIBS)
+Script.o: Script.cpp
+	$(CXX) $(CFLAGS) $(INCLUDES) -c Script.cpp $(LIBS)
 	
+
+
 FileSystem.o: io/FileSystem.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c io/FileSystem.cpp $(LIBS)
 	
+HTTP.o: io/HTTP.cpp
+	$(CXX) $(CFLAGS) $(INCLUDES) -c io/HTTP.cpp $(LIBS)
+	
 Sockets.o: io/Sockets.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c io/Sockets.cpp $(LIBS)
-	
-Socket.o: io/Socket.cpp
-	$(CXX) $(CFLAGS) $(INCLUDES) -c io/Socket.cpp $(LIBS)
 
+Timers.o: io/Timers.cpp
+	$(CXX) $(CFLAGS) $(INCLUDES) -c io/Timers.cpp $(LIBS)
+	
+	
+	
 Callbacks.o: samp/Callbacks.cpp samp/Events.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c samp/Callbacks.cpp $(LIBS)
 
@@ -49,8 +57,18 @@ Events.o: samp/Events.cpp
 Players.o: samp/Players.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c samp/Players.cpp $(LIBS)
 	
+Server.o: samp/Server.cpp 
+	$(CXX) $(CFLAGS) $(INCLUDES) -c samp/Server.cpp $(LIBS)
+	
+	
+	
 Helpers.o: utils/Helpers.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c utils/Helpers.cpp $(LIBS)
+	
+Utils.o: utils/Utils.cpp
+	$(CXX) $(CFLAGS) $(INCLUDES) -c utils/Utils.cpp $(LIBS)
+	
+	
 
 amxplugin.o:  ../lib/samp/SDK/amxplugin.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c  ../lib/samp/SDK/amxplugin.cpp $(LIBS)
