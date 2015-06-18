@@ -1,0 +1,51 @@
+forward Invoke_a_vehiclesinc();
+public Invoke_a_vehiclesinc(){
+	new Str[256];
+	new iVar;
+	new Float:fVar;
+
+	CreateVehicle( 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0 );
+	DestroyVehicle( 0 );
+	IsVehicleStreamedIn( 0, 0 );
+	GetVehiclePos( 0, fVar, fVar, fVar );
+	SetVehiclePos( 0, 0.0, 0.0, 0.0 );
+	GetVehicleZAngle( 0, fVar );
+	GetVehicleRotationQuat( 0, fVar, fVar, fVar, fVar );
+	GetVehicleDistanceFromPoint( 0, 0.0, 0.0, 0.0 );
+	SetVehicleZAngle( 0, 0.0 );
+	SetVehicleParamsForPlayer( 0, 0, 0, 0 );
+	ManualVehicleEngineAndLights(  );
+	SetVehicleParamsEx( 0, 0, 0, 0, 0, 0, 0, 0 );
+	GetVehicleParamsEx( 0, iVar, iVar, iVar, iVar, iVar, iVar, iVar );
+	GetVehicleParamsSirenState( 0 );
+	SetVehicleParamsCarDoors( 0, 0, 0, 0, 0 );
+	GetVehicleParamsCarDoors( 0, iVar, iVar, iVar, iVar );
+	SetVehicleParamsCarWindows( 0, 0, 0, 0, 0 );
+	GetVehicleParamsCarWindows( 0, iVar, iVar, iVar, iVar );
+	SetVehicleToRespawn( 0 );
+	LinkVehicleToInterior( 0, 0 );
+	AddVehicleComponent( 0, 0 );
+	RemoveVehicleComponent( 0, 0 );
+	ChangeVehicleColor( 0, 0, 0 );
+	ChangeVehiclePaintjob( 0, 0 );
+	SetVehicleHealth( 0, 0.0 );
+	GetVehicleHealth( 0, fVar );
+	AttachTrailerToVehicle( 0, 0 );
+	DetachTrailerFromVehicle( 0 );
+	IsTrailerAttachedToVehicle( 0 );
+	GetVehicleTrailer( 0 );
+	SetVehicleNumberPlate( 0, "" );
+	GetVehicleModel( 0 );
+	GetVehicleComponentInSlot( 0, 0 );
+	GetVehicleComponentType( 0 );
+	RepairVehicle( 0 );
+	GetVehicleVelocity( 0, fVar, fVar, fVar );
+	SetVehicleVelocity( 0, 0.0, 0.0, 0.0 );
+	SetVehicleAngularVelocity( 0, 0.0, 0.0, 0.0 );
+	GetVehicleDamageStatus( 0, iVar, iVar, iVar, iVar );
+	UpdateVehicleDamageStatus( 0, 0, 0, 0, 0 );
+	GetVehicleModelInfo( 0, 0, fVar, fVar, fVar );
+	SetVehicleVirtualWorld( 0, 0 );
+	GetVehicleVirtualWorld( 0 );
+	#pragma unused iVar, fVar, Str
+}
