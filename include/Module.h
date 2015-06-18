@@ -1,12 +1,133 @@
+#ifndef __SAMP_MODULE__
+#define __SAMP_MODULE__
+
+
+
+#include <memory>
+#include <string>
+#include <vector>
+#include <include/v8.h>
+#include <sdk.h>
+
+using namespace v8;
+
+#define V8SCOPE(ISOLATE) \
+		Locker v8Locker(ISOLATE); \
+		Isolate::Scope isoscope(ISOLATE); \
+		HandleScope hs(ISOLATE); 
+
+#define V8PCONTEXT(ISOLATE,CONTEXT) \
+	V8SCOPE(ISOLATE) \
+	auto ctx = Local<Context>::New(ISOLATE, CONTEXT); \
+	Context::Scope cs(ctx); \
+
+#define V8CONTEXT(ISOLATE,CONTEXT) \
+	V8SCOPE(ISOLATE) \
+	Context::Scope cs(CONTEXT); \
+
+#define JS_SCOPE(isolate) Locker  JS_LOCKER(isolate); Isolate::Scope JS_ISOLATE_SCOPE(isolate); HandleScope JS_HANDLE_SCOPE(isolate);
+#define JS_CONTEXT(isolate, ctx) Local<Context> context = Local<Context>::New(isolate,ctx);  Context::Scope JS_CONTEXT_SCOPE(context);
+#define JS_CTX(context) Context::Scope JS_CONTEXT_SCOPE(context);
+
+#define JS2CSTR(jsval, cstr) const String::Utf8Value jsString(jsval); cstr = ToCString(jsString);
+
+
+
+inline const char* ToCString(const v8::String::Utf8Value& value){
+	return *value ? *value : "<string conversion failed>";
+}
+
+inline const char* JS2CSTRING(const Local<Value>& val){
+	const String::Utf8Value jsString(val);
+	const char* str = ToCString(jsString);
+	return str;
+}
+
+inline std::string JS2STRING(const Local<Value>& val){
+	const char* str;
+	JS2CSTR(val, str);
+	return std::string(str);
+}
+
+inline Local<String> STRING2JS(Isolate* isolate, std::string val){
+	return String::NewFromUtf8(isolate, val.c_str());
+}
 
 namespace sampjs {
+	struct JS;
 	class Module {
 	public:
+		virtual void Init(Local<Context> context) = 0;
 		virtual void Shutdown() = 0;
+		virtual void Tick() = 0;
+
 	};
 
-#include <string>
-#include <include/v8.h>
+	class JS_Object {
+	public:
+		JS_Object(Isolate *isolate){
+			this->isolate = isolate;
+			object = Object::New(isolate);
+		}
+		JS_Object(Local<Object> object){
+			this->isolate = object->GetIsolate();
+			this->object = object;
+		}
+
+		Local<Object> get(){
+			return object;
+		}
+
+		JS_Object* Set(std::string name, FunctionCallback callback){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				FunctionTemplate::New(isolate, callback)->GetFunction()
+			);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, Local<Value> value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				value
+			);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, Local<Array> arr){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				arr
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, Local<Object> obj){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				obj
+			);
+			return this;
+		}
+		
+		Local<Value> getValue(std::string name){
+			return object->Get(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str())
+			);
+		}
+
+		Local<Object> getObject(std::string name){
+			return Local<Object>::Cast(
+				object->Get(String::NewFromUtf8(object->GetIsolate(), name.c_str()))
+			);
+		}
+	
+	private:
+		Local<Object> object;
+		Isolate *isolate;
+	};
+
+
 	using namespace v8;
 	class JS_Module {
 	public:
@@ -47,3 +168,6 @@ namespace sampjs {
 		Local<ObjectTemplate> obj_tmpl;
 	};
 };
+
+
+#endif;

@@ -1,9 +1,13 @@
 #ifndef __SAMP_FILESYSTEM__
 #define __SAMP_FILESYSTEM__
 
-#include "Server.h"
+#include "Module.h"
 
+#include <list>
 #include <memory>
+#include <thread>
+#include <map>
+
 
 namespace sampjs {
 	struct JS_Callback {
@@ -20,8 +24,10 @@ namespace sampjs {
 
 	class FileSystem : public Module {
 	public:
-		FileSystem(Server* sampjs);
+		
+		virtual void Init(Local<Context> context);
 		virtual void Shutdown();
+		virtual void Tick(){}
 
 		static void rename(const FunctionCallbackInfo<Value>& args);
 		static void unlink(const FunctionCallbackInfo<Value>& args);
@@ -45,8 +51,7 @@ namespace sampjs {
 		static int _callback_count;
 
 	private:
-		Server* _sampjs;
-
+		Isolate *isolate;
 
 		void AddFunction(Local<Object> obj, std::string name, FunctionCallback callback);
 	};

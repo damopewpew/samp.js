@@ -122,14 +122,19 @@ int isUTF8(const char *data, size_t size)
 	return 1;
 }
 
-FileSystem::FileSystem(Server* sampjs) :_sampjs(sampjs){
-	JS_SCOPE(sampjs->GetIsolate());
-	JS_CONTEXT(sampjs->GetIsolate(), sampjs->_context);
-	Local<ObjectTemplate> fs_templ = ObjectTemplate::New(sampjs->GetIsolate());
+void FileSystem::Init(Local<Context> context){
+	isolate = context->GetIsolate();
+
+	Locker v8locker(isolate);
+	Isolate::Scope isoscope(isolate);
+	HandleScope hs(isolate);
+	Context::Scope cs(context);
+
+	auto fs_templ = ObjectTemplate::New(isolate);
 	fs_templ->SetInternalFieldCount(1);
 
-	Local<Object> fs = fs_templ->NewInstance();
-	fs->SetInternalField(0, External::New(sampjs->GetIsolate(), this));
+	auto fs = fs_templ->NewInstance();
+	fs->SetInternalField(0, External::New(isolate, this));
 
 	AddFunction(fs, "rename", FileSystem::rename);
 	AddFunction(fs, "unlink", FileSystem::unlink);
@@ -141,9 +146,9 @@ FileSystem::FileSystem(Server* sampjs) :_sampjs(sampjs){
 	AddFunction(fs, "writeFile", FileSystem::writeFile);
 	AddFunction(fs, "appendFile", FileSystem::appendFile);
 	AddFunction(fs, "exists", FileSystem::exists);
-	
-	sampjs->SetGlobalObject("$fs", fs);
 
+	JS_Object global(context->Global());
+	global.Set("$fs", fs);
 }
 
 void FileSystem::Shutdown(){
@@ -151,8 +156,8 @@ void FileSystem::Shutdown(){
 }
 
 void FileSystem::AddFunction(Local<Object> obj, std::string name, FunctionCallback callback){
-	Local<FunctionTemplate> fntmp = FunctionTemplate::New(_sampjs->GetIsolate(), callback);
-	obj->Set(String::NewFromUtf8(_sampjs->GetIsolate(), name.c_str()), fntmp->GetFunction());
+	Local<FunctionTemplate> fntmp = FunctionTemplate::New(isolate, callback);
+	obj->Set(String::NewFromUtf8(isolate, name.c_str()), fntmp->GetFunction());
 
 }
 
@@ -313,10 +318,9 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 
 		
 		FileSystem::_callbacks[_callback_count++] = callback;
-		Server* sampjs = Server::GetInstance(func->CreationContext());
 		std::string path2(path);
 
-		auto future = std::async(std::launch::async, [sampjs, path2, id](){
+		auto future = std::async(std::launch::async, [path2, id](){
 			
 			sjs::logger::debug("Starting Async");
 			JS_Callback *callback = FileSystem::_callbacks[id];
@@ -328,16 +332,18 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 	
 			infile.close();
 
-			sjs::logger::debug("Have read file");
 			
 	
-
+			int i = 0;
 			//sjs::logger::debug("Checked Bom");
 			Locker locker(callback->isolate);
 			Isolate::Scope isoscope(callback->isolate);
 			HandleScope handle_scope(callback->isolate);
+			Local<Context> ctx = Local<Context>::New(callback->isolate, callback->context);
 
+			Context::Scope cs(ctx);
 			Local<Value> argv[1] = { String::NewFromUtf8(callback->isolate, "") };
+
 			if (memcmp(data.c_str(), UTF_8_BOM, 3) == 0){
 			
 				data = data.substr(3);
@@ -358,14 +364,12 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
 			} 
 			Local<Function> func = Local<Function>::New(callback->isolate, callback->callback);
-
 			TryCatch try_catch;
 			if (func.IsEmpty()){
 			
 			}
 			else {
-				
-				func->Call(func, 1, argv);
+				func->Call(func->CreationContext()->Global(), 1, argv);
 				if (try_catch.HasCaught()){
 					Utils::PrintException(&try_catch);
 				}

@@ -1,7 +1,7 @@
 #ifndef __SAMPJS_SOCKET__
 #define __SAMPJS_SOCKET__
 
-#include "Server.h"
+#include "Module.h"
 #include <boost/asio.hpp>
 
 
@@ -16,9 +16,13 @@ namespace sampjs {
 	};
 	class Socket : public JS_Module {
 	public:
-		Socket(Local<Object> self, Sockets *sockets, boost::asio::io_service& io_service);
 
-		static Socket *Instance(Local<Object> holder);
+		static std::map<int,std::shared_ptr<Socket>> _sockets;
+		static int socket_id;
+
+		Socket(Local<Object> self, Sockets *socks);
+
+		static Socket* Instance(Local<Object> holder);
 		static void JS_Socket(const FunctionCallbackInfo<Value> & args);
 		
 		// Event Functions
@@ -42,18 +46,20 @@ namespace sampjs {
 		void Read(std::string delimiter);
 		void Send(std::string data);
 		void OnRead(boost::system::error_code ec, std::size_t length);
-		
-		
+
+
 		
 	private:
 
+		
 		std::string hostname;
 		std::string port;
 		Socket_Settings settings;
 		
+		Sockets * sockets;
 		Persistent<Object> self_;
 		Isolate *isolate;
-		Sockets *sockets;
+		Persistent < Context, CopyablePersistentTraits<Context>> context;
 
 		boost::asio::ip::tcp::socket socket_;
 		boost::asio::streambuf response;

@@ -1,17 +1,21 @@
 #ifndef __SAMP_PLAYERS__
 #define __SAMP_PLAYERS__
 
-#include "Server.h"
+#include <include/v8.h>
 
+#include "Module.h"
 
 #include <map>
+
+using namespace v8;
 
 namespace sampjs {
 	class Players : public Module {
 	public:
 
-		Players(Server* sampjs);
+		virtual void Init( Local<Context> context);
 		virtual void Shutdown();
+		virtual void Tick(){};
 
 		void GetPlayer(const FunctionCallbackInfo<Value> & args);
 
@@ -23,8 +27,8 @@ namespace sampjs {
 		void RemovePlayer(int playerid);
 
 	private:
-		Server *_sampjs;
-		Persistent<Object> playerObj;
+		Isolate *isolate;
+		Persistent<Context, CopyablePersistentTraits<Context>> context;
 	};
 };
 

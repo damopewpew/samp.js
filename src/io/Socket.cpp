@@ -13,24 +13,29 @@ using namespace sampjs;
 using namespace boost::asio;
 using namespace boost::asio::ip;
 
-Socket::Socket(Local<Object> self, Sockets *sockets, boost::asio::io_service& io_service )
-	:socket_(io_service),
-	sockets(sockets){
+using namespace std;
 
+map<int,shared_ptr<Socket>> Socket::_sockets;
+int Socket::socket_id = 0;
 
+/*
+	This class needs a tidy up
+	Spent too long fucking around trying to get something to work so now I'm not sure if my original way works
+*/
+Socket::Socket(Local<Object> self, Sockets *socks ):socket_(socks->mService) {
+	context.Reset(self->GetIsolate(), self->CreationContext());
 	isolate = self->GetIsolate();
 	this->self_.Reset(self->GetIsolate(), self);
-
-	// Get Socket Parent
-	Server *server = Server::GetInstance(self->GetIsolate()->GetCallingContext());
-	
-
+	this->sockets = socks;
 }
 
 void Socket::JS_Socket(const FunctionCallbackInfo<Value> & args){
-	Server *server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
-	Module *module = server->GetModule("$sockets");
-	Sockets *sockets = (Sockets*)(module);
+	
+	Local<Object> jssocks = Local<Object>::Cast(args.Holder()->CreationContext()->Global()->Get(String::NewFromUtf8(args.GetIsolate(), "$io")));
+	Local<External> wrap = Local<External>::Cast(jssocks->GetInternalField(0));
+	
+	void * ptr = wrap->Value();
+	Sockets *socks = static_cast<Sockets*>(ptr);
 
 	if (!args.IsConstructCall()){
 		sjs::logger::error("$io.socket() can only be called as a constructor. Please use var socket = new $io.socket()");
@@ -56,29 +61,24 @@ void Socket::JS_Socket(const FunctionCallbackInfo<Value> & args){
 
 
 	Local<Object> sock = socket_tmpl.GetRaw()->NewInstance();
-	Socket *socket = new Socket(sock, sockets, sockets->io_service );
-
+	sock->Set(String::NewFromUtf8(args.GetIsolate(), "socket_id"), Integer::New(args.GetIsolate(),socket_id));
+	_sockets[socket_id++] = std::make_shared<Socket>(sock, socks);
 	sock->SetInternalField(0, External::New(args.GetIsolate(), socket));
-
 	args.GetReturnValue().Set(sock);
 
 }
 
-Socket *Socket::Instance(Local<Object> holder){
+Socket* Socket::Instance(Local<Object> holder){
 	Local<External> wrap = Local<External>::Cast(holder->GetInternalField(0));
-
-	void *ptr = wrap->Value();
-
-	Socket *socket = static_cast<Socket *>(ptr);
-
-	return socket;
+	void* ptr = wrap->Value();
+	return static_cast<Socket*>(ptr);
 }
 
 void Socket::JS_Connect(const FunctionCallbackInfo<Value> & args){
 
-	Socket *socket = Socket::Instance(args.Holder());
-
-	sjs::logger::debug("Connecting");
+	int id = args.Holder()->Get(String::NewFromUtf8(args.GetIsolate(), "socket_id"))->Int32Value();
+	sjs::logger::debug("My Socket Id: %i", id);
+	auto socket = Socket::Instance(args.Holder());
 
 	if (args.Length() < 2){
 		return;
@@ -104,13 +104,10 @@ void Socket::JS_Connect(const FunctionCallbackInfo<Value> & args){
 			my_settings.delimiter = JS2STRING(settings->Get(String::NewFromUtf8(args.GetIsolate(), "delimiter")));
 		}
 	}
-
-	sjs::logger::debug("Connecting to: %s:%s", hostname.c_str(), port.c_str());
 	socket->Connect(hostname, port, my_settings);
 }
 void Socket::JS_Close(const FunctionCallbackInfo<Value> & args){
-	Socket *sock = Socket::Instance(args.Holder());
-
+	auto sock = Socket::Instance(args.Holder());
 	sock->Close();
 }
 
@@ -118,18 +115,14 @@ void Socket::Close(){
 	socket_.close();
 }
 
-void Socket::Connect(std::string hostname, std::string port, Socket_Settings settings){
+void Socket::Connect(std::string hostname_, std::string port_, Socket_Settings settings_){
 
+	this->hostname = hostname_;
+	this->port = port_;
+	this->settings = settings_;
 
-	this->hostname = hostname;
-	this->port = port;
-	this->settings = settings;
-
-	
-	if (sockets->io_service.stopped()) sjs::logger::debug("Service Stopped :(");
-	tcp::resolver resolver(sockets->io_service);
-
-	tcp::resolver::query query(hostname, port);
+	tcp::resolver resolver(sockets->mService);
+	tcp::resolver::query query(hostname_, port_);
 
 	boost::system::error_code ec;
 	tcp::resolver::iterator endpoint_iterator = resolver.resolve(query,ec);
@@ -140,7 +133,7 @@ void Socket::Connect(std::string hostname, std::string port, Socket_Settings set
 	}
 	else {
 	
-		async_connect(socket_, endpoint_iterator, [this](boost::system::error_code ec, tcp::resolver::iterator it){
+		async_connect(this->socket_, endpoint_iterator, [this](boost::system::error_code ec, tcp::resolver::iterator it){
 			
 			if (!ec){
 				sjs::logger::debug("Socket Connected");
@@ -166,17 +159,14 @@ void Socket::Connect(std::string hostname, std::string port, Socket_Settings set
 }
 
 void Socket::JS_Send(const FunctionCallbackInfo<Value> & args){
-	Socket *sock = Socket::Instance(args.Holder());
+	auto sock = Socket::Instance(args.Holder());
 	std::string data = JS2STRING(args[0]);
-
 	sock->Send(data);
-	
 }
 
 void Socket::Send(std::string data){
 	std::ostream request_stream(&request);
 	request_stream << data;
-
 	async_write(this->socket_, request, [this](boost::system::error_code ec, std::size_t /*length*/){
 	});
 }
@@ -236,7 +226,9 @@ void Socket::Read(std::string delimiter){
 
 
 void Socket::JS_On(const FunctionCallbackInfo<Value> & args){
-	Socket *socket = Instance(args.Holder());
+	int id = args.Holder()->Get(String::NewFromUtf8(args.GetIsolate(), "socket_id"))->Int32Value();
+	sjs::logger::debug("My Socket Id: %i", id);
+	auto socket = Instance(args.Holder());
 
 	if (args.Length() < 2){
 		return;
@@ -258,6 +250,9 @@ void Socket::JS_On(const FunctionCallbackInfo<Value> & args){
 }
 
 void Socket::JS_Fire(const FunctionCallbackInfo<Value> & args){
+	sjs::logger::debug("Firing JS");
+	int id = args.Holder()->Get(String::NewFromUtf8(args.GetIsolate(), "socket_id"))->Int32Value();
+	sjs::logger::debug("Fire My Socket Id: %i", id);
 	if (args.Length() < 1){
 		return;
 	}
@@ -271,7 +266,7 @@ void Socket::JS_Fire(const FunctionCallbackInfo<Value> & args){
 		}
 	}
 	std::string eventName = JS2STRING(args[0]);
-	Socket *socket = Socket::Instance(args.Holder());
+	auto socket = Socket::Instance(args.Holder());
 	socket->Fire(eventName, args.Length() - 1, argv);
 /*	for (int i = 0; i < ar->Length(); i++){
 		if (ar->Get(i)->IsFunction()){
@@ -290,11 +285,9 @@ void Socket::Fire(std::string name){
 	Fire(name, 0, NULL);
 }
 void Socket::Fire(std::string name, const int argc, Local<Value> argv[]){
-	
 	JS_SCOPE(isolate)
 	TryCatch try_catch;
 	Local<Object> self = Local<Object>::New(isolate, self_);
-
 	Local<Object> ids = Local<Object>::Cast(self->Get(String::NewFromUtf8(isolate, "ids")));
 	Local<Array> ar = Local<Array>::Cast(ids->Get(String::NewFromUtf8(isolate,name.c_str())));
 	for (uint32_t i = 0; i < ar->Length(); i++){

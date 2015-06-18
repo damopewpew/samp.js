@@ -19,12 +19,9 @@
 #include <iostream>
 
 #include <thread>
+#include <memory>
 
 #include "Module.h"
-#include "samp/Events.h"
-
-
-
 
 using namespace v8;
 
@@ -74,6 +71,8 @@ inline time_ms TimeMS(){
 }
 
 namespace sampjs {
+	class Events;
+
 	class Timer {
 	public:
 		time_ms start;
@@ -93,11 +92,12 @@ namespace sampjs {
 		}
 	};
 
-	class Server {
+	class Server : public std::enable_shared_from_this<Server> {
 
 	public:
+		
 		static std::map<std::string, int> _native_func_cache;
-		static std::map<std::string, Server*> _scripts;
+		static std::map<std::string, std::shared_ptr<Server>> _scripts;
 
 		static void New(std::string filename, AMX *amx);
 		static void Unload(std::string filename);
@@ -106,7 +106,7 @@ namespace sampjs {
 		static int GetNativeAddr(AMX *amx, std::string name);
 
 		static bool initiated;
-		static Server *GetInstance(Local<Context> context);
+		static std::shared_ptr<Server> GetInstance(Local<Context> context);
 		static void JS_LoadScript(const FunctionCallbackInfo<Value> & args);
 		static void JS_UnloadScript(const FunctionCallbackInfo<Value> & args);
 		static void JS_ReloadScript(const FunctionCallbackInfo<Value> & args);
@@ -124,6 +124,7 @@ namespace sampjs {
 
 
 		Server();
+		void Init();
 
 		void Shutdown();
 
@@ -140,7 +141,7 @@ namespace sampjs {
 		Local<Object> GetGlobalObject(std::string name);
 		Local<Function> GetGlobalFunction(std::string name);
 
-		sampjs::Events *EventManager();
+		std::shared_ptr<Events> EventManager();
 
 		void SetAMX(AMX* amx);
 		AMX* GetAMX();
@@ -151,8 +152,8 @@ namespace sampjs {
 		Persistent<Context, CopyablePersistentTraits<Context>> _context;
 
 
-		void AddModule(std::string name, Module *module);
-		Module *GetModule(std::string name);
+		void AddModule(std::string name, Module& module);
+		std::shared_ptr<Module> GetModule(std::string name);
 
 
 		static void InitJS();
@@ -167,9 +168,9 @@ namespace sampjs {
 	private:
 		
 		std::string script_name;
-		std::map<std::string, Module*> _modules;
+		std::map<std::string, std::shared_ptr<Module>> _modules;
 		AMX* _amx;
-		sampjs::Events *_eventManager;
+		std::shared_ptr<sampjs::Events> _eventManager;
 		std::map<int, sampjs::Timer*> _timers;
 		unsigned int _time_count;
 

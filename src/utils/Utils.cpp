@@ -4,8 +4,9 @@
 
 using namespace sampjs;
 
-sampjs::Utils::Utils(Server* sampjs){
-	sampjs->SetGlobalFunction("print", sampjs::Utils::Print);
+void sampjs::Utils::Init(Local<Context> ctx){
+	JS_Object obj(ctx->Global());
+	obj.Set("print", sampjs::Utils::Print);
 }
 
 void sampjs::Utils::Shutdown(){

@@ -1,13 +1,15 @@
 #ifndef __SAMP_UTILS__
 #define __SAMP_UTILS__
 
-#include "Server.h"
+#include "Module.h"
 
 namespace sampjs {
 	class Utils : public Module {
 	public:
-		Utils(Server* sampjs);
+		
+		virtual void Init(Local<Context> context);
 		virtual void Shutdown();
+		virtual void Tick(){};
 
 		static void JS_Debug(const FunctionCallbackInfo<Value> & args);
 

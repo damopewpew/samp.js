@@ -1,29 +1,19 @@
 #include "samp/Events.h"
-#include "Server.h"
-
 #include "samp/Players.h"
 
 #include "utils/Helpers.h"
 #include "utils/Utils.h"
 
+
+#include <memory>
+
 using namespace sampjs;
+using namespace std;
 
-Events::Events(Server*sampjs) :_sampjs(sampjs){
-	std::string src = R"(
-"use strict";
-function mixin( obj1, obj2 ){
-	var result = new obj1();
-	for(var property in obj2){
-		if(obj2.hasOwnProperty(property)){
-					
-			result[property] = obj2[property];
-			}
-	}
-	return result;
-}
-			
-
-
+void Events::Init(Local<Context> context){
+	isolate = context->GetIsolate();
+	string src = R"(
+"use strict";		
 class $EVENTS {
 	constructor(){
 		this.ids = {};
@@ -56,15 +46,17 @@ class $EVENTS {
 	}
 };
 
-var $events = new $EVENTS();
-
 )";
-	Local<String> source = String::NewFromUtf8(sampjs->GetIsolate(), src.c_str());
-	Local<String> name = String::NewFromUtf8(sampjs->GetIsolate(), "[events.js]");
+	Local<String> source = String::NewFromUtf8(isolate, src.c_str());
+	Local<String> name = String::NewFromUtf8(isolate, "[events.js]");
 
 	Local<Script> script = Script::Compile(source, name);
+	script->Run();
 
-	Local<Object>::Cast(script->Run());
+}
+
+
+void Events::Shutdown(){
 
 }
 
@@ -73,26 +65,29 @@ void Events::FireEvent(std::string name){
 }
 void Events::FireEvent(std::string name, const int argc, Local<Value> argv[]){
 
-	JS_SCOPE(_sampjs->GetIsolate())
-	JS_CONTEXT(_sampjs->GetIsolate(), _sampjs->_context)
+	JS_SCOPE(isolate)
+	JS_CTX(isolate->GetCallingContext())
 	TryCatch try_catch;
-	Local<Object> server = _sampjs->GetGlobalObject("$server");
-	Local<Value> fire = server->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "fire"));
+
+	JS_Object global(isolate->GetCallingContext()->Global());
+
+	Local<Object> serverjs = global.getObject("$server");
+	Local<Value> fire = serverjs->Get(String::NewFromUtf8(isolate, "fire"));
 	Local<Function> fn = Local<Function>::Cast(fire);
 
 	if (name == "ScriptInit"){
-		Local<Value> check = server->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "checkPlayers"));
+		Local<Value> check = serverjs->Get(String::NewFromUtf8(isolate, "checkPlayers"));
 		Local<Function> cpfn = Local<Function>::Cast(check);
-		cpfn->Call(server, 0, NULL);
+		cpfn->Call(serverjs, 0, NULL);
 	}
 	Local<Value> *args = new Local<Value>[argc + 1];
-	args[0] = String::NewFromUtf8(_sampjs->GetIsolate(), name.c_str());
+	args[0] = String::NewFromUtf8(isolate, name.c_str());
 	if (argc > 0){
 		for (int i = 0; i < argc; i++){
 			args[i + 1] = argv[i];
 		}
 	}
-	fn->Call(server, argc+1, args);
+	fn->Call(serverjs, argc+1, args);
 
 	delete[] args;
 
@@ -103,11 +98,13 @@ void Events::FireEvent(std::string name, const int argc, Local<Value> argv[]){
 
 
 int Events::FireNative(std::string name, std::string param_types, std::vector<std::string> param_names, AMX* amx, cell* params){
-	JS_SCOPE(_sampjs->GetIsolate())
-	JS_CONTEXT(_sampjs->GetIsolate(), _sampjs->_context)
+	JS_SCOPE(isolate)
+	JS_CTX(isolate->GetCallingContext())
 	TryCatch try_catch;
-	Local<Object> server = _sampjs->GetGlobalObject("$server");
-	Local<Value> fire = server->Get(String::NewFromUtf8(_sampjs->GetIsolate(), "fire"));
+
+	JS_Object global(isolate->GetCallingContext()->Global());
+	Local<Object> serverjs = global.getObject("$server");
+	Local<Value> fire = serverjs->Get(String::NewFromUtf8(isolate, "fire"));
 	Local<Function> fn = Local<Function>::Cast(fire);
 
 	if (fn->IsFunction()){
@@ -115,7 +112,7 @@ int Events::FireNative(std::string name, std::string param_types, std::vector<st
 		unsigned int argc = param_types.length() + 1;
 		argv = new Local<Value>[argc];
 
-		argv[0] = String::NewFromUtf8(_sampjs->GetIsolate(), name.c_str());
+		argv[0] = String::NewFromUtf8(isolate, name.c_str());
 		for (unsigned int i = 1; i < argc; i++){
 			switch (param_types[(i - 1)]){
 				case 's':{
@@ -125,7 +122,7 @@ int Events::FireNative(std::string name, std::string param_types, std::vector<st
 					amx_StrLen(addr, &len);
 					char* val = new char[len + 2];
 					amx_GetString(val, addr, 0, len + 2);
-					argv[i] = String::NewFromUtf8(_sampjs->GetIsolate(), val);
+					argv[i] = String::NewFromUtf8(isolate, val);
 
 					delete[] val;
 
@@ -143,9 +140,11 @@ int Events::FireNative(std::string name, std::string param_types, std::vector<st
 						
 						int playerid = params[i];
 
-						Module* module = _sampjs->GetModule("players");
-						if (module != NULL){
-							sampjs::Players *players = (sampjs::Players*)(module);
+						auto pobj = global.getObject("$players");
+						auto wrap = Local<External>::Cast(pobj->GetInternalField(0));
+						void* ptr = wrap->Value();
+						if (ptr != NULL){
+							auto players =	static_cast<Players*>(ptr);
 							Local<Object> player = players->GetPlayerObject(playerid);
 							
 							argv[i] = player;
@@ -154,25 +153,25 @@ int Events::FireNative(std::string name, std::string param_types, std::vector<st
 							}
 						}
 						else {
-							argv[i] = Integer::New(_sampjs->GetIsolate(), params[i]);
+							argv[i] = Integer::New(isolate, params[i]);
 						} 
 						
 					}
 					else {
-						argv[i] = Integer::New(_sampjs->GetIsolate(), params[i]);
+						argv[i] = Integer::New(isolate, params[i]);
 					} 
 					
 
 					break;
 				} case 'f':{
-					argv[i] = Number::New(_sampjs->GetIsolate(), amx_ctof(params[i]));
+					argv[i] = Number::New(isolate, amx_ctof(params[i]));
 
 					break;
 				}
 			}
 		}
 
-		Local<Value> ret = fn->Call(server, argc, argv);
+		Local<Value> ret = fn->Call(serverjs, argc, argv);
 		delete[] argv;
 		int retval = 1;
 		if (try_catch.HasCaught()){

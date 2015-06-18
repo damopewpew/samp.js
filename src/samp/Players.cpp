@@ -2,19 +2,33 @@
 #include "samp/Players.h"
 #include "utils/Helpers.h"
 #include "utils/Utils.h"
+#include "Script.h"
 
+#include <memory> 
 using namespace sampjs;
+using namespace std;
 
-Players::Players(Server* sampjs){
-	_sampjs = sampjs;
-	JS_SCOPE(sampjs->_isolate);
-	JS_CONTEXT(sampjs->_isolate, sampjs->_context);
-	Local<Array> player_arr = Array::New(sampjs->GetIsolate(),0);
-	sampjs->SetGlobalObject("$players", player_arr);
 
-	
+void Players::Init(Local<Context> ctx) {
+	sjs::logger::debug("Loading Players Module");
+	isolate = ctx->GetIsolate();
 
-	std::string src = R"(
+
+	Locker v8Locker(isolate);
+	Isolate::Scope isolate_scope(isolate);
+	HandleScope hs(isolate);	
+	context.Reset(isolate,ctx);
+	Context::Scope context_scope(ctx);
+
+
+	Local<Array> player_arr = Array::New(isolate, 0);
+
+
+	JS_Object global(ctx->Global());
+///	global.Set("$players", player_arr);
+	//server->SetGlobalObject("$players", player_arr);
+
+	string src = R"(
 	"use strict";
 class $PLAYER extends $EVENTS {
 
@@ -47,7 +61,7 @@ class $PLAYER extends $EVENTS {
 		return (this.id < 65535);
 	}
 	get name(){
-		this.name_ = GetPlayerName(this.id);
+		this.name_ = CallNative("GetPlayerName", "iS",this.id, ["name"]);
 		return this.name_; 		
 	}
 	set name(name){
@@ -258,130 +272,80 @@ class $PLAYER extends $EVENTS {
 		return this.id;
 	}
 };
-	
-	new $PLAYER(65535);
-)";
-	
-	Local<String> source = String::NewFromUtf8(sampjs->GetIsolate(), src.c_str());
-	Local<String> name = String::NewFromUtf8(sampjs->GetIsolate(), "[players.js]");
 
-	TryCatch try_catch;
-	Local<Script> script = Script::Compile(source, name);
-	if (script.IsEmpty()){
-		sampjs->GetIsolate()->CancelTerminateExecution();
-		Utils::PrintException(&try_catch);
-	}
-	
-	Local<Object> player = Local<Object>::Cast(script->Run());
-
-	if (player.IsEmpty()){
-		//printf("Why am I empty???\n");
-
-	}
-
-
-	playerObj.Reset(sampjs->GetIsolate(), player);
-
-	sampjs->SetGlobalObject("$PLAYER", player);
-	std::string src2 = R"(
-		"use strict";
-
-		class $SERVER extends $EVENTS {
-			constructor(){
-				super();
-				this.weather_ = 0;
-				this.gravity_ = 0.008;
-				this.time_ = 0;
+	class $PLAYERS extends Array {
+			constructor(){ super() }
+			get(playerid){
+				return this.indexOf(playerid);
 			}
 
-			checkPlayers(){
-				for(var i = 0; i < 1000; i++){
-					if(CallNative("IsPlayerConnected", "i", i)){
-						print("Player "+i+" is connected");
-						$server.AddPlayer(i);
-					}
-				}
-			}
-			
-			set time(hour){
-				SetWorldTime(hour);
+			add(playerid){
+				let player = new $PLAYER(playerid);
+				this.splice(playerid,0,player);
+				return player;
 			}
 
-			get time(){
-				return hour;
-			}
-
-			set gravity(amount){
-				SetGravity(amount);
-			}
-
-			get gravity(){
-				return GetGravity();
-			}
-
-
-			set weather(weatherid){
-				SetWeather(weaterid);
-				this.weather_ = weatherid;
-			}
-
-			get weather(){
-				return this.weather_;
+			remove(playerid){
+				let player = this.get(playerid);
+				this.splice(this.indexOf(playerid),1);
 			}
 		};
+
 		
-		var $server = new $SERVER();
-	)";
 
-	TryCatch try_catch2;
-	Local<String> source2 = String::NewFromUtf8(sampjs->GetIsolate(), src2.c_str());
-	Local<String> name2 = String::NewFromUtf8(sampjs->GetIsolate(), "[server.js]");
+		var $players = new $PLAYERS();
+		$players.get(0);
 
-	Local<Script> script2 = Script::Compile(source2, name2);
-
-	if (script2.IsEmpty()){
-		Utils::PrintException(&try_catch2);
-	}
-	script2->Run();
-
-	Local<Object> server = sampjs->GetGlobalObject("$server");
-
-	Local<FunctionTemplate> dbgtmp = FunctionTemplate::New(sampjs->GetIsolate(), Utils::JS_Debug);
-	server->Set(String::NewFromUtf8(sampjs->GetIsolate(), "Debug"), dbgtmp->GetFunction());
-
-	Local<FunctionTemplate> fntmp = FunctionTemplate::New(sampjs->GetIsolate(), Players::CreatePlayer);
-	server->Set(String::NewFromUtf8(sampjs->GetIsolate(), "AddPlayer"), fntmp->GetFunction());
+		print("Fuck Shit");
+)";
 	
+	Local<String> source = String::NewFromUtf8(isolate, src.c_str());
+	Local<String> name = String::NewFromUtf8(isolate, "[players.js]");
 
+	TryCatch try_catch;
+	Local<v8::Script> script = v8::Script::Compile(source, name);
+	if (script.IsEmpty()){
+		isolate->CancelTerminateExecution();
+		Utils::PrintException(&try_catch);
+	}
+	script->Run();
 }
 
 void Players::Shutdown(){
 	// Do Cleanup
+
+	context.Reset();
 }
 
 void Players::CreatePlayer(const FunctionCallbackInfo<Value> & args){
-	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
-	Players *players = (Players*)sampjs->GetModule("players");
-	players->AddPlayer(args[0]->Int32Value());
+//	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+//	auto players = dynamic_pointer_cast<Players>(server->GetModule("players"));
+
+	JS_Object global(args.GetIsolate()->GetCallingContext()->Global());
+	
+	Local<Object> players = global.getObject("$players");
+
+//	players->AddPlayer(args[0]->Int32Value());
 }
 
 Local<Object> Players::GetPlayerObject(int playerid){
 	TryCatch try_catch;
-	Locker v8Locker(_sampjs->GetIsolate());
-	Isolate::Scope isolate_scope(_sampjs->GetIsolate());
-	EscapableHandleScope handle_scope(_sampjs->GetIsolate());
-	JS_CONTEXT(_sampjs->GetIsolate(), _sampjs->_context)
+	Locker v8Locker(isolate);
+	Isolate::Scope isolate_scope(isolate);
+	EscapableHandleScope handle_scope(isolate);
+	JS_CONTEXT(isolate, context)
 
+	JS_Object global(isolate->GetCallingContext()->Global());
 	if (playerid == 65535){ //INVALID_PLAYER_ID
-		Local<Object> val = _sampjs->GetGlobalObject("$PLAYER");
+		Local<Object> val = global.getObject("$PLAYER");
 		return handle_scope.Escape(val);
 	}
-	Local<Value> val = _sampjs->GetGlobalObject("$players")->Get(playerid);
+	Local<Value> val = global.getObject("$players")->Get(playerid);
 
 	if (val->IsObject()){
 		Local<Object> player = Local<Object>::Cast(val);
 		if (try_catch.HasCaught()){
-			_sampjs->GetIsolate()->CancelTerminateExecution();
+			isolate->CancelTerminateExecution();
 			Utils::PrintException(&try_catch);
 		}
 		return handle_scope.Escape(player);
@@ -390,7 +354,7 @@ Local<Object> Players::GetPlayerObject(int playerid){
 		AddPlayer(playerid);
 		Local<Object> player = GetPlayerObject(playerid);
 		if (try_catch.HasCaught()){
-			_sampjs->GetIsolate()->CancelTerminateExecution();
+			isolate->CancelTerminateExecution();
 			Utils::PrintException(&try_catch);
 		} 
 		return handle_scope.Escape(player);
@@ -401,12 +365,17 @@ Local<Object> Players::GetPlayerObject(int playerid){
 }
 
 void Players::AddPlayer(int playerid){
-	Local<Integer> playerido = Integer::New(_sampjs->GetIsolate(), playerid);
-	Local<Object> obj = Local<Object>::New(_sampjs->GetIsolate(), playerObj)->Clone();
-	obj->Set(String::NewFromUtf8(_sampjs->GetIsolate(), "id"), playerido);
-	_sampjs->GetGlobalObject("$players")->Set(playerid, obj);
+	Local<Context> ctx = Local<Context>::New(isolate, context);
+	JS_Object global(ctx->Global());
+
+	Local<Integer> playerido = Integer::New(isolate, playerid);
+	Local<Object> obj = global.getObject("$PLAYER");
+	obj->Set(String::NewFromUtf8(isolate, "id"), playerido);
+	global.getObject("$players")->Set(playerid, obj); 
 }
 
 void Players::RemovePlayer(int playerid){
-	_sampjs->GetGlobalObject("$players")->Delete(playerid);
+	Local<Context> ctx = Local<Context>::New(isolate, context);
+	JS_Object global(ctx->Global());
+	global.getObject("$players")->Delete(playerid);
 }

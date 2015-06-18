@@ -5,10 +5,9 @@
 #define NOMINMAX
 
 #include "sdk.h"
-#include "Server.h"
 #include "samp/Callbacks.h"
 
-
+#include "SAMPJS.h"
 
 #include <fstream>
 #include <sstream>
@@ -20,8 +19,8 @@
 #include "utils/Helpers.h"
 
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 1
-#define VERSION_BUGFIX 6
+#define VERSION_MINOR 2
+#define VERSION_BUGFIX 0
 
 typedef void(*logprintf_t)(char* format, ...);
 logprintf_t logprintf;
@@ -29,6 +28,7 @@ logprintf_t logprintf;
 extern void *pAMXFunctions;
 
 std::vector<std::string> js_scripts;
+
 
 
 void ReadConfig(){
@@ -53,8 +53,7 @@ void ReadConfig(){
 						for (unsigned int i = 1; i < args.size(); i++){
 							flags += args[i] + " ";
 						}
-
-						sampjs::Server::v8flags = flags;
+						sampjs::SAMPJS::v8flags += flags;
 					}
 				}
 			}
@@ -75,7 +74,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData){
 	sjs::logger::log("%s", std::string(69, '-').c_str());
 
 	ReadConfig();
-
+	sampjs::SAMPJS::Init();
 	
 	return true;
 }
@@ -97,9 +96,12 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 
 	int idx;
 	if (!amx_FindPublic(amx, "SAMPJS_Init", &idx)){
+		sampjs::SAMPJS::amx = amx;
+
 		if (js_scripts.size() > 0){
 			for (unsigned int i = 0; i < js_scripts.size(); i++){
-				sampjs::Server::New(js_scripts[i], amx);
+				//sampjs::Server::New(js_scripts[i], amx);
+				sampjs::SAMPJS::CreateScript(js_scripts[i]);
 			}
 			std::cout << std::endl;
 		}
@@ -112,7 +114,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
-	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end();){
+/*	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end();){
 		if (it->second->GetAMX() == amx){
 			it->second->Shutdown();
 			sampjs::Server::_scripts.erase(it++);
@@ -120,16 +122,16 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
 		else {
 			++it;
 		}
+	} */
+
+	if (sampjs::SAMPJS::amx == amx){
+		sampjs::SAMPJS::Shutdown();
 	}
 	return AMX_ERR_NONE;
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick(){
-
-	for (auto it = sampjs::Server::_scripts.begin(); it != sampjs::Server::_scripts.end(); ++it){
-		it->second->ProcessTick();
-	
-	}
+	sampjs::SAMPJS::ProcessTick();
 }
 
 

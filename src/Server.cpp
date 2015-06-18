@@ -8,8 +8,8 @@
 
 #include <fstream>
 #include <sstream>
-#include <iostream>
 #include <algorithm>
+
 
 #include <tinydir/tinydir.h>
 
@@ -20,13 +20,14 @@
 
 #include "utils/SysInfo.h"
 
-#include <stdio.h>
 
 using namespace sampjs;
+using namespace std;
 
-std::map<std::string, Server *> Server::_scripts;
-std::map<std::string, int> Server::_native_func_cache;
-std::string Server::v8flags;
+map<string,shared_ptr<Server>> Server::_scripts;
+map<string, int> Server::_native_func_cache;
+string Server::v8flags;
+
 bool Server::initiated = false; 
 
 void Server::InitJS(){
@@ -38,13 +39,14 @@ void Server::UnloadJS(){
 }
 
 
-Server *Server::GetInstance(Local<Context> context){
+shared_ptr<Server> Server::GetInstance(Local<Context> context){
+	sjs::logger::debug("Getting Instance");
 	Local<Object> self = Local<Object>::Cast(context->Global()->Get(STRING2JS(context->GetIsolate(), "$sampjs")));
 	Local<External> wrap = Local<External>::Cast(self->GetInternalField(0));
-	void * ptr = wrap->Value();
-
-	Server* sampjs = static_cast<Server*>(ptr);
-	return sampjs;
+	void* ptr = wrap->Value();
+	Server* server = static_cast<Server*>(ptr);
+	sjs::logger::debug("Casting");
+	return make_shared<Server>(*server);
 }
 
 void Server::New(std::string filename, AMX *amx){
@@ -53,14 +55,15 @@ void Server::New(std::string filename, AMX *amx){
 		sjs::logger::error("load: Script already loaded (%s)", filename.c_str());
 		return;
 	}
-	Server *jsfile = new Server;
+	auto jsfile = std::make_shared<Server>();
 	jsfile->SetAMX(amx);
 	jsfile->SetScriptName(filename);
+	jsfile->Init();
 
-	jsfile->AddModule("utils", new Utils(jsfile));
-	jsfile->AddModule("$fs", new sampjs::FileSystem(jsfile));
-	jsfile->AddModule("players", new sampjs::Players(jsfile));
-	jsfile->AddModule("$sockets", new sampjs::Sockets(jsfile));
+	jsfile->AddModule("utils", Utils(jsfile));
+	jsfile->AddModule("$fs", FileSystem(jsfile));
+	jsfile->AddModule("players", Players(jsfile));
+	jsfile->AddModule("$sockets", Sockets(jsfile));
 	
 	JS_SCOPE(jsfile->GetIsolate())
 	
@@ -115,11 +118,11 @@ void Server::JS_LoadScript(const FunctionCallbackInfo<Value> & args){
 	if (!args[0]->IsString()) return;
 
 	JS_SCOPE(args.GetIsolate());
-	Server* sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 
-	std::string file = JS2STRING(args[0]);
+	string file = JS2STRING(args[0]);
 
-	Server::New(file, sampjs->GetAMX());
+	Server::New(file, server->GetAMX());
 
 }
 void Server::JS_UnloadScript(const FunctionCallbackInfo<Value> & args){
@@ -127,7 +130,7 @@ void Server::JS_UnloadScript(const FunctionCallbackInfo<Value> & args){
 	if (!args[0]->IsString()) return;
 
 	JS_SCOPE(args.GetIsolate());
-	std::string file = JS2STRING(args[0]);
+	string file = JS2STRING(args[0]);
 
 	Unload(file);
 	
@@ -138,9 +141,9 @@ void Server::JS_ReloadScript(const FunctionCallbackInfo<Value> & args){
 	if (!args[0]->IsString()) return;
 
 	JS_SCOPE(args.GetIsolate());
-	std::string file = JS2STRING(args[0]);
-	Server* sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
-	Reload(file, sampjs->GetAMX());
+	string file = JS2STRING(args[0]);
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	Reload(file, server->GetAMX());
 }
 
 void Server::JS_GarbageCollection(const FunctionCallbackInfo<Value> & args){
@@ -175,22 +178,13 @@ Server::Server():_time_count(0){
 		initiated = true;
 		V8::InitializeICU();
 		Platform* platform = v8::platform::CreateDefaultPlatform();
-
 		V8::InitializePlatform(platform);
 		V8::Initialize();	
-		
-		
-		
-		
 	}
 	
 	
 	Isolate::CreateParams create_params;
 	_isolate = Isolate::New(create_params);
-
-	
-	//HeapProfiler *heap = _isolate->GetHeapProfiler();
-
 
 	Locker v8Locker(_isolate);
 	Isolate::Scope isolate_scope(_isolate);
@@ -202,11 +196,17 @@ Server::Server():_time_count(0){
 	Local<Context> context = Context::New(_isolate, NULL, global);
 	_context.Reset(_isolate, context);
 
-	Context::Scope context_scope(context);
+	
+}
+
+void Server::Init(){
+
+	JS_SCOPE(_isolate)
+	JS_CONTEXT(_isolate,_context)
 
 	Local<ObjectTemplate> sampjs_templ = ObjectTemplate::New(_isolate);
 	sampjs_templ->SetInternalFieldCount(1);
-	
+
 	Local<Object> sampjs = sampjs_templ->NewInstance();
 	sampjs->SetInternalField(0, External::New(_isolate, this));
 
@@ -217,12 +217,11 @@ Server::Server():_time_count(0){
 
 	Local<ObjectTemplate> cache_templ = ObjectTemplate::New(_isolate);
 
-	module_templ->Set(String::NewFromUtf8(_isolate, "_cache"),cache_templ->NewInstance());
+	module_templ->Set(String::NewFromUtf8(_isolate, "_cache"), cache_templ->NewInstance());
 
 	Local<Object> module = module_templ->NewInstance();
 
 	SetGlobalFunction("memory", Server::JS_GetMemory);
-//	SetGlobalFunction("gc", Server::JS_GarbageCollection);
 
 	SetGlobalFunction("require", Server::Require);
 	SetGlobalFunction("include", Server::Include);
@@ -236,7 +235,7 @@ Server::Server():_time_count(0){
 
 	SetGlobalObject("$modules", module);
 
-	_eventManager = new sampjs::Events(this);
+	_eventManager = make_shared<Events>(shared_from_this());
 }
 
 void Server::Shutdown(){
@@ -244,7 +243,7 @@ void Server::Shutdown(){
 
 	for (auto module : _modules){
 		sjs::logger::debug("Module: %s", module.first.c_str());
-		module.second->Shutdown();
+		module.second.get()->Shutdown();
 	}
 	sjs::logger::debug("Shutting Down Script %s",this->script_name.c_str());
 
@@ -253,16 +252,16 @@ void Server::Shutdown(){
 	
 }
 
-void Server::AddModule(std::string name, Module *module){
-	_modules[name] = module;
+void Server::AddModule(string name, Module& module ){
+	_modules[name].reset(&module);
 }
 
-Module *Server::GetModule(std::string name){
+shared_ptr<Module> Server::GetModule( string name ){
 	if (!_modules[name]) return NULL;
 	else return _modules[name];
 }
 
-sampjs::Events *Server::EventManager(){
+std::shared_ptr<sampjs::Events> Server::EventManager(){
 	return _eventManager;
 }
 
@@ -287,18 +286,18 @@ Local<Context> Server::GetContext(){
 void Server::Require(const FunctionCallbackInfo<Value> & args){
 	JS_SCOPE(args.GetIsolate());
 	
-	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 
 	std::string file = JS2STRING(args[0]);
-	args.GetReturnValue().Set(sampjs->RequireModule(file));
+	args.GetReturnValue().Set(server->RequireModule(file));
 }
 
 void Server::Include(const FunctionCallbackInfo<Value> & args){
 	JS_SCOPE(args.GetIsolate());
 
-	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 	std::string file = JS2STRING(args[0]);
-	args.GetReturnValue().Set(sampjs->LoadScript(file));
+	args.GetReturnValue().Set(server->LoadScript(file));
 }
 
 int Server::GetNativeAddr(AMX *amx, std::string name){
@@ -320,7 +319,7 @@ typedef int(*amx_Function_t)(AMX * amx, cell * params);
 void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 	JS_SCOPE(args.GetIsolate());
 	TryCatch try_catch;
-	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 
 	if (args.Length() < 1){
 		sjs::logger::error("Function CallNative requires at least 1 argument CallNative(nativeName, params, args);");
@@ -331,12 +330,12 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 	std::string func_name = JS2STRING(args[0]);
 
 	int func_idx;
-	AMX_HEADER *amx_hdr = (AMX_HEADER *)sampjs->GetAMX()->base;
+	AMX_HEADER *amx_hdr = (AMX_HEADER *)server->GetAMX()->base;
 	
 	auto iter = _native_func_cache.find(func_name);
 	if (iter != _native_func_cache.end()) func_idx = iter->second;
 	else {
-		if (amx_FindNative(sampjs->GetAMX(), func_name.c_str(), &func_idx)){
+		if (amx_FindNative(server->GetAMX(), func_name.c_str(), &func_idx)){
 			sjs::logger::error("Cannot find native function %s", func_name.c_str());
 			return;
 		}
@@ -411,7 +410,7 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 					std::string str = "";
 					if (!args[k]->IsUndefined()) str = JS2STRING(args[k]);
 					const char* val = str.c_str();	
-					amx_Allot(sampjs->GetAMX(), strlen(val) + 1, &params[j++], &physAddr[variables++]);
+					amx_Allot(server->GetAMX(), strlen(val) + 1, &params[j++], &physAddr[variables++]);
 					amx_SetString(physAddr[variables-1], val, 0, 0, strlen(val) + 1);
 					k++;
 					break;
@@ -420,14 +419,14 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 				case 'F':
 				case 'I':
 				{
-					amx_Allot(sampjs->GetAMX(), 1, &params[j++], &physAddr[variables++]);
+					amx_Allot(server->GetAMX(), 1, &params[j++], &physAddr[variables++]);
 					break;
 				}
 
 				case 'S':
 				{
 					int strlen  = args[k++]->Int32Value();
-					amx_Allot(sampjs->GetAMX(), strlen, &params[j++], &physAddr[variables++]);
+					amx_Allot(server->GetAMX(), strlen, &params[j++], &physAddr[variables++]);
 					params[j++] = strlen;
 					i++;
 					break;
@@ -439,7 +438,7 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 		int value;
 		try{
 			amx_Function_t amx_Function = (amx_Function_t)amx_addr;
-			value = amx_Function(sampjs->GetAMX(), params);
+			value = amx_Function(server->GetAMX(), params);
 		}
 		catch (const std::exception &e){
 			std::cout << e.what();
@@ -510,7 +509,7 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 			
 			for (int i = param.length() - 1; i >= 0; i--){
 				if (param[i] == 'F' || param[i] == 'I' || param[i] == 'S' || param[i] == 's'){
-					amx_Release(sampjs->GetAMX(), params[i + 1]);
+					amx_Release(server->GetAMX(), params[i + 1]);
 				}
 			}
 
@@ -540,7 +539,7 @@ void Server::CallNative(const FunctionCallbackInfo<Value> &args){
 			return;
 		}
 		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
-		int value = amx_Function(sampjs->GetAMX(), NULL);
+		int value = amx_Function(server->GetAMX(), NULL);
 		args.GetReturnValue().Set(value);
 
 		
@@ -567,7 +566,7 @@ void Server::RemoveTimer(int id){
 
 void Server::SetTimer(const FunctionCallbackInfo<Value>& args){
 	sjs::logger::debug("Setting up timer");
-	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 	if (args.Length() < 2){
 		sjs::logger::error("SetTimer takes atleast 2 arguments - SetTimer(function,delay,[repeat=0])");
 		return;
@@ -585,20 +584,20 @@ void Server::SetTimer(const FunctionCallbackInfo<Value>& args){
 		repeat = args[2]->Int32Value();
 	}
 
-	int id = sampjs->AddTimer(func, time, repeat);
+	int id = server->AddTimer(func, time, repeat);
 
 	args.GetReturnValue().Set(id);
 }
 
 void Server::CancelTimer(const FunctionCallbackInfo<Value>& args){
 	JS_SCOPE(args.GetIsolate());
-	Server *sampjs = Server::GetInstance(args.GetIsolate()->GetCallingContext());
+	auto server = Server::GetInstance(args.GetIsolate()->GetCallingContext());
 	if (args.Length() < 1){
 		sjs::logger::error("CancelTimer takes 1 argument - CancelTimer(timerid);");
 		return;
 	}
 	int id = args[0]->Uint32Value();
-	sampjs->RemoveTimer(id);
+	server->RemoveTimer(id);
 }
 
 
