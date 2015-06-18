@@ -33,4 +33,4 @@ namespace sampjs {
 		static int requests_id;
 	};
 };
-#endif;
+#endif

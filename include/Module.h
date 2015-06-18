@@ -170,4 +170,4 @@ namespace sampjs {
 };
 
 
-#endif;
+#endif

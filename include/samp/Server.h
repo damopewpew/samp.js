@@ -24,4 +24,4 @@ namespace sampjs {
 	};
 };
 
-#endif;
+#endif
