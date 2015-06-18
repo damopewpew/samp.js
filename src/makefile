@@ -59,3 +59,4 @@ amxplugin.o:  ../lib/samp/SDK/amxplugin.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c  ../lib/samp/SDK/amxplugin.cpp $(LIBS)
 
 
+
