@@ -13,20 +13,13 @@ void Players::Init(Local<Context> ctx) {
 	sjs::logger::debug("Loading Players Module");
 	isolate = ctx->GetIsolate();
 
-
 	Locker v8Locker(isolate);
 	Isolate::Scope isolate_scope(isolate);
 	HandleScope hs(isolate);	
 	context.Reset(isolate,ctx);
 	Context::Scope context_scope(ctx);
 
-
-	Local<Array> player_arr = Array::New(isolate, 0);
-
-
 	JS_Object global(ctx->Global());
-///	global.Set("$players", player_arr);
-	//server->SetGlobalObject("$players", player_arr);
 
 	string src = R"(
 	"use strict";
@@ -61,7 +54,7 @@ class $PLAYER extends $EVENTS {
 		return (this.id < 65535);
 	}
 	get name(){
-		this.name_ = CallNative("GetPlayerName", "iS",this.id, ["name"]);
+		this.name_ = GetPlayerName(this.id);
 		return this.name_; 		
 	}
 	set name(name){
@@ -273,24 +266,25 @@ class $PLAYER extends $EVENTS {
 	}
 };
 
-	class $PLAYERS extends Array {
-			constructor(){ super() }
-			get(playerid){
-				return this.indexOf(playerid);
+	var $players = [];
+	class $PLAYERS_ {
+			getPlayer(playerid){
+				return $players[playerid];
 			}
 
-			add(playerid){
-				let player = new $PLAYER(playerid);
-				this.splice(playerid,0,player);
+			addPlayer(playerid){
+				var player = new $PLAYER(playerid);
+				$players[playerid] = player;
 				return player;
 			}
 
-			remove(playerid){
-				let player = this.get(playerid);
-				this.splice(this.indexOf(playerid),1);
+			removePlayer(playerid){
+				var player = this.getPlayer(playerid);
+				$players.splice(playerid,1);
+				return player;
 			}
 		};
-		var $players = new $PLAYERS();
+		var $PLAYERS = new $PLAYERS_();
 )";
 	
 	Local<String> source = String::NewFromUtf8(isolate, src.c_str());

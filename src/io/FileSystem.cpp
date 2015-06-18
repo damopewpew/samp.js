@@ -28,7 +28,7 @@ std::list<std::thread*> FileSystem::_threads;
 std::map<int, JS_Callback*> FileSystem::_callbacks;
 int FileSystem::_callback_count = 0;
 
-char* check_bom(const char *data, size_t size)
+const char* check_bom(const char *data, size_t size)
 {
 	if (size >= 3) {
 		if (memcmp(data, UTF_8_BOM, 3) == 0)
@@ -338,10 +338,6 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 			std::string data((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
 	
 			infile.close();
-
-			
-	
-			int i = 0;
 			//sjs::logger::debug("Checked Bom");
 			Locker locker(callback->isolate);
 			Isolate::Scope isoscope(callback->isolate);

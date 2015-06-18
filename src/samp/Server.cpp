@@ -36,7 +36,8 @@ class $SERVER extends $EVENTS {
 		let highest_id = CallNative("GetPlayerPoolSize");
 		for(var i = 0; i < highest_id+1; i++){
 			if(CallNative("IsPlayerConnected", "i", i)){
-				$players.add(i);
+				print("Player "+i+" is connected");
+				$PLAYERS.addPlayer(i);
 			}
 		}
 	}
@@ -409,23 +410,23 @@ int Server::FireNative(std::string name, std::string param_types, std::vector<st
 
 					int playerid = params[i];
 
-					JS_Object players(global.getObject("$players"));
+					JS_Object players(global.getObject("$PLAYERS"));
 					
 					Local<Value> player;
 	
 					if (name == "PlayerConnect"){
-						auto addPlayer = Local<Function>::Cast(players.getValue("add"));
+						auto addPlayer = Local<Function>::Cast(players.getValue("addPlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
 						player = addPlayer->Call(players.get(), 1, argv);
 					}
 					
 					else if (name == "PlayerDisconnect"){
-						auto removePlayer = Local<Function>::Cast(players.getValue("remove"));
+						auto removePlayer = Local<Function>::Cast(players.getValue("removePlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
 						player = removePlayer->Call(players.get(), 1, argv);
 					}
 					else {
-						auto getPlayer = Local<Function>::Cast(players.getValue("get"));
+						auto getPlayer = Local<Function>::Cast(players.getValue("getPlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
 						player = getPlayer->Call(players.get(), 1, argv);
 					}
