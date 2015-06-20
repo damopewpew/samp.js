@@ -104,6 +104,7 @@ void sampjs::Script::Init(std::string filename){
 }
 
 void sampjs::Script::Unload(){
+
 	server->FireEvent("ScriptExit");
 	for (auto module : modules){
 		module.second->Shutdown();

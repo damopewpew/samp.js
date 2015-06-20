@@ -157,6 +157,7 @@ void FileSystem::Shutdown(){
 		if (callback.second->isolate == isolate){
 			callback.second->callback.Reset();
 			callback.second->context.Reset();
+			delete callback.second;
 			_callbacks.erase(callback.first);
 		}
 	}
@@ -344,26 +345,36 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 			HandleScope handle_scope(callback->isolate);
 			Local<Context> ctx = Local<Context>::New(callback->isolate, callback->context);
 
+			
 			Context::Scope cs(ctx);
 			Local<Value> argv[1] = { String::NewFromUtf8(callback->isolate, "") };
 
 			if (memcmp(data.c_str(), UTF_8_BOM, 3) == 0){
-			
 				data = data.substr(3);
 				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
 			}
 			#ifdef WIN32
 			else if (memcmp(data.c_str(), UTF_16_LE_BOM, 2) == 0){	
+	
 				std::vector<std::uint16_t> result((data.size() + sizeof(std::uint16_t) - 1) / sizeof std::uint16_t);
 				std::copy_n(data.data(), data.size(), reinterpret_cast<char*>(&result[0]));
 				argv[0] = String::NewFromTwoByte(callback->isolate, std::vector<std::uint16_t>(result.begin()+1, result.end()-1).data()); 
 			}
 			else if (memcmp(data.c_str(), UTF_16_BE_BOM, 2) == 0){
+			
 				sjs::logger::error("Error reading file %s: UCS-2 Big Endian not supported.", path2.c_str());
 				return;
 			}
 			#endif
 			else {
+			//	sjs::logger::error("Data Size: %i", data.size());
+			//	//callback->data = malloc(data.size());
+				
+				//Local<ArrayBuffer> ab = ArrayBuffer::New(callback->isolate, callback->data, data.size());
+				//Persistent<ArrayBuffer> p_obj(callback->isolate, ab);
+			//	p_obj.SetWeak(callback->data, FileSystem::FreeCallback);
+				
+			//	callback->isolate->AdjustAmountOfExternalAllocatedMemory(data.size());
 				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
 			} 
 			Local<Function> func = Local<Function>::New(callback->isolate, callback->callback);

@@ -49,6 +49,7 @@ cell AMX_NATIVE_CALL Callbacks::OnPlayerConnect(AMX* amx, cell* params){
 	}
 	return 1;
 }
+
 cell AMX_NATIVE_CALL Callbacks::OnPlayerDisconnect(AMX* amx, cell* params){
 	for (auto& script : SAMPJS::GetScripts()){
 		if (!script.second->Server()->FireNative("PlayerDisconnect", "ii", { "playerid", "reason" }, params)){

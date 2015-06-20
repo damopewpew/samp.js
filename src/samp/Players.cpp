@@ -266,25 +266,29 @@ class $PLAYER extends $EVENTS {
 	}
 };
 
-	var $players = [];
-	class $PLAYERS_ {
+		class $PLAYERS {
 			getPlayer(playerid){
-				return $players[playerid];
+				return this[playerid];
 			}
 
 			addPlayer(playerid){
+                if(this[playerid]) return this[playerid];
 				var player = new $PLAYER(playerid);
-				$players[playerid] = player;
+				this[playerid] = player;
 				return player;
 			}
 
 			removePlayer(playerid){
 				var player = this.getPlayer(playerid);
-				$players.splice(playerid,1);
+				delete this[playerid];
 				return player;
 			}
+
+			length(){
+				return Object.keys(this).length;
+			}
 		};
-		var $PLAYERS = new $PLAYERS_();
+		var $players = new $PLAYERS();
 )";
 	
 	Local<String> source = String::NewFromUtf8(isolate, src.c_str());
@@ -297,6 +301,8 @@ class $PLAYER extends $EVENTS {
 		Utils::PrintException(&try_catch);
 	}
 	script->Run();
+
+
 }
 
 void Players::Shutdown(){

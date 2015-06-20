@@ -14,7 +14,7 @@ namespace sampjs {
 		Isolate* isolate;
 		Persistent<Function, CopyablePersistentTraits<Function>> callback;
 		Persistent<Context, CopyablePersistentTraits<Context>> context;
-
+		void* data;
 		JS_Callback(Local<Function> callback_){
 			this->isolate = callback_->CreationContext()->GetIsolate();
 			this->callback.Reset(callback_->CreationContext()->GetIsolate(), callback_);
@@ -28,6 +28,8 @@ namespace sampjs {
 		virtual void Init(Local<Context> context);
 		virtual void Shutdown();
 		virtual void Tick(){}
+
+		//static void FreeCallback(const v8::WeakCallbackData<v8::ArrayBuffer, void*>& data);
 
 		static void rename(const FunctionCallbackInfo<Value>& args);
 		static void unlink(const FunctionCallbackInfo<Value>& args);
