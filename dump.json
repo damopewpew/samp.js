@@ -1,0 +1,1930 @@
+[
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "javascript/Buffer.js",
+    "memberof": null,
+    "longname": "javascript/Buffer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\r\n * ArrayBuffer wrapper/Helper class \r\n */\r\nexport class Buffer {\r\n/**\r\n * Constructor for buffer class\r\n * @param {ArrayBuffer} buffer ArrayBuffer to wrap\r\n */\r\n\tconstructor(buffer){\r\n/**\r\n * @type {ArrayBuffer}\r\n */\r\n\t\tthis.buffer = buffer;\t\r\n\t}\r\n\t\r\n/**\r\n * Pointer to raw ArrayBuffer\r\n * @returns {ArrayBuffer} Underlying ArrayBuffer object\r\n */\r\n\tbuffer(){\r\n\t\treturn this.buffer;\t\r\n\t}\r\n\t\r\n/**\r\n * Converts our buffer to a string\r\n * @param   {String} [format='utf8']             String format ( utf8|utf16 )\r\n * @param   {Number} [offset=0]                  Offset in bytes to start our string at\r\n * @param   {Number} [length=this.buffer.length] Length of returned string\r\n * @returns {String}\r\n */\r\n\ttoString(format,offset,length){\r\n\t\tformat = format||'utf8';\r\n\t\toffset = offset||0;\r\n\t\tlength=  length||this.buffer.length;\r\n\t\t\r\n\t\tlet arr = {};\r\n\t\tif(format =='utf8'){\r\n\t\t\tarr = new Uint8Array(this.buffer, offset, length ).toString();\r\n\t\t} else if(format == 'utf16' || format == 'unicode'){\r\n\t\t\tarr = new Uint16Array(this.buffer,offset,length).toString();\r\n\t\t}\r\n\t\treturn arr;\r\n\t\t//return String.fromCharCode.apply(null, arr);\t\r\n\t}\r\n\t\r\n/**\r\n * Converts ArrayBuffer into a Uint16Array\r\n * @returns {Uint16Array} Uint16 Array\r\n */\r\n\ttoUint16Array(){\r\n\t\treturn new Uint16Array(this.buffer);\r\n\t}\r\n/**\r\n * Converts ArrayBuffer into a Uint8Array\r\n * @returns {Uint8Array} Uint8 Array\r\n */\r\n\ttoUint8Array(){\r\n\t\treturn new Uint8Array(this.buffer);\t\r\n\t}\r\n\t\r\n/**\r\n * @returns {ArrayBuffer}\r\n */\r\n\ttoValue(){\r\n\t\treturn this.buffer;\t\r\n\t}\r\n\t\r\n/**\r\n * @returns {ArrayBuffer}\r\n */\r\n\ttoObject(){\r\n\t\treturn this.buffer;\r\n\t}\r\n};"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Buffer",
+    "memberof": "javascript/Buffer.js",
+    "longname": "javascript/Buffer.js~Buffer",
+    "access": null,
+    "export": true,
+    "importPath": "samp.js/javascript/Buffer.js",
+    "importStyle": "{Buffer}",
+    "description": "ArrayBuffer wrapper/Helper class",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#constructor",
+    "access": null,
+    "description": "Constructor for buffer class",
+    "lineNumber": 9,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "ArrayBuffer"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "buffer",
+        "description": "ArrayBuffer to wrap"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "buffer",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#buffer",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "type": {
+      "nullable": null,
+      "types": [
+        "ArrayBuffer"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "buffer",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#buffer",
+    "access": null,
+    "description": "Pointer to raw ArrayBuffer",
+    "lineNumber": 20,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{ArrayBuffer} Underlying ArrayBuffer object"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "ArrayBuffer"
+      ],
+      "spread": false,
+      "description": "Underlying ArrayBuffer object"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toString",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#toString",
+    "access": null,
+    "description": "Converts our buffer to a string",
+    "lineNumber": 31,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{String}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "'utf8'",
+        "defaultRaw": "'utf8'",
+        "name": "format",
+        "description": "String format ( utf8|utf16 )"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "0",
+        "defaultRaw": 0,
+        "name": "offset",
+        "description": "Offset in bytes to start our string at"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "this.buffer.length",
+        "defaultRaw": "this.buffer.length",
+        "name": "length",
+        "description": "Length of returned string"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toUint16Array",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#toUint16Array",
+    "access": null,
+    "description": "Converts ArrayBuffer into a Uint16Array",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Uint16Array} Uint16 Array"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Uint16Array"
+      ],
+      "spread": false,
+      "description": "Uint16 Array"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toUint8Array",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#toUint8Array",
+    "access": null,
+    "description": "Converts ArrayBuffer into a Uint8Array",
+    "lineNumber": 57,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Uint8Array} Uint8 Array"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Uint8Array"
+      ],
+      "spread": false,
+      "description": "Uint8 Array"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toValue",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#toValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 64,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{ArrayBuffer}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "ArrayBuffer"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "toObject",
+    "memberof": "javascript/Buffer.js~Buffer",
+    "longname": "javascript/Buffer.js~Buffer#toObject",
+    "access": null,
+    "description": null,
+    "lineNumber": 71,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{ArrayBuffer}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "ArrayBuffer"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "javascript/Event.js",
+    "memberof": null,
+    "longname": "javascript/Event.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\r\n * Wrapper for Events\r\n */\r\nexport class Event {\r\n/**\r\n * Event Constructor\r\n * @param {String}   name Event Name\r\n * @param {Function} fn   Callback\r\n * @param {Number}   type Type of event ( -1 infinite, 0 once, > 0 times )\r\n */\r\n\tconstructor(name,fn,type){\r\n\t\t/** @type {string} */\r\n\t\tthis.name = name;\r\n\t\t/** @type {function} */\r\n\t\tthis.fn = fn;\r\n\t\t/** @type {number} */\r\n\t\tthis.type = type;\r\n\t}\r\n}"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "memberof": "javascript/Event.js",
+    "longname": "javascript/Event.js~Event",
+    "access": null,
+    "export": true,
+    "importPath": "samp.js/javascript/Event.js",
+    "importStyle": "{Event}",
+    "description": "Wrapper for Events",
+    "lineNumber": 4,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "javascript/Event.js~Event",
+    "longname": "javascript/Event.js~Event#constructor",
+    "access": null,
+    "description": "Event Constructor",
+    "lineNumber": 11,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "name",
+        "description": "Event Name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "Callback"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "type",
+        "description": "Type of event ( -1 infinite, 0 once, > 0 times )"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "javascript/Event.js~Event",
+    "longname": "javascript/Event.js~Event#name",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "fn",
+    "memberof": "javascript/Event.js~Event",
+    "longname": "javascript/Event.js~Event#fn",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "type": {
+      "nullable": null,
+      "types": [
+        "function"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "type",
+    "memberof": "javascript/Event.js~Event",
+    "longname": "javascript/Event.js~Event#type",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "type": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "javascript/Events.js",
+    "memberof": null,
+    "longname": "javascript/Events.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "content": "/**\r\n * Events base class for subscribing to and firing events\r\n * \r\n * @example \r\n * class MyObject extends Events { };\r\n * $events = new MyObject();\r\n * $events.on(\"test\",function);\r\n * $events.fire(\"test\", args...);\r\n * $events.off(\"test\", function);\r\n */\r\nexport class Events {\r\n\t/** Creates an events system | Should be extended */\r\n\tconstructor(){\r\n\t\t/** @type {Object} */\r\n\t\tthis.ids = {};\r\n\t}\r\n\t\r\n/**\r\n * Subscribe to an event\r\n * @param {String}   event Event name\r\n * @param {Function} fn    Event callback\r\n */\r\n\ton(event, fn){\r\n\t\tthis.addEvent(event,fn,-1);\r\n\t}\r\n\r\n/**\r\n * Subscribe to an event and unsubscribe after it has been fired once\r\n * @param {String}   event Event name\r\n * @param {Function} fn    Event callback\t\t\r\n */\r\n\tone(event,fn){\r\n\t\tthis.addEvent(event,fn,0);\r\n\t}\r\n/**\r\n * Subscribe to an event and unsubscribe after a set amount of times\r\n * @param {String}   event Event name\r\n * @param {Function} fn    Event callback\r\n * @param {Number}   times Times event can fire\t\r\n */\r\n\tsome(event,fn,times){\r\n\t\tthis.addEvent(event,fn,times-1);\r\n\t}\r\n\t\r\n/**\r\n * Unsubscribe from an event\r\n * @param {String}   event Event name\r\n * @param {Function} fn    Function/Callback used to subscribe\r\n */\r\n\toff(event,fn){\r\n\t\tif(this.ids[event])\r\n\t\t\tfor(var id in this.ids[event])\r\n\t\t\t\tif(this.ids[event][id].fn == fn)\r\n\t\t\t\t\tdelete this.ids[event][id];\r\n\t}\r\n\t\r\n/**\r\n * Add an event\r\n * @param {String}   event Event name\r\n * @param {Function} fn    Event callback\r\n * @param {Number}   type  Event type (-1 infinite, 0 once, 0 > times)\r\n */\r\n\taddEvent(event,fn,type){\r\n\t\tif(!this.ids[event])this.ids[event] = [];\r\n\t\tthis.ids[event].push(new Event(event,fn,type));\t\r\n\t}\r\n\r\n/**\r\n * Fire an event\r\n * @param   {String}  event Event name\r\n * @returns {Boolean} Returning 0 will cancel the event bubble\r\n */\r\n\tfire( event ){\r\n\t\tvar args = [];\r\n\t\tfor(var i in arguments){\r\n\t\t\tif(i != 0) args.push(arguments[i]);\r\n\t\t}\r\n\t\t\r\n\t\tfor(var id in this.ids[event]){\r\n\t\t\tvar fn = this.ids[event][id].fn;\r\n\t\t\tvar ret = fn.apply(null, args);\t\r\n\t\t\t\r\n\t\t\tif(this.ids[event][id].type == 0) delete this.ids[event][id];\r\n\t\t\telse if(this.ids[event][id].type > 0) this.ids[event][id].type--;\r\n\r\n\t\t\t// This is a special case for PlayerCommandText and RconCommand so it returns correctly\r\n\t\t\tif(event == \"PlayerCommandText\" || event == \"RconCommand\"){\r\n\t\t\t\tif(ret === 1){\r\n\t\t\t\t\treturn 1;\r\n\t\t\t\t}\r\n\t\t\t} else {\r\n\t\t\t\tif(ret === 0){\r\n\t\t\t\t\treturn 0;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t}\r\n\t}\r\n};"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Events",
+    "memberof": "javascript/Events.js",
+    "longname": "javascript/Events.js~Events",
+    "access": null,
+    "export": true,
+    "importPath": "samp.js/javascript/Events.js",
+    "importStyle": "{Events}",
+    "description": "Events base class for subscribing to and firing events",
+    "examples": [
+      "class MyObject extends Events { };\n$events = new MyObject();\n$events.on(\"test\",function);\n$events.fire(\"test\", args...);\n$events.off(\"test\", function);"
+    ],
+    "lineNumber": 11,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#constructor",
+    "access": null,
+    "description": "Creates an events system | Should be extended",
+    "lineNumber": 13,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "ids",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#ids",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "on",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#on",
+    "access": null,
+    "description": "Subscribe to an event",
+    "lineNumber": 23,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "Event callback"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "one",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#one",
+    "access": null,
+    "description": "Subscribe to an event and unsubscribe after it has been fired once",
+    "lineNumber": 32,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "Event callback"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "some",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#some",
+    "access": null,
+    "description": "Subscribe to an event and unsubscribe after a set amount of times",
+    "lineNumber": 41,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "Event callback"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "times",
+        "description": "Times event can fire"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "off",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#off",
+    "access": null,
+    "description": "Unsubscribe from an event",
+    "lineNumber": 50,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "Function/Callback used to subscribe"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addEvent",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#addEvent",
+    "access": null,
+    "description": "Add an event",
+    "lineNumber": 63,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event name"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Function"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fn",
+        "description": "Event callback"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "type",
+        "description": "Event type (-1 infinite, 0 once, 0 > times)"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "fire",
+    "memberof": "javascript/Events.js~Events",
+    "longname": "javascript/Events.js~Events#fire",
+    "access": null,
+    "description": "Fire an event",
+    "lineNumber": 73,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} Returning 0 will cancel the event bubble"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "event",
+        "description": "Event name"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "Returning 0 will cancel the event bubble"
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "javascript/FileSystem.js",
+    "memberof": null,
+    "longname": "javascript/FileSystem.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "content": "\r\n/**\r\n * FileSystem Class - Use $fs\r\n * Wraps ArrayBuffers in Buffer helper class\r\n * \r\n * @example // In samp.js $fs is an instance of FileSystem\r\n * $fs = new FileSystem();\r\n * \r\n * // Opens myfile.txt and reads 1000 bytes of it\r\n * let fd = $fs.open(\"myfile.txt\");\r\n * let buf = $fs.read(fd,0,1000); \r\n * $fs.close(fd);\r\n * \r\n * let str = buf.toString();\r\n */\r\nexport class FileSystem {\r\n\t\r\n/**\r\n * Opens a file\r\n * @param {string} filename - The path/filename you want to open\r\n * @returns {object} File descriptor \r\n */\r\n\topen(filename){\r\n\t\treturn this.internal.open(filename);\t\r\n\t}\r\n\t\r\n/**\r\n * Closes a previously opened file\r\n * @param {Object} fd File descriptor returned from open()\r\n */\r\n\tclose(fd){\r\n\t\tthis.internal.close(fd);\t\t\r\n\t}\r\n\t\r\n\t\r\n/**\r\n * Reads from a file\r\n * @param   {Object} fd     File descriptor returned from open()\r\n * @param   {Number} offset Offset in bytes to start reading at\r\n * @param   {Number} length Length in bytes of how much to read\r\n * @returns {Buffer} Returns a buffer object ( ArrayBuffer wrapper )\r\n */\r\n\tread(fd,offset,length){\r\n\t\tvar buffer =  new Buffer(this.internal.read(fd,offset,length));\r\n\t\treturn buffer;\r\n\t}\r\n\t\r\n/**\r\n * readFile callback\r\n * @callback readFileCallback\r\n * @param {$buffer} buffer Buffer Object ( ArrayBuffer wrapper )\r\n */\r\n\t\r\n/**\r\n * Reads an entire file into a buffer\r\n * @param   {String}                  filename   - Filename you want to read\r\n * @param\t{function(data:           Buffer)|}  [callback] - when a callback is supplied file will be read asyncronously  \r\n * @returns {Buffer|boolean}          Return a buffer object (ArrayBuffer wrapper) / True/False in async mode\r\n * @example // Read file asyncronously and fire callback when finished\r\n * $fs.readFile(\"myfile.txt\", function(buffer){\r\n *     print(buffer.toString());\r\n * });\r\n * \r\n * // Read file syncronously\r\n * print($fs.readFile(\"myfile.txt\").toString());\r\n */\r\n\treadFile(filename){\r\n\t\tif(arguments.length > 1){\r\n\t\t\tvar callback = arguments[1];\r\n\t\t\tthis.internal.readFile(filename, function(data){\r\n\t\t\t\tcallback.call(null,new Buffer(data));\r\n\t\t\t});\r\n\t\t} else {\r\n\t\t\treturn new Buffer(this.internal.readFile(filename));\t\r\n\t\t}\r\n\t}\r\n\t\r\n/**\r\n * Writes data to a file\r\n * @param   {String}  filename The file you want to write to\r\n * @param   {String}  data     The data you want to write\r\n * @returns {Boolean} True on success False on failure\t\r\n */\r\n\twriteFile(filename, data){\r\n\t\treturn this.internal.writeFile(filename,data);\r\n\t}\r\n\t\r\n/**\r\n * Appends data to a file. Creates new file if it does not exist\r\n * @param {String}  filename The file you want to write to\r\n * @param {String}  data     The data you want to append\r\n * @returns {Boolean} True on success false on failure\r\n */\r\n\tappendFile(filename, data){\r\n\t\treturn this.internal.appendFile(filename, data);\t\r\n\t}\r\n\t\r\n/**\r\n * Checks if a file/path exists\r\n * @param   {String}  path Filename/Directory\r\n * @returns {Boolean} True if it exists False if it does not exist\t\t\r\n */\r\n\texits(path){\r\n\t\treturn this.internal.exists(path);\t\r\n\t}\r\n\t\r\n/**\r\n * Renames a file\r\n * @param   {String}  filename    File you want to rename\r\n * @param   {String}  newfilename Name you want to rename it to\r\n * @returns {Boolean} True on success false on failure\t\r\n */\r\n\trename(filename,newfilename){\r\n\t\treturn this.internal.rename(filename,newfilename);\t\r\n\t}\r\n\t\r\n/**\r\n * Deletes a file ( alias for unlink )\r\n * @param   {String}  filename Filename you want to delete\r\n * @returns {Boolean} True on success, false on failure\t\t\r\n */\r\n\tdelete(filename){\r\n\t\treturn this.internal.unlink(filename);\t\r\n\t}\r\n\t\r\n/**\r\n * Deletes a file\r\n * @param   {String}  filename File you want to delete\r\n * @returns {Boolean} True on success, false on failure\t\r\n */\r\n\tunlink(filename){\r\n\t\treturn this.internal.unlink(filename);\r\n\t}\r\n\t\r\n/**\r\n * Removes a directory\r\n * @param   {String}  directory Path of the directory you want to remove\r\n * @returns {Boolean} True on success, false on failure\t\t\r\n */\r\n\trmdir(directory){\r\n\t\treturn this.internal.rmdir(directory);\t\r\n\t}\r\n\t\r\n/**\r\n * Makes a new directory\r\n * @param   {String}  directory Name of directory you want to create\r\n * @returns {Boolean} True on success, false on failure\r\n */\r\n\tmkdir(directory){\r\n\t\treturn this.internval.mkdir(directory);\t\r\n\t}\r\n\t\r\n/**\r\n * Reads a directory listing into an array\r\n * @param   {String} directory Directory you want to read\r\n * @returns {Array}  Array of filenames and directory names ( directories end with / )\r\n */\r\n\treaddir(directory){\r\n\t\treturn this.internal.readdir(directory);\r\n\t}\r\n};\r\n\r\nvar $fs = new $FS();\r\n\r\n\r\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "FileSystem",
+    "memberof": "javascript/FileSystem.js",
+    "longname": "javascript/FileSystem.js~FileSystem",
+    "access": null,
+    "export": true,
+    "importPath": "samp.js/javascript/FileSystem.js",
+    "importStyle": "{FileSystem}",
+    "description": "FileSystem Class - Use $fs\nWraps ArrayBuffers in Buffer helper class",
+    "examples": [
+      "// In samp.js $fs is an instance of FileSystem\n$fs = new FileSystem();\n\n// Opens myfile.txt and reads 1000 bytes of it\nlet fd = $fs.open(\"myfile.txt\");\nlet buf = $fs.read(fd,0,1000); \n$fs.close(fd);\n\nlet str = buf.toString();"
+    ],
+    "lineNumber": 16,
+    "interface": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "open",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#open",
+    "access": null,
+    "description": "Opens a file",
+    "lineNumber": 23,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{object} File descriptor"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "The path/filename you want to open"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "object"
+      ],
+      "spread": false,
+      "description": "File descriptor"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "close",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#close",
+    "access": null,
+    "description": "Closes a previously opened file",
+    "lineNumber": 31,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fd",
+        "description": "File descriptor returned from open()"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "read",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#read",
+    "access": null,
+    "description": "Reads from a file",
+    "lineNumber": 43,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Buffer} Returns a buffer object ( ArrayBuffer wrapper )"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "fd",
+        "description": "File descriptor returned from open()"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "offset",
+        "description": "Offset in bytes to start reading at"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "length",
+        "description": "Length in bytes of how much to read"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Buffer"
+      ],
+      "spread": false,
+      "description": "Returns a buffer object ( ArrayBuffer wrapper )"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "readFile",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#readFile",
+    "access": null,
+    "description": "Reads an entire file into a buffer",
+    "examples": [
+      "// Read file asyncronously and fire callback when finished\n$fs.readFile(\"myfile.txt\", function(buffer){\n    print(buffer.toString());\n});\n\n// Read file syncronously\nprint($fs.readFile(\"myfile.txt\").toString());"
+    ],
+    "lineNumber": 67,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Buffer|boolean}          Return a buffer object (ArrayBuffer wrapper) / True/False in async mode"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "Filename you want to read"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "function(data:           Buffer)|"
+        ],
+        "spread": false,
+        "optional": true,
+        "name": "callback",
+        "description": "when a callback is supplied file will be read asyncronously"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Buffer|boolean"
+      ],
+      "spread": false,
+      "description": "Return a buffer object (ArrayBuffer wrapper) / True/False in async mode"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "writeFile",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#writeFile",
+    "access": null,
+    "description": "Writes data to a file",
+    "lineNumber": 84,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success False on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "The file you want to write to"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": "The data you want to write"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success False on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "appendFile",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#appendFile",
+    "access": null,
+    "description": "Appends data to a file. Creates new file if it does not exist",
+    "lineNumber": 94,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success false on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "The file you want to write to"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "data",
+        "description": "The data you want to append"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success false on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "exits",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#exits",
+    "access": null,
+    "description": "Checks if a file/path exists",
+    "lineNumber": 103,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True if it exists False if it does not exist"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "path",
+        "description": "Filename/Directory"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True if it exists False if it does not exist"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "rename",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#rename",
+    "access": null,
+    "description": "Renames a file",
+    "lineNumber": 113,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success false on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "File you want to rename"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "newfilename",
+        "description": "Name you want to rename it to"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success false on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "delete",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#delete",
+    "access": null,
+    "description": "Deletes a file ( alias for unlink )",
+    "lineNumber": 122,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success, false on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "Filename you want to delete"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success, false on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "unlink",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#unlink",
+    "access": null,
+    "description": "Deletes a file",
+    "lineNumber": 131,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success, false on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "filename",
+        "description": "File you want to delete"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success, false on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "rmdir",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#rmdir",
+    "access": null,
+    "description": "Removes a directory",
+    "lineNumber": 140,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success, false on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "directory",
+        "description": "Path of the directory you want to remove"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success, false on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "mkdir",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#mkdir",
+    "access": null,
+    "description": "Makes a new directory",
+    "lineNumber": 149,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Boolean} True on success, false on failure"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "directory",
+        "description": "Name of directory you want to create"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": "True on success, false on failure"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "readdir",
+    "memberof": "javascript/FileSystem.js~FileSystem",
+    "longname": "javascript/FileSystem.js~FileSystem#readdir",
+    "access": null,
+    "description": "Reads a directory listing into an array",
+    "lineNumber": 158,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Array}  Array of filenames and directory names ( directories end with / )"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "String"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "directory",
+        "description": "Directory you want to read"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": "Array of filenames and directory names ( directories end with / )"
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "$fs",
+    "memberof": "javascript/FileSystem.js",
+    "longname": "javascript/FileSystem.js~$fs",
+    "access": null,
+    "export": false,
+    "importPath": "samp.js/javascript/FileSystem.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 163,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  }
+]

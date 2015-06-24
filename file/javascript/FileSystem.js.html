@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">javascript/FileSystem.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/javascript/Buffer.js~Buffer.html">Buffer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Event.js~Event.html">Event</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Events.js~Events.html">Events</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/FileSystem.js~FileSystem.html">FileSystem</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">javascript/FileSystem.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">
+/**
+ * FileSystem Class - Use $fs
+ * Wraps ArrayBuffers in Buffer helper class
+ * 
+ * @example // In samp.js $fs is an instance of FileSystem
+ * $fs = new FileSystem();
+ * 
+ * // Opens myfile.txt and reads 1000 bytes of it
+ * let fd = $fs.open(&quot;myfile.txt&quot;);
+ * let buf = $fs.read(fd,0,1000); 
+ * $fs.close(fd);
+ * 
+ * let str = buf.toString();
+ */
+export class FileSystem {
+	
+/**
+ * Opens a file
+ * @param {string} filename - The path/filename you want to open
+ * @returns {object} File descriptor 
+ */
+	open(filename){
+		return this.internal.open(filename);	
+	}
+	
+/**
+ * Closes a previously opened file
+ * @param {Object} fd File descriptor returned from open()
+ */
+	close(fd){
+		this.internal.close(fd);		
+	}
+	
+	
+/**
+ * Reads from a file
+ * @param   {Object} fd     File descriptor returned from open()
+ * @param   {Number} offset Offset in bytes to start reading at
+ * @param   {Number} length Length in bytes of how much to read
+ * @returns {Buffer} Returns a buffer object ( ArrayBuffer wrapper )
+ */
+	read(fd,offset,length){
+		var buffer =  new Buffer(this.internal.read(fd,offset,length));
+		return buffer;
+	}
+	
+/**
+ * readFile callback
+ * @callback readFileCallback
+ * @param {$buffer} buffer Buffer Object ( ArrayBuffer wrapper )
+ */
+	
+/**
+ * Reads an entire file into a buffer
+ * @param   {String}                  filename   - Filename you want to read
+ * @param	{function(data:           Buffer)|}  [callback] - when a callback is supplied file will be read asyncronously  
+ * @returns {Buffer|boolean}          Return a buffer object (ArrayBuffer wrapper) / True/False in async mode
+ * @example // Read file asyncronously and fire callback when finished
+ * $fs.readFile(&quot;myfile.txt&quot;, function(buffer){
+ *     print(buffer.toString());
+ * });
+ * 
+ * // Read file syncronously
+ * print($fs.readFile(&quot;myfile.txt&quot;).toString());
+ */
+	readFile(filename){
+		if(arguments.length &gt; 1){
+			var callback = arguments[1];
+			this.internal.readFile(filename, function(data){
+				callback.call(null,new Buffer(data));
+			});
+		} else {
+			return new Buffer(this.internal.readFile(filename));	
+		}
+	}
+	
+/**
+ * Writes data to a file
+ * @param   {String}  filename The file you want to write to
+ * @param   {String}  data     The data you want to write
+ * @returns {Boolean} True on success False on failure	
+ */
+	writeFile(filename, data){
+		return this.internal.writeFile(filename,data);
+	}
+	
+/**
+ * Appends data to a file. Creates new file if it does not exist
+ * @param {String}  filename The file you want to write to
+ * @param {String}  data     The data you want to append
+ * @returns {Boolean} True on success false on failure
+ */
+	appendFile(filename, data){
+		return this.internal.appendFile(filename, data);	
+	}
+	
+/**
+ * Checks if a file/path exists
+ * @param   {String}  path Filename/Directory
+ * @returns {Boolean} True if it exists False if it does not exist		
+ */
+	exits(path){
+		return this.internal.exists(path);	
+	}
+	
+/**
+ * Renames a file
+ * @param   {String}  filename    File you want to rename
+ * @param   {String}  newfilename Name you want to rename it to
+ * @returns {Boolean} True on success false on failure	
+ */
+	rename(filename,newfilename){
+		return this.internal.rename(filename,newfilename);	
+	}
+	
+/**
+ * Deletes a file ( alias for unlink )
+ * @param   {String}  filename Filename you want to delete
+ * @returns {Boolean} True on success, false on failure		
+ */
+	delete(filename){
+		return this.internal.unlink(filename);	
+	}
+	
+/**
+ * Deletes a file
+ * @param   {String}  filename File you want to delete
+ * @returns {Boolean} True on success, false on failure	
+ */
+	unlink(filename){
+		return this.internal.unlink(filename);
+	}
+	
+/**
+ * Removes a directory
+ * @param   {String}  directory Path of the directory you want to remove
+ * @returns {Boolean} True on success, false on failure		
+ */
+	rmdir(directory){
+		return this.internal.rmdir(directory);	
+	}
+	
+/**
+ * Makes a new directory
+ * @param   {String}  directory Name of directory you want to create
+ * @returns {Boolean} True on success, false on failure
+ */
+	mkdir(directory){
+		return this.internval.mkdir(directory);	
+	}
+	
+/**
+ * Reads a directory listing into an array
+ * @param   {String} directory Directory you want to read
+ * @returns {Array}  Array of filenames and directory names ( directories end with / )
+ */
+	readdir(directory){
+		return this.internal.readdir(directory);
+	}
+};
+
+var $fs = new $FS();
+
+
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.2)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{
+  "coverage": "100%",
+  "expectCount": 36,
+  "actualCount": 36,
+  "files": {
+    "javascript/Buffer.js": {
+      "expectCount": 8,
+      "actualCount": 8
+    },
+    "javascript/Event.js": {
+      "expectCount": 5,
+      "actualCount": 5
+    },
+    "javascript/Events.js": {
+      "expectCount": 9,
+      "actualCount": 9
+    },
+    "javascript/FileSystem.js": {
+      "expectCount": 14,
+      "actualCount": 14
+    }
+  }
+}
