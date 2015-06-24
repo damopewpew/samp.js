@@ -36,8 +36,8 @@ class $SERVER extends $EVENTS {
 		let highest_id = CallNative("GetPlayerPoolSize");
 		for(var i = 0; i < highest_id+1; i++){
 			if(CallNative("IsPlayerConnected", "i", i)){
-				print("Player "+i+" is connected");
-				$PLAYERS.addPlayer(i);
+			//	print("Player "+i+" is connected");
+				$players.addPlayer(i);
 			}
 		}
 	}
@@ -247,7 +247,7 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 
 					if (multi) retobj->Set(arr->Get(j++), STRING2JS(args.GetIsolate(), text));
 					else retval = STRING2JS(args.GetIsolate(), text);
-
+					delete text;
 					//amx_Release(sampjs.GetAMX(), params[i]);
 					break;
 				}
@@ -282,20 +282,24 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 			if (try_catch.HasCaught()){
 				args.GetIsolate()->CancelTerminateExecution();
 				Utils::PrintException(&try_catch);
+				delete[] params;
 				return;
 			}
 			if (multi){
 				args.GetReturnValue().Set(retobj);
+				delete[] params;
 				return;
 			}
 			else if (!retval.IsEmpty()){
 				args.GetReturnValue().Set(Local<Value>::Cast(retval));
+				delete[] params;
 				return;
 			}
 
 		}
 
 		args.GetReturnValue().Set(value);
+		delete[] params;
 		return;
 	}
 	else {
@@ -307,8 +311,6 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
 		int value = amx_Function(SAMPJS::amx, NULL);
 		args.GetReturnValue().Set(value);
-
-
 		return;
 	}
 }
@@ -410,25 +412,36 @@ int Server::FireNative(std::string name, std::string param_types, std::vector<st
 
 					int playerid = params[i];
 
-					JS_Object players(global.getObject("$PLAYERS"));
+					TryCatch trycatch;
+					JS_Object players(global.getObject("$players"));
 					
 					Local<Value> player;
 	
-					if (name == "PlayerConnect"){
+					if (name == "IncomingConnection" || name == "PlayerConnect"){
+
 						auto addPlayer = Local<Function>::Cast(players.getValue("addPlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
 						player = addPlayer->Call(players.get(), 1, argv);
+						if (trycatch.HasCaught()){
+							Utils::PrintException(&trycatch);
+						}
 					}
 					
 					else if (name == "PlayerDisconnect"){
 						auto removePlayer = Local<Function>::Cast(players.getValue("removePlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
 						player = removePlayer->Call(players.get(), 1, argv);
+						if (trycatch.HasCaught()){
+							Utils::PrintException(&trycatch);
+						}
 					}
 					else {
 						auto getPlayer = Local<Function>::Cast(players.getValue("getPlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
 						player = getPlayer->Call(players.get(), 1, argv);
+						if (trycatch.HasCaught()){
+							Utils::PrintException(&trycatch);
+						}
 					}
 					argv[i] = player;
 

@@ -83,8 +83,6 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 	std::cout << std::endl;
 	std::cout << std::string(30, '-') + " samp.js unloaded " + std::string(30, '-') << std::endl;
 	std::cout << std::endl;
-
-
 }
 #include "samp/Natives.h"
 

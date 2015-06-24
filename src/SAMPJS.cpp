@@ -10,7 +10,7 @@
 using namespace sampjs;
 
 AMX *SAMPJS::amx;
-string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax ";
+string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax --harmony";
 
 map<string, shared_ptr<sampjs::Script>> SAMPJS::scripts;
 
