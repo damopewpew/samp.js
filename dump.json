@@ -1280,6 +1280,2084 @@
     }
   },
   {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "javascript/SAMP/Player.js",
+    "memberof": null,
+    "longname": "javascript/SAMP/Player.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\r\n * Player wrapper/helper class \r\n */\r\nexport class Player extends Events {\r\n\r\n/**\r\n * Creates a new Player object\r\n * @param {Number} id Internal sa-mp id\r\n */\r\n\tconstructor(id){\r\n\t\tsuper();\r\n/** @type {Number} */\r\n\t\tthis.id = id;\r\n/** Cached name\r\n * @type {String} */\r\n\t\tthis.name_ =  \"\";\r\n/** Cached interior\r\n * @type {Number} */\r\n\t\tthis.interior_ = 0;\r\n/** Cached ip address\r\n * @type {String} */\r\n\t\tthis.ip_ = null;\r\n/** Cached position \r\n * @type {Object(x:Number,y:Number,z:Number,a:Number)} */\r\n\t\tthis.pos_ = {x:0,y:0,z:0};\r\n/** Cached velocity \r\n * @type {Object(x:Number,y:Number,z:Number)} */\r\n\t\tthis.velocity_ = {x:0,y:0,z:0};\r\n/** Cached health \r\n * @type {Number} */\r\n\t\tthis.health_ = 0;\r\n/** Cached armour \r\n * @type {Number} */\r\n\t\tthis.armour_ = 0;\r\n/** Cached ammo \r\n * @type {Number} */\r\n\t\tthis.currentAmmo_ = 0;\r\n/** Cached current weapon \r\n * @type {Number} */\r\n\t\tthis.currentWeapon_ = 0;\r\n/** Cached weapon state \r\n * @type {Number} */\r\n\t\tthis.weaponState_ = 0;\r\n/** Cached target player \r\n * @type {Number} */\r\n\t\tthis.targetPlayer_ = 0;\r\n/** Cached weapons \r\n * @type {Array} */\r\n\t\tthis.weapons_ = [];\r\n/** Cached color \r\n * @type {Number} */\r\n\t\tthis.color_ = 0;\r\n/** Cached money \r\n * @type {Number} */\r\n\t\tthis.money_ = 0;\r\n/** Cached skin\r\n * @type {Number} */\r\n\t\tthis.skin_ = 0;\r\n/** Cached score \r\n * @type {Number} */\r\n\t\tthis.score_ = 0;\r\n/** Cached state \r\n * @type {Number} */\r\n\t\tthis.state_ = 0;\r\n/** Cached team \r\n * @type {Number} */\r\n\t\tthis.team_ = 0;\r\n/** Cached wanted level \r\n * @type {Number} */\r\n\t\tthis.wantedLevel_ = 0;\r\n\t}\r\n\r\n/**\r\n * Checks if player is valid\r\n * @type {Boolean}\r\n */\r\n\tget isValid(){\r\n\t\treturn (this.id < 65535);\r\n\t}\r\n\r\n/**\r\n * Get player name | GetPlayerName(playerid)\r\n * @type {String}\r\n */\r\n\tget name(){\r\n\t\tthis.name_ = GetPlayerName(this.id);\r\n\t\treturn this.name_; \t\t\r\n\t}\r\n/**\r\n * Set player name | SetPlayerName(playerid, name)\r\n * @type {String}\r\n */ \r\n\tset name(name){\r\n\t\tSetPlayerName(this.id, name);\r\n\t\tthis.name_ = name;\t\r\n\t}\r\n/**\r\n * Get Player IP Address | GetPlayerIp(playerid)\r\n * @type {String}\r\n */\r\n\tget ip() {\r\n\t\tif(this.ip_ == null) this.ip_ = GetPlayerIp(this.id);\r\n\t\treturn this.ip_;\r\n\t}\r\n\t\r\n/**\r\n * Get Player Facing Angle | GetPlayerFacingAngle(playerid)\r\n * @type {Number}\r\n */\r\n\tget facingAngle() {\r\n\t\tthis.pos_.a = GetPlayerFacingAngle(this.id);\r\n\t\treturn this.pos_.a;\r\n\t}\r\n\r\n/**\r\n * Set Player Facing Angle | SetPlayerFacingAngle(playerid, angle)\r\n * @type {Number} \r\n */\r\n\tset facingAngle(angle) {\r\n\t\tthis.pos_.a = angle;\r\n\t\tSetPlayerFacingAngle(this.id,angle);\r\n\t}\r\n\t\r\n/**\r\n * Get Player Position | GetPlayerPos(playerid)\r\n * @type {Object(x:Number,y:Number,z:Number,a:Number)}\r\n */ \r\n\tget pos(){\r\n\t\tvar tmpp = GetPlayerPos(this.id);\r\n\t\tvar tmpa = this.facingAngle;\r\n\t\tthis.pos_ = {x: tmpp.x, y: tmpp.y, z: tmpp.z, a: tmpa };\r\n\t\treturn this.pos_;\r\n\t}\r\n/**\r\n * Set Player Position. Takes an Object or an Array | SetPlayerPos(playerid, x, y, z )\r\n * @type {Object(x:Number,y:Number,z:Number,[a:Number])}\r\n */\r\n\tset pos(pos){\r\n\t\tif(Array.isArray(pos)){\r\n\t\t\tif(pos.length > 3) this.facingAngle = pos[3];\r\n\t\t\tthis.pos_.x = pos[0];\r\n\t\t\tthis.pos_.y = pos[1];\r\n\t\t\tthis.pos_.z = pos[2];\r\n\t\t} else {\r\n\t\t\tif(pos.hasOwnProperty('a')) this.facingAngle = pos.a;\r\n\t\t\tthis.pos_.x = pos.x;\r\n\t\t\tthis.pos_.y = pos.y;\r\n\t\t\tthis.pos_.z = pos.z;\r\n\t\t}\r\n\t\tSetPlayerPos(this.id,this.pos_.x,this.pos_.y,this.pos_.z);\r\n\t}\r\n\t\r\n/**\r\n * Get Player Health | GetPlayerHealth(playerid)\r\n * @type {Number}\r\n */ \r\n\tget health(){\r\n\t\tthis.health_ = GetPlayerHealth(this.id);\r\n\t\treturn this.health_;\r\n\t}\r\n/**\r\n * Set Player Health | SetPlayerHealth(playerid, Float:health)\r\n * @type {Number}\r\n */ \r\n\tset health(health){\r\n\t\tthis.health_ = health;\r\n\t\tSetPlayerHealth(this.id, this.health_);\r\n\t}\r\n\tget armour(){\r\n\t\tthis.armour_ = GetPlayerArmour(this.id);\r\n\t\treturn this.health_;\r\n\t}\r\n\tset armour(armour){\r\n\t\tthis.armour_ = armour;\r\n\t\tSetPlayerArmour(this.id, this.armour_);\r\n\t}\r\n\tget ammo() {\r\n\t\tthis.currentAmmo_ = GetPlayerAmmo(this.id);\r\n\t\treturn this.currentAmmo_;\r\n\t}\r\n\tsetAmmo(weaponid,ammo) {\r\n\t\tthis.weapons_[weaponid] = ammo;\r\n\t\tSetPlayerAmmo(this.id,weaponid,this.weapons_[weaponid]);\r\n\t}\r\n\tget weaponState() {\r\n\t\tthis.weaponState_ = GetPlayerWeaponState(this.id);\r\n\t\treturn this.weaponState_;\r\n\t}\r\n\tget targetPlayer() {\r\n\t\tthis.targetPlayer_ = GetPlayerTargetPlayer(this.id);\r\n\t\treturn this.targetPlayer_;\r\n\t}\r\n\tget team() {\r\n\t\tthis.team_ = GetPlayerTeam(this.id);\r\n\t\treturn this.team_;\r\n\t}\r\n\tset team(team) {\r\n\t\tthis.team_ = team;\r\n\t\tSetPlayerTeam(this.id,team);\r\n\t}\r\n\tget interior() {\r\n\t\tthis.interior_ = GetPlayerInterior(this.id);\r\n\t\treturn this.interior_;\r\n\t}\r\n\tset interior(interior) {\r\n\t\tthis.interior_ = interior;\r\n\t\tSetPlayerInterior(this.id,interior);\r\n\t}\r\n\tgiveWeapon(weaponid,ammo) {\r\n\t\tthis.weapons_[weaponid] = ammo;\r\n\t\tGivePlayerWeapon(this.id,weaponid,this.weapons_[weaponid]);\r\n\t}\r\n\tresetWeapons() {\r\n\t\tfor(var i=0;i<47;i++) this.weapons_[i] = 0;\r\n\t\tResetPlayerWeapons(this.id);\r\n\t}\r\n\tget weapon() {\r\n\t\tthis.currentWeapon_ = GetPlayerWeapon(this.id);\r\n\t\treturn this.currentWeapon_;\r\n\t}\r\n\tset weapon(weaponid) {\r\n\t\tthis.currentWeapon_ = weaponid;\r\n\t\tSetPlayerArmedWeapon(this.id,this.currentWeapon_);\r\n\t}\r\n\tget weaponData() {\r\n\t\tfor(var i=0;i<13;i++) {\r\n\t\t\tvar data = GetPlayerWeaponData(this.id,i);\r\n\t\t\tthis.weapons_[data.weapons] = data.ammo;\r\n\t\t}\r\n\t\treturn this.weapons_;\r\n\t}\r\n\tget color() {\r\n\t\tthis.color_ = GetPlayerColor(this.id);\r\n\t\treturn this.color_;\r\n\t}\r\n\tset color(color) {\r\n\t\tthis.color_ = color;\r\n\t\tSetPlayerColor(this.id,this.colour_);\r\n\t}\r\n\tgetDistanceFromPoint(point) {\r\n\t\tif(Array.isArray(pos)) return GetPlayerDistanceFromPoint(this.id,point[0],point[1],point[2]);\r\n\t\telse return GetPlayerDistanceFromPoint(this.id,point.x,point.y,point.z);\r\n\t}\r\n\tget keys() {\r\n\t\tvar keys = GetPlayerKeys(this.id);\r\n\t\treturn keys.keys;\r\n\t}\r\n\tget arrowKeys() {\r\n\t\tvar keys = GetPlayerKeys(this.id);\r\n\t\treturn {updown: keys.updown, leftright: keys.leftright};\r\n\t}\r\n\tget lastShotVectors() {\r\n\t\tvar vectors = GetPlayerLastShotVectors(this.id);\r\n\t\treturn {origin: {x: vectors.fOriginX, y: vectors.fOriginY, z: vectors.fOriginZ},\r\n\t\t\t\thitPos: {x: vectors.fHitPosX, y: vectors.fHitPosY, z: vectors.fHitPosZ}};\r\n\t}\r\n\tget money() {\r\n\t\tthis.money_ = GetPlayerMoney(this.id);\r\n\t\treturn this.money_;\r\n\t}\r\n\tset money(money) {\r\n\t\tvar currentMoney = this.money;\r\n\t\tthis.money_ = money;\r\n\t\tthis.giveMoney(money - currentMoney);\r\n\t}\r\n\tgiveMoney(money) {\r\n\t\tthis.money_ += money;\r\n\t\tGivePlayerMoney(this.id,money);\r\n\t}\r\n\tresetMoney(money) {\r\n\t\tthis.money_ = 0;\r\n\t\tResetPlayerMoney(this.id);\r\n\t}\r\n\tget score() {\r\n\t\tthis.score_ = GetPlayerScore(this.id);\r\n\t\treturn this.score_;\r\n\t}\r\n\tset score(score) {\r\n\t\tthis.score_ = score;\r\n\t\tSetPlayerScore(this.id,this.score_);\r\n\t}\r\n\tget skin() {\r\n\t\tthis.skin_ = GetPlayerSkin(this.id);\r\n\t\treturn this.skin_;\r\n\t}\r\n\tset skin(skin) {\r\n\t\tthis.skin_ = skin;\r\n\t\tSetPlayerSkin(this.id,this.skin_);\r\n\t}\r\n\tget state() {\r\n\t\tthis.state_ = GetPlayerState(this.id);\r\n\t\treturn this.state_;\r\n\t}\r\n\tget wantedLevel() {\r\n\t\tthis.wantedLevel_ = GetPlayerWantedLevel(this.id);\r\n\t\treturn this.velocity_;\r\n\t}\r\n\tset wantedLevel(wantedLevel) {\r\n\t\tthis.wantedLevel_ = wantedLevel;\r\n\t\tSetPlayerWantedLevel(this.id,this.wantedLevel_);\r\n\t}\r\n\tget velocity(){\r\n\t\tvar vel = GetPlayerVelocity(this.id);\r\n\t\tthis.velocity_ = {x: vel.x, y: vel.y, z: vel.z};\r\n\t\treturn this.pos_;\r\n\t}\r\n\tset velocity(vel){\r\n\t\tif(Array.isArray(vel)) {\r\n\t\t\tthis.velocity_.x = vel[0];\r\n\t\t\tthis.velocity_.y = vel[1];\r\n\t\t\tthis.velocity_.z = vel[2];\r\n\t\t} else {\r\n\t\t\tthis.velocity_.x = vel.x;\r\n\t\t\tthis.velocity_.y = vel.y;\r\n\t\t\tthis.velocity_.z = vel.z;\r\n\t\t}\r\n\t\tSetPlayerVelocity(this.id,this.velocity_.x,this.velocity_.y,this.velocity_.z);\r\n\t}\r\n\r\n\tset vehicle(vehicleid){\r\n\t\tRemovePlayerFromVehicle(this.id);\r\n\t\tPutPlayerInVehicle(this.id, vehicleid, 0);\r\n\t}\r\n\r\n\tget vehicle(){\r\n\t\treturn GetPlayerVehicleID(this.id);\r\n\t}\r\n\r\n\tvalueOf(){\r\n\t\treturn this.id;\r\n\t}\r\n};\r\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Player",
+    "memberof": "javascript/SAMP/Player.js",
+    "longname": "javascript/SAMP/Player.js~Player",
+    "access": null,
+    "export": true,
+    "importPath": "samp.js/javascript/SAMP/Player.js",
+    "importStyle": "{Player}",
+    "description": "Player wrapper/helper class",
+    "lineNumber": 4,
+    "interface": false,
+    "extends": [
+      "Events"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#constructor",
+    "access": null,
+    "description": "Creates a new Player object",
+    "lineNumber": 10,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "id",
+        "description": "Internal sa-mp id"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "id",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#id",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#name_",
+    "access": null,
+    "description": "Cached name",
+    "lineNumber": 16,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "interior_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#interior_",
+    "access": null,
+    "description": "Cached interior",
+    "lineNumber": 19,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "ip_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#ip_",
+    "access": null,
+    "description": "Cached ip address",
+    "lineNumber": 22,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "pos_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#pos_",
+    "access": null,
+    "description": "Cached position ",
+    "lineNumber": 25,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object(x:Number,y:Number,z:Number,a:Number)"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "velocity_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#velocity_",
+    "access": null,
+    "description": "Cached velocity ",
+    "lineNumber": 28,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object(x:Number,y:Number,z:Number)"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "health_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#health_",
+    "access": null,
+    "description": "Cached health ",
+    "lineNumber": 31,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "armour_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#armour_",
+    "access": null,
+    "description": "Cached armour ",
+    "lineNumber": 34,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentAmmo_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#currentAmmo_",
+    "access": null,
+    "description": "Cached ammo ",
+    "lineNumber": 37,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentWeapon_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#currentWeapon_",
+    "access": null,
+    "description": "Cached current weapon ",
+    "lineNumber": 40,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "weaponState_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weaponState_",
+    "access": null,
+    "description": "Cached weapon state ",
+    "lineNumber": 43,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "targetPlayer_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#targetPlayer_",
+    "access": null,
+    "description": "Cached target player ",
+    "lineNumber": 46,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "weapons_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weapons_",
+    "access": null,
+    "description": "Cached weapons ",
+    "lineNumber": 49,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "color_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#color_",
+    "access": null,
+    "description": "Cached color ",
+    "lineNumber": 52,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "money_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money_",
+    "access": null,
+    "description": "Cached money ",
+    "lineNumber": 55,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "skin_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#skin_",
+    "access": null,
+    "description": "Cached skin",
+    "lineNumber": 58,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "score_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#score_",
+    "access": null,
+    "description": "Cached score ",
+    "lineNumber": 61,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "state_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#state_",
+    "access": null,
+    "description": "Cached state ",
+    "lineNumber": 64,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "team_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#team_",
+    "access": null,
+    "description": "Cached team ",
+    "lineNumber": 67,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "wantedLevel_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#wantedLevel_",
+    "access": null,
+    "description": "Cached wanted level ",
+    "lineNumber": 70,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "isValid",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#isValid",
+    "access": null,
+    "description": "Checks if player is valid",
+    "lineNumber": 77,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Boolean"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#name",
+    "access": null,
+    "description": "Get player name | GetPlayerName(playerid)",
+    "lineNumber": 85,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#name_",
+    "access": null,
+    "description": null,
+    "lineNumber": 86,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#name",
+    "access": null,
+    "description": "Set player name | SetPlayerName(playerid, name)",
+    "lineNumber": 93,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#name_",
+    "access": null,
+    "description": null,
+    "lineNumber": 95,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "ip",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#ip",
+    "access": null,
+    "description": "Get Player IP Address | GetPlayerIp(playerid)",
+    "lineNumber": 101,
+    "type": {
+      "nullable": null,
+      "types": [
+        "String"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "ip_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#ip_",
+    "access": null,
+    "description": null,
+    "lineNumber": 102,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "facingAngle",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#facingAngle",
+    "access": null,
+    "description": "Get Player Facing Angle | GetPlayerFacingAngle(playerid)",
+    "lineNumber": 110,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "facingAngle",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#facingAngle",
+    "access": null,
+    "description": "Set Player Facing Angle | SetPlayerFacingAngle(playerid, angle)",
+    "lineNumber": 119,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "pos",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#pos",
+    "access": null,
+    "description": "Get Player Position | GetPlayerPos(playerid)",
+    "lineNumber": 128,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object(x:Number,y:Number,z:Number,a:Number)"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "pos_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#pos_",
+    "access": null,
+    "description": null,
+    "lineNumber": 131,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "pos",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#pos",
+    "access": null,
+    "description": "Set Player Position. Takes an Object or an Array | SetPlayerPos(playerid, x, y, z )",
+    "lineNumber": 138,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object(x:Number,y:Number,z:Number,[a:Number])"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "facingAngle",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#facingAngle",
+    "access": null,
+    "description": null,
+    "lineNumber": 140,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "facingAngle",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#facingAngle",
+    "access": null,
+    "description": null,
+    "lineNumber": 145,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "health",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#health",
+    "access": null,
+    "description": "Get Player Health | GetPlayerHealth(playerid)",
+    "lineNumber": 157,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "health_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#health_",
+    "access": null,
+    "description": null,
+    "lineNumber": 158,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "health",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#health",
+    "access": null,
+    "description": "Set Player Health | SetPlayerHealth(playerid, Float:health)",
+    "lineNumber": 165,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "health_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#health_",
+    "access": null,
+    "description": null,
+    "lineNumber": 166,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "armour",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#armour",
+    "access": null,
+    "description": null,
+    "lineNumber": 169,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "armour_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#armour_",
+    "access": null,
+    "description": null,
+    "lineNumber": 170,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "armour",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#armour",
+    "access": null,
+    "description": null,
+    "lineNumber": 173,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "armour_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#armour_",
+    "access": null,
+    "description": null,
+    "lineNumber": 174,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "ammo",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#ammo",
+    "access": null,
+    "description": null,
+    "lineNumber": 177,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentAmmo_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#currentAmmo_",
+    "access": null,
+    "description": null,
+    "lineNumber": 178,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setAmmo",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#setAmmo",
+    "access": null,
+    "description": null,
+    "lineNumber": 181,
+    "undocument": true,
+    "params": [
+      {
+        "name": "weaponid",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ammo",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "weaponState",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weaponState",
+    "access": null,
+    "description": null,
+    "lineNumber": 185,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "weaponState_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weaponState_",
+    "access": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "targetPlayer",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#targetPlayer",
+    "access": null,
+    "description": null,
+    "lineNumber": 189,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "targetPlayer_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#targetPlayer_",
+    "access": null,
+    "description": null,
+    "lineNumber": 190,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "team",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#team",
+    "access": null,
+    "description": null,
+    "lineNumber": 193,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "team_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#team_",
+    "access": null,
+    "description": null,
+    "lineNumber": 194,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "team",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#team",
+    "access": null,
+    "description": null,
+    "lineNumber": 197,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "team_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#team_",
+    "access": null,
+    "description": null,
+    "lineNumber": 198,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "interior",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#interior",
+    "access": null,
+    "description": null,
+    "lineNumber": 201,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "interior_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#interior_",
+    "access": null,
+    "description": null,
+    "lineNumber": 202,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "interior",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#interior",
+    "access": null,
+    "description": null,
+    "lineNumber": 205,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "interior_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#interior_",
+    "access": null,
+    "description": null,
+    "lineNumber": 206,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "giveWeapon",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#giveWeapon",
+    "access": null,
+    "description": null,
+    "lineNumber": 209,
+    "undocument": true,
+    "params": [
+      {
+        "name": "weaponid",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "ammo",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "resetWeapons",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#resetWeapons",
+    "access": null,
+    "description": null,
+    "lineNumber": 213,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "weapon",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weapon",
+    "access": null,
+    "description": null,
+    "lineNumber": 217,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentWeapon_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#currentWeapon_",
+    "access": null,
+    "description": null,
+    "lineNumber": 218,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "weapon",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weapon",
+    "access": null,
+    "description": null,
+    "lineNumber": 221,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentWeapon_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#currentWeapon_",
+    "access": null,
+    "description": null,
+    "lineNumber": 222,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "weaponData",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#weaponData",
+    "access": null,
+    "description": null,
+    "lineNumber": 225,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "color",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#color",
+    "access": null,
+    "description": null,
+    "lineNumber": 232,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "color_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#color_",
+    "access": null,
+    "description": null,
+    "lineNumber": 233,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "color",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#color",
+    "access": null,
+    "description": null,
+    "lineNumber": 236,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "color_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#color_",
+    "access": null,
+    "description": null,
+    "lineNumber": 237,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getDistanceFromPoint",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#getDistanceFromPoint",
+    "access": null,
+    "description": null,
+    "lineNumber": 240,
+    "undocument": true,
+    "params": [
+      {
+        "name": "point",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "keys",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#keys",
+    "access": null,
+    "description": null,
+    "lineNumber": 244,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "arrowKeys",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#arrowKeys",
+    "access": null,
+    "description": null,
+    "lineNumber": 248,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "lastShotVectors",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#lastShotVectors",
+    "access": null,
+    "description": null,
+    "lineNumber": 252,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "money",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money",
+    "access": null,
+    "description": null,
+    "lineNumber": 257,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "money_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money_",
+    "access": null,
+    "description": null,
+    "lineNumber": 258,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "money",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money",
+    "access": null,
+    "description": null,
+    "lineNumber": 261,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "money_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money_",
+    "access": null,
+    "description": null,
+    "lineNumber": 263,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "giveMoney",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#giveMoney",
+    "access": null,
+    "description": null,
+    "lineNumber": 266,
+    "undocument": true,
+    "params": [
+      {
+        "name": "money",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "money_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money_",
+    "access": null,
+    "description": null,
+    "lineNumber": 267,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "resetMoney",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#resetMoney",
+    "access": null,
+    "description": null,
+    "lineNumber": 270,
+    "undocument": true,
+    "params": [
+      {
+        "name": "money",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "money_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#money_",
+    "access": null,
+    "description": null,
+    "lineNumber": 271,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "score",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#score",
+    "access": null,
+    "description": null,
+    "lineNumber": 274,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "score_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#score_",
+    "access": null,
+    "description": null,
+    "lineNumber": 275,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "score",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#score",
+    "access": null,
+    "description": null,
+    "lineNumber": 278,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "score_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#score_",
+    "access": null,
+    "description": null,
+    "lineNumber": 279,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "skin",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#skin",
+    "access": null,
+    "description": null,
+    "lineNumber": 282,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "skin_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#skin_",
+    "access": null,
+    "description": null,
+    "lineNumber": 283,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "skin",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#skin",
+    "access": null,
+    "description": null,
+    "lineNumber": 286,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "skin_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#skin_",
+    "access": null,
+    "description": null,
+    "lineNumber": 287,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "state",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#state",
+    "access": null,
+    "description": null,
+    "lineNumber": 290,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "state_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#state_",
+    "access": null,
+    "description": null,
+    "lineNumber": 291,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "wantedLevel",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#wantedLevel",
+    "access": null,
+    "description": null,
+    "lineNumber": 294,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "wantedLevel_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#wantedLevel_",
+    "access": null,
+    "description": null,
+    "lineNumber": 295,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "wantedLevel",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#wantedLevel",
+    "access": null,
+    "description": null,
+    "lineNumber": 298,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "wantedLevel_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#wantedLevel_",
+    "access": null,
+    "description": null,
+    "lineNumber": 299,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "velocity",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#velocity",
+    "access": null,
+    "description": null,
+    "lineNumber": 302,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "velocity_",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#velocity_",
+    "access": null,
+    "description": null,
+    "lineNumber": 304,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "velocity",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#velocity",
+    "access": null,
+    "description": null,
+    "lineNumber": 307,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "vehicle",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#vehicle",
+    "access": null,
+    "description": null,
+    "lineNumber": 320,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "vehicle",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#vehicle",
+    "access": null,
+    "description": null,
+    "lineNumber": 325,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "valueOf",
+    "memberof": "javascript/SAMP/Player.js~Player",
+    "longname": "javascript/SAMP/Player.js~Player#valueOf",
+    "access": null,
+    "description": null,
+    "lineNumber": 329,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "javascript/SAMP/Players.js",
+    "memberof": null,
+    "longname": "javascript/SAMP/Players.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "content": "/**\r\n * Holder for all Players on the server\r\n * \r\n * @example \r\n * // $players is an instance of Players\r\n * $players = new Players();\r\n * \r\n * for(let id in $players){\r\n *    let player = $players[id];\r\n *    print(player.name);\r\n * }\r\n * \r\n * // Gets player id 2\r\n * print($players[2].name);\r\n */\r\nexport class Players {\r\n/**\r\n * Gets a player by id\r\n * @param   {Number} playerid Players sa-mp id\r\n * @returns {Player} Player object\r\n */\r\n\tgetPlayer(playerid){\r\n\t\treturn this[playerid];\r\n\t}\r\n\t\r\n/**\r\n * Adds a new player - Internal use only\r\n * @param   {Number} playerid Players sa-mp id\r\n * @returns {Player} Player object\r\n */\r\n\taddPlayer(playerid){\r\n\t\tif(this[playerid]) return this[playerid];\r\n\t\tvar player = new Player(playerid);\r\n\t\tthis[playerid] = player;\r\n\t\treturn player;\r\n\t}\r\n\r\n/**\r\n * Removes a player - Internal use only\r\n * @param   {Number} playerid Players sa-mp id\r\n * @returns {Player} Player object\r\n */\r\n\tremovePlayer(playerid){\r\n\t\tvar player = this.getPlayer(playerid);\r\n\t\tdelete this[playerid];\r\n\t\treturn player;\r\n\t}\r\n\r\n/**\r\n * Returns the total amount of players\r\n * @returns {Number} Amount of connected players\r\n */\r\n\tlength(){\r\n\t\treturn Object.keys(this).length;\r\n\t}\r\n};"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Players",
+    "memberof": "javascript/SAMP/Players.js",
+    "longname": "javascript/SAMP/Players.js~Players",
+    "access": null,
+    "export": true,
+    "importPath": "samp.js/javascript/SAMP/Players.js",
+    "importStyle": "{Players}",
+    "description": "Holder for all Players on the server",
+    "examples": [
+      "// $players is an instance of Players\n$players = new Players();\n\nfor(let id in $players){\n   let player = $players[id];\n   print(player.name);\n}\n\n// Gets player id 2\nprint($players[2].name);"
+    ],
+    "lineNumber": 16,
+    "interface": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getPlayer",
+    "memberof": "javascript/SAMP/Players.js~Players",
+    "longname": "javascript/SAMP/Players.js~Players#getPlayer",
+    "access": null,
+    "description": "Gets a player by id",
+    "lineNumber": 22,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Player} Player object"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "playerid",
+        "description": "Players sa-mp id"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player"
+      ],
+      "spread": false,
+      "description": "Player object"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addPlayer",
+    "memberof": "javascript/SAMP/Players.js~Players",
+    "longname": "javascript/SAMP/Players.js~Players#addPlayer",
+    "access": null,
+    "description": "Adds a new player - Internal use only",
+    "lineNumber": 31,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Player} Player object"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "playerid",
+        "description": "Players sa-mp id"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player"
+      ],
+      "spread": false,
+      "description": "Player object"
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "playerid",
+    "memberof": "javascript/SAMP/Players.js~Players",
+    "longname": "javascript/SAMP/Players.js~Players#playerid",
+    "access": null,
+    "description": null,
+    "lineNumber": 34,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "removePlayer",
+    "memberof": "javascript/SAMP/Players.js~Players",
+    "longname": "javascript/SAMP/Players.js~Players#removePlayer",
+    "access": null,
+    "description": "Removes a player - Internal use only",
+    "lineNumber": 43,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Player} Player object"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "playerid",
+        "description": "Players sa-mp id"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Player"
+      ],
+      "spread": false,
+      "description": "Player object"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "length",
+    "memberof": "javascript/SAMP/Players.js~Players",
+    "longname": "javascript/SAMP/Players.js~Players#length",
+    "access": null,
+    "description": "Returns the total amount of players",
+    "lineNumber": 53,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Number} Amount of connected players"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Number"
+      ],
+      "spread": false,
+      "description": "Amount of connected players"
+    },
+    "generator": false
+  },
+  {
     "kind": "external",
     "static": true,
     "variation": null,

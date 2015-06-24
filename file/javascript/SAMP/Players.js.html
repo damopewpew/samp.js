@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">javascript/Buffer.js | API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">javascript/SAMP/Players.js | API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -51,79 +51,61 @@
 
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">javascript/Buffer.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">javascript/SAMP/Players.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
- * ArrayBuffer wrapper/Helper class 
+ * Holder for all Players on the server
+ * 
+ * @example 
+ * // $players is an instance of Players
+ * $players = new Players();
+ * 
+ * for(let id in $players){
+ *    let player = $players[id];
+ *    print(player.name);
+ * }
+ * 
+ * // Gets player id 2
+ * print($players[2].name);
  */
-export class Buffer {
+export class Players {
 /**
- * Constructor for buffer class
- * @param {ArrayBuffer} buffer ArrayBuffer to wrap
+ * Gets a player by id
+ * @param   {Number} playerid Players sa-mp id
+ * @returns {Player} Player object
  */
-	constructor(buffer){
-/**
- * @type {ArrayBuffer}
- */
-		this.buffer = buffer;	
+	getPlayer(playerid){
+		return this[playerid];
 	}
 	
 /**
- * Pointer to raw ArrayBuffer
- * @returns {ArrayBuffer} Underlying ArrayBuffer object
+ * Adds a new player - Internal use only
+ * @param   {Number} playerid Players sa-mp id
+ * @returns {Player} Player object
  */
-	buffer(){
-		return this.buffer;	
+	addPlayer(playerid){
+		if(this[playerid]) return this[playerid];
+		var player = new Player(playerid);
+		this[playerid] = player;
+		return player;
 	}
-	
+
 /**
- * Converts our buffer to a string
- * @param   {String} [format=&apos;utf8&apos;]             String format ( utf8|utf16 )
- * @param   {Number} [offset=0]                  Offset in bytes to start our string at
- * @param   {Number} [length=this.buffer.length] Length of returned string
- * @returns {String}
+ * Removes a player - Internal use only
+ * @param   {Number} playerid Players sa-mp id
+ * @returns {Player} Player object
  */
-	toString(format,offset,length){
-		format = format||&apos;utf8&apos;;
-		offset = offset||0;
-		length=  length||this.buffer.length;
-		
-		let arr = {};
-		if(format ==&apos;utf8&apos;){
-			arr = new Uint8Array(this.buffer, offset, length ).toString();
-		} else if(format == &apos;utf16&apos; || format == &apos;unicode&apos;){
-			arr = new Uint16Array(this.buffer,offset,length).toString();
-		}
-		return arr;
-		//return String.fromCharCode.apply(null, arr);	
+	removePlayer(playerid){
+		var player = this.getPlayer(playerid);
+		delete this[playerid];
+		return player;
 	}
-	
+
 /**
- * Converts ArrayBuffer into a Uint16Array
- * @returns {Uint16Array} Uint16 Array
+ * Returns the total amount of players
+ * @returns {Number} Amount of connected players
  */
-	toUint16Array(){
-		return new Uint16Array(this.buffer);
-	}
-/**
- * Converts ArrayBuffer into a Uint8Array
- * @returns {Uint8Array} Uint8 Array
- */
-	toUint8Array(){
-		return new Uint8Array(this.buffer);	
-	}
-	
-/**
- * @returns {ArrayBuffer}
- */
-	toValue(){
-		return this.buffer;	
-	}
-	
-/**
- * @returns {ArrayBuffer}
- */
-	toObject(){
-		return this.buffer;
+	length(){
+		return Object.keys(this).length;
 	}
 };</code></pre>
 </div>

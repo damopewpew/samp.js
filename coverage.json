@@ -1,7 +1,7 @@
 {
-  "coverage": "100%",
-  "expectCount": 36,
-  "actualCount": 36,
+  "coverage": "65.45%",
+  "expectCount": 110,
+  "actualCount": 72,
   "files": {
     "javascript/Buffer.js": {
       "expectCount": 8,
@@ -18,6 +18,14 @@
     "javascript/FileSystem.js": {
       "expectCount": 14,
       "actualCount": 14
+    },
+    "javascript/SAMP/Player.js": {
+      "expectCount": 68,
+      "actualCount": 31
+    },
+    "javascript/SAMP/Players.js": {
+      "expectCount": 6,
+      "actualCount": 5
     }
   }
 }
