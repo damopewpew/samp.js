@@ -756,12 +756,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~getdistancefrommetopoint",
-    "function/index.html#static-function-GetDistanceFromMeToPoint",
-    "<span>GetDistanceFromMeToPoint</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~getnetworkstats",
     "function/index.html#static-function-GetNetworkStats",
     "<span>GetNetworkStats</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
@@ -831,18 +825,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_players.inc.js~getplayeranimationindex",
     "function/index.html#static-function-GetPlayerAnimationIndex",
     "<span>GetPlayerAnimationIndex</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayerarmedweapon",
-    "function/index.html#static-function-GetPlayerArmedWeapon",
-    "<span>GetPlayerArmedWeapon</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayerarmour",
-    "function/index.html#static-function-GetPlayerArmour",
-    "<span>GetPlayerArmour</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -924,12 +906,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~getplayerfacingangle",
-    "function/index.html#static-function-GetPlayerFacingAngle",
-    "<span>GetPlayerFacingAngle</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~getplayerfacingangle",
     "function/index.html#static-function-GetPlayerFacingAngle",
     "<span>GetPlayerFacingAngle</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
@@ -939,12 +915,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_players.inc.js~getplayerfightingstyle",
     "function/index.html#static-function-GetPlayerFightingStyle",
     "<span>GetPlayerFightingStyle</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayerhealth",
-    "function/index.html#static-function-GetPlayerHealth",
-    "<span>GetPlayerHealth</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -963,12 +933,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_players.inc.js~getplayerip",
     "function/index.html#static-function-GetPlayerIp",
     "<span>GetPlayerIp</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayerkeys",
-    "function/index.html#static-function-GetPlayerKeys",
-    "<span>GetPlayerKeys</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -993,12 +957,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_players.inc.js~getplayermoney",
     "function/index.html#static-function-GetPlayerMoney",
     "<span>GetPlayerMoney</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayername",
-    "function/index.html#static-function-GetPlayerName",
-    "<span>GetPlayerName</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -1038,12 +996,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~getplayerpos",
-    "function/index.html#static-function-GetPlayerPos",
-    "<span>GetPlayerPos</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~getplayerpos",
     "function/index.html#static-function-GetPlayerPos",
     "<span>GetPlayerPos</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
@@ -1062,21 +1014,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~getplayerspecialaction",
-    "function/index.html#static-function-GetPlayerSpecialAction",
-    "<span>GetPlayerSpecialAction</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~getplayerspecialaction",
     "function/index.html#static-function-GetPlayerSpecialAction",
     "<span>GetPlayerSpecialAction</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayerstate",
-    "function/index.html#static-function-GetPlayerState",
-    "<span>GetPlayerState</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -1119,12 +1059,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_players.inc.js~getplayertime",
     "function/index.html#static-function-GetPlayerTime",
     "<span>GetPlayerTime</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~getplayervehicleid",
-    "function/index.html#static-function-GetPlayerVehicleID",
-    "<span>GetPlayerVehicleID</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -1398,21 +1332,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~invalid_gang_zone",
-    "variable/index.html#static-variable-INVALID_GANG_ZONE",
-    "<span>INVALID_GANG_ZONE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~invalid_gang_zone",
     "variable/index.html#static-variable-INVALID_GANG_ZONE",
     "<span>INVALID_GANG_ZONE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~invalid_menu",
-    "variable/index.html#static-variable-INVALID_MENU",
-    "<span>INVALID_MENU</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1422,21 +1344,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~invalid_object_id",
-    "variable/index.html#static-variable-INVALID_OBJECT_ID",
-    "<span>INVALID_OBJECT_ID</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~invalid_object_id",
     "variable/index.html#static-variable-INVALID_OBJECT_ID",
     "<span>INVALID_OBJECT_ID</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~invalid_player_id",
-    "variable/index.html#static-variable-INVALID_PLAYER_ID",
-    "<span>INVALID_PLAYER_ID</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1446,21 +1356,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~invalid_text_draw",
-    "variable/index.html#static-variable-INVALID_TEXT_DRAW",
-    "<span>INVALID_TEXT_DRAW</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~invalid_text_draw",
     "variable/index.html#static-variable-INVALID_TEXT_DRAW",
     "<span>INVALID_TEXT_DRAW</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~invalid_vehicle_id",
-    "variable/index.html#static-variable-INVALID_VEHICLE_ID",
-    "<span>INVALID_VEHICLE_ID</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1512,12 +1410,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~isplayerconnected",
-    "function/index.html#static-function-IsPlayerConnected",
-    "<span>IsPlayerConnected</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~isplayerconnected",
     "function/index.html#static-function-IsPlayerConnected",
     "<span>IsPlayerConnected</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
@@ -1542,12 +1434,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~isplayerinrangeofpoint",
-    "function/index.html#static-function-IsPlayerInRangeOfPoint",
-    "<span>IsPlayerInRangeOfPoint</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~isplayerinrangeofpoint",
     "function/index.html#static-function-IsPlayerInRangeOfPoint",
     "<span>IsPlayerInRangeOfPoint</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
@@ -1569,12 +1455,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_objects.inc.js~isplayerobjectmoving",
     "function/index.html#static-function-IsPlayerObjectMoving",
     "<span>IsPlayerObjectMoving</span> <span class=\"search-result-import-path\">samp.js/js/include/a_objects.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~isplayerstreamedin",
-    "function/index.html#static-function-IsPlayerStreamedIn",
-    "<span>IsPlayerStreamedIn</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -1614,33 +1494,15 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~isvehiclestreamedin",
-    "function/index.html#static-function-IsVehicleStreamedIn",
-    "<span>IsVehicleStreamedIn</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_vehicles.inc.js~isvehiclestreamedin",
     "function/index.html#static-function-IsVehicleStreamedIn",
     "<span>IsVehicleStreamedIn</span> <span class=\"search-result-import-path\">samp.js/js/include/a_vehicles.inc.js</span>",
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_action",
-    "variable/index.html#static-variable-KEY_ACTION",
-    "<span>KEY_ACTION</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_action",
     "variable/index.html#static-variable-KEY_ACTION",
     "<span>KEY_ACTION</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_analog_down",
-    "variable/index.html#static-variable-KEY_ANALOG_DOWN",
-    "<span>KEY_ANALOG_DOWN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1650,21 +1512,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_analog_left",
-    "variable/index.html#static-variable-KEY_ANALOG_LEFT",
-    "<span>KEY_ANALOG_LEFT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_analog_left",
     "variable/index.html#static-variable-KEY_ANALOG_LEFT",
     "<span>KEY_ANALOG_LEFT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_analog_right",
-    "variable/index.html#static-variable-KEY_ANALOG_RIGHT",
-    "<span>KEY_ANALOG_RIGHT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1674,21 +1524,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_analog_up",
-    "variable/index.html#static-variable-KEY_ANALOG_UP",
-    "<span>KEY_ANALOG_UP</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_analog_up",
     "variable/index.html#static-variable-KEY_ANALOG_UP",
     "<span>KEY_ANALOG_UP</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_crouch",
-    "variable/index.html#static-variable-KEY_CROUCH",
-    "<span>KEY_CROUCH</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1704,21 +1542,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_down",
-    "variable/index.html#static-variable-KEY_DOWN",
-    "<span>KEY_DOWN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_down",
     "variable/index.html#static-variable-KEY_DOWN",
     "<span>KEY_DOWN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_fire",
-    "variable/index.html#static-variable-KEY_FIRE",
-    "<span>KEY_FIRE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1728,21 +1554,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_handbrake",
-    "variable/index.html#static-variable-KEY_HANDBRAKE",
-    "<span>KEY_HANDBRAKE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_handbrake",
     "variable/index.html#static-variable-KEY_HANDBRAKE",
     "<span>KEY_HANDBRAKE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_jump",
-    "variable/index.html#static-variable-KEY_JUMP",
-    "<span>KEY_JUMP</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1752,21 +1566,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_left",
-    "variable/index.html#static-variable-KEY_LEFT",
-    "<span>KEY_LEFT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_left",
     "variable/index.html#static-variable-KEY_LEFT",
     "<span>KEY_LEFT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_look_behind",
-    "variable/index.html#static-variable-KEY_LOOK_BEHIND",
-    "<span>KEY_LOOK_BEHIND</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1776,21 +1578,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_look_left",
-    "variable/index.html#static-variable-KEY_LOOK_LEFT",
-    "<span>KEY_LOOK_LEFT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_look_left",
     "variable/index.html#static-variable-KEY_LOOK_LEFT",
     "<span>KEY_LOOK_LEFT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_look_right",
-    "variable/index.html#static-variable-KEY_LOOK_RIGHT",
-    "<span>KEY_LOOK_RIGHT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1806,21 +1596,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_right",
-    "variable/index.html#static-variable-KEY_RIGHT",
-    "<span>KEY_RIGHT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_right",
     "variable/index.html#static-variable-KEY_RIGHT",
     "<span>KEY_RIGHT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_secondary_attack",
-    "variable/index.html#static-variable-KEY_SECONDARY_ATTACK",
-    "<span>KEY_SECONDARY_ATTACK</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1830,21 +1608,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_sprint",
-    "variable/index.html#static-variable-KEY_SPRINT",
-    "<span>KEY_SPRINT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_sprint",
     "variable/index.html#static-variable-KEY_SPRINT",
     "<span>KEY_SPRINT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_submission",
-    "variable/index.html#static-variable-KEY_SUBMISSION",
-    "<span>KEY_SUBMISSION</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1854,21 +1620,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~key_up",
-    "variable/index.html#static-variable-KEY_UP",
-    "<span>KEY_UP</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~key_up",
     "variable/index.html#static-variable-KEY_UP",
     "<span>KEY_UP</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~key_walk",
-    "variable/index.html#static-variable-KEY_WALK",
-    "<span>KEY_WALK</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -1887,12 +1641,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_samp.inc.js~kick",
     "function/index.html#static-function-Kick",
     "<span>Kick</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~killtimer",
-    "function/index.html#static-function-KillTimer",
-    "<span>KillTimer</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -1968,33 +1716,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~max_gang_zones",
-    "variable/index.html#static-variable-MAX_GANG_ZONES",
-    "<span>MAX_GANG_ZONES</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~max_gang_zones",
     "variable/index.html#static-variable-MAX_GANG_ZONES",
     "<span>MAX_GANG_ZONES</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~max_menus",
-    "variable/index.html#static-variable-MAX_MENUS",
-    "<span>MAX_MENUS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~max_menus",
     "variable/index.html#static-variable-MAX_MENUS",
     "<span>MAX_MENUS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~max_objects",
-    "variable/index.html#static-variable-MAX_OBJECTS",
-    "<span>MAX_OBJECTS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2010,12 +1740,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~max_players",
-    "variable/index.html#static-variable-MAX_PLAYERS",
-    "<span>MAX_PLAYERS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~max_players",
     "variable/index.html#static-variable-MAX_PLAYERS",
     "<span>MAX_PLAYERS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
@@ -2025,12 +1749,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_players.inc.js~max_player_attached_objects",
     "variable/index.html#static-variable-MAX_PLAYER_ATTACHED_OBJECTS",
     "<span>MAX_PLAYER_ATTACHED_OBJECTS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~max_player_name",
-    "variable/index.html#static-variable-MAX_PLAYER_NAME",
-    "<span>MAX_PLAYER_NAME</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2046,21 +1764,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~max_text_draws",
-    "variable/index.html#static-variable-MAX_TEXT_DRAWS",
-    "<span>MAX_TEXT_DRAWS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~max_text_draws",
     "variable/index.html#static-variable-MAX_TEXT_DRAWS",
     "<span>MAX_TEXT_DRAWS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~max_vehicles",
-    "variable/index.html#static-variable-MAX_VEHICLES",
-    "<span>MAX_VEHICLES</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2080,12 +1786,6 @@ window.esdocSearchIndex = [
     "function/index.html#static-function-MovePlayerObject",
     "<span>MovePlayerObject</span> <span class=\"search-result-import-path\">samp.js/js/include/a_objects.inc.js</span>",
     "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~no_team",
-    "variable/index.html#static-variable-NO_TEAM",
-    "<span>NO_TEAM</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
   ],
   [
     "samp.js/js/include/a_samp.inc.js~no_team",
@@ -2268,21 +1968,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~player_recording_type_driver",
-    "variable/index.html#static-variable-PLAYER_RECORDING_TYPE_DRIVER",
-    "<span>PLAYER_RECORDING_TYPE_DRIVER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~player_recording_type_driver",
     "variable/index.html#static-variable-PLAYER_RECORDING_TYPE_DRIVER",
     "<span>PLAYER_RECORDING_TYPE_DRIVER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~player_recording_type_none",
-    "variable/index.html#static-variable-PLAYER_RECORDING_TYPE_NONE",
-    "<span>PLAYER_RECORDING_TYPE_NONE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2292,21 +1980,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~player_recording_type_onfoot",
-    "variable/index.html#static-variable-PLAYER_RECORDING_TYPE_ONFOOT",
-    "<span>PLAYER_RECORDING_TYPE_ONFOOT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~player_recording_type_onfoot",
     "variable/index.html#static-variable-PLAYER_RECORDING_TYPE_ONFOOT",
     "<span>PLAYER_RECORDING_TYPE_ONFOOT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~player_state_driver",
-    "variable/index.html#static-variable-PLAYER_STATE_DRIVER",
-    "<span>PLAYER_STATE_DRIVER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2334,21 +2010,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~player_state_none",
-    "variable/index.html#static-variable-PLAYER_STATE_NONE",
-    "<span>PLAYER_STATE_NONE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~player_state_none",
     "variable/index.html#static-variable-PLAYER_STATE_NONE",
     "<span>PLAYER_STATE_NONE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~player_state_onfoot",
-    "variable/index.html#static-variable-PLAYER_STATE_ONFOOT",
-    "<span>PLAYER_STATE_ONFOOT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2358,21 +2022,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~player_state_passenger",
-    "variable/index.html#static-variable-PLAYER_STATE_PASSENGER",
-    "<span>PLAYER_STATE_PASSENGER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~player_state_passenger",
     "variable/index.html#static-variable-PLAYER_STATE_PASSENGER",
     "<span>PLAYER_STATE_PASSENGER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~player_state_spawned",
-    "variable/index.html#static-variable-PLAYER_STATE_SPAWNED",
-    "<span>PLAYER_STATE_SPAWNED</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2382,21 +2034,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~player_state_spectating",
-    "variable/index.html#static-variable-PLAYER_STATE_SPECTATING",
-    "<span>PLAYER_STATE_SPECTATING</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~player_state_spectating",
     "variable/index.html#static-variable-PLAYER_STATE_SPECTATING",
     "<span>PLAYER_STATE_SPECTATING</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~player_state_wasted",
-    "variable/index.html#static-variable-PLAYER_STATE_WASTED",
-    "<span>PLAYER_STATE_WASTED</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -2796,12 +2436,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~sendchat",
-    "function/index.html#static-function-SendChat",
-    "<span>SendChat</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~sendclientmessage",
     "function/index.html#static-function-SendClientMessage",
     "<span>SendClientMessage</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
@@ -2811,12 +2445,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_samp.inc.js~sendclientmessagetoall",
     "function/index.html#static-function-SendClientMessageToAll",
     "<span>SendClientMessageToAll</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~sendcommand",
-    "function/index.html#static-function-SendCommand",
-    "<span>SendCommand</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -2907,18 +2535,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_samp.inc.js~setmenucolumnheader",
     "function/index.html#static-function-SetMenuColumnHeader",
     "<span>SetMenuColumnHeader</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~setmyfacingangle",
-    "function/index.html#static-function-SetMyFacingAngle",
-    "<span>SetMyFacingAngle</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~setmypos",
-    "function/index.html#static-function-SetMyPos",
-    "<span>SetMyPos</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -3342,12 +2958,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~startrecordingplayback",
-    "function/index.html#static-function-StartRecordingPlayback",
-    "<span>StartRecordingPlayback</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_players.inc.js~startrecordingplayerdata",
     "function/index.html#static-function-StartRecordingPlayerData",
     "<span>StartRecordingPlayerData</span> <span class=\"search-result-import-path\">samp.js/js/include/a_players.inc.js</span>",
@@ -3738,21 +3348,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_ak47",
-    "variable/index.html#static-variable-WEAPON_AK47",
-    "<span>WEAPON_AK47</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_ak47",
     "variable/index.html#static-variable-WEAPON_AK47",
     "<span>WEAPON_AK47</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_bat",
-    "variable/index.html#static-variable-WEAPON_BAT",
-    "<span>WEAPON_BAT</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3762,21 +3360,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_bomb",
-    "variable/index.html#static-variable-WEAPON_BOMB",
-    "<span>WEAPON_BOMB</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_bomb",
     "variable/index.html#static-variable-WEAPON_BOMB",
     "<span>WEAPON_BOMB</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_brassknuckle",
-    "variable/index.html#static-variable-WEAPON_BRASSKNUCKLE",
-    "<span>WEAPON_BRASSKNUCKLE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3786,21 +3372,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_camera",
-    "variable/index.html#static-variable-WEAPON_CAMERA",
-    "<span>WEAPON_CAMERA</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_camera",
     "variable/index.html#static-variable-WEAPON_CAMERA",
     "<span>WEAPON_CAMERA</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_cane",
-    "variable/index.html#static-variable-WEAPON_CANE",
-    "<span>WEAPON_CANE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3810,21 +3384,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_chainsaw",
-    "variable/index.html#static-variable-WEAPON_CHAINSAW",
-    "<span>WEAPON_CHAINSAW</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_chainsaw",
     "variable/index.html#static-variable-WEAPON_CHAINSAW",
     "<span>WEAPON_CHAINSAW</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_collision",
-    "variable/index.html#static-variable-WEAPON_COLLISION",
-    "<span>WEAPON_COLLISION</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3834,21 +3396,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_colt45",
-    "variable/index.html#static-variable-WEAPON_COLT45",
-    "<span>WEAPON_COLT45</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_colt45",
     "variable/index.html#static-variable-WEAPON_COLT45",
     "<span>WEAPON_COLT45</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_deagle",
-    "variable/index.html#static-variable-WEAPON_DEAGLE",
-    "<span>WEAPON_DEAGLE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3858,21 +3408,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_dildo2",
-    "variable/index.html#static-variable-WEAPON_DILDO2",
-    "<span>WEAPON_DILDO2</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_dildo2",
     "variable/index.html#static-variable-WEAPON_DILDO2",
     "<span>WEAPON_DILDO2</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_dildo",
-    "variable/index.html#static-variable-WEAPON_DILDO",
-    "<span>WEAPON_DILDO</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3882,21 +3420,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_drown",
-    "variable/index.html#static-variable-WEAPON_DROWN",
-    "<span>WEAPON_DROWN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_drown",
     "variable/index.html#static-variable-WEAPON_DROWN",
     "<span>WEAPON_DROWN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_fireextinguisher",
-    "variable/index.html#static-variable-WEAPON_FIREEXTINGUISHER",
-    "<span>WEAPON_FIREEXTINGUISHER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3906,21 +3432,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_flamethrower",
-    "variable/index.html#static-variable-WEAPON_FLAMETHROWER",
-    "<span>WEAPON_FLAMETHROWER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_flamethrower",
     "variable/index.html#static-variable-WEAPON_FLAMETHROWER",
     "<span>WEAPON_FLAMETHROWER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_flower",
-    "variable/index.html#static-variable-WEAPON_FLOWER",
-    "<span>WEAPON_FLOWER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3930,21 +3444,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_golfclub",
-    "variable/index.html#static-variable-WEAPON_GOLFCLUB",
-    "<span>WEAPON_GOLFCLUB</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_golfclub",
     "variable/index.html#static-variable-WEAPON_GOLFCLUB",
     "<span>WEAPON_GOLFCLUB</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_grenade",
-    "variable/index.html#static-variable-WEAPON_GRENADE",
-    "<span>WEAPON_GRENADE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3954,21 +3456,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_heatseeker",
-    "variable/index.html#static-variable-WEAPON_HEATSEEKER",
-    "<span>WEAPON_HEATSEEKER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_heatseeker",
     "variable/index.html#static-variable-WEAPON_HEATSEEKER",
     "<span>WEAPON_HEATSEEKER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_katana",
-    "variable/index.html#static-variable-WEAPON_KATANA",
-    "<span>WEAPON_KATANA</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -3978,21 +3468,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_knife",
-    "variable/index.html#static-variable-WEAPON_KNIFE",
-    "<span>WEAPON_KNIFE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_knife",
     "variable/index.html#static-variable-WEAPON_KNIFE",
     "<span>WEAPON_KNIFE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_m4",
-    "variable/index.html#static-variable-WEAPON_M4",
-    "<span>WEAPON_M4</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4002,21 +3480,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_minigun",
-    "variable/index.html#static-variable-WEAPON_MINIGUN",
-    "<span>WEAPON_MINIGUN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_minigun",
     "variable/index.html#static-variable-WEAPON_MINIGUN",
     "<span>WEAPON_MINIGUN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_moltov",
-    "variable/index.html#static-variable-WEAPON_MOLTOV",
-    "<span>WEAPON_MOLTOV</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4026,21 +3492,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_mp5",
-    "variable/index.html#static-variable-WEAPON_MP5",
-    "<span>WEAPON_MP5</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_mp5",
     "variable/index.html#static-variable-WEAPON_MP5",
     "<span>WEAPON_MP5</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_nitestick",
-    "variable/index.html#static-variable-WEAPON_NITESTICK",
-    "<span>WEAPON_NITESTICK</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4050,21 +3504,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_parachute",
-    "variable/index.html#static-variable-WEAPON_PARACHUTE",
-    "<span>WEAPON_PARACHUTE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_parachute",
     "variable/index.html#static-variable-WEAPON_PARACHUTE",
     "<span>WEAPON_PARACHUTE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_poolstick",
-    "variable/index.html#static-variable-WEAPON_POOLSTICK",
-    "<span>WEAPON_POOLSTICK</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4074,21 +3516,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_rifle",
-    "variable/index.html#static-variable-WEAPON_RIFLE",
-    "<span>WEAPON_RIFLE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_rifle",
     "variable/index.html#static-variable-WEAPON_RIFLE",
     "<span>WEAPON_RIFLE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_rocketlauncher",
-    "variable/index.html#static-variable-WEAPON_ROCKETLAUNCHER",
-    "<span>WEAPON_ROCKETLAUNCHER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4098,21 +3528,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_satchel",
-    "variable/index.html#static-variable-WEAPON_SATCHEL",
-    "<span>WEAPON_SATCHEL</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_satchel",
     "variable/index.html#static-variable-WEAPON_SATCHEL",
     "<span>WEAPON_SATCHEL</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_sawedoff",
-    "variable/index.html#static-variable-WEAPON_SAWEDOFF",
-    "<span>WEAPON_SAWEDOFF</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4122,21 +3540,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_shotgspa",
-    "variable/index.html#static-variable-WEAPON_SHOTGSPA",
-    "<span>WEAPON_SHOTGSPA</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_shotgspa",
     "variable/index.html#static-variable-WEAPON_SHOTGSPA",
     "<span>WEAPON_SHOTGSPA</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_shotgun",
-    "variable/index.html#static-variable-WEAPON_SHOTGUN",
-    "<span>WEAPON_SHOTGUN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4146,21 +3552,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_shovel",
-    "variable/index.html#static-variable-WEAPON_SHOVEL",
-    "<span>WEAPON_SHOVEL</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_shovel",
     "variable/index.html#static-variable-WEAPON_SHOVEL",
     "<span>WEAPON_SHOVEL</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_silenced",
-    "variable/index.html#static-variable-WEAPON_SILENCED",
-    "<span>WEAPON_SILENCED</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4170,21 +3564,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_sniper",
-    "variable/index.html#static-variable-WEAPON_SNIPER",
-    "<span>WEAPON_SNIPER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_sniper",
     "variable/index.html#static-variable-WEAPON_SNIPER",
     "<span>WEAPON_SNIPER</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_spraycan",
-    "variable/index.html#static-variable-WEAPON_SPRAYCAN",
-    "<span>WEAPON_SPRAYCAN</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4194,21 +3576,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_teargas",
-    "variable/index.html#static-variable-WEAPON_TEARGAS",
-    "<span>WEAPON_TEARGAS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_teargas",
     "variable/index.html#static-variable-WEAPON_TEARGAS",
     "<span>WEAPON_TEARGAS</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_tec9",
-    "variable/index.html#static-variable-WEAPON_TEC9",
-    "<span>WEAPON_TEC9</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4218,21 +3588,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_uzi",
-    "variable/index.html#static-variable-WEAPON_UZI",
-    "<span>WEAPON_UZI</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_uzi",
     "variable/index.html#static-variable-WEAPON_UZI",
     "<span>WEAPON_UZI</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_vehicle",
-    "variable/index.html#static-variable-WEAPON_VEHICLE",
-    "<span>WEAPON_VEHICLE</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4242,21 +3600,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~weapon_vibrator2",
-    "variable/index.html#static-variable-WEAPON_VIBRATOR2",
-    "<span>WEAPON_VIBRATOR2</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "variable"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~weapon_vibrator2",
     "variable/index.html#static-variable-WEAPON_VIBRATOR2",
     "<span>WEAPON_VIBRATOR2</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "variable"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~weapon_vibrator",
-    "variable/index.html#static-variable-WEAPON_VIBRATOR",
-    "<span>WEAPON_VIBRATOR</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "variable"
   ],
   [
@@ -4266,21 +3612,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~acos",
-    "function/index.html#static-function-acos",
-    "<span>acos</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~acos",
     "function/index.html#static-function-acos",
     "<span>acos</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~asin",
-    "function/index.html#static-function-asin",
-    "<span>asin</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -4290,21 +3624,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "samp.js/js/include/a_npc.inc.js~atan2",
-    "function/index.html#static-function-atan2",
-    "<span>atan2</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
-    "function"
-  ],
-  [
     "samp.js/js/include/a_samp.inc.js~atan2",
     "function/index.html#static-function-atan2",
     "<span>atan2</span> <span class=\"search-result-import-path\">samp.js/js/include/a_samp.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~atan",
-    "function/index.html#static-function-atan",
-    "<span>atan</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -4371,12 +3693,6 @@ window.esdocSearchIndex = [
     "samp.js/js/include/a_sampdb.inc.js~db_query",
     "function/index.html#static-function-db_query",
     "<span>db_query</span> <span class=\"search-result-import-path\">samp.js/js/include/a_sampdb.inc.js</span>",
-    "function"
-  ],
-  [
-    "samp.js/js/include/a_npc.inc.js~format",
-    "function/index.html#static-function-format",
-    "<span>format</span> <span class=\"search-result-import-path\">samp.js/js/include/a_npc.inc.js</span>",
     "function"
   ],
   [
@@ -5053,13 +4369,13 @@ window.esdocSearchIndex = [
   ],
   [
     "js/include/player.js~player#armour",
-    "class/js/include/Player.js~Player.html#instance-set-armour",
+    "class/js/include/Player.js~Player.html#instance-get-armour",
     "js/include/Player.js~Player#armour",
     "member"
   ],
   [
     "js/include/player.js~player#armour",
-    "class/js/include/Player.js~Player.html#instance-get-armour",
+    "class/js/include/Player.js~Player.html#instance-set-armour",
     "js/include/Player.js~Player#armour",
     "member"
   ],
@@ -5071,13 +4387,13 @@ window.esdocSearchIndex = [
   ],
   [
     "js/include/player.js~player#color",
-    "class/js/include/Player.js~Player.html#instance-get-color",
+    "class/js/include/Player.js~Player.html#instance-set-color",
     "js/include/Player.js~Player#color",
     "member"
   ],
   [
     "js/include/player.js~player#color",
-    "class/js/include/Player.js~Player.html#instance-set-color",
+    "class/js/include/Player.js~Player.html#instance-get-color",
     "js/include/Player.js~Player#color",
     "member"
   ],
@@ -5131,13 +4447,13 @@ window.esdocSearchIndex = [
   ],
   [
     "js/include/player.js~player#interior",
-    "class/js/include/Player.js~Player.html#instance-get-interior",
+    "class/js/include/Player.js~Player.html#instance-set-interior",
     "js/include/Player.js~Player#interior",
     "member"
   ],
   [
     "js/include/player.js~player#interior",
-    "class/js/include/Player.js~Player.html#instance-set-interior",
+    "class/js/include/Player.js~Player.html#instance-get-interior",
     "js/include/Player.js~Player#interior",
     "member"
   ],
@@ -5191,13 +4507,13 @@ window.esdocSearchIndex = [
   ],
   [
     "js/include/player.js~player#pos",
-    "class/js/include/Player.js~Player.html#instance-get-pos",
+    "class/js/include/Player.js~Player.html#instance-set-pos",
     "js/include/Player.js~Player#pos",
     "member"
   ],
   [
     "js/include/player.js~player#pos",
-    "class/js/include/Player.js~Player.html#instance-set-pos",
+    "class/js/include/Player.js~Player.html#instance-get-pos",
     "js/include/Player.js~Player#pos",
     "member"
   ],
@@ -5215,13 +4531,13 @@ window.esdocSearchIndex = [
   ],
   [
     "js/include/player.js~player#score",
-    "class/js/include/Player.js~Player.html#instance-get-score",
+    "class/js/include/Player.js~Player.html#instance-set-score",
     "js/include/Player.js~Player#score",
     "member"
   ],
   [
     "js/include/player.js~player#score",
-    "class/js/include/Player.js~Player.html#instance-set-score",
+    "class/js/include/Player.js~Player.html#instance-get-score",
     "js/include/Player.js~Player#score",
     "member"
   ],
@@ -5275,20 +4591,14 @@ window.esdocSearchIndex = [
   ],
   [
     "js/include/player.js~player#vehicle",
-    "class/js/include/Player.js~Player.html#instance-get-vehicle",
-    "js/include/Player.js~Player#vehicle",
-    "member"
-  ],
-  [
-    "js/include/player.js~player#vehicle",
     "class/js/include/Player.js~Player.html#instance-set-vehicle",
     "js/include/Player.js~Player#vehicle",
     "member"
   ],
   [
-    "js/include/player.js~player#velocity",
-    "class/js/include/Player.js~Player.html#instance-get-velocity",
-    "js/include/Player.js~Player#velocity",
+    "js/include/player.js~player#vehicle",
+    "class/js/include/Player.js~Player.html#instance-get-vehicle",
+    "js/include/Player.js~Player#vehicle",
     "member"
   ],
   [
@@ -5298,9 +4608,9 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "js/include/player.js~player#wantedlevel",
-    "class/js/include/Player.js~Player.html#instance-get-wantedLevel",
-    "js/include/Player.js~Player#wantedLevel",
+    "js/include/player.js~player#velocity",
+    "class/js/include/Player.js~Player.html#instance-get-velocity",
+    "js/include/Player.js~Player#velocity",
     "member"
   ],
   [
@@ -5310,14 +4620,20 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "js/include/player.js~player#weapon",
-    "class/js/include/Player.js~Player.html#instance-get-weapon",
-    "js/include/Player.js~Player#weapon",
+    "js/include/player.js~player#wantedlevel",
+    "class/js/include/Player.js~Player.html#instance-get-wantedLevel",
+    "js/include/Player.js~Player#wantedLevel",
     "member"
   ],
   [
     "js/include/player.js~player#weapon",
     "class/js/include/Player.js~Player.html#instance-set-weapon",
+    "js/include/Player.js~Player#weapon",
+    "member"
+  ],
+  [
+    "js/include/player.js~player#weapon",
+    "class/js/include/Player.js~Player.html#instance-get-weapon",
     "js/include/Player.js~Player#weapon",
     "member"
   ],
@@ -5385,12 +4701,6 @@ window.esdocSearchIndex = [
     "js/include/a_http.inc.js",
     "file/js/include/a_http.inc.js.html",
     "js/include/a_http.inc.js",
-    "file"
-  ],
-  [
-    "js/include/a_npc.inc.js",
-    "file/js/include/a_npc.inc.js.html",
-    "js/include/a_npc.inc.js",
     "file"
   ],
   [
