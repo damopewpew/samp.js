@@ -1,0 +1,1076 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_GET",
+            "range": [
+              6,
+              14
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 6
+              },
+              "end": {
+                "line": 1,
+                "column": 14
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 1,
+            "raw": "1",
+            "range": [
+              17,
+              18
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 17
+              },
+              "end": {
+                "line": 1,
+                "column": 18
+              }
+            }
+          },
+          "range": [
+            6,
+            18
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 6
+            },
+            "end": {
+              "line": 1,
+              "column": 18
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        0,
+        19
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_POST",
+            "range": [
+              26,
+              35
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 6
+              },
+              "end": {
+                "line": 2,
+                "column": 15
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 2,
+            "raw": "2",
+            "range": [
+              38,
+              39
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 18
+              },
+              "end": {
+                "line": 2,
+                "column": 19
+              }
+            }
+          },
+          "range": [
+            26,
+            39
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 6
+            },
+            "end": {
+              "line": 2,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        20,
+        40
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_HEAD",
+            "range": [
+              47,
+              56
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 6
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 3,
+            "raw": "3",
+            "range": [
+              59,
+              60
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 18
+              },
+              "end": {
+                "line": 3,
+                "column": 19
+              }
+            }
+          },
+          "range": [
+            47,
+            60
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 6
+            },
+            "end": {
+              "line": 3,
+              "column": 19
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        41,
+        61
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 20
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_ERROR_BAD_HOST",
+            "range": [
+              68,
+              87
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 6
+              },
+              "end": {
+                "line": 4,
+                "column": 25
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 1,
+            "raw": "1",
+            "range": [
+              90,
+              91
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 28
+              },
+              "end": {
+                "line": 4,
+                "column": 29
+              }
+            }
+          },
+          "range": [
+            68,
+            91
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 6
+            },
+            "end": {
+              "line": 4,
+              "column": 29
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        62,
+        92
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_ERROR_NO_SOCKET",
+            "range": [
+              99,
+              119
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 6
+              },
+              "end": {
+                "line": 5,
+                "column": 26
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 2,
+            "raw": "2",
+            "range": [
+              122,
+              123
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 29
+              },
+              "end": {
+                "line": 5,
+                "column": 30
+              }
+            }
+          },
+          "range": [
+            99,
+            123
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 6
+            },
+            "end": {
+              "line": 5,
+              "column": 30
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        93,
+        124
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_ERROR_CANT_CONNECT",
+            "range": [
+              131,
+              154
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 6
+              },
+              "end": {
+                "line": 6,
+                "column": 29
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 3,
+            "raw": "3",
+            "range": [
+              157,
+              158
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 32
+              },
+              "end": {
+                "line": 6,
+                "column": 33
+              }
+            }
+          },
+          "range": [
+            131,
+            158
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 6
+            },
+            "end": {
+              "line": 6,
+              "column": 33
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        125,
+        159
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_ERROR_CANT_WRITE",
+            "range": [
+              166,
+              187
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 27
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 4,
+            "raw": "4",
+            "range": [
+              190,
+              191
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 30
+              },
+              "end": {
+                "line": 7,
+                "column": 31
+              }
+            }
+          },
+          "range": [
+            166,
+            191
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 6
+            },
+            "end": {
+              "line": 7,
+              "column": 31
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        160,
+        192
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 32
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_ERROR_CONTENT_TOO_BIG",
+            "range": [
+              199,
+              225
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 6
+              },
+              "end": {
+                "line": 8,
+                "column": 32
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 5,
+            "raw": "5",
+            "range": [
+              228,
+              229
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 35
+              },
+              "end": {
+                "line": 8,
+                "column": 36
+              }
+            }
+          },
+          "range": [
+            199,
+            229
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 6
+            },
+            "end": {
+              "line": 8,
+              "column": 36
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        193,
+        230
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 37
+        }
+      }
+    },
+    {
+      "type": "VariableDeclaration",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "HTTP_ERROR_MALFORMED_RESPONSE",
+            "range": [
+              237,
+              266
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 6
+              },
+              "end": {
+                "line": 9,
+                "column": 35
+              }
+            }
+          },
+          "init": {
+            "type": "Literal",
+            "value": 6,
+            "raw": "6",
+            "range": [
+              269,
+              270
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 38
+              },
+              "end": {
+                "line": 9,
+                "column": 39
+              }
+            }
+          },
+          "range": [
+            237,
+            270
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 6
+            },
+            "end": {
+              "line": 9,
+              "column": 39
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        231,
+        271
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 40
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * HTTP\n\n{@link https://wiki.sa-mp.com/wiki/HTTP}\n\n * @param {Number} index\n * @param {Number} type\n * @param {String} url\n * @param {String} data\n * @param {String} callback\n * @return {Number} retval\n\n",
+          "range": [
+            272,
+            481
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 0
+            },
+            "end": {
+              "line": 22,
+              "column": 2
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "FunctionDeclaration",
+      "id": {
+        "type": "Identifier",
+        "name": "HTTP",
+        "range": [
+          491,
+          495
+        ],
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 9
+          },
+          "end": {
+            "line": 23,
+            "column": 13
+          }
+        }
+      },
+      "params": [
+        {
+          "type": "Identifier",
+          "name": "index",
+          "range": [
+            497,
+            502
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 15
+            },
+            "end": {
+              "line": 23,
+              "column": 20
+            }
+          }
+        },
+        {
+          "type": "Identifier",
+          "name": "type",
+          "range": [
+            504,
+            508
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 22
+            },
+            "end": {
+              "line": 23,
+              "column": 26
+            }
+          }
+        },
+        {
+          "type": "Identifier",
+          "name": "url",
+          "range": [
+            510,
+            513
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 28
+            },
+            "end": {
+              "line": 23,
+              "column": 31
+            }
+          }
+        },
+        {
+          "type": "Identifier",
+          "name": "data",
+          "range": [
+            515,
+            519
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 33
+            },
+            "end": {
+              "line": 23,
+              "column": 37
+            }
+          }
+        },
+        {
+          "type": "Identifier",
+          "name": "callback",
+          "range": [
+            521,
+            529
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 39
+            },
+            "end": {
+              "line": 23,
+              "column": 47
+            }
+          }
+        }
+      ],
+      "body": {
+        "type": "BlockStatement",
+        "body": [
+          {
+            "type": "ReturnStatement",
+            "argument": {
+              "type": "CallExpression",
+              "callee": {
+                "type": "Identifier",
+                "name": "CallNative",
+                "range": [
+                  541,
+                  551
+                ],
+                "loc": {
+                  "start": {
+                    "line": 24,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 24,
+                    "column": 18
+                  }
+                }
+              },
+              "arguments": [
+                {
+                  "type": "Literal",
+                  "value": "HTTP",
+                  "raw": "\"HTTP\"",
+                  "range": [
+                    553,
+                    559
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 20
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 26
+                    }
+                  }
+                },
+                {
+                  "type": "Literal",
+                  "value": "iisss",
+                  "raw": "\"iisss\"",
+                  "range": [
+                    561,
+                    568
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 28
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 35
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "index",
+                  "range": [
+                    570,
+                    575
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 37
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 42
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "type",
+                  "range": [
+                    577,
+                    581
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 44
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 48
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "url",
+                  "range": [
+                    583,
+                    586
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 50
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 53
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "data",
+                  "range": [
+                    588,
+                    592
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 55
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 59
+                    }
+                  }
+                },
+                {
+                  "type": "Identifier",
+                  "name": "callback",
+                  "range": [
+                    594,
+                    602
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 61
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 69
+                    }
+                  }
+                }
+              ],
+              "range": [
+                541,
+                604
+              ],
+              "loc": {
+                "start": {
+                  "line": 24,
+                  "column": 8
+                },
+                "end": {
+                  "line": 24,
+                  "column": 71
+                }
+              }
+            },
+            "range": [
+              534,
+              605
+            ],
+            "loc": {
+              "start": {
+                "line": 24,
+                "column": 1
+              },
+              "end": {
+                "line": 24,
+                "column": 72
+              }
+            }
+          }
+        ],
+        "range": [
+          531,
+          607
+        ],
+        "loc": {
+          "start": {
+            "line": 23,
+            "column": 49
+          },
+          "end": {
+            "line": 25,
+            "column": 1
+          }
+        }
+      },
+      "generator": false,
+      "expression": false,
+      "range": [
+        482,
+        607
+      ],
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 25,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * HTTP\n\n{@link https://wiki.sa-mp.com/wiki/HTTP}\n\n * @param {Number} index\n * @param {Number} type\n * @param {String} url\n * @param {String} data\n * @param {String} callback\n * @return {Number} retval\n\n",
+          "range": [
+            272,
+            481
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 0
+            },
+            "end": {
+              "line": 22,
+              "column": 2
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    607
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 25,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * HTTP\n\n{@link https://wiki.sa-mp.com/wiki/HTTP}\n\n * @param {Number} index\n * @param {Number} type\n * @param {String} url\n * @param {String} data\n * @param {String} callback\n * @return {Number} retval\n\n",
+      "range": [
+        272,
+        481
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 2
+        }
+      }
+    }
+  ]
+}

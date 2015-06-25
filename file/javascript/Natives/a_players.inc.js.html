@@ -1,0 +1,2398 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">javascript/Natives/a_players.inc.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/javascript/Buffer.js~Buffer.html">Buffer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Event.js~Event.html">Event</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Events.js~Events.html">Events</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/FileSystem.js~FileSystem.html">FileSystem</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/SAMP/Player.js~Player.html">Player</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/SAMP/Players.js~Players.html">Players</a></span></li>
+</ul>
+</div>
+
+
+
+<div data-ice="functionWrap">
+  <h2><a href="function/">Function</a></h2>
+  <ul>
+    
+  <li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddMenuItem">AddMenuItem</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddPlayerClass">AddPlayerClass</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddPlayerClassEx">AddPlayerClassEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddStaticPickup">AddStaticPickup</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddStaticVehicle">AddStaticVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddStaticVehicleEx">AddStaticVehicleEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AllowInteriorWeapons">AllowInteriorWeapons</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Attach3DTextLabelToPlayer">Attach3DTextLabelToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Attach3DTextLabelToVehicle">Attach3DTextLabelToVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Ban">Ban</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-BanEx">BanEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-BlockIpAddress">BlockIpAddress</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CallLocalFunction">CallLocalFunction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CallRemoteFunction">CallRemoteFunction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ConnectNPC">ConnectNPC</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Create3DTextLabel">Create3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateExplosion">CreateExplosion</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateMenu">CreateMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreatePickup">CreatePickup</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreatePlayer3DTextLabel">CreatePlayer3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Delete3DTextLabel">Delete3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DeletePlayer3DTextLabel">DeletePlayer3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyMenu">DestroyMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyPickup">DestroyPickup</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisableMenu">DisableMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisableMenuRow">DisableMenuRow</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnableTirePopping">EnableTirePopping</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnableZoneNames">EnableZoneNames</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GameTextForAll">GameTextForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GameTextForPlayer">GameTextForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneCreate">GangZoneCreate</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneDestroy">GangZoneDestroy</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneFlashForAll">GangZoneFlashForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneFlashForPlayer">GangZoneFlashForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneHideForAll">GangZoneHideForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneHideForPlayer">GangZoneHideForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneShowForAll">GangZoneShowForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneShowForPlayer">GangZoneShowForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneStopFlashForAll">GangZoneStopFlashForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneStopFlashForPlayer">GangZoneStopFlashForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetNetworkStats">GetNetworkStats</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerMenu">GetPlayerMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerNetworkStats">GetPlayerNetworkStats</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVersion">GetPlayerVersion</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetServerVarAsBool">GetServerVarAsBool</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetServerVarAsInt">GetServerVarAsInt</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetServerVarAsString">GetServerVarAsString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetWeaponName">GetWeaponName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-HideMenuForPlayer">HideMenuForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerAdmin">IsPlayerAdmin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerNPC">IsPlayerNPC</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsValidMenu">IsValidMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Kick">Kick</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-KillTimer">KillTimer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-LimitGlobalChatRadius">LimitGlobalChatRadius</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-LimitPlayerMarkerRadius">LimitPlayerMarkerRadius</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_BytesReceived">NetStats_BytesReceived</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_BytesSent">NetStats_BytesSent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_ConnectionStatus">NetStats_ConnectionStatus</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_GetConnectedTime">NetStats_GetConnectedTime</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_GetIpPort">NetStats_GetIpPort</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_MessagesReceived">NetStats_MessagesReceived</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_MessagesRecvPerSecond">NetStats_MessagesRecvPerSecond</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_MessagesSent">NetStats_MessagesSent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_PacketLossPercent">NetStats_PacketLossPercent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendClientMessage">SendClientMessage</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendClientMessageToAll">SendClientMessageToAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendDeathMessage">SendDeathMessage</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendDeathMessageToPlayer">SendDeathMessageToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendPlayerMessageToAll">SendPlayerMessageToAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendPlayerMessageToPlayer">SendPlayerMessageToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendRconCommand">SendRconCommand</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetDeathDropAmount">SetDeathDropAmount</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetGameModeText">SetGameModeText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetGravity">SetGravity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetMenuColumnHeader">SetMenuColumnHeader</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetNameTagDrawDistance">SetNameTagDrawDistance</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetTeamCount">SetTeamCount</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetTimerEx">SetTimerEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetWeather">SetWeather</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetWorldTime">SetWorldTime</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowMenuForPlayer">ShowMenuForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowNameTags">ShowNameTags</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowPlayerDialog">ShowPlayerDialog</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowPlayerMarkers">ShowPlayerMarkers</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawAlignment">TextDrawAlignment</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawBackgroundColor">TextDrawBackgroundColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawBoxColor">TextDrawBoxColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawColor">TextDrawColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawCreate">TextDrawCreate</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawDestroy">TextDrawDestroy</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawFont">TextDrawFont</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawHideForAll">TextDrawHideForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawHideForPlayer">TextDrawHideForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawLetterSize">TextDrawLetterSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetOutline">TextDrawSetOutline</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetPreviewModel">TextDrawSetPreviewModel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetPreviewRot">TextDrawSetPreviewRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetPreviewVehCol">TextDrawSetPreviewVehCol</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetProportional">TextDrawSetProportional</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetSelectable">TextDrawSetSelectable</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetShadow">TextDrawSetShadow</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetString">TextDrawSetString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawShowForAll">TextDrawShowForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawShowForPlayer">TextDrawShowForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawTextSize">TextDrawTextSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawUseBox">TextDrawUseBox</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-UnBlockIpAddress">UnBlockIpAddress</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Update3DTextLabelText">Update3DTextLabelText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-UpdatePlayer3DTextLabelText">UpdatePlayer3DTextLabelText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-VectorSize">VectorSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-acos">acos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-asin">asin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-atan">atan</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-atan2">atan2</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-format">format</a></span></li>
+</ul>
+</div>
+
+
+
+<div data-ice="typedefWrap">
+  <h2><a href="typedef/">Typedef</a></h2>
+  <ul>
+    
+  <li data-ice="typedefDoc"><span><a href="typedef/index.html#static-typedef-ArrowKeys">ArrowKeys</a></span></li>
+</ul>
+</div>
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">javascript/Natives/a_players.inc.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">const SPECIAL_ACTION_NONE = 0;
+const SPECIAL_ACTION_DUCK = 1;
+const SPECIAL_ACTION_USEJETPACK = 2;
+const SPECIAL_ACTION_ENTER_VEHICLE = 3;
+const SPECIAL_ACTION_EXIT_VEHICLE = 4;
+const SPECIAL_ACTION_DANCE1 = 5;
+const SPECIAL_ACTION_DANCE2 = 6;
+const SPECIAL_ACTION_DANCE3 = 7;
+const SPECIAL_ACTION_DANCE4 = 8;
+const SPECIAL_ACTION_HANDSUP = 10;
+const SPECIAL_ACTION_USECELLPHONE = 11;
+const SPECIAL_ACTION_SITTING = 12;
+const SPECIAL_ACTION_STOPUSECELLPHONE = 13;
+const SPECIAL_ACTION_DRINK_BEER = 20;
+const SPECIAL_ACTION_SMOKE_CIGGY = 21;
+const SPECIAL_ACTION_DRINK_WINE = 22;
+const SPECIAL_ACTION_DRINK_SPRUNK = 23;
+const SPECIAL_ACTION_CUFFED = 24;
+const SPECIAL_ACTION_CARRY = 25;
+const FIGHT_STYLE_NORMAL = 4;
+const FIGHT_STYLE_BOXING = 5;
+const FIGHT_STYLE_KUNGFU = 6;
+const FIGHT_STYLE_KNEEHEAD = 7;
+const FIGHT_STYLE_GRABKICK = 15;
+const FIGHT_STYLE_ELBOW = 16;
+const WEAPONSKILL_PISTOL = 0;
+const WEAPONSKILL_PISTOL_SILENCED = 1;
+const WEAPONSKILL_DESERT_EAGLE = 2;
+const WEAPONSKILL_SHOTGUN = 3;
+const WEAPONSKILL_SAWNOFF_SHOTGUN = 4;
+const WEAPONSKILL_SPAS12_SHOTGUN = 5;
+const WEAPONSKILL_MICRO_UZI = 6;
+const WEAPONSKILL_MP5 = 7;
+const WEAPONSKILL_AK47 = 8;
+const WEAPONSKILL_M4 = 9;
+const WEAPONSKILL_SNIPERRIFLE = 10;
+const WEAPONSTATE_UNKNOWN = -1;
+const WEAPONSTATE_NO_BULLETS = 0;
+const WEAPONSTATE_LAST_BULLET = 1;
+const WEAPONSTATE_MORE_BULLETS = 2;
+const WEAPONSTATE_RELOADING = 3;
+const MAX_PLAYER_ATTACHED_OBJECTS = 10 // This is the number of attached indexes available ie 10 = 0-9;
+const PLAYER_VARTYPE_NONE = 0;
+const PLAYER_VARTYPE_INT = 1;
+const PLAYER_VARTYPE_STRING = 2;
+const PLAYER_VARTYPE_FLOAT = 3;
+const MAX_CHATBUBBLE_LENGTH = 144;
+const MAPICON_LOCAL = 0 // displays in the player&apos;s local are;
+const MAPICON_GLOBAL = 1 // displays always;
+const MAPICON_LOCAL_CHECKPOINT = 2 // displays in the player&apos;s local area and has a checkpoint marker;
+const MAPICON_GLOBAL_CHECKPOINT = 3 // displays always and has a checkpoint marker;
+const CAMERA_CUT = 2;
+const CAMERA_MOVE = 1;
+const SPECTATE_MODE_NORMAL = 1;
+const SPECTATE_MODE_FIXED = 2;
+const SPECTATE_MODE_SIDE = 3;
+const PLAYER_RECORDING_TYPE_NONE = 0;
+const PLAYER_RECORDING_TYPE_DRIVER = 1;
+const PLAYER_RECORDING_TYPE_ONFOOT = 2;
+/**
+ * SetSpawnInfo
+
+{@link https://wiki.sa-mp.com/wiki/SetSpawnInfo}
+
+ * @param {Number} playerid
+ * @param {Number} team
+ * @param {Number} skin
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} rotation
+ * @param {Number} weapon1
+ * @param {Number} weapon1_ammo
+ * @param {Number} weapon2
+ * @param {Number} weapon2_ammo
+ * @param {Number} weapon3
+ * @param {Number} weapon3_ammo
+ * @return {Number} retval
+
+*/
+function SetSpawnInfo( playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo ){
+	return CallNative( &quot;SetSpawnInfo&quot;, &quot;iiiffffiiiiii&quot;, playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo );
+}
+/**
+ * SpawnPlayer
+
+{@link https://wiki.sa-mp.com/wiki/SpawnPlayer}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function SpawnPlayer( playerid ){
+	return CallNative( &quot;SpawnPlayer&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerPos
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerPos}
+
+ * @param {Number} playerid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @return {Number} retval
+
+*/
+function SetPlayerPos( playerid, x, y, z ){
+	return CallNative( &quot;SetPlayerPos&quot;, &quot;ifff&quot;, playerid, x, y, z );
+}
+/**
+ * SetPlayerPosFindZ
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerPosFindZ}
+
+ * @param {Number} playerid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @return {Number} retval
+
+*/
+function SetPlayerPosFindZ( playerid, x, y, z ){
+	return CallNative( &quot;SetPlayerPosFindZ&quot;, &quot;ifff&quot;, playerid, x, y, z );
+}
+/**
+ * GetPlayerPos
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerPos}
+
+ * @param {Number} playerid
+ * @return {{ x: Number,  y: Number,  z: Number }}
+*/
+function GetPlayerPos( playerid ){
+	return CallNative( &quot;GetPlayerPos&quot;, &quot;iFFF&quot;, playerid, [ &quot;x&quot;, &quot;y&quot;, &quot;z&quot; ] );
+}
+/**
+ * SetPlayerFacingAngle
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerFacingAngle}
+
+ * @param {Number} playerid
+ * @param {Number} ang
+ * @return {Number} retval
+
+*/
+function SetPlayerFacingAngle( playerid, ang ){
+	return CallNative( &quot;SetPlayerFacingAngle&quot;, &quot;if&quot;, playerid, ang );
+}
+/**
+ * GetPlayerFacingAngle
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerFacingAngle}
+
+ * @param {Number} playerid
+ * @return {Number} ang
+*/
+function GetPlayerFacingAngle( playerid ){
+	return CallNative( &quot;GetPlayerFacingAngle&quot;, &quot;iF&quot;, playerid );
+}
+/**
+ * IsPlayerInRangeOfPoint
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerInRangeOfPoint}
+
+ * @param {Number} playerid
+ * @param {Number} range
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @return {Number} retval
+
+*/
+function IsPlayerInRangeOfPoint( playerid, range, x, y, z ){
+	return CallNative( &quot;IsPlayerInRangeOfPoint&quot;, &quot;iffff&quot;, playerid, range, x, y, z );
+}
+/**
+ * GetPlayerDistanceFromPoint
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerDistanceFromPoint}
+
+ * @param {Number} playerid
+ * @param {Number} X
+ * @param {Number} Y
+ * @param {Number} Z
+ * @return {Number} retval
+
+*/
+function GetPlayerDistanceFromPoint( playerid, X, Y, Z ){
+	return CallNative( &quot;GetPlayerDistanceFromPoint&quot;, &quot;ifff&quot;, playerid, X, Y, Z );
+}
+/**
+ * IsPlayerStreamedIn
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerStreamedIn}
+
+ * @param {Number} playerid
+ * @param {Number} forplayerid
+ * @return {Number} retval
+
+*/
+function IsPlayerStreamedIn( playerid, forplayerid ){
+	return CallNative( &quot;IsPlayerStreamedIn&quot;, &quot;ii&quot;, playerid, forplayerid );
+}
+/**
+ * SetPlayerInterior
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerInterior}
+
+ * @param {Number} playerid
+ * @param {Number} interiorid
+ * @return {Number} retval
+
+*/
+function SetPlayerInterior( playerid, interiorid ){
+	return CallNative( &quot;SetPlayerInterior&quot;, &quot;ii&quot;, playerid, interiorid );
+}
+/**
+ * GetPlayerInterior
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerInterior}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerInterior( playerid ){
+	return CallNative( &quot;GetPlayerInterior&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerHealth
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerHealth}
+
+ * @param {Number} playerid
+ * @param {Number} health
+ * @return {Number} retval
+
+*/
+function SetPlayerHealth( playerid, health ){
+	return CallNative( &quot;SetPlayerHealth&quot;, &quot;if&quot;, playerid, health );
+}
+/**
+ * GetPlayerHealth
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerHealth}
+
+ * @param {Number} playerid
+ * @return {Number} health
+*/
+function GetPlayerHealth( playerid ){
+	return CallNative( &quot;GetPlayerHealth&quot;, &quot;iF&quot;, playerid );
+}
+/**
+ * SetPlayerArmour
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerArmour}
+
+ * @param {Number} playerid
+ * @param {Number} armour
+ * @return {Number} retval
+
+*/
+function SetPlayerArmour( playerid, armour ){
+	return CallNative( &quot;SetPlayerArmour&quot;, &quot;if&quot;, playerid, armour );
+}
+/**
+ * GetPlayerArmour
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerArmour}
+
+ * @param {Number} playerid
+ * @return {Number} armour
+*/
+function GetPlayerArmour( playerid ){
+	return CallNative( &quot;GetPlayerArmour&quot;, &quot;iF&quot;, playerid );
+}
+/**
+ * SetPlayerAmmo
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerAmmo}
+
+ * @param {Number} playerid
+ * @param {Number} weaponslot
+ * @param {Number} ammo
+ * @return {Number} retval
+
+*/
+function SetPlayerAmmo( playerid, weaponslot, ammo ){
+	return CallNative( &quot;SetPlayerAmmo&quot;, &quot;iii&quot;, playerid, weaponslot, ammo );
+}
+/**
+ * GetPlayerAmmo
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerAmmo}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerAmmo( playerid ){
+	return CallNative( &quot;GetPlayerAmmo&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerWeaponState
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerWeaponState}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerWeaponState( playerid ){
+	return CallNative( &quot;GetPlayerWeaponState&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerTargetPlayer
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerTargetPlayer}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerTargetPlayer( playerid ){
+	return CallNative( &quot;GetPlayerTargetPlayer&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerTargetActor
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerTargetActor}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerTargetActor( playerid ){
+	return CallNative( &quot;GetPlayerTargetActor&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerTeam
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerTeam}
+
+ * @param {Number} playerid
+ * @param {Number} teamid
+ * @return {Number} retval
+
+*/
+function SetPlayerTeam( playerid, teamid ){
+	return CallNative( &quot;SetPlayerTeam&quot;, &quot;ii&quot;, playerid, teamid );
+}
+/**
+ * GetPlayerTeam
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerTeam}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerTeam( playerid ){
+	return CallNative( &quot;GetPlayerTeam&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerScore
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerScore}
+
+ * @param {Number} playerid
+ * @param {Number} score
+ * @return {Number} retval
+
+*/
+function SetPlayerScore( playerid, score ){
+	return CallNative( &quot;SetPlayerScore&quot;, &quot;ii&quot;, playerid, score );
+}
+/**
+ * GetPlayerScore
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerScore}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerScore( playerid ){
+	return CallNative( &quot;GetPlayerScore&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerDrunkLevel
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerDrunkLevel}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerDrunkLevel( playerid ){
+	return CallNative( &quot;GetPlayerDrunkLevel&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerDrunkLevel
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerDrunkLevel}
+
+ * @param {Number} playerid
+ * @param {Number} level
+ * @return {Number} retval
+
+*/
+function SetPlayerDrunkLevel( playerid, level ){
+	return CallNative( &quot;SetPlayerDrunkLevel&quot;, &quot;ii&quot;, playerid, level );
+}
+/**
+ * SetPlayerColor
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerColor}
+
+ * @param {Number} playerid
+ * @param {Number} color
+ * @return {Number} retval
+
+*/
+function SetPlayerColor( playerid, color ){
+	return CallNative( &quot;SetPlayerColor&quot;, &quot;ii&quot;, playerid, color );
+}
+/**
+ * GetPlayerColor
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerColor}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerColor( playerid ){
+	return CallNative( &quot;GetPlayerColor&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerSkin
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerSkin}
+
+ * @param {Number} playerid
+ * @param {Number} skinid
+ * @return {Number} retval
+
+*/
+function SetPlayerSkin( playerid, skinid ){
+	return CallNative( &quot;SetPlayerSkin&quot;, &quot;ii&quot;, playerid, skinid );
+}
+/**
+ * GetPlayerSkin
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerSkin}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerSkin( playerid ){
+	return CallNative( &quot;GetPlayerSkin&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GivePlayerWeapon
+
+{@link https://wiki.sa-mp.com/wiki/GivePlayerWeapon}
+
+ * @param {Number} playerid
+ * @param {Number} weaponid
+ * @param {Number} ammo
+ * @return {Number} retval
+
+*/
+function GivePlayerWeapon( playerid, weaponid, ammo ){
+	return CallNative( &quot;GivePlayerWeapon&quot;, &quot;iii&quot;, playerid, weaponid, ammo );
+}
+/**
+ * ResetPlayerWeapons
+
+{@link https://wiki.sa-mp.com/wiki/ResetPlayerWeapons}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function ResetPlayerWeapons( playerid ){
+	return CallNative( &quot;ResetPlayerWeapons&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerArmedWeapon
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerArmedWeapon}
+
+ * @param {Number} playerid
+ * @param {Number} weaponid
+ * @return {Number} retval
+
+*/
+function SetPlayerArmedWeapon( playerid, weaponid ){
+	return CallNative( &quot;SetPlayerArmedWeapon&quot;, &quot;ii&quot;, playerid, weaponid );
+}
+/**
+ * GetPlayerWeaponData
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerWeaponData}
+
+ * @param {Number} playerid
+ * @param {Number} slot
+ * @return {{ weapons: Number,  ammo: Number }}
+*/
+function GetPlayerWeaponData( playerid, slot ){
+	return CallNative( &quot;GetPlayerWeaponData&quot;, &quot;iiII&quot;, playerid, slot, [ &quot;weapons&quot;, &quot;ammo&quot; ] );
+}
+/**
+ * GivePlayerMoney
+
+{@link https://wiki.sa-mp.com/wiki/GivePlayerMoney}
+
+ * @param {Number} playerid
+ * @param {Number} money
+ * @return {Number} retval
+
+*/
+function GivePlayerMoney( playerid, money ){
+	return CallNative( &quot;GivePlayerMoney&quot;, &quot;ii&quot;, playerid, money );
+}
+/**
+ * ResetPlayerMoney
+
+{@link https://wiki.sa-mp.com/wiki/ResetPlayerMoney}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function ResetPlayerMoney( playerid ){
+	return CallNative( &quot;ResetPlayerMoney&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerName
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerName}
+
+ * @param {Number} playerid
+ * @param {String} name
+ * @return {Number} retval
+
+*/
+function SetPlayerName( playerid, name ){
+	return CallNative( &quot;SetPlayerName&quot;, &quot;is&quot;, playerid, name );
+}
+/**
+ * GetPlayerMoney
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerMoney}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerMoney( playerid ){
+	return CallNative( &quot;GetPlayerMoney&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerState
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerState}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerState( playerid ){
+	return CallNative( &quot;GetPlayerState&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerIp
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerIp}
+
+ * @param {Number} playerid
+ * @param {Number} len
+ * @return {String} name
+*/
+function GetPlayerIp( playerid, len ){
+	len = typeof len !== &apos;undefined&apos; ? len : 256;
+	return CallNative( &quot;GetPlayerIp&quot;, &quot;iSi&quot;, playerid, len );
+}
+/**
+ * GetPlayerPing
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerPing}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerPing( playerid ){
+	return CallNative( &quot;GetPlayerPing&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerWeapon
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerWeapon}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerWeapon( playerid ){
+	return CallNative( &quot;GetPlayerWeapon&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerKeys
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerKeys}
+
+ * @param {Number} playerid
+ * @return {{ keys: Number,  updown: Number,  leftright: Number }}
+*/
+function GetPlayerKeys( playerid ){
+	return CallNative( &quot;GetPlayerKeys&quot;, &quot;iIII&quot;, playerid, [ &quot;keys&quot;, &quot;updown&quot;, &quot;leftright&quot; ] );
+}
+/**
+ * GetPlayerName
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerName}
+
+ * @param {Number} playerid
+ * @param {Number} len
+ * @return {String} name
+*/
+function GetPlayerName( playerid, len ){
+	len = typeof len !== &apos;undefined&apos; ? len : 256;
+	return CallNative( &quot;GetPlayerName&quot;, &quot;iSi&quot;, playerid, len );
+}
+/**
+ * SetPlayerTime
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerTime}
+
+ * @param {Number} playerid
+ * @param {Number} hour
+ * @param {Number} minute
+ * @return {Number} retval
+
+*/
+function SetPlayerTime( playerid, hour, minute ){
+	return CallNative( &quot;SetPlayerTime&quot;, &quot;iii&quot;, playerid, hour, minute );
+}
+/**
+ * GetPlayerTime
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerTime}
+
+ * @param {Number} playerid
+ * @return {{ hour: Number,  minute: Number }}
+*/
+function GetPlayerTime( playerid ){
+	return CallNative( &quot;GetPlayerTime&quot;, &quot;iII&quot;, playerid, [ &quot;hour&quot;, &quot;minute&quot; ] );
+}
+/**
+ * TogglePlayerClock
+
+{@link https://wiki.sa-mp.com/wiki/TogglePlayerClock}
+
+ * @param {Number} playerid
+ * @param {Number} toggle
+ * @return {Number} retval
+
+*/
+function TogglePlayerClock( playerid, toggle ){
+	return CallNative( &quot;TogglePlayerClock&quot;, &quot;ii&quot;, playerid, toggle );
+}
+/**
+ * SetPlayerWeather
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerWeather}
+
+ * @param {Number} playerid
+ * @param {Number} weather
+ * @return {Number} retval
+
+*/
+function SetPlayerWeather( playerid, weather ){
+	return CallNative( &quot;SetPlayerWeather&quot;, &quot;ii&quot;, playerid, weather );
+}
+/**
+ * ForceClassSelection
+
+{@link https://wiki.sa-mp.com/wiki/ForceClassSelection}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function ForceClassSelection( playerid ){
+	return CallNative( &quot;ForceClassSelection&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerWantedLevel
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerWantedLevel}
+
+ * @param {Number} playerid
+ * @param {Number} level
+ * @return {Number} retval
+
+*/
+function SetPlayerWantedLevel( playerid, level ){
+	return CallNative( &quot;SetPlayerWantedLevel&quot;, &quot;ii&quot;, playerid, level );
+}
+/**
+ * GetPlayerWantedLevel
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerWantedLevel}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerWantedLevel( playerid ){
+	return CallNative( &quot;GetPlayerWantedLevel&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerFightingStyle
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerFightingStyle}
+
+ * @param {Number} playerid
+ * @param {Number} style
+ * @return {Number} retval
+
+*/
+function SetPlayerFightingStyle( playerid, style ){
+	return CallNative( &quot;SetPlayerFightingStyle&quot;, &quot;ii&quot;, playerid, style );
+}
+/**
+ * GetPlayerFightingStyle
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerFightingStyle}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerFightingStyle( playerid ){
+	return CallNative( &quot;GetPlayerFightingStyle&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerVelocity
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerVelocity}
+
+ * @param {Number} playerid
+ * @param {Number} X
+ * @param {Number} Y
+ * @param {Number} Z
+ * @return {Number} retval
+
+*/
+function SetPlayerVelocity( playerid, X, Y, Z ){
+	return CallNative( &quot;SetPlayerVelocity&quot;, &quot;ifff&quot;, playerid, X, Y, Z );
+}
+/**
+ * GetPlayerVelocity
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerVelocity}
+
+ * @param {Number} playerid
+ * @return {{ X: Number,  Y: Number,  Z: Number }}
+*/
+function GetPlayerVelocity( playerid ){
+	return CallNative( &quot;GetPlayerVelocity&quot;, &quot;iFFF&quot;, playerid, [ &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot; ] );
+}
+/**
+ * PlayCrimeReportForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/PlayCrimeReportForPlayer}
+
+ * @param {Number} playerid
+ * @param {Number} suspectid
+ * @param {Number} crime
+ * @return {Number} retval
+
+*/
+function PlayCrimeReportForPlayer( playerid, suspectid, crime ){
+	return CallNative( &quot;PlayCrimeReportForPlayer&quot;, &quot;iii&quot;, playerid, suspectid, crime );
+}
+/**
+ * PlayAudioStreamForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/PlayAudioStreamForPlayer}
+
+ * @param {Number} playerid
+ * @param {String} url
+ * @param {Number} posX
+ * @param {Number} posY
+ * @param {Number} posZ
+ * @param {Number} distance
+ * @param {Number} usepos
+ * @return {Number} retval
+
+*/
+function PlayAudioStreamForPlayer( playerid, url, posX, posY, posZ, distance, usepos ){
+	posX = typeof posX !== &apos;undefined&apos; ? posX : 0.0;
+	posY = typeof posY !== &apos;undefined&apos; ? posY : 0.0;
+	posZ = typeof posZ !== &apos;undefined&apos; ? posZ : 0.0;
+	distance = typeof distance !== &apos;undefined&apos; ? distance : 50.0;
+	usepos = typeof usepos !== &apos;undefined&apos; ? usepos : 0;
+	return CallNative( &quot;PlayAudioStreamForPlayer&quot;, &quot;isffffi&quot;, playerid, url, posX, posY, posZ, distance, usepos );
+}
+/**
+ * StopAudioStreamForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/StopAudioStreamForPlayer}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function StopAudioStreamForPlayer( playerid ){
+	return CallNative( &quot;StopAudioStreamForPlayer&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerShopName
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerShopName}
+
+ * @param {Number} playerid
+ * @param {String} shopname
+ * @return {Number} retval
+
+*/
+function SetPlayerShopName( playerid, shopname ){
+	return CallNative( &quot;SetPlayerShopName&quot;, &quot;is&quot;, playerid, shopname );
+}
+/**
+ * SetPlayerSkillLevel
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerSkillLevel}
+
+ * @param {Number} playerid
+ * @param {Number} skill
+ * @param {Number} level
+ * @return {Number} retval
+
+*/
+function SetPlayerSkillLevel( playerid, skill, level ){
+	return CallNative( &quot;SetPlayerSkillLevel&quot;, &quot;iii&quot;, playerid, skill, level );
+}
+/**
+ * GetPlayerSurfingVehicleID
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerSurfingVehicleID}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerSurfingVehicleID( playerid ){
+	return CallNative( &quot;GetPlayerSurfingVehicleID&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerSurfingObjectID
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerSurfingObjectID}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerSurfingObjectID( playerid ){
+	return CallNative( &quot;GetPlayerSurfingObjectID&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * RemoveBuildingForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/RemoveBuildingForPlayer}
+
+ * @param {Number} playerid
+ * @param {Number} modelid
+ * @param {Number} fX
+ * @param {Number} fY
+ * @param {Number} fZ
+ * @param {Number} fRadius
+ * @return {Number} retval
+
+*/
+function RemoveBuildingForPlayer( playerid, modelid, fX, fY, fZ, fRadius ){
+	return CallNative( &quot;RemoveBuildingForPlayer&quot;, &quot;iiffff&quot;, playerid, modelid, fX, fY, fZ, fRadius );
+}
+/**
+ * GetPlayerLastShotVectors
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerLastShotVectors}
+
+ * @param {Number} playerid
+ * @return {{ fOriginX: Number,  fOriginY: Number,  fOriginZ: Number,  fHitPosX: Number,  fHitPosY: Number,  fHitPosZ: Number }}
+*/
+function GetPlayerLastShotVectors( playerid ){
+	return CallNative( &quot;GetPlayerLastShotVectors&quot;, &quot;iFFFFFF&quot;, playerid, [ &quot;fOriginX&quot;, &quot;fOriginY&quot;, &quot;fOriginZ&quot;, &quot;fHitPosX&quot;, &quot;fHitPosY&quot;, &quot;fHitPosZ&quot; ] );
+}
+/**
+ * SetPlayerAttachedObject
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerAttachedObject}
+
+ * @param {Number} playerid
+ * @param {Number} index
+ * @param {Number} modelid
+ * @param {Number} bone
+ * @param {Number} fOffsetX
+ * @param {Number} fOffsetY
+ * @param {Number} fOffsetZ
+ * @param {Number} fRotX
+ * @param {Number} fRotY
+ * @param {Number} fRotZ
+ * @param {Number} fScaleX
+ * @param {Number} fScaleY
+ * @param {Number} fScaleZ
+ * @param {Number} materialcolor1
+ * @param {Number} materialcolor2
+ * @return {Number} retval
+
+*/
+function SetPlayerAttachedObject( playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2 ){
+	fOffsetX = typeof fOffsetX !== &apos;undefined&apos; ? fOffsetX : 0.0;
+	fOffsetY = typeof fOffsetY !== &apos;undefined&apos; ? fOffsetY : 0.0;
+	fOffsetZ = typeof fOffsetZ !== &apos;undefined&apos; ? fOffsetZ : 0.0;
+	fRotX = typeof fRotX !== &apos;undefined&apos; ? fRotX : 0.0;
+	fRotY = typeof fRotY !== &apos;undefined&apos; ? fRotY : 0.0;
+	fRotZ = typeof fRotZ !== &apos;undefined&apos; ? fRotZ : 0.0;
+	fScaleX = typeof fScaleX !== &apos;undefined&apos; ? fScaleX : 1.0;
+	fScaleY = typeof fScaleY !== &apos;undefined&apos; ? fScaleY : 1.0;
+	fScaleZ = typeof fScaleZ !== &apos;undefined&apos; ? fScaleZ : 1.0;
+	materialcolor1 = typeof materialcolor1 !== &apos;undefined&apos; ? materialcolor1 : 0;
+	materialcolor2 = typeof materialcolor2 !== &apos;undefined&apos; ? materialcolor2 : 0;
+	return CallNative( &quot;SetPlayerAttachedObject&quot;, &quot;iiiifffffffffii&quot;, playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2 );
+}
+/**
+ * RemovePlayerAttachedObject
+
+{@link https://wiki.sa-mp.com/wiki/RemovePlayerAttachedObject}
+
+ * @param {Number} playerid
+ * @param {Number} index
+ * @return {Number} retval
+
+*/
+function RemovePlayerAttachedObject( playerid, index ){
+	return CallNative( &quot;RemovePlayerAttachedObject&quot;, &quot;ii&quot;, playerid, index );
+}
+/**
+ * IsPlayerAttachedObjectSlotUsed
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerAttachedObjectSlotUsed}
+
+ * @param {Number} playerid
+ * @param {Number} index
+ * @return {Number} retval
+
+*/
+function IsPlayerAttachedObjectSlotUsed( playerid, index ){
+	return CallNative( &quot;IsPlayerAttachedObjectSlotUsed&quot;, &quot;ii&quot;, playerid, index );
+}
+/**
+ * EditAttachedObject
+
+{@link https://wiki.sa-mp.com/wiki/EditAttachedObject}
+
+ * @param {Number} playerid
+ * @param {Number} index
+ * @return {Number} retval
+
+*/
+function EditAttachedObject( playerid, index ){
+	return CallNative( &quot;EditAttachedObject&quot;, &quot;ii&quot;, playerid, index );
+}
+/**
+ * CreatePlayerTextDraw
+
+{@link https://wiki.sa-mp.com/wiki/CreatePlayerTextDraw}
+
+ * @param {Number} playerid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {String} text
+ * @return {Number} retval
+
+*/
+function CreatePlayerTextDraw( playerid, x, y, text ){
+	return CallNative( &quot;CreatePlayerTextDraw&quot;, &quot;iffs&quot;, playerid, x, y, text );
+}
+/**
+ * PlayerTextDrawDestroy
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawDestroy}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawDestroy( playerid, text ){
+	return CallNative( &quot;PlayerTextDrawDestroy&quot;, &quot;ii&quot;, playerid, text );
+}
+/**
+ * PlayerTextDrawLetterSize
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawLetterSize}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} x
+ * @param {Number} y
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawLetterSize( playerid, text, x, y ){
+	return CallNative( &quot;PlayerTextDrawLetterSize&quot;, &quot;iiff&quot;, playerid, text, x, y );
+}
+/**
+ * PlayerTextDrawTextSize
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawTextSize}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} x
+ * @param {Number} y
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawTextSize( playerid, text, x, y ){
+	return CallNative( &quot;PlayerTextDrawTextSize&quot;, &quot;iiff&quot;, playerid, text, x, y );
+}
+/**
+ * PlayerTextDrawAlignment
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawAlignment}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} alignment
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawAlignment( playerid, text, alignment ){
+	return CallNative( &quot;PlayerTextDrawAlignment&quot;, &quot;iii&quot;, playerid, text, alignment );
+}
+/**
+ * PlayerTextDrawColor
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawColor}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} color
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawColor( playerid, text, color ){
+	return CallNative( &quot;PlayerTextDrawColor&quot;, &quot;iii&quot;, playerid, text, color );
+}
+/**
+ * PlayerTextDrawUseBox
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawUseBox}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} use
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawUseBox( playerid, text, use ){
+	return CallNative( &quot;PlayerTextDrawUseBox&quot;, &quot;iii&quot;, playerid, text, use );
+}
+/**
+ * PlayerTextDrawBoxColor
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawBoxColor}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} color
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawBoxColor( playerid, text, color ){
+	return CallNative( &quot;PlayerTextDrawBoxColor&quot;, &quot;iii&quot;, playerid, text, color );
+}
+/**
+ * PlayerTextDrawSetShadow
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetShadow}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} size
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetShadow( playerid, text, size ){
+	return CallNative( &quot;PlayerTextDrawSetShadow&quot;, &quot;iii&quot;, playerid, text, size );
+}
+/**
+ * PlayerTextDrawSetOutline
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetOutline}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} size
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetOutline( playerid, text, size ){
+	return CallNative( &quot;PlayerTextDrawSetOutline&quot;, &quot;iii&quot;, playerid, text, size );
+}
+/**
+ * PlayerTextDrawBackgroundColor
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawBackgroundColor}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} color
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawBackgroundColor( playerid, text, color ){
+	return CallNative( &quot;PlayerTextDrawBackgroundColor&quot;, &quot;iii&quot;, playerid, text, color );
+}
+/**
+ * PlayerTextDrawFont
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawFont}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} font
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawFont( playerid, text, font ){
+	return CallNative( &quot;PlayerTextDrawFont&quot;, &quot;iii&quot;, playerid, text, font );
+}
+/**
+ * PlayerTextDrawSetProportional
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetProportional}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} set
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetProportional( playerid, text, set ){
+	return CallNative( &quot;PlayerTextDrawSetProportional&quot;, &quot;iii&quot;, playerid, text, set );
+}
+/**
+ * PlayerTextDrawSetSelectable
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetSelectable}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} set
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetSelectable( playerid, text, set ){
+	return CallNative( &quot;PlayerTextDrawSetSelectable&quot;, &quot;iii&quot;, playerid, text, set );
+}
+/**
+ * PlayerTextDrawShow
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawShow}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawShow( playerid, text ){
+	return CallNative( &quot;PlayerTextDrawShow&quot;, &quot;ii&quot;, playerid, text );
+}
+/**
+ * PlayerTextDrawHide
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawHide}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawHide( playerid, text ){
+	return CallNative( &quot;PlayerTextDrawHide&quot;, &quot;ii&quot;, playerid, text );
+}
+/**
+ * PlayerTextDrawSetString
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetString}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {String} string
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetString( playerid, text, string ){
+	return CallNative( &quot;PlayerTextDrawSetString&quot;, &quot;iis&quot;, playerid, text, string );
+}
+/**
+ * PlayerTextDrawSetPreviewModel
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetPreviewModel}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} modelindex
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetPreviewModel( playerid, text, modelindex ){
+	return CallNative( &quot;PlayerTextDrawSetPreviewModel&quot;, &quot;iii&quot;, playerid, text, modelindex );
+}
+/**
+ * PlayerTextDrawSetPreviewRot
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetPreviewRot}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} fRotX
+ * @param {Number} fRotY
+ * @param {Number} fRotZ
+ * @param {Number} fZoom
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetPreviewRot( playerid, text, fRotX, fRotY, fRotZ, fZoom ){
+	fZoom = typeof fZoom !== &apos;undefined&apos; ? fZoom : 1.0;
+	return CallNative( &quot;PlayerTextDrawSetPreviewRot&quot;, &quot;iiffff&quot;, playerid, text, fRotX, fRotY, fRotZ, fZoom );
+}
+/**
+ * PlayerTextDrawSetPreviewVehCol
+
+{@link https://wiki.sa-mp.com/wiki/PlayerTextDrawSetPreviewVehCol}
+
+ * @param {Number} playerid
+ * @param {Number} text
+ * @param {Number} color1
+ * @param {Number} color2
+ * @return {Number} retval
+
+*/
+function PlayerTextDrawSetPreviewVehCol( playerid, text, color1, color2 ){
+	return CallNative( &quot;PlayerTextDrawSetPreviewVehCol&quot;, &quot;iiii&quot;, playerid, text, color1, color2 );
+}
+/**
+ * SetPVarInt
+
+{@link https://wiki.sa-mp.com/wiki/SetPVarInt}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @param {Number} int_value
+ * @return {Number} retval
+
+*/
+function SetPVarInt( playerid, varname, int_value ){
+	return CallNative( &quot;SetPVarInt&quot;, &quot;isi&quot;, playerid, varname, int_value );
+}
+/**
+ * GetPVarInt
+
+{@link https://wiki.sa-mp.com/wiki/GetPVarInt}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @return {Number} retval
+
+*/
+function GetPVarInt( playerid, varname ){
+	return CallNative( &quot;GetPVarInt&quot;, &quot;is&quot;, playerid, varname );
+}
+/**
+ * SetPVarString
+
+{@link https://wiki.sa-mp.com/wiki/SetPVarString}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @param {String} string_value
+ * @return {Number} retval
+
+*/
+function SetPVarString( playerid, varname, string_value ){
+	return CallNative( &quot;SetPVarString&quot;, &quot;iss&quot;, playerid, varname, string_value );
+}
+/**
+ * GetPVarString
+
+{@link https://wiki.sa-mp.com/wiki/GetPVarString}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @param {Number} len
+ * @return {String} string_return
+*/
+function GetPVarString( playerid, varname, len ){
+	len = typeof len !== &apos;undefined&apos; ? len : 256;
+	return CallNative( &quot;GetPVarString&quot;, &quot;isSi&quot;, playerid, varname, len );
+}
+/**
+ * SetPVarFloat
+
+{@link https://wiki.sa-mp.com/wiki/SetPVarFloat}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @param {Number} float_value
+ * @return {Number} retval
+
+*/
+function SetPVarFloat( playerid, varname, float_value ){
+	return CallNative( &quot;SetPVarFloat&quot;, &quot;isf&quot;, playerid, varname, float_value );
+}
+/**
+ * GetPVarFloat
+
+{@link https://wiki.sa-mp.com/wiki/GetPVarFloat}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @return {Number} retval
+
+*/
+function GetPVarFloat( playerid, varname ){
+	return CallNative( &quot;GetPVarFloat&quot;, &quot;is&quot;, playerid, varname );
+}
+/**
+ * DeletePVar
+
+{@link https://wiki.sa-mp.com/wiki/DeletePVar}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @return {Number} retval
+
+*/
+function DeletePVar( playerid, varname ){
+	return CallNative( &quot;DeletePVar&quot;, &quot;is&quot;, playerid, varname );
+}
+/**
+ * GetPVarsUpperIndex
+
+{@link https://wiki.sa-mp.com/wiki/GetPVarsUpperIndex}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPVarsUpperIndex( playerid ){
+	return CallNative( &quot;GetPVarsUpperIndex&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPVarNameAtIndex
+
+{@link https://wiki.sa-mp.com/wiki/GetPVarNameAtIndex}
+
+ * @param {Number} playerid
+ * @param {Number} index
+ * @param {String} ret_varname
+ * @param {Number} ret_len
+ * @return {Number} retval
+
+*/
+function GetPVarNameAtIndex( playerid, index, ret_varname, ret_len ){
+	return CallNative( &quot;GetPVarNameAtIndex&quot;, &quot;iisi&quot;, playerid, index, ret_varname, ret_len );
+}
+/**
+ * GetPVarType
+
+{@link https://wiki.sa-mp.com/wiki/GetPVarType}
+
+ * @param {Number} playerid
+ * @param {String} varname
+ * @return {Number} retval
+
+*/
+function GetPVarType( playerid, varname ){
+	return CallNative( &quot;GetPVarType&quot;, &quot;is&quot;, playerid, varname );
+}
+/**
+ * SetPlayerChatBubble
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerChatBubble}
+
+ * @param {Number} playerid
+ * @param {String} text
+ * @param {Number} color
+ * @param {Number} drawdistance
+ * @param {Number} expiretime
+ * @return {Number} retval
+
+*/
+function SetPlayerChatBubble( playerid, text, color, drawdistance, expiretime ){
+	return CallNative( &quot;SetPlayerChatBubble&quot;, &quot;isifi&quot;, playerid, text, color, drawdistance, expiretime );
+}
+/**
+ * PutPlayerInVehicle
+
+{@link https://wiki.sa-mp.com/wiki/PutPlayerInVehicle}
+
+ * @param {Number} playerid
+ * @param {Number} vehicleid
+ * @param {Number} seatid
+ * @return {Number} retval
+
+*/
+function PutPlayerInVehicle( playerid, vehicleid, seatid ){
+	return CallNative( &quot;PutPlayerInVehicle&quot;, &quot;iii&quot;, playerid, vehicleid, seatid );
+}
+/**
+ * GetPlayerVehicleID
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerVehicleID}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerVehicleID( playerid ){
+	return CallNative( &quot;GetPlayerVehicleID&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerVehicleSeat
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerVehicleSeat}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerVehicleSeat( playerid ){
+	return CallNative( &quot;GetPlayerVehicleSeat&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * RemovePlayerFromVehicle
+
+{@link https://wiki.sa-mp.com/wiki/RemovePlayerFromVehicle}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function RemovePlayerFromVehicle( playerid ){
+	return CallNative( &quot;RemovePlayerFromVehicle&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * TogglePlayerControllable
+
+{@link https://wiki.sa-mp.com/wiki/TogglePlayerControllable}
+
+ * @param {Number} playerid
+ * @param {Number} toggle
+ * @return {Number} retval
+
+*/
+function TogglePlayerControllable( playerid, toggle ){
+	return CallNative( &quot;TogglePlayerControllable&quot;, &quot;ii&quot;, playerid, toggle );
+}
+/**
+ * PlayerPlaySound
+
+{@link https://wiki.sa-mp.com/wiki/PlayerPlaySound}
+
+ * @param {Number} playerid
+ * @param {Number} soundid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @return {Number} retval
+
+*/
+function PlayerPlaySound( playerid, soundid, x, y, z ){
+	return CallNative( &quot;PlayerPlaySound&quot;, &quot;iifff&quot;, playerid, soundid, x, y, z );
+}
+/**
+ * ApplyAnimation
+
+{@link https://wiki.sa-mp.com/wiki/ApplyAnimation}
+
+ * @param {Number} playerid
+ * @param {String} animlib
+ * @param {String} animname
+ * @param {Number} fDelta
+ * @param {Number} loop
+ * @param {Number} lockx
+ * @param {Number} locky
+ * @param {Number} freeze
+ * @param {Number} time
+ * @param {Number} forcesync
+ * @return {Number} retval
+
+*/
+function ApplyAnimation( playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync ){
+	forcesync = typeof forcesync !== &apos;undefined&apos; ? forcesync : 0;
+	return CallNative( &quot;ApplyAnimation&quot;, &quot;issfiiiiii&quot;, playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync );
+}
+/**
+ * ClearAnimations
+
+{@link https://wiki.sa-mp.com/wiki/ClearAnimations}
+
+ * @param {Number} playerid
+ * @param {Number} forcesync
+ * @return {Number} retval
+
+*/
+function ClearAnimations( playerid, forcesync ){
+	forcesync = typeof forcesync !== &apos;undefined&apos; ? forcesync : 0;
+	return CallNative( &quot;ClearAnimations&quot;, &quot;ii&quot;, playerid, forcesync );
+}
+/**
+ * GetPlayerAnimationIndex
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerAnimationIndex}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerAnimationIndex( playerid ){
+	return CallNative( &quot;GetPlayerAnimationIndex&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetAnimationName
+
+{@link https://wiki.sa-mp.com/wiki/GetAnimationName}
+
+ * @param {Number} index
+ * @param {String} animlib
+ * @param {Number} len1
+ * @param {String} animname
+ * @param {Number} len2
+ * @return {Number} retval
+
+*/
+function GetAnimationName( index, animlib, len1, animname, len2 ){
+	return CallNative( &quot;GetAnimationName&quot;, &quot;isisi&quot;, index, animlib, len1, animname, len2 );
+}
+/**
+ * GetPlayerSpecialAction
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerSpecialAction}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerSpecialAction( playerid ){
+	return CallNative( &quot;GetPlayerSpecialAction&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerSpecialAction
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerSpecialAction}
+
+ * @param {Number} playerid
+ * @param {Number} actionid
+ * @return {Number} retval
+
+*/
+function SetPlayerSpecialAction( playerid, actionid ){
+	return CallNative( &quot;SetPlayerSpecialAction&quot;, &quot;ii&quot;, playerid, actionid );
+}
+/**
+ * DisableRemoteVehicleCollisions
+
+{@link https://wiki.sa-mp.com/wiki/DisableRemoteVehicleCollisions}
+
+ * @param {Number} playerid
+ * @param {Number} disable
+ * @return {Number} retval
+
+*/
+function DisableRemoteVehicleCollisions( playerid, disable ){
+	return CallNative( &quot;DisableRemoteVehicleCollisions&quot;, &quot;ii&quot;, playerid, disable );
+}
+/**
+ * SetPlayerCheckpoint
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerCheckpoint}
+
+ * @param {Number} playerid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} size
+ * @return {Number} retval
+
+*/
+function SetPlayerCheckpoint( playerid, x, y, z, size ){
+	return CallNative( &quot;SetPlayerCheckpoint&quot;, &quot;iffff&quot;, playerid, x, y, z, size );
+}
+/**
+ * DisablePlayerCheckpoint
+
+{@link https://wiki.sa-mp.com/wiki/DisablePlayerCheckpoint}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function DisablePlayerCheckpoint( playerid ){
+	return CallNative( &quot;DisablePlayerCheckpoint&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerRaceCheckpoint
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerRaceCheckpoint}
+
+ * @param {Number} playerid
+ * @param {Number} type
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} nextx
+ * @param {Number} nexty
+ * @param {Number} nextz
+ * @param {Number} size
+ * @return {Number} retval
+
+*/
+function SetPlayerRaceCheckpoint( playerid, type, x, y, z, nextx, nexty, nextz, size ){
+	return CallNative( &quot;SetPlayerRaceCheckpoint&quot;, &quot;iifffffff&quot;, playerid, type, x, y, z, nextx, nexty, nextz, size );
+}
+/**
+ * DisablePlayerRaceCheckpoint
+
+{@link https://wiki.sa-mp.com/wiki/DisablePlayerRaceCheckpoint}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function DisablePlayerRaceCheckpoint( playerid ){
+	return CallNative( &quot;DisablePlayerRaceCheckpoint&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerWorldBounds
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerWorldBounds}
+
+ * @param {Number} playerid
+ * @param {Number} x_max
+ * @param {Number} x_min
+ * @param {Number} y_max
+ * @param {Number} y_min
+ * @return {Number} retval
+
+*/
+function SetPlayerWorldBounds( playerid, x_max, x_min, y_max, y_min ){
+	return CallNative( &quot;SetPlayerWorldBounds&quot;, &quot;iffff&quot;, playerid, x_max, x_min, y_max, y_min );
+}
+/**
+ * SetPlayerMarkerForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerMarkerForPlayer}
+
+ * @param {Number} playerid
+ * @param {Number} showplayerid
+ * @param {Number} color
+ * @return {Number} retval
+
+*/
+function SetPlayerMarkerForPlayer( playerid, showplayerid, color ){
+	return CallNative( &quot;SetPlayerMarkerForPlayer&quot;, &quot;iii&quot;, playerid, showplayerid, color );
+}
+/**
+ * ShowPlayerNameTagForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/ShowPlayerNameTagForPlayer}
+
+ * @param {Number} playerid
+ * @param {Number} showplayerid
+ * @param {Number} show
+ * @return {Number} retval
+
+*/
+function ShowPlayerNameTagForPlayer( playerid, showplayerid, show ){
+	return CallNative( &quot;ShowPlayerNameTagForPlayer&quot;, &quot;iii&quot;, playerid, showplayerid, show );
+}
+/**
+ * SetPlayerMapIcon
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerMapIcon}
+
+ * @param {Number} playerid
+ * @param {Number} iconid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} markertype
+ * @param {Number} color
+ * @param {Number} style
+ * @return {Number} retval
+
+*/
+function SetPlayerMapIcon( playerid, iconid, x, y, z, markertype, color, style ){
+	style = typeof style !== &apos;undefined&apos; ? style : MAPICON_LOCAL;
+	return CallNative( &quot;SetPlayerMapIcon&quot;, &quot;iifffiii&quot;, playerid, iconid, x, y, z, markertype, color, style );
+}
+/**
+ * RemovePlayerMapIcon
+
+{@link https://wiki.sa-mp.com/wiki/RemovePlayerMapIcon}
+
+ * @param {Number} playerid
+ * @param {Number} iconid
+ * @return {Number} retval
+
+*/
+function RemovePlayerMapIcon( playerid, iconid ){
+	return CallNative( &quot;RemovePlayerMapIcon&quot;, &quot;ii&quot;, playerid, iconid );
+}
+/**
+ * AllowPlayerTeleport
+
+{@link https://wiki.sa-mp.com/wiki/AllowPlayerTeleport}
+
+ * @param {Number} playerid
+ * @param {Number} allow
+ * @return {Number} retval
+
+*/
+function AllowPlayerTeleport( playerid, allow ){
+	return CallNative( &quot;AllowPlayerTeleport&quot;, &quot;ii&quot;, playerid, allow );
+}
+/**
+ * SetPlayerCameraPos
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerCameraPos}
+
+ * @param {Number} playerid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @return {Number} retval
+
+*/
+function SetPlayerCameraPos( playerid, x, y, z ){
+	return CallNative( &quot;SetPlayerCameraPos&quot;, &quot;ifff&quot;, playerid, x, y, z );
+}
+/**
+ * SetPlayerCameraLookAt
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerCameraLookAt}
+
+ * @param {Number} playerid
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} cut
+ * @return {Number} retval
+
+*/
+function SetPlayerCameraLookAt( playerid, x, y, z, cut ){
+	cut = typeof cut !== &apos;undefined&apos; ? cut : CAMERA_CUT;
+	return CallNative( &quot;SetPlayerCameraLookAt&quot;, &quot;ifffi&quot;, playerid, x, y, z, cut );
+}
+/**
+ * SetCameraBehindPlayer
+
+{@link https://wiki.sa-mp.com/wiki/SetCameraBehindPlayer}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function SetCameraBehindPlayer( playerid ){
+	return CallNative( &quot;SetCameraBehindPlayer&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerCameraPos
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraPos}
+
+ * @param {Number} playerid
+ * @return {{ x: Number,  y: Number,  z: Number }}
+*/
+function GetPlayerCameraPos( playerid ){
+	return CallNative( &quot;GetPlayerCameraPos&quot;, &quot;iFFF&quot;, playerid, [ &quot;x&quot;, &quot;y&quot;, &quot;z&quot; ] );
+}
+/**
+ * GetPlayerCameraFrontVector
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraFrontVector}
+
+ * @param {Number} playerid
+ * @return {{ x: Number,  y: Number,  z: Number }}
+*/
+function GetPlayerCameraFrontVector( playerid ){
+	return CallNative( &quot;GetPlayerCameraFrontVector&quot;, &quot;iFFF&quot;, playerid, [ &quot;x&quot;, &quot;y&quot;, &quot;z&quot; ] );
+}
+/**
+ * GetPlayerCameraMode
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraMode}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraMode( playerid ){
+	return CallNative( &quot;GetPlayerCameraMode&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * EnablePlayerCameraTarget
+
+{@link https://wiki.sa-mp.com/wiki/EnablePlayerCameraTarget}
+
+ * @param {Number} playerid
+ * @param {Number} enable
+ * @return {Number} retval
+
+*/
+function EnablePlayerCameraTarget( playerid, enable ){
+	return CallNative( &quot;EnablePlayerCameraTarget&quot;, &quot;ii&quot;, playerid, enable );
+}
+/**
+ * GetPlayerCameraTargetObject
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetObject}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraTargetObject( playerid ){
+	return CallNative( &quot;GetPlayerCameraTargetObject&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerCameraTargetVehicle
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetVehicle}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraTargetVehicle( playerid ){
+	return CallNative( &quot;GetPlayerCameraTargetVehicle&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerCameraTargetPlayer
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetPlayer}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraTargetPlayer( playerid ){
+	return CallNative( &quot;GetPlayerCameraTargetPlayer&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerCameraTargetActor
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetActor}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraTargetActor( playerid ){
+	return CallNative( &quot;GetPlayerCameraTargetActor&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerCameraAspectRatio
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraAspectRatio}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraAspectRatio( playerid ){
+	return CallNative( &quot;GetPlayerCameraAspectRatio&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * GetPlayerCameraZoom
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerCameraZoom}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerCameraZoom( playerid ){
+	return CallNative( &quot;GetPlayerCameraZoom&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * AttachCameraToObject
+
+{@link https://wiki.sa-mp.com/wiki/AttachCameraToObject}
+
+ * @param {Number} playerid
+ * @param {Number} objectid
+ * @return {Number} retval
+
+*/
+function AttachCameraToObject( playerid, objectid ){
+	return CallNative( &quot;AttachCameraToObject&quot;, &quot;ii&quot;, playerid, objectid );
+}
+/**
+ * AttachCameraToPlayerObject
+
+{@link https://wiki.sa-mp.com/wiki/AttachCameraToPlayerObject}
+
+ * @param {Number} playerid
+ * @param {Number} playerobjectid
+ * @return {Number} retval
+
+*/
+function AttachCameraToPlayerObject( playerid, playerobjectid ){
+	return CallNative( &quot;AttachCameraToPlayerObject&quot;, &quot;ii&quot;, playerid, playerobjectid );
+}
+/**
+ * InterpolateCameraPos
+
+{@link https://wiki.sa-mp.com/wiki/InterpolateCameraPos}
+
+ * @param {Number} playerid
+ * @param {Number} FromX
+ * @param {Number} FromY
+ * @param {Number} FromZ
+ * @param {Number} ToX
+ * @param {Number} ToY
+ * @param {Number} ToZ
+ * @param {Number} time
+ * @param {Number} cut
+ * @return {Number} retval
+
+*/
+function InterpolateCameraPos( playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut ){
+	cut = typeof cut !== &apos;undefined&apos; ? cut : CAMERA_CUT;
+	return CallNative( &quot;InterpolateCameraPos&quot;, &quot;iffffffii&quot;, playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut );
+}
+/**
+ * InterpolateCameraLookAt
+
+{@link https://wiki.sa-mp.com/wiki/InterpolateCameraLookAt}
+
+ * @param {Number} playerid
+ * @param {Number} FromX
+ * @param {Number} FromY
+ * @param {Number} FromZ
+ * @param {Number} ToX
+ * @param {Number} ToY
+ * @param {Number} ToZ
+ * @param {Number} time
+ * @param {Number} cut
+ * @return {Number} retval
+
+*/
+function InterpolateCameraLookAt( playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut ){
+	cut = typeof cut !== &apos;undefined&apos; ? cut : CAMERA_CUT;
+	return CallNative( &quot;InterpolateCameraLookAt&quot;, &quot;iffffffii&quot;, playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut );
+}
+/**
+ * IsPlayerConnected
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerConnected}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function IsPlayerConnected( playerid ){
+	return CallNative( &quot;IsPlayerConnected&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * IsPlayerInVehicle
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerInVehicle}
+
+ * @param {Number} playerid
+ * @param {Number} vehicleid
+ * @return {Number} retval
+
+*/
+function IsPlayerInVehicle( playerid, vehicleid ){
+	return CallNative( &quot;IsPlayerInVehicle&quot;, &quot;ii&quot;, playerid, vehicleid );
+}
+/**
+ * IsPlayerInAnyVehicle
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerInAnyVehicle}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function IsPlayerInAnyVehicle( playerid ){
+	return CallNative( &quot;IsPlayerInAnyVehicle&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * IsPlayerInCheckpoint
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerInCheckpoint}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function IsPlayerInCheckpoint( playerid ){
+	return CallNative( &quot;IsPlayerInCheckpoint&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * IsPlayerInRaceCheckpoint
+
+{@link https://wiki.sa-mp.com/wiki/IsPlayerInRaceCheckpoint}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function IsPlayerInRaceCheckpoint( playerid ){
+	return CallNative( &quot;IsPlayerInRaceCheckpoint&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SetPlayerVirtualWorld
+
+{@link https://wiki.sa-mp.com/wiki/SetPlayerVirtualWorld}
+
+ * @param {Number} playerid
+ * @param {Number} worldid
+ * @return {Number} retval
+
+*/
+function SetPlayerVirtualWorld( playerid, worldid ){
+	return CallNative( &quot;SetPlayerVirtualWorld&quot;, &quot;ii&quot;, playerid, worldid );
+}
+/**
+ * GetPlayerVirtualWorld
+
+{@link https://wiki.sa-mp.com/wiki/GetPlayerVirtualWorld}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function GetPlayerVirtualWorld( playerid ){
+	return CallNative( &quot;GetPlayerVirtualWorld&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * EnableStuntBonusForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/EnableStuntBonusForPlayer}
+
+ * @param {Number} playerid
+ * @param {Number} enable
+ * @return {Number} retval
+
+*/
+function EnableStuntBonusForPlayer( playerid, enable ){
+	return CallNative( &quot;EnableStuntBonusForPlayer&quot;, &quot;ii&quot;, playerid, enable );
+}
+/**
+ * EnableStuntBonusForAll
+
+{@link https://wiki.sa-mp.com/wiki/EnableStuntBonusForAll}
+
+ * @param {Number} enable
+ * @return {Number} retval
+
+*/
+function EnableStuntBonusForAll( enable ){
+	return CallNative( &quot;EnableStuntBonusForAll&quot;, &quot;i&quot;, enable );
+}
+/**
+ * TogglePlayerSpectating
+
+{@link https://wiki.sa-mp.com/wiki/TogglePlayerSpectating}
+
+ * @param {Number} playerid
+ * @param {Number} toggle
+ * @return {Number} retval
+
+*/
+function TogglePlayerSpectating( playerid, toggle ){
+	return CallNative( &quot;TogglePlayerSpectating&quot;, &quot;ii&quot;, playerid, toggle );
+}
+/**
+ * PlayerSpectatePlayer
+
+{@link https://wiki.sa-mp.com/wiki/PlayerSpectatePlayer}
+
+ * @param {Number} playerid
+ * @param {Number} targetplayerid
+ * @param {Number} mode
+ * @return {Number} retval
+
+*/
+function PlayerSpectatePlayer( playerid, targetplayerid, mode ){
+	mode = typeof mode !== &apos;undefined&apos; ? mode : SPECTATE_MODE_NORMAL;
+	return CallNative( &quot;PlayerSpectatePlayer&quot;, &quot;iii&quot;, playerid, targetplayerid, mode );
+}
+/**
+ * PlayerSpectateVehicle
+
+{@link https://wiki.sa-mp.com/wiki/PlayerSpectateVehicle}
+
+ * @param {Number} playerid
+ * @param {Number} targetvehicleid
+ * @param {Number} mode
+ * @return {Number} retval
+
+*/
+function PlayerSpectateVehicle( playerid, targetvehicleid, mode ){
+	mode = typeof mode !== &apos;undefined&apos; ? mode : SPECTATE_MODE_NORMAL;
+	return CallNative( &quot;PlayerSpectateVehicle&quot;, &quot;iii&quot;, playerid, targetvehicleid, mode );
+}
+/**
+ * StartRecordingPlayerData
+
+{@link https://wiki.sa-mp.com/wiki/StartRecordingPlayerData}
+
+ * @param {Number} playerid
+ * @param {Number} recordtype
+ * @param {String} recordname
+ * @return {Number} retval
+
+*/
+function StartRecordingPlayerData( playerid, recordtype, recordname ){
+	return CallNative( &quot;StartRecordingPlayerData&quot;, &quot;iis&quot;, playerid, recordtype, recordname );
+}
+/**
+ * StopRecordingPlayerData
+
+{@link https://wiki.sa-mp.com/wiki/StopRecordingPlayerData}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function StopRecordingPlayerData( playerid ){
+	return CallNative( &quot;StopRecordingPlayerData&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * SelectTextDraw
+
+{@link https://wiki.sa-mp.com/wiki/SelectTextDraw}
+
+ * @param {Number} playerid
+ * @param {Number} hovercolor
+ * @return {Number} retval
+
+*/
+function SelectTextDraw( playerid, hovercolor ){
+	return CallNative( &quot;SelectTextDraw&quot;, &quot;ii&quot;, playerid, hovercolor );
+}
+/**
+ * CancelSelectTextDraw
+
+{@link https://wiki.sa-mp.com/wiki/CancelSelectTextDraw}
+
+ * @param {Number} playerid
+ * @return {Number} retval
+
+*/
+function CancelSelectTextDraw( playerid ){
+	return CallNative( &quot;CancelSelectTextDraw&quot;, &quot;i&quot;, playerid );
+}
+/**
+ * CreateExplosionForPlayer
+
+{@link https://wiki.sa-mp.com/wiki/CreateExplosionForPlayer}
+
+ * @param {Number} playerid
+ * @param {Number} X
+ * @param {Number} Y
+ * @param {Number} Z
+ * @param {Number} type
+ * @param {Number} Radius
+ * @return {Number} retval
+
+*/
+function CreateExplosionForPlayer( playerid, X, Y, Z, type, Radius ){
+	return CallNative( &quot;CreateExplosionForPlayer&quot;, &quot;ifffif&quot;, playerid, X, Y, Z, type, Radius );
+}
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.2)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

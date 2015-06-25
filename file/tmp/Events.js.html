@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">tmp/Events.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/tmp/Buffer.js~Buffer.html">Buffer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/tmp/Event.js~Event.html">Event</a></span></li>
+<li data-ice="classDoc"><span><a href="class/tmp/Events.js~Events.html">Events</a></span></li>
+<li data-ice="classDoc"><span><a href="class/tmp/FileSystem.js~FileSystem.html">FileSystem</a></span></li>
+<li data-ice="classDoc"><span><a href="class/tmp/Player.js~Player.html">Player</a></span></li>
+<li data-ice="classDoc"><span><a href="class/tmp/Players.js~Players.html">Players</a></span></li>
+</ul>
+</div>
+
+
+
+<div data-ice="functionWrap">
+  <h2><a href="function/">Function</a></h2>
+  <ul>
+    
+  <li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddMenuItem">AddMenuItem</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddPlayerClass">AddPlayerClass</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddPlayerClassEx">AddPlayerClassEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddStaticPickup">AddStaticPickup</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddStaticVehicle">AddStaticVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddStaticVehicleEx">AddStaticVehicleEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AddVehicleComponent">AddVehicleComponent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AllowInteriorWeapons">AllowInteriorWeapons</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AllowPlayerTeleport">AllowPlayerTeleport</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ApplyActorAnimation">ApplyActorAnimation</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ApplyAnimation">ApplyAnimation</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Attach3DTextLabelToPlayer">Attach3DTextLabelToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Attach3DTextLabelToVehicle">Attach3DTextLabelToVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachCameraToObject">AttachCameraToObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachCameraToPlayerObject">AttachCameraToPlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachObjectToObject">AttachObjectToObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachObjectToPlayer">AttachObjectToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachObjectToVehicle">AttachObjectToVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachPlayerObjectToPlayer">AttachPlayerObjectToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachPlayerObjectToVehicle">AttachPlayerObjectToVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-AttachTrailerToVehicle">AttachTrailerToVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Ban">Ban</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-BanEx">BanEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-BlockIpAddress">BlockIpAddress</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CallLocalFunction">CallLocalFunction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CallRemoteFunction">CallRemoteFunction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CancelEdit">CancelEdit</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CancelSelectTextDraw">CancelSelectTextDraw</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ChangeVehicleColor">ChangeVehicleColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ChangeVehiclePaintjob">ChangeVehiclePaintjob</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ClearActorAnimations">ClearActorAnimations</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ClearAnimations">ClearAnimations</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ConnectNPC">ConnectNPC</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Create3DTextLabel">Create3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateActor">CreateActor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateExplosion">CreateExplosion</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateExplosionForPlayer">CreateExplosionForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateMenu">CreateMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateObject">CreateObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreatePickup">CreatePickup</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreatePlayer3DTextLabel">CreatePlayer3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreatePlayerObject">CreatePlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreatePlayerTextDraw">CreatePlayerTextDraw</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-CreateVehicle">CreateVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Delete3DTextLabel">Delete3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DeletePVar">DeletePVar</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DeletePlayer3DTextLabel">DeletePlayer3DTextLabel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyActor">DestroyActor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyMenu">DestroyMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyObject">DestroyObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyPickup">DestroyPickup</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyPlayerObject">DestroyPlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DestroyVehicle">DestroyVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DetachTrailerFromVehicle">DetachTrailerFromVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisableMenu">DisableMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisableMenuRow">DisableMenuRow</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisablePlayerCheckpoint">DisablePlayerCheckpoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisablePlayerRaceCheckpoint">DisablePlayerRaceCheckpoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-DisableRemoteVehicleCollisions">DisableRemoteVehicleCollisions</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EditAttachedObject">EditAttachedObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EditObject">EditObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EditPlayerObject">EditPlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnablePlayerCameraTarget">EnablePlayerCameraTarget</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnableStuntBonusForAll">EnableStuntBonusForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnableStuntBonusForPlayer">EnableStuntBonusForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnableTirePopping">EnableTirePopping</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-EnableZoneNames">EnableZoneNames</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ForceClassSelection">ForceClassSelection</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GameTextForAll">GameTextForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GameTextForPlayer">GameTextForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneCreate">GangZoneCreate</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneDestroy">GangZoneDestroy</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneFlashForAll">GangZoneFlashForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneFlashForPlayer">GangZoneFlashForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneHideForAll">GangZoneHideForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneHideForPlayer">GangZoneHideForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneShowForAll">GangZoneShowForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneShowForPlayer">GangZoneShowForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneStopFlashForAll">GangZoneStopFlashForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GangZoneStopFlashForPlayer">GangZoneStopFlashForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetActorFacingAngle">GetActorFacingAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetActorHealth">GetActorHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetActorPos">GetActorPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetActorVirtualWorld">GetActorVirtualWorld</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetAnimationName">GetAnimationName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetDistanceFromMeToPoint">GetDistanceFromMeToPoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetNetworkStats">GetNetworkStats</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetObjectModel">GetObjectModel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetObjectPos">GetObjectPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetObjectRot">GetObjectRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPVarFloat">GetPVarFloat</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPVarInt">GetPVarInt</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPVarNameAtIndex">GetPVarNameAtIndex</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPVarString">GetPVarString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPVarType">GetPVarType</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPVarsUpperIndex">GetPVarsUpperIndex</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerAmmo">GetPlayerAmmo</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerAnimationIndex">GetPlayerAnimationIndex</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerArmedWeapon">GetPlayerArmedWeapon</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerArmour">GetPlayerArmour</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerArmour">GetPlayerArmour</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraAspectRatio">GetPlayerCameraAspectRatio</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraFrontVector">GetPlayerCameraFrontVector</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraMode">GetPlayerCameraMode</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraPos">GetPlayerCameraPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraTargetActor">GetPlayerCameraTargetActor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraTargetObject">GetPlayerCameraTargetObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraTargetPlayer">GetPlayerCameraTargetPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraTargetVehicle">GetPlayerCameraTargetVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerCameraZoom">GetPlayerCameraZoom</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerColor">GetPlayerColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerDistanceFromPoint">GetPlayerDistanceFromPoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerDrunkLevel">GetPlayerDrunkLevel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerFacingAngle">GetPlayerFacingAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerFacingAngle">GetPlayerFacingAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerFightingStyle">GetPlayerFightingStyle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerHealth">GetPlayerHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerHealth">GetPlayerHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerInterior">GetPlayerInterior</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerIp">GetPlayerIp</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerKeys">GetPlayerKeys</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerKeys">GetPlayerKeys</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerLastShotVectors">GetPlayerLastShotVectors</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerMenu">GetPlayerMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerMoney">GetPlayerMoney</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerName">GetPlayerName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerName">GetPlayerName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerNetworkStats">GetPlayerNetworkStats</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerObjectModel">GetPlayerObjectModel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerObjectPos">GetPlayerObjectPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerObjectRot">GetPlayerObjectRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerPing">GetPlayerPing</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerPos">GetPlayerPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerPos">GetPlayerPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerScore">GetPlayerScore</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerSkin">GetPlayerSkin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerSpecialAction">GetPlayerSpecialAction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerSpecialAction">GetPlayerSpecialAction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerState">GetPlayerState</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerState">GetPlayerState</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerSurfingObjectID">GetPlayerSurfingObjectID</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerSurfingVehicleID">GetPlayerSurfingVehicleID</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerTargetActor">GetPlayerTargetActor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerTargetPlayer">GetPlayerTargetPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerTeam">GetPlayerTeam</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerTime">GetPlayerTime</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVehicleID">GetPlayerVehicleID</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVehicleID">GetPlayerVehicleID</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVehicleSeat">GetPlayerVehicleSeat</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVelocity">GetPlayerVelocity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVersion">GetPlayerVersion</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerVirtualWorld">GetPlayerVirtualWorld</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerWantedLevel">GetPlayerWantedLevel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerWeapon">GetPlayerWeapon</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerWeaponData">GetPlayerWeaponData</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetPlayerWeaponState">GetPlayerWeaponState</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetServerVarAsBool">GetServerVarAsBool</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetServerVarAsInt">GetServerVarAsInt</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetServerVarAsString">GetServerVarAsString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleComponentInSlot">GetVehicleComponentInSlot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleComponentType">GetVehicleComponentType</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleDamageStatus">GetVehicleDamageStatus</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleDistanceFromPoint">GetVehicleDistanceFromPoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleHealth">GetVehicleHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleModel">GetVehicleModel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleModelInfo">GetVehicleModelInfo</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleParamsCarDoors">GetVehicleParamsCarDoors</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleParamsCarWindows">GetVehicleParamsCarWindows</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleParamsEx">GetVehicleParamsEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleParamsSirenState">GetVehicleParamsSirenState</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehiclePos">GetVehiclePos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleRotationQuat">GetVehicleRotationQuat</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleTrailer">GetVehicleTrailer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleVelocity">GetVehicleVelocity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleVirtualWorld">GetVehicleVirtualWorld</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetVehicleZAngle">GetVehicleZAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GetWeaponName">GetWeaponName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GivePlayerMoney">GivePlayerMoney</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-GivePlayerWeapon">GivePlayerWeapon</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-HTTP">HTTP</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-HideMenuForPlayer">HideMenuForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-InterpolateCameraLookAt">InterpolateCameraLookAt</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-InterpolateCameraPos">InterpolateCameraPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsActorInvulnerable">IsActorInvulnerable</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsActorStreamedIn">IsActorStreamedIn</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsObjectMoving">IsObjectMoving</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerAdmin">IsPlayerAdmin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerAttachedObjectSlotUsed">IsPlayerAttachedObjectSlotUsed</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerConnected">IsPlayerConnected</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerConnected">IsPlayerConnected</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerInAnyVehicle">IsPlayerInAnyVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerInCheckpoint">IsPlayerInCheckpoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerInRaceCheckpoint">IsPlayerInRaceCheckpoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerInRangeOfPoint">IsPlayerInRangeOfPoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerInRangeOfPoint">IsPlayerInRangeOfPoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerInVehicle">IsPlayerInVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerNPC">IsPlayerNPC</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerObjectMoving">IsPlayerObjectMoving</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerStreamedIn">IsPlayerStreamedIn</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsPlayerStreamedIn">IsPlayerStreamedIn</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsTrailerAttachedToVehicle">IsTrailerAttachedToVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsValidActor">IsValidActor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsValidMenu">IsValidMenu</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsValidObject">IsValidObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsValidPlayerObject">IsValidPlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsVehicleStreamedIn">IsVehicleStreamedIn</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-IsVehicleStreamedIn">IsVehicleStreamedIn</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Kick">Kick</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-KillTimer">KillTimer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-KillTimer">KillTimer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-LimitGlobalChatRadius">LimitGlobalChatRadius</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-LimitPlayerMarkerRadius">LimitPlayerMarkerRadius</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-LinkVehicleToInterior">LinkVehicleToInterior</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-MoveObject">MoveObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-MovePlayerObject">MovePlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_BytesReceived">NetStats_BytesReceived</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_BytesSent">NetStats_BytesSent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_ConnectionStatus">NetStats_ConnectionStatus</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_GetConnectedTime">NetStats_GetConnectedTime</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_GetIpPort">NetStats_GetIpPort</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_MessagesReceived">NetStats_MessagesReceived</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_MessagesRecvPerSecond">NetStats_MessagesRecvPerSecond</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_MessagesSent">NetStats_MessagesSent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-NetStats_PacketLossPercent">NetStats_PacketLossPercent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayAudioStreamForPlayer">PlayAudioStreamForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayCrimeReportForPlayer">PlayCrimeReportForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerPlaySound">PlayerPlaySound</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerSpectatePlayer">PlayerSpectatePlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerSpectateVehicle">PlayerSpectateVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawAlignment">PlayerTextDrawAlignment</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawBackgroundColor">PlayerTextDrawBackgroundColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawBoxColor">PlayerTextDrawBoxColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawColor">PlayerTextDrawColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawDestroy">PlayerTextDrawDestroy</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawFont">PlayerTextDrawFont</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawHide">PlayerTextDrawHide</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawLetterSize">PlayerTextDrawLetterSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetOutline">PlayerTextDrawSetOutline</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetPreviewModel">PlayerTextDrawSetPreviewModel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetPreviewRot">PlayerTextDrawSetPreviewRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetPreviewVehCol">PlayerTextDrawSetPreviewVehCol</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetProportional">PlayerTextDrawSetProportional</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetSelectable">PlayerTextDrawSetSelectable</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetShadow">PlayerTextDrawSetShadow</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawSetString">PlayerTextDrawSetString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawShow">PlayerTextDrawShow</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawTextSize">PlayerTextDrawTextSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PlayerTextDrawUseBox">PlayerTextDrawUseBox</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-PutPlayerInVehicle">PutPlayerInVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-RemoveBuildingForPlayer">RemoveBuildingForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-RemovePlayerAttachedObject">RemovePlayerAttachedObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-RemovePlayerFromVehicle">RemovePlayerFromVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-RemovePlayerMapIcon">RemovePlayerMapIcon</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-RemoveVehicleComponent">RemoveVehicleComponent</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-RepairVehicle">RepairVehicle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ResetPlayerMoney">ResetPlayerMoney</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ResetPlayerWeapons">ResetPlayerWeapons</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SelectObject">SelectObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SelectTextDraw">SelectTextDraw</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendChat">SendChat</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendClientMessage">SendClientMessage</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendClientMessageToAll">SendClientMessageToAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendCommand">SendCommand</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendDeathMessage">SendDeathMessage</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendDeathMessageToPlayer">SendDeathMessageToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendPlayerMessageToAll">SendPlayerMessageToAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendPlayerMessageToPlayer">SendPlayerMessageToPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SendRconCommand">SendRconCommand</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetActorFacingAngle">SetActorFacingAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetActorHealth">SetActorHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetActorInvulnerable">SetActorInvulnerable</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetActorPos">SetActorPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetActorVirtualWorld">SetActorVirtualWorld</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetCameraBehindPlayer">SetCameraBehindPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetDeathDropAmount">SetDeathDropAmount</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetGameModeText">SetGameModeText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetGravity">SetGravity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetMenuColumnHeader">SetMenuColumnHeader</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetMyFacingAngle">SetMyFacingAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetMyPos">SetMyPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetNameTagDrawDistance">SetNameTagDrawDistance</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetObjectMaterial">SetObjectMaterial</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetObjectMaterialText">SetObjectMaterialText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetObjectNoCameraCol">SetObjectNoCameraCol</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetObjectPos">SetObjectPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetObjectRot">SetObjectRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetObjectsDefaultCameraCol">SetObjectsDefaultCameraCol</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPVarFloat">SetPVarFloat</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPVarInt">SetPVarInt</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPVarString">SetPVarString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerAmmo">SetPlayerAmmo</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerArmedWeapon">SetPlayerArmedWeapon</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerArmour">SetPlayerArmour</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerAttachedObject">SetPlayerAttachedObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerCameraLookAt">SetPlayerCameraLookAt</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerCameraPos">SetPlayerCameraPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerChatBubble">SetPlayerChatBubble</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerCheckpoint">SetPlayerCheckpoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerColor">SetPlayerColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerDrunkLevel">SetPlayerDrunkLevel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerFacingAngle">SetPlayerFacingAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerFightingStyle">SetPlayerFightingStyle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerHealth">SetPlayerHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerInterior">SetPlayerInterior</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerMapIcon">SetPlayerMapIcon</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerMarkerForPlayer">SetPlayerMarkerForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerName">SetPlayerName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerObjectMaterial">SetPlayerObjectMaterial</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerObjectMaterialText">SetPlayerObjectMaterialText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerObjectNoCameraCol">SetPlayerObjectNoCameraCol</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerObjectPos">SetPlayerObjectPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerObjectRot">SetPlayerObjectRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerPos">SetPlayerPos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerPosFindZ">SetPlayerPosFindZ</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerRaceCheckpoint">SetPlayerRaceCheckpoint</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerScore">SetPlayerScore</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerShopName">SetPlayerShopName</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerSkillLevel">SetPlayerSkillLevel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerSkin">SetPlayerSkin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerSpecialAction">SetPlayerSpecialAction</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerTeam">SetPlayerTeam</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerTime">SetPlayerTime</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerVelocity">SetPlayerVelocity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerVirtualWorld">SetPlayerVirtualWorld</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerWantedLevel">SetPlayerWantedLevel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerWeather">SetPlayerWeather</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetPlayerWorldBounds">SetPlayerWorldBounds</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetSpawnInfo">SetSpawnInfo</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetTeamCount">SetTeamCount</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetTimerEx">SetTimerEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleAngularVelocity">SetVehicleAngularVelocity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleHealth">SetVehicleHealth</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleNumberPlate">SetVehicleNumberPlate</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleParamsCarDoors">SetVehicleParamsCarDoors</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleParamsCarWindows">SetVehicleParamsCarWindows</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleParamsEx">SetVehicleParamsEx</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleParamsForPlayer">SetVehicleParamsForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehiclePos">SetVehiclePos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleToRespawn">SetVehicleToRespawn</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleVelocity">SetVehicleVelocity</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleVirtualWorld">SetVehicleVirtualWorld</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetVehicleZAngle">SetVehicleZAngle</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetWeather">SetWeather</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SetWorldTime">SetWorldTime</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowMenuForPlayer">ShowMenuForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowNameTags">ShowNameTags</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowPlayerDialog">ShowPlayerDialog</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowPlayerMarkers">ShowPlayerMarkers</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-ShowPlayerNameTagForPlayer">ShowPlayerNameTagForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-SpawnPlayer">SpawnPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-StartRecordingPlayback">StartRecordingPlayback</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-StartRecordingPlayerData">StartRecordingPlayerData</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-StopAudioStreamForPlayer">StopAudioStreamForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-StopObject">StopObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-StopPlayerObject">StopPlayerObject</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-StopRecordingPlayerData">StopRecordingPlayerData</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawAlignment">TextDrawAlignment</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawBackgroundColor">TextDrawBackgroundColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawBoxColor">TextDrawBoxColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawColor">TextDrawColor</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawCreate">TextDrawCreate</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawDestroy">TextDrawDestroy</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawFont">TextDrawFont</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawHideForAll">TextDrawHideForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawHideForPlayer">TextDrawHideForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawLetterSize">TextDrawLetterSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetOutline">TextDrawSetOutline</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetPreviewModel">TextDrawSetPreviewModel</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetPreviewRot">TextDrawSetPreviewRot</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetPreviewVehCol">TextDrawSetPreviewVehCol</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetProportional">TextDrawSetProportional</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetSelectable">TextDrawSetSelectable</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetShadow">TextDrawSetShadow</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawSetString">TextDrawSetString</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawShowForAll">TextDrawShowForAll</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawShowForPlayer">TextDrawShowForPlayer</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawTextSize">TextDrawTextSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TextDrawUseBox">TextDrawUseBox</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TogglePlayerClock">TogglePlayerClock</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TogglePlayerControllable">TogglePlayerControllable</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-TogglePlayerSpectating">TogglePlayerSpectating</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-UnBlockIpAddress">UnBlockIpAddress</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-Update3DTextLabelText">Update3DTextLabelText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-UpdatePlayer3DTextLabelText">UpdatePlayer3DTextLabelText</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-UpdateVehicleDamageStatus">UpdateVehicleDamageStatus</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-VectorSize">VectorSize</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-acos">acos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-acos">acos</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-asin">asin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-asin">asin</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-atan">atan</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-atan">atan</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-atan2">atan2</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-atan2">atan2</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_close">db_close</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_field_name">db_field_name</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_free_result">db_free_result</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_get_field">db_get_field</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_get_field_assoc">db_get_field_assoc</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_next_row">db_next_row</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_num_fields">db_num_fields</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_num_rows">db_num_rows</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_open">db_open</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-db_query">db_query</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-format">format</a></span></li>
+<li data-ice="functionDoc"><span><a href="function/index.html#static-function-format">format</a></span></li>
+</ul>
+</div>
+
+<div data-ice="variableWrap">
+  <h2><a href="variable/">Variable</a></h2>
+  <ul>
+    
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-BULLET_HIT_TYPE_NONE">BULLET_HIT_TYPE_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-BULLET_HIT_TYPE_OBJECT">BULLET_HIT_TYPE_OBJECT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-BULLET_HIT_TYPE_PLAYER">BULLET_HIT_TYPE_PLAYER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-BULLET_HIT_TYPE_PLAYER_OBJECT">BULLET_HIT_TYPE_PLAYER_OBJECT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-BULLET_HIT_TYPE_VEHICLE">BULLET_HIT_TYPE_VEHICLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CAMERA_CUT">CAMERA_CUT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CAMERA_MOVE">CAMERA_MOVE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_EXHAUST">CARMODTYPE_EXHAUST</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_FRONT_BUMPER">CARMODTYPE_FRONT_BUMPER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_HOOD">CARMODTYPE_HOOD</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_HYDRAULICS">CARMODTYPE_HYDRAULICS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_LAMPS">CARMODTYPE_LAMPS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_NITRO">CARMODTYPE_NITRO</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_REAR_BUMPER">CARMODTYPE_REAR_BUMPER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_ROOF">CARMODTYPE_ROOF</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_SIDESKIRT">CARMODTYPE_SIDESKIRT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_SPOILER">CARMODTYPE_SPOILER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_STEREO">CARMODTYPE_STEREO</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_VENT_LEFT">CARMODTYPE_VENT_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_VENT_RIGHT">CARMODTYPE_VENT_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CARMODTYPE_WHEELS">CARMODTYPE_WHEELS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-CLICK_SOURCE_SCOREBOARD">CLICK_SOURCE_SCOREBOARD</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DIALOG_STYLE_INPUT">DIALOG_STYLE_INPUT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DIALOG_STYLE_LIST">DIALOG_STYLE_LIST</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DIALOG_STYLE_MSGBOX">DIALOG_STYLE_MSGBOX</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DIALOG_STYLE_PASSWORD">DIALOG_STYLE_PASSWORD</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DIALOG_STYLE_TABLIST">DIALOG_STYLE_TABLIST</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DIALOG_STYLE_TABLIST_HEADERS">DIALOG_STYLE_TABLIST_HEADERS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-EDIT_RESPONSE_CANCEL">EDIT_RESPONSE_CANCEL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-EDIT_RESPONSE_FINAL">EDIT_RESPONSE_FINAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-EDIT_RESPONSE_UPDATE">EDIT_RESPONSE_UPDATE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-FIGHT_STYLE_BOXING">FIGHT_STYLE_BOXING</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-FIGHT_STYLE_ELBOW">FIGHT_STYLE_ELBOW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-FIGHT_STYLE_GRABKICK">FIGHT_STYLE_GRABKICK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-FIGHT_STYLE_KNEEHEAD">FIGHT_STYLE_KNEEHEAD</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-FIGHT_STYLE_KUNGFU">FIGHT_STYLE_KUNGFU</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-FIGHT_STYLE_NORMAL">FIGHT_STYLE_NORMAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_ERROR_BAD_HOST">HTTP_ERROR_BAD_HOST</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_ERROR_CANT_CONNECT">HTTP_ERROR_CANT_CONNECT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_ERROR_CANT_WRITE">HTTP_ERROR_CANT_WRITE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_ERROR_CONTENT_TOO_BIG">HTTP_ERROR_CONTENT_TOO_BIG</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_ERROR_MALFORMED_RESPONSE">HTTP_ERROR_MALFORMED_RESPONSE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_ERROR_NO_SOCKET">HTTP_ERROR_NO_SOCKET</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_GET">HTTP_GET</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_HEAD">HTTP_HEAD</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-HTTP_POST">HTTP_POST</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_3DTEXT_ID">INVALID_3DTEXT_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_ACTOR_ID">INVALID_ACTOR_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_GANG_ZONE">INVALID_GANG_ZONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_GANG_ZONE">INVALID_GANG_ZONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_MENU">INVALID_MENU</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_MENU">INVALID_MENU</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_OBJECT_ID">INVALID_OBJECT_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_OBJECT_ID">INVALID_OBJECT_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_PLAYER_ID">INVALID_PLAYER_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_PLAYER_ID">INVALID_PLAYER_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_TEXT_DRAW">INVALID_TEXT_DRAW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_TEXT_DRAW">INVALID_TEXT_DRAW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_VEHICLE_ID">INVALID_VEHICLE_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-INVALID_VEHICLE_ID">INVALID_VEHICLE_ID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ACTION">KEY_ACTION</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ACTION">KEY_ACTION</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_DOWN">KEY_ANALOG_DOWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_DOWN">KEY_ANALOG_DOWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_LEFT">KEY_ANALOG_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_LEFT">KEY_ANALOG_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_RIGHT">KEY_ANALOG_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_RIGHT">KEY_ANALOG_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_UP">KEY_ANALOG_UP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_ANALOG_UP">KEY_ANALOG_UP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_CROUCH">KEY_CROUCH</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_CROUCH">KEY_CROUCH</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_CTRL_BACK">KEY_CTRL_BACK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_DOWN">KEY_DOWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_DOWN">KEY_DOWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_FIRE">KEY_FIRE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_FIRE">KEY_FIRE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_HANDBRAKE">KEY_HANDBRAKE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_HANDBRAKE">KEY_HANDBRAKE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_JUMP">KEY_JUMP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_JUMP">KEY_JUMP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LEFT">KEY_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LEFT">KEY_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LOOK_BEHIND">KEY_LOOK_BEHIND</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LOOK_BEHIND">KEY_LOOK_BEHIND</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LOOK_LEFT">KEY_LOOK_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LOOK_LEFT">KEY_LOOK_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LOOK_RIGHT">KEY_LOOK_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_LOOK_RIGHT">KEY_LOOK_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_NO">KEY_NO</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_RIGHT">KEY_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_RIGHT">KEY_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_SECONDARY_ATTACK">KEY_SECONDARY_ATTACK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_SECONDARY_ATTACK">KEY_SECONDARY_ATTACK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_SPRINT">KEY_SPRINT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_SPRINT">KEY_SPRINT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_SUBMISSION">KEY_SUBMISSION</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_SUBMISSION">KEY_SUBMISSION</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_UP">KEY_UP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_UP">KEY_UP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_WALK">KEY_WALK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_WALK">KEY_WALK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-KEY_YES">KEY_YES</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAPICON_GLOBAL">MAPICON_GLOBAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAPICON_GLOBAL_CHECKPOINT">MAPICON_GLOBAL_CHECKPOINT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAPICON_LOCAL">MAPICON_LOCAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAPICON_LOCAL_CHECKPOINT">MAPICON_LOCAL_CHECKPOINT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_3DTEXT_GLOBAL">MAX_3DTEXT_GLOBAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_3DTEXT_PLAYER">MAX_3DTEXT_PLAYER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_ACTORS">MAX_ACTORS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_CHATBUBBLE_LENGTH">MAX_CHATBUBBLE_LENGTH</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_GANG_ZONES">MAX_GANG_ZONES</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_GANG_ZONES">MAX_GANG_ZONES</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_MENUS">MAX_MENUS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_MENUS">MAX_MENUS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_OBJECTS">MAX_OBJECTS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_OBJECTS">MAX_OBJECTS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PICKUPS">MAX_PICKUPS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PLAYERS">MAX_PLAYERS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PLAYERS">MAX_PLAYERS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PLAYER_ATTACHED_OBJECTS">MAX_PLAYER_ATTACHED_OBJECTS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PLAYER_NAME">MAX_PLAYER_NAME</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PLAYER_NAME">MAX_PLAYER_NAME</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_PLAYER_TEXT_DRAWS">MAX_PLAYER_TEXT_DRAWS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_TEXT_DRAWS">MAX_TEXT_DRAWS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_TEXT_DRAWS">MAX_TEXT_DRAWS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_VEHICLES">MAX_VEHICLES</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MAX_VEHICLES">MAX_VEHICLES</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-NO_TEAM">NO_TEAM</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-NO_TEAM">NO_TEAM</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_128x128">OBJECT_MATERIAL_SIZE_128x128</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_128x32">OBJECT_MATERIAL_SIZE_128x32</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_128x64">OBJECT_MATERIAL_SIZE_128x64</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_256x128">OBJECT_MATERIAL_SIZE_256x128</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_256x256">OBJECT_MATERIAL_SIZE_256x256</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_256x32">OBJECT_MATERIAL_SIZE_256x32</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_256x64">OBJECT_MATERIAL_SIZE_256x64</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_32x32">OBJECT_MATERIAL_SIZE_32x32</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_512x128">OBJECT_MATERIAL_SIZE_512x128</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_512x256">OBJECT_MATERIAL_SIZE_512x256</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_512x512">OBJECT_MATERIAL_SIZE_512x512</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_512x64">OBJECT_MATERIAL_SIZE_512x64</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_64x32">OBJECT_MATERIAL_SIZE_64x32</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_SIZE_64x64">OBJECT_MATERIAL_SIZE_64x64</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_TEXT_ALIGN_CENTER">OBJECT_MATERIAL_TEXT_ALIGN_CENTER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_TEXT_ALIGN_LEFT">OBJECT_MATERIAL_TEXT_ALIGN_LEFT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-OBJECT_MATERIAL_TEXT_ALIGN_RIGHT">OBJECT_MATERIAL_TEXT_ALIGN_RIGHT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_MARKERS_MODE_GLOBAL">PLAYER_MARKERS_MODE_GLOBAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_MARKERS_MODE_OFF">PLAYER_MARKERS_MODE_OFF</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_MARKERS_MODE_STREAMED">PLAYER_MARKERS_MODE_STREAMED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_RECORDING_TYPE_DRIVER">PLAYER_RECORDING_TYPE_DRIVER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_RECORDING_TYPE_DRIVER">PLAYER_RECORDING_TYPE_DRIVER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_RECORDING_TYPE_NONE">PLAYER_RECORDING_TYPE_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_RECORDING_TYPE_NONE">PLAYER_RECORDING_TYPE_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_RECORDING_TYPE_ONFOOT">PLAYER_RECORDING_TYPE_ONFOOT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_RECORDING_TYPE_ONFOOT">PLAYER_RECORDING_TYPE_ONFOOT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_DRIVER">PLAYER_STATE_DRIVER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_DRIVER">PLAYER_STATE_DRIVER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_ENTER_VEHICLE_DRIVER">PLAYER_STATE_ENTER_VEHICLE_DRIVER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_ENTER_VEHICLE_PASSENGER">PLAYER_STATE_ENTER_VEHICLE_PASSENGER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_EXIT_VEHICLE">PLAYER_STATE_EXIT_VEHICLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_NONE">PLAYER_STATE_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_NONE">PLAYER_STATE_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_ONFOOT">PLAYER_STATE_ONFOOT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_ONFOOT">PLAYER_STATE_ONFOOT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_PASSENGER">PLAYER_STATE_PASSENGER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_PASSENGER">PLAYER_STATE_PASSENGER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_SPAWNED">PLAYER_STATE_SPAWNED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_SPAWNED">PLAYER_STATE_SPAWNED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_SPECTATING">PLAYER_STATE_SPECTATING</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_SPECTATING">PLAYER_STATE_SPECTATING</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_WASTED">PLAYER_STATE_WASTED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_STATE_WASTED">PLAYER_STATE_WASTED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_VARTYPE_FLOAT">PLAYER_VARTYPE_FLOAT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_VARTYPE_INT">PLAYER_VARTYPE_INT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_VARTYPE_NONE">PLAYER_VARTYPE_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-PLAYER_VARTYPE_STRING">PLAYER_VARTYPE_STRING</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SELECT_OBJECT_GLOBAL_OBJECT">SELECT_OBJECT_GLOBAL_OBJECT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SELECT_OBJECT_PLAYER_OBJECT">SELECT_OBJECT_PLAYER_OBJECT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_CARRY">SPECIAL_ACTION_CARRY</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_CUFFED">SPECIAL_ACTION_CUFFED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DANCE1">SPECIAL_ACTION_DANCE1</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DANCE2">SPECIAL_ACTION_DANCE2</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DANCE3">SPECIAL_ACTION_DANCE3</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DANCE4">SPECIAL_ACTION_DANCE4</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DRINK_BEER">SPECIAL_ACTION_DRINK_BEER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DRINK_SPRUNK">SPECIAL_ACTION_DRINK_SPRUNK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DRINK_WINE">SPECIAL_ACTION_DRINK_WINE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_DUCK">SPECIAL_ACTION_DUCK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_ENTER_VEHICLE">SPECIAL_ACTION_ENTER_VEHICLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_EXIT_VEHICLE">SPECIAL_ACTION_EXIT_VEHICLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_HANDSUP">SPECIAL_ACTION_HANDSUP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_NONE">SPECIAL_ACTION_NONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_SITTING">SPECIAL_ACTION_SITTING</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_SMOKE_CIGGY">SPECIAL_ACTION_SMOKE_CIGGY</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_STOPUSECELLPHONE">SPECIAL_ACTION_STOPUSECELLPHONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_USECELLPHONE">SPECIAL_ACTION_USECELLPHONE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECIAL_ACTION_USEJETPACK">SPECIAL_ACTION_USEJETPACK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECTATE_MODE_FIXED">SPECTATE_MODE_FIXED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECTATE_MODE_NORMAL">SPECTATE_MODE_NORMAL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-SPECTATE_MODE_SIDE">SPECTATE_MODE_SIDE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-TEXT_DRAW_FONT_MODEL_PREVIEW">TEXT_DRAW_FONT_MODEL_PREVIEW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-TEXT_DRAW_FONT_SPRITE_DRAW">TEXT_DRAW_FONT_SPRITE_DRAW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_FRONTSEAT">VEHICLE_MODEL_INFO_FRONTSEAT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_FRONT_BUMPER_Z">VEHICLE_MODEL_INFO_FRONT_BUMPER_Z</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_PETROLCAP">VEHICLE_MODEL_INFO_PETROLCAP</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_REARSEAT">VEHICLE_MODEL_INFO_REARSEAT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_REAR_BUMPER_Z">VEHICLE_MODEL_INFO_REAR_BUMPER_Z</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_SIZE">VEHICLE_MODEL_INFO_SIZE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_WHEELSFRONT">VEHICLE_MODEL_INFO_WHEELSFRONT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_WHEELSMID">VEHICLE_MODEL_INFO_WHEELSMID</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_MODEL_INFO_WHEELSREAR">VEHICLE_MODEL_INFO_WHEELSREAR</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_PARAMS_OFF">VEHICLE_PARAMS_OFF</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_PARAMS_ON">VEHICLE_PARAMS_ON</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-VEHICLE_PARAMS_UNSET">VEHICLE_PARAMS_UNSET</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_AK47">WEAPONSKILL_AK47</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_DESERT_EAGLE">WEAPONSKILL_DESERT_EAGLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_M4">WEAPONSKILL_M4</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_MICRO_UZI">WEAPONSKILL_MICRO_UZI</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_MP5">WEAPONSKILL_MP5</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_PISTOL">WEAPONSKILL_PISTOL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_PISTOL_SILENCED">WEAPONSKILL_PISTOL_SILENCED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_SAWNOFF_SHOTGUN">WEAPONSKILL_SAWNOFF_SHOTGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_SHOTGUN">WEAPONSKILL_SHOTGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_SNIPERRIFLE">WEAPONSKILL_SNIPERRIFLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSKILL_SPAS12_SHOTGUN">WEAPONSKILL_SPAS12_SHOTGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSTATE_LAST_BULLET">WEAPONSTATE_LAST_BULLET</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSTATE_MORE_BULLETS">WEAPONSTATE_MORE_BULLETS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSTATE_NO_BULLETS">WEAPONSTATE_NO_BULLETS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSTATE_RELOADING">WEAPONSTATE_RELOADING</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPONSTATE_UNKNOWN">WEAPONSTATE_UNKNOWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_AK47">WEAPON_AK47</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_AK47">WEAPON_AK47</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_BAT">WEAPON_BAT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_BAT">WEAPON_BAT</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_BOMB">WEAPON_BOMB</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_BOMB">WEAPON_BOMB</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_BRASSKNUCKLE">WEAPON_BRASSKNUCKLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_BRASSKNUCKLE">WEAPON_BRASSKNUCKLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_CAMERA">WEAPON_CAMERA</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_CAMERA">WEAPON_CAMERA</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_CANE">WEAPON_CANE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_CANE">WEAPON_CANE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_CHAINSAW">WEAPON_CHAINSAW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_CHAINSAW">WEAPON_CHAINSAW</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_COLLISION">WEAPON_COLLISION</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_COLLISION">WEAPON_COLLISION</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_COLT45">WEAPON_COLT45</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_COLT45">WEAPON_COLT45</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DEAGLE">WEAPON_DEAGLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DEAGLE">WEAPON_DEAGLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DILDO">WEAPON_DILDO</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DILDO">WEAPON_DILDO</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DILDO2">WEAPON_DILDO2</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DILDO2">WEAPON_DILDO2</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DROWN">WEAPON_DROWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_DROWN">WEAPON_DROWN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_FIREEXTINGUISHER">WEAPON_FIREEXTINGUISHER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_FIREEXTINGUISHER">WEAPON_FIREEXTINGUISHER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_FLAMETHROWER">WEAPON_FLAMETHROWER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_FLAMETHROWER">WEAPON_FLAMETHROWER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_FLOWER">WEAPON_FLOWER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_FLOWER">WEAPON_FLOWER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_GOLFCLUB">WEAPON_GOLFCLUB</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_GOLFCLUB">WEAPON_GOLFCLUB</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_GRENADE">WEAPON_GRENADE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_GRENADE">WEAPON_GRENADE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_HEATSEEKER">WEAPON_HEATSEEKER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_HEATSEEKER">WEAPON_HEATSEEKER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_KATANA">WEAPON_KATANA</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_KATANA">WEAPON_KATANA</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_KNIFE">WEAPON_KNIFE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_KNIFE">WEAPON_KNIFE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_M4">WEAPON_M4</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_M4">WEAPON_M4</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_MINIGUN">WEAPON_MINIGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_MINIGUN">WEAPON_MINIGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_MOLTOV">WEAPON_MOLTOV</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_MOLTOV">WEAPON_MOLTOV</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_MP5">WEAPON_MP5</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_MP5">WEAPON_MP5</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_NITESTICK">WEAPON_NITESTICK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_NITESTICK">WEAPON_NITESTICK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_PARACHUTE">WEAPON_PARACHUTE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_PARACHUTE">WEAPON_PARACHUTE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_POOLSTICK">WEAPON_POOLSTICK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_POOLSTICK">WEAPON_POOLSTICK</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_RIFLE">WEAPON_RIFLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_RIFLE">WEAPON_RIFLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_ROCKETLAUNCHER">WEAPON_ROCKETLAUNCHER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_ROCKETLAUNCHER">WEAPON_ROCKETLAUNCHER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SATCHEL">WEAPON_SATCHEL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SATCHEL">WEAPON_SATCHEL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SAWEDOFF">WEAPON_SAWEDOFF</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SAWEDOFF">WEAPON_SAWEDOFF</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SHOTGSPA">WEAPON_SHOTGSPA</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SHOTGSPA">WEAPON_SHOTGSPA</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SHOTGUN">WEAPON_SHOTGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SHOTGUN">WEAPON_SHOTGUN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SHOVEL">WEAPON_SHOVEL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SHOVEL">WEAPON_SHOVEL</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SILENCED">WEAPON_SILENCED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SILENCED">WEAPON_SILENCED</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SNIPER">WEAPON_SNIPER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SNIPER">WEAPON_SNIPER</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SPRAYCAN">WEAPON_SPRAYCAN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_SPRAYCAN">WEAPON_SPRAYCAN</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_TEARGAS">WEAPON_TEARGAS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_TEARGAS">WEAPON_TEARGAS</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_TEC9">WEAPON_TEC9</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_TEC9">WEAPON_TEC9</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_UZI">WEAPON_UZI</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_UZI">WEAPON_UZI</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_VEHICLE">WEAPON_VEHICLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_VEHICLE">WEAPON_VEHICLE</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_VIBRATOR">WEAPON_VIBRATOR</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_VIBRATOR">WEAPON_VIBRATOR</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_VIBRATOR2">WEAPON_VIBRATOR2</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-WEAPON_VIBRATOR2">WEAPON_VIBRATOR2</a></span></li>
+</ul>
+</div>
+
+<div data-ice="typedefWrap">
+  <h2><a href="typedef/">Typedef</a></h2>
+  <ul>
+    
+  <li data-ice="typedefDoc"><span><a href="typedef/index.html#static-typedef-ArrowKeys">ArrowKeys</a></span></li>
+</ul>
+</div>
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">tmp/Events.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
+ * Events base class for subscribing to and firing events
+ * 
+ * @example 
+ * class MyObject extends Events { };
+ * $events = new MyObject();
+ * $events.on(&quot;test&quot;,function);
+ * $events.fire(&quot;test&quot;, args...);
+ * $events.off(&quot;test&quot;, function);
+ */
+export class Events {
+	/** Creates an events system | Should be extended */
+	constructor(){
+		/** @type {Object} */
+		this.ids = {};
+	}
+	
+/**
+ * Subscribe to an event
+ * @param {String}   event Event name
+ * @param {Function} fn    Event callback
+ */
+	on(event, fn){
+		this.addEvent(event,fn,-1);
+	}
+
+/**
+ * Subscribe to an event and unsubscribe after it has been fired once
+ * @param {String}   event Event name
+ * @param {Function} fn    Event callback		
+ */
+	one(event,fn){
+		this.addEvent(event,fn,0);
+	}
+/**
+ * Subscribe to an event and unsubscribe after a set amount of times
+ * @param {String}   event Event name
+ * @param {Function} fn    Event callback
+ * @param {Number}   times Times event can fire	
+ */
+	some(event,fn,times){
+		this.addEvent(event,fn,times-1);
+	}
+	
+/**
+ * Unsubscribe from an event
+ * @param {String}   event Event name
+ * @param {Function} fn    Function/Callback used to subscribe
+ */
+	off(event,fn){
+		if(this.ids[event])
+			for(var id in this.ids[event])
+				if(this.ids[event][id].fn == fn)
+					delete this.ids[event][id];
+	}
+	
+/**
+ * Add an event
+ * @param {String}   event Event name
+ * @param {Function} fn    Event callback
+ * @param {Number}   type  Event type (-1 infinite, 0 once, 0 &gt; times)
+ */
+	addEvent(event,fn,type){
+		if(!this.ids[event])this.ids[event] = [];
+		this.ids[event].push(new Event(event,fn,type));	
+	}
+
+/**
+ * Fire an event
+ * @param   {String}  event Event name
+ * @returns {Boolean} Returning 0 will cancel the event bubble
+ */
+	fire( event ){
+		var args = [];
+		for(var i in arguments){
+			if(i != 0) args.push(arguments[i]);
+		}
+		
+		for(var id in this.ids[event]){
+			var fn = this.ids[event][id].fn;
+			var ret = fn.apply(null, args);	
+			
+			if(this.ids[event][id].type == 0) delete this.ids[event][id];
+			else if(this.ids[event][id].type &gt; 0) this.ids[event][id].type--;
+
+			// This is a special case for PlayerCommandText and RconCommand so it returns correctly
+			if(event == &quot;PlayerCommandText&quot; || event == &quot;RconCommand&quot;){
+				if(ret === 1){
+					return 1;
+				}
+			} else {
+				if(ret === 0){
+					return 0;
+				}
+			}
+		}
+	}
+};</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.2)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,31 +1,63 @@
 {
-  "coverage": "65.45%",
-  "expectCount": 110,
-  "actualCount": 72,
+  "coverage": "58.8%",
+  "expectCount": 835,
+  "actualCount": 491,
   "files": {
-    "javascript/Buffer.js": {
+    "js/include/a_samp.inc.js": {
+      "expectCount": 236,
+      "actualCount": 116
+    },
+    "js/include/a_vehicles.inc.js": {
+      "expectCount": 68,
+      "actualCount": 42
+    },
+    "js/include/a_players.inc.js": {
+      "expectCount": 216,
+      "actualCount": 157
+    },
+    "js/include/a_actor.inc.js": {
+      "expectCount": 16,
+      "actualCount": 16
+    },
+    "js/include/a_objects.inc.js": {
+      "expectCount": 55,
+      "actualCount": 38
+    },
+    "js/include/Buffer.js": {
       "expectCount": 8,
       "actualCount": 8
     },
-    "javascript/Event.js": {
+    "js/include/Event.js": {
       "expectCount": 5,
       "actualCount": 5
     },
-    "javascript/Events.js": {
+    "js/include/Events.js": {
       "expectCount": 9,
       "actualCount": 9
     },
-    "javascript/FileSystem.js": {
+    "js/include/FileSystem.js": {
       "expectCount": 14,
       "actualCount": 14
     },
-    "javascript/SAMP/Player.js": {
-      "expectCount": 68,
-      "actualCount": 31
+    "js/include/a_npc.inc.js": {
+      "expectCount": 114,
+      "actualCount": 26
     },
-    "javascript/SAMP/Players.js": {
+    "js/include/a_http.inc.js": {
+      "expectCount": 10,
+      "actualCount": 1
+    },
+    "js/include/Player.js": {
+      "expectCount": 68,
+      "actualCount": 44
+    },
+    "js/include/Players.js": {
       "expectCount": 6,
       "actualCount": 5
+    },
+    "js/include/a_sampdb.inc.js": {
+      "expectCount": 10,
+      "actualCount": 10
     }
   }
 }

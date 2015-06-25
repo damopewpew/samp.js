@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">javascript/SAMP/Natives/a_actor.inc.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/javascript/Buffer.js~Buffer.html">Buffer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Event.js~Event.html">Event</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Events.js~Events.html">Events</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/FileSystem.js~FileSystem.html">FileSystem</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/SAMP/Player.js~Player.html">Player</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/SAMP/Players.js~Players.html">Players</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+<div data-ice="typedefWrap">
+  <h2><a href="typedef/">Typedef</a></h2>
+  <ul>
+    
+  <li data-ice="typedefDoc"><span><a href="typedef/index.html#static-typedef-ArrowKeys">ArrowKeys</a></span></li>
+</ul>
+</div>
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">javascript/SAMP/Natives/a_actor.inc.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
+ * CreateActor
+
+{@link https://wiki.sa-mp.com/wiki/CreateActor}
+
+ * @param {Number} modelid
+ * @param {Number} X
+ * @param {Number} Y
+ * @param {Number} Z
+ * @param {Number} Rotation
+ * @return {Number} retval
+
+*/
+function CreateActor( modelid, X, Y, Z, Rotation ){
+	return CallNative( &quot;CreateActor&quot;, &quot;iffff&quot;, modelid, X, Y, Z, Rotation );
+}
+/**
+ * DestroyActor
+
+{@link https://wiki.sa-mp.com/wiki/DestroyActor}
+
+ * @param {Number} actorid
+ * @return {Number} retval
+
+*/
+function DestroyActor( actorid ){
+	return CallNative( &quot;DestroyActor&quot;, &quot;i&quot;, actorid );
+}
+/**
+ * IsActorStreamedIn
+
+{@link https://wiki.sa-mp.com/wiki/IsActorStreamedIn}
+
+ * @param {Number} actorid
+ * @param {Number} forplayerid
+ * @return {Number} retval
+
+*/
+function IsActorStreamedIn( actorid, forplayerid ){
+	return CallNative( &quot;IsActorStreamedIn&quot;, &quot;ii&quot;, actorid, forplayerid );
+}
+/**
+ * SetActorVirtualWorld
+
+{@link https://wiki.sa-mp.com/wiki/SetActorVirtualWorld}
+
+ * @param {Number} actorid
+ * @param {Number} vworld
+ * @return {Number} retval
+
+*/
+function SetActorVirtualWorld( actorid, vworld ){
+	return CallNative( &quot;SetActorVirtualWorld&quot;, &quot;ii&quot;, actorid, vworld );
+}
+/**
+ * GetActorVirtualWorld
+
+{@link https://wiki.sa-mp.com/wiki/GetActorVirtualWorld}
+
+ * @param {Number} actorid
+ * @return {Number} retval
+
+*/
+function GetActorVirtualWorld( actorid ){
+	return CallNative( &quot;GetActorVirtualWorld&quot;, &quot;i&quot;, actorid );
+}
+/**
+ * ApplyActorAnimation
+
+{@link https://wiki.sa-mp.com/wiki/ApplyActorAnimation}
+
+ * @param {Number} actorid
+ * @param {String} animlib
+ * @param {String} animname
+ * @param {Number} fDelta
+ * @param {Number} loop
+ * @param {Number} lockx
+ * @param {Number} locky
+ * @param {Number} freeze
+ * @param {Number} time
+ * @return {Number} retval
+
+*/
+function ApplyActorAnimation( actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time ){
+	return CallNative( &quot;ApplyActorAnimation&quot;, &quot;issfiiiii&quot;, actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time );
+}
+/**
+ * ClearActorAnimations
+
+{@link https://wiki.sa-mp.com/wiki/ClearActorAnimations}
+
+ * @param {Number} actorid
+ * @return {Number} retval
+
+*/
+function ClearActorAnimations( actorid ){
+	return CallNative( &quot;ClearActorAnimations&quot;, &quot;i&quot;, actorid );
+}
+/**
+ * SetActorPos
+
+{@link https://wiki.sa-mp.com/wiki/SetActorPos}
+
+ * @param {Number} actorid
+ * @param {Number} X
+ * @param {Number} Y
+ * @param {Number} Z
+ * @return {Number} retval
+
+*/
+function SetActorPos( actorid, X, Y, Z ){
+	return CallNative( &quot;SetActorPos&quot;, &quot;ifff&quot;, actorid, X, Y, Z );
+}
+/**
+ * GetActorPos
+
+{@link https://wiki.sa-mp.com/wiki/GetActorPos}
+
+ * @param {Number} actorid
+ * @return {{ X: Number,  Y: Number,  Z: Number }}
+*/
+function GetActorPos( actorid ){
+	return CallNative( &quot;GetActorPos&quot;, &quot;iFFF&quot;, actorid, [ &quot;X&quot;, &quot;Y&quot;, &quot;Z&quot; ] );
+}
+/**
+ * SetActorFacingAngle
+
+{@link https://wiki.sa-mp.com/wiki/SetActorFacingAngle}
+
+ * @param {Number} actorid
+ * @param {Number} ang
+ * @return {Number} retval
+
+*/
+function SetActorFacingAngle( actorid, ang ){
+	return CallNative( &quot;SetActorFacingAngle&quot;, &quot;if&quot;, actorid, ang );
+}
+/**
+ * GetActorFacingAngle
+
+{@link https://wiki.sa-mp.com/wiki/GetActorFacingAngle}
+
+ * @param {Number} actorid
+ * @return {Number} ang
+*/
+function GetActorFacingAngle( actorid ){
+	return CallNative( &quot;GetActorFacingAngle&quot;, &quot;iF&quot;, actorid );
+}
+/**
+ * SetActorHealth
+
+{@link https://wiki.sa-mp.com/wiki/SetActorHealth}
+
+ * @param {Number} actorid
+ * @param {Number} health
+ * @return {Number} retval
+
+*/
+function SetActorHealth( actorid, health ){
+	return CallNative( &quot;SetActorHealth&quot;, &quot;if&quot;, actorid, health );
+}
+/**
+ * GetActorHealth
+
+{@link https://wiki.sa-mp.com/wiki/GetActorHealth}
+
+ * @param {Number} actorid
+ * @return {Number} health
+*/
+function GetActorHealth( actorid ){
+	return CallNative( &quot;GetActorHealth&quot;, &quot;iF&quot;, actorid );
+}
+/**
+ * SetActorInvulnerable
+
+{@link https://wiki.sa-mp.com/wiki/SetActorInvulnerable}
+
+ * @param {Number} actorid
+ * @param {Number} invulnerable
+ * @return {Number} retval
+
+*/
+function SetActorInvulnerable( actorid, invulnerable ){
+	invulnerable = typeof invulnerable !== &apos;undefined&apos; ? invulnerable : true;
+	return CallNative( &quot;SetActorInvulnerable&quot;, &quot;ii&quot;, actorid, invulnerable );
+}
+/**
+ * IsActorInvulnerable
+
+{@link https://wiki.sa-mp.com/wiki/IsActorInvulnerable}
+
+ * @param {Number} actorid
+ * @return {Number} retval
+
+*/
+function IsActorInvulnerable( actorid ){
+	return CallNative( &quot;IsActorInvulnerable&quot;, &quot;i&quot;, actorid );
+}
+/**
+ * IsValidActor
+
+{@link https://wiki.sa-mp.com/wiki/IsValidActor}
+
+ * @param {Number} actorid
+ * @return {Number} retval
+
+*/
+function IsValidActor( actorid ){
+	return CallNative( &quot;IsValidActor&quot;, &quot;i&quot;, actorid );
+}
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.2)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">javascript/SAMP/Natives/a_sampdb.inc.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/javascript/Buffer.js~Buffer.html">Buffer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Event.js~Event.html">Event</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/Events.js~Events.html">Events</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/FileSystem.js~FileSystem.html">FileSystem</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/SAMP/Player.js~Player.html">Player</a></span></li>
+<li data-ice="classDoc"><span><a href="class/javascript/SAMP/Players.js~Players.html">Players</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+<div data-ice="typedefWrap">
+  <h2><a href="typedef/">Typedef</a></h2>
+  <ul>
+    
+  <li data-ice="typedefDoc"><span><a href="typedef/index.html#static-typedef-ArrowKeys">ArrowKeys</a></span></li>
+</ul>
+</div>
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">javascript/SAMP/Natives/a_sampdb.inc.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
+ * db_open
+
+{@link https://wiki.sa-mp.com/wiki/db_open}
+
+ * @param {String} name
+ * @return {Number} retval
+
+*/
+function db_open( name ){
+	return CallNative( &quot;db_open&quot;, &quot;s&quot;, name );
+}
+/**
+ * db_close
+
+{@link https://wiki.sa-mp.com/wiki/db_close}
+
+ * @param {Number} db
+ * @return {Number} retval
+
+*/
+function db_close( db ){
+	return CallNative( &quot;db_close&quot;, &quot;i&quot;, db );
+}
+/**
+ * db_query
+
+{@link https://wiki.sa-mp.com/wiki/db_query}
+
+ * @param {Number} db
+ * @param {String} query
+ * @return {Number} retval
+
+*/
+function db_query( db, query ){
+	return CallNative( &quot;db_query&quot;, &quot;is&quot;, db, query );
+}
+/**
+ * db_free_result
+
+{@link https://wiki.sa-mp.com/wiki/db_free_result}
+
+ * @param {Number} dbresult
+ * @return {Number} retval
+
+*/
+function db_free_result( dbresult ){
+	return CallNative( &quot;db_free_result&quot;, &quot;i&quot;, dbresult );
+}
+/**
+ * db_num_rows
+
+{@link https://wiki.sa-mp.com/wiki/db_num_rows}
+
+ * @param {Number} dbresult
+ * @return {Number} retval
+
+*/
+function db_num_rows( dbresult ){
+	return CallNative( &quot;db_num_rows&quot;, &quot;i&quot;, dbresult );
+}
+/**
+ * db_next_row
+
+{@link https://wiki.sa-mp.com/wiki/db_next_row}
+
+ * @param {Number} dbresult
+ * @return {Number} retval
+
+*/
+function db_next_row( dbresult ){
+	return CallNative( &quot;db_next_row&quot;, &quot;i&quot;, dbresult );
+}
+/**
+ * db_num_fields
+
+{@link https://wiki.sa-mp.com/wiki/db_num_fields}
+
+ * @param {Number} dbresult
+ * @return {Number} retval
+
+*/
+function db_num_fields( dbresult ){
+	return CallNative( &quot;db_num_fields&quot;, &quot;i&quot;, dbresult );
+}
+/**
+ * db_field_name
+
+{@link https://wiki.sa-mp.com/wiki/db_field_name}
+
+ * @param {Number} dbresult
+ * @param {Number} field
+ * @param {String} result
+ * @param {Number} maxlength
+ * @return {Number} retval
+
+*/
+function db_field_name( dbresult, field, result, maxlength ){
+	return CallNative( &quot;db_field_name&quot;, &quot;iisi&quot;, dbresult, field, result, maxlength );
+}
+/**
+ * db_get_field
+
+{@link https://wiki.sa-mp.com/wiki/db_get_field}
+
+ * @param {Number} dbresult
+ * @param {Number} field
+ * @param {String} result
+ * @param {Number} maxlength
+ * @return {Number} retval
+
+*/
+function db_get_field( dbresult, field, result, maxlength ){
+	return CallNative( &quot;db_get_field&quot;, &quot;iisi&quot;, dbresult, field, result, maxlength );
+}
+/**
+ * db_get_field_assoc
+
+{@link https://wiki.sa-mp.com/wiki/db_get_field_assoc}
+
+ * @param {Number} dbresult
+ * @param {String} field
+ * @param {String} result
+ * @param {Number} maxlength
+ * @return {Number} retval
+
+*/
+function db_get_field_assoc( dbresult, field, result, maxlength ){
+	return CallNative( &quot;db_get_field_assoc&quot;, &quot;issi&quot;, dbresult, field, result, maxlength );
+}
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.2)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

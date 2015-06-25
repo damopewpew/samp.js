@@ -1,0 +1,5808 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "CreateActor",
+          "range": [
+            242,
+            253
+          ],
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 16
+            },
+            "end": {
+              "line": 11,
+              "column": 27
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "modelid",
+            "range": [
+              255,
+              262
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 29
+              },
+              "end": {
+                "line": 11,
+                "column": 36
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "X",
+            "range": [
+              264,
+              265
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 38
+              },
+              "end": {
+                "line": 11,
+                "column": 39
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "Y",
+            "range": [
+              267,
+              268
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 41
+              },
+              "end": {
+                "line": 11,
+                "column": 42
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "Z",
+            "range": [
+              270,
+              271
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 44
+              },
+              "end": {
+                "line": 11,
+                "column": 45
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "Rotation",
+            "range": [
+              273,
+              281
+            ],
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 47
+              },
+              "end": {
+                "line": 11,
+                "column": 55
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    294,
+                    304
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "CreateActor",
+                    "raw": "\"CreateActor\"",
+                    "range": [
+                      306,
+                      319
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 33
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "iffff",
+                    "raw": "\"iffff\"",
+                    "range": [
+                      321,
+                      328
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 35
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "modelid",
+                    "range": [
+                      330,
+                      337
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 51
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "X",
+                    "range": [
+                      339,
+                      340
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 53
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 54
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "Y",
+                    "range": [
+                      342,
+                      343
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 56
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 57
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "Z",
+                    "range": [
+                      345,
+                      346
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 59
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 60
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "Rotation",
+                    "range": [
+                      348,
+                      356
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 62
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 70
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  294,
+                  358
+                ],
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 72
+                  }
+                }
+              },
+              "range": [
+                287,
+                359
+              ],
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 1
+                },
+                "end": {
+                  "line": 12,
+                  "column": 73
+                }
+              }
+            }
+          ],
+          "range": [
+            283,
+            362
+          ],
+          "loc": {
+            "start": {
+              "line": 11,
+              "column": 57
+            },
+            "end": {
+              "line": 13,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          233,
+          362
+        ],
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 7
+          },
+          "end": {
+            "line": 13,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * CreateActor\r\n * @see https://wiki.sa-mp.com/wiki/CreateActor\r\n * @param {Number} modelid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @param {Number} Rotation\r\n * @return {Number} retval\r\n ",
+            "range": [
+              0,
+              224
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 0
+              },
+              "end": {
+                "line": 10,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * DestroyActor\r\n * @see https://wiki.sa-mp.com/wiki/DestroyActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              364,
+              495
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        226,
+        362
+      ],
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * CreateActor\r\n * @see https://wiki.sa-mp.com/wiki/CreateActor\r\n * @param {Number} modelid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @param {Number} Rotation\r\n * @return {Number} retval\r\n ",
+          "range": [
+            0,
+            224
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 0
+            },
+            "end": {
+              "line": 10,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * DestroyActor\r\n * @see https://wiki.sa-mp.com/wiki/DestroyActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            364,
+            495
+          ],
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "DestroyActor",
+          "range": [
+            513,
+            525
+          ],
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 16
+            },
+            "end": {
+              "line": 20,
+              "column": 28
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              527,
+              534
+            ],
+            "loc": {
+              "start": {
+                "line": 20,
+                "column": 30
+              },
+              "end": {
+                "line": 20,
+                "column": 37
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    547,
+                    557
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 21,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 21,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "DestroyActor",
+                    "raw": "\"DestroyActor\"",
+                    "range": [
+                      559,
+                      573
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 21,
+                        "column": 34
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "i",
+                    "raw": "\"i\"",
+                    "range": [
+                      575,
+                      578
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 36
+                      },
+                      "end": {
+                        "line": 21,
+                        "column": 39
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      580,
+                      587
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 21,
+                        "column": 41
+                      },
+                      "end": {
+                        "line": 21,
+                        "column": 48
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  547,
+                  589
+                ],
+                "loc": {
+                  "start": {
+                    "line": 21,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 21,
+                    "column": 50
+                  }
+                }
+              },
+              "range": [
+                540,
+                590
+              ],
+              "loc": {
+                "start": {
+                  "line": 21,
+                  "column": 1
+                },
+                "end": {
+                  "line": 21,
+                  "column": 51
+                }
+              }
+            }
+          ],
+          "range": [
+            536,
+            593
+          ],
+          "loc": {
+            "start": {
+              "line": 20,
+              "column": 39
+            },
+            "end": {
+              "line": 22,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          504,
+          593
+        ],
+        "loc": {
+          "start": {
+            "line": 20,
+            "column": 7
+          },
+          "end": {
+            "line": 22,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * DestroyActor\r\n * @see https://wiki.sa-mp.com/wiki/DestroyActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              364,
+              495
+            ],
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 0
+              },
+              "end": {
+                "line": 19,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * IsActorStreamedIn\r\n * @see https://wiki.sa-mp.com/wiki/IsActorStreamedIn\r\n * @param {Number} actorid\r\n * @param {Number} forplayerid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              595,
+              768
+            ],
+            "loc": {
+              "start": {
+                "line": 23,
+                "column": 0
+              },
+              "end": {
+                "line": 29,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        497,
+        593
+      ],
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * DestroyActor\r\n * @see https://wiki.sa-mp.com/wiki/DestroyActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            364,
+            495
+          ],
+          "loc": {
+            "start": {
+              "line": 14,
+              "column": 0
+            },
+            "end": {
+              "line": 19,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * IsActorStreamedIn\r\n * @see https://wiki.sa-mp.com/wiki/IsActorStreamedIn\r\n * @param {Number} actorid\r\n * @param {Number} forplayerid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            595,
+            768
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 0
+            },
+            "end": {
+              "line": 29,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "IsActorStreamedIn",
+          "range": [
+            786,
+            803
+          ],
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 16
+            },
+            "end": {
+              "line": 30,
+              "column": 33
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              805,
+              812
+            ],
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 35
+              },
+              "end": {
+                "line": 30,
+                "column": 42
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "forplayerid",
+            "range": [
+              814,
+              825
+            ],
+            "loc": {
+              "start": {
+                "line": 30,
+                "column": 44
+              },
+              "end": {
+                "line": 30,
+                "column": 55
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    838,
+                    848
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 31,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 31,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "IsActorStreamedIn",
+                    "raw": "\"IsActorStreamedIn\"",
+                    "range": [
+                      850,
+                      869
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 31,
+                        "column": 39
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "ii",
+                    "raw": "\"ii\"",
+                    "range": [
+                      871,
+                      875
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 41
+                      },
+                      "end": {
+                        "line": 31,
+                        "column": 45
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      877,
+                      884
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 47
+                      },
+                      "end": {
+                        "line": 31,
+                        "column": 54
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "forplayerid",
+                    "range": [
+                      886,
+                      897
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 31,
+                        "column": 56
+                      },
+                      "end": {
+                        "line": 31,
+                        "column": 67
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  838,
+                  899
+                ],
+                "loc": {
+                  "start": {
+                    "line": 31,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 31,
+                    "column": 69
+                  }
+                }
+              },
+              "range": [
+                831,
+                900
+              ],
+              "loc": {
+                "start": {
+                  "line": 31,
+                  "column": 1
+                },
+                "end": {
+                  "line": 31,
+                  "column": 70
+                }
+              }
+            }
+          ],
+          "range": [
+            827,
+            903
+          ],
+          "loc": {
+            "start": {
+              "line": 30,
+              "column": 57
+            },
+            "end": {
+              "line": 32,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          777,
+          903
+        ],
+        "loc": {
+          "start": {
+            "line": 30,
+            "column": 7
+          },
+          "end": {
+            "line": 32,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * IsActorStreamedIn\r\n * @see https://wiki.sa-mp.com/wiki/IsActorStreamedIn\r\n * @param {Number} actorid\r\n * @param {Number} forplayerid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              595,
+              768
+            ],
+            "loc": {
+              "start": {
+                "line": 23,
+                "column": 0
+              },
+              "end": {
+                "line": 29,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/SetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @param {Number} vworld\r\n * @return {Number} retval\r\n ",
+            "range": [
+              905,
+              1079
+            ],
+            "loc": {
+              "start": {
+                "line": 33,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        770,
+        903
+      ],
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 0
+        },
+        "end": {
+          "line": 32,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * IsActorStreamedIn\r\n * @see https://wiki.sa-mp.com/wiki/IsActorStreamedIn\r\n * @param {Number} actorid\r\n * @param {Number} forplayerid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            595,
+            768
+          ],
+          "loc": {
+            "start": {
+              "line": 23,
+              "column": 0
+            },
+            "end": {
+              "line": 29,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/SetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @param {Number} vworld\r\n * @return {Number} retval\r\n ",
+          "range": [
+            905,
+            1079
+          ],
+          "loc": {
+            "start": {
+              "line": 33,
+              "column": 0
+            },
+            "end": {
+              "line": 39,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "SetActorVirtualWorld",
+          "range": [
+            1097,
+            1117
+          ],
+          "loc": {
+            "start": {
+              "line": 40,
+              "column": 16
+            },
+            "end": {
+              "line": 40,
+              "column": 36
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              1119,
+              1126
+            ],
+            "loc": {
+              "start": {
+                "line": 40,
+                "column": 38
+              },
+              "end": {
+                "line": 40,
+                "column": 45
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "vworld",
+            "range": [
+              1128,
+              1134
+            ],
+            "loc": {
+              "start": {
+                "line": 40,
+                "column": 47
+              },
+              "end": {
+                "line": 40,
+                "column": 53
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    1147,
+                    1157
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 41,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 41,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "SetActorVirtualWorld",
+                    "raw": "\"SetActorVirtualWorld\"",
+                    "range": [
+                      1159,
+                      1181
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "ii",
+                    "raw": "\"ii\"",
+                    "range": [
+                      1183,
+                      1187
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 48
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      1189,
+                      1196
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 50
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 57
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "vworld",
+                    "range": [
+                      1198,
+                      1204
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 41,
+                        "column": 59
+                      },
+                      "end": {
+                        "line": 41,
+                        "column": 65
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  1147,
+                  1206
+                ],
+                "loc": {
+                  "start": {
+                    "line": 41,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 41,
+                    "column": 67
+                  }
+                }
+              },
+              "range": [
+                1140,
+                1207
+              ],
+              "loc": {
+                "start": {
+                  "line": 41,
+                  "column": 1
+                },
+                "end": {
+                  "line": 41,
+                  "column": 68
+                }
+              }
+            }
+          ],
+          "range": [
+            1136,
+            1210
+          ],
+          "loc": {
+            "start": {
+              "line": 40,
+              "column": 55
+            },
+            "end": {
+              "line": 42,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          1088,
+          1210
+        ],
+        "loc": {
+          "start": {
+            "line": 40,
+            "column": 7
+          },
+          "end": {
+            "line": 42,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/SetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @param {Number} vworld\r\n * @return {Number} retval\r\n ",
+            "range": [
+              905,
+              1079
+            ],
+            "loc": {
+              "start": {
+                "line": 33,
+                "column": 0
+              },
+              "end": {
+                "line": 39,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/GetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              1212,
+              1359
+            ],
+            "loc": {
+              "start": {
+                "line": 43,
+                "column": 0
+              },
+              "end": {
+                "line": 48,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1081,
+        1210
+      ],
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 0
+        },
+        "end": {
+          "line": 42,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/SetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @param {Number} vworld\r\n * @return {Number} retval\r\n ",
+          "range": [
+            905,
+            1079
+          ],
+          "loc": {
+            "start": {
+              "line": 33,
+              "column": 0
+            },
+            "end": {
+              "line": 39,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/GetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            1212,
+            1359
+          ],
+          "loc": {
+            "start": {
+              "line": 43,
+              "column": 0
+            },
+            "end": {
+              "line": 48,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "GetActorVirtualWorld",
+          "range": [
+            1377,
+            1397
+          ],
+          "loc": {
+            "start": {
+              "line": 49,
+              "column": 16
+            },
+            "end": {
+              "line": 49,
+              "column": 36
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              1399,
+              1406
+            ],
+            "loc": {
+              "start": {
+                "line": 49,
+                "column": 38
+              },
+              "end": {
+                "line": 49,
+                "column": 45
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    1419,
+                    1429
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 50,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 50,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "GetActorVirtualWorld",
+                    "raw": "\"GetActorVirtualWorld\"",
+                    "range": [
+                      1431,
+                      1453
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 50,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 50,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "i",
+                    "raw": "\"i\"",
+                    "range": [
+                      1455,
+                      1458
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 50,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 50,
+                        "column": 47
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      1460,
+                      1467
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 50,
+                        "column": 49
+                      },
+                      "end": {
+                        "line": 50,
+                        "column": 56
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  1419,
+                  1469
+                ],
+                "loc": {
+                  "start": {
+                    "line": 50,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 50,
+                    "column": 58
+                  }
+                }
+              },
+              "range": [
+                1412,
+                1470
+              ],
+              "loc": {
+                "start": {
+                  "line": 50,
+                  "column": 1
+                },
+                "end": {
+                  "line": 50,
+                  "column": 59
+                }
+              }
+            }
+          ],
+          "range": [
+            1408,
+            1473
+          ],
+          "loc": {
+            "start": {
+              "line": 49,
+              "column": 47
+            },
+            "end": {
+              "line": 51,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          1368,
+          1473
+        ],
+        "loc": {
+          "start": {
+            "line": 49,
+            "column": 7
+          },
+          "end": {
+            "line": 51,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/GetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              1212,
+              1359
+            ],
+            "loc": {
+              "start": {
+                "line": 43,
+                "column": 0
+              },
+              "end": {
+                "line": 48,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * ApplyActorAnimation\r\n * @see https://wiki.sa-mp.com/wiki/ApplyActorAnimation\r\n * @param {Number} actorid\r\n * @param {String} animlib\r\n * @param {String} animname\r\n * @param {Number} fDelta\r\n * @param {Number} loop\r\n * @param {Number} lockx\r\n * @param {Number} locky\r\n * @param {Number} freeze\r\n * @param {Number} time\r\n * @return {Number} retval\r\n ",
+            "range": [
+              1475,
+              1833
+            ],
+            "loc": {
+              "start": {
+                "line": 52,
+                "column": 0
+              },
+              "end": {
+                "line": 65,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1361,
+        1473
+      ],
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 0
+        },
+        "end": {
+          "line": 51,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/GetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            1212,
+            1359
+          ],
+          "loc": {
+            "start": {
+              "line": 43,
+              "column": 0
+            },
+            "end": {
+              "line": 48,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * ApplyActorAnimation\r\n * @see https://wiki.sa-mp.com/wiki/ApplyActorAnimation\r\n * @param {Number} actorid\r\n * @param {String} animlib\r\n * @param {String} animname\r\n * @param {Number} fDelta\r\n * @param {Number} loop\r\n * @param {Number} lockx\r\n * @param {Number} locky\r\n * @param {Number} freeze\r\n * @param {Number} time\r\n * @return {Number} retval\r\n ",
+          "range": [
+            1475,
+            1833
+          ],
+          "loc": {
+            "start": {
+              "line": 52,
+              "column": 0
+            },
+            "end": {
+              "line": 65,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "ApplyActorAnimation",
+          "range": [
+            1851,
+            1870
+          ],
+          "loc": {
+            "start": {
+              "line": 66,
+              "column": 16
+            },
+            "end": {
+              "line": 66,
+              "column": 35
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              1872,
+              1879
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 37
+              },
+              "end": {
+                "line": 66,
+                "column": 44
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "animlib",
+            "range": [
+              1881,
+              1888
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 46
+              },
+              "end": {
+                "line": 66,
+                "column": 53
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "animname",
+            "range": [
+              1890,
+              1898
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 55
+              },
+              "end": {
+                "line": 66,
+                "column": 63
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "fDelta",
+            "range": [
+              1900,
+              1906
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 65
+              },
+              "end": {
+                "line": 66,
+                "column": 71
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "loop",
+            "range": [
+              1908,
+              1912
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 73
+              },
+              "end": {
+                "line": 66,
+                "column": 77
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "lockx",
+            "range": [
+              1914,
+              1919
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 79
+              },
+              "end": {
+                "line": 66,
+                "column": 84
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "locky",
+            "range": [
+              1921,
+              1926
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 86
+              },
+              "end": {
+                "line": 66,
+                "column": 91
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "freeze",
+            "range": [
+              1928,
+              1934
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 93
+              },
+              "end": {
+                "line": 66,
+                "column": 99
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "time",
+            "range": [
+              1936,
+              1940
+            ],
+            "loc": {
+              "start": {
+                "line": 66,
+                "column": 101
+              },
+              "end": {
+                "line": 66,
+                "column": 105
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    1953,
+                    1963
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 67,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 67,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "ApplyActorAnimation",
+                    "raw": "\"ApplyActorAnimation\"",
+                    "range": [
+                      1965,
+                      1986
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 41
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "issfiiiii",
+                    "raw": "\"issfiiiii\"",
+                    "range": [
+                      1988,
+                      1999
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 54
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      2001,
+                      2008
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 56
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 63
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "animlib",
+                    "range": [
+                      2010,
+                      2017
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 65
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 72
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "animname",
+                    "range": [
+                      2019,
+                      2027
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 74
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 82
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "fDelta",
+                    "range": [
+                      2029,
+                      2035
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 84
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 90
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "loop",
+                    "range": [
+                      2037,
+                      2041
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 92
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 96
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "lockx",
+                    "range": [
+                      2043,
+                      2048
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 98
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 103
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "locky",
+                    "range": [
+                      2050,
+                      2055
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 105
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 110
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "freeze",
+                    "range": [
+                      2057,
+                      2063
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 112
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 118
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "time",
+                    "range": [
+                      2065,
+                      2069
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 67,
+                        "column": 120
+                      },
+                      "end": {
+                        "line": 67,
+                        "column": 124
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  1953,
+                  2071
+                ],
+                "loc": {
+                  "start": {
+                    "line": 67,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 67,
+                    "column": 126
+                  }
+                }
+              },
+              "range": [
+                1946,
+                2072
+              ],
+              "loc": {
+                "start": {
+                  "line": 67,
+                  "column": 1
+                },
+                "end": {
+                  "line": 67,
+                  "column": 127
+                }
+              }
+            }
+          ],
+          "range": [
+            1942,
+            2075
+          ],
+          "loc": {
+            "start": {
+              "line": 66,
+              "column": 107
+            },
+            "end": {
+              "line": 68,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          1842,
+          2075
+        ],
+        "loc": {
+          "start": {
+            "line": 66,
+            "column": 7
+          },
+          "end": {
+            "line": 68,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * ApplyActorAnimation\r\n * @see https://wiki.sa-mp.com/wiki/ApplyActorAnimation\r\n * @param {Number} actorid\r\n * @param {String} animlib\r\n * @param {String} animname\r\n * @param {Number} fDelta\r\n * @param {Number} loop\r\n * @param {Number} lockx\r\n * @param {Number} locky\r\n * @param {Number} freeze\r\n * @param {Number} time\r\n * @return {Number} retval\r\n ",
+            "range": [
+              1475,
+              1833
+            ],
+            "loc": {
+              "start": {
+                "line": 52,
+                "column": 0
+              },
+              "end": {
+                "line": 65,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * ClearActorAnimations\r\n * @see https://wiki.sa-mp.com/wiki/ClearActorAnimations\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              2077,
+              2224
+            ],
+            "loc": {
+              "start": {
+                "line": 69,
+                "column": 0
+              },
+              "end": {
+                "line": 74,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        1835,
+        2075
+      ],
+      "loc": {
+        "start": {
+          "line": 66,
+          "column": 0
+        },
+        "end": {
+          "line": 68,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * ApplyActorAnimation\r\n * @see https://wiki.sa-mp.com/wiki/ApplyActorAnimation\r\n * @param {Number} actorid\r\n * @param {String} animlib\r\n * @param {String} animname\r\n * @param {Number} fDelta\r\n * @param {Number} loop\r\n * @param {Number} lockx\r\n * @param {Number} locky\r\n * @param {Number} freeze\r\n * @param {Number} time\r\n * @return {Number} retval\r\n ",
+          "range": [
+            1475,
+            1833
+          ],
+          "loc": {
+            "start": {
+              "line": 52,
+              "column": 0
+            },
+            "end": {
+              "line": 65,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * ClearActorAnimations\r\n * @see https://wiki.sa-mp.com/wiki/ClearActorAnimations\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            2077,
+            2224
+          ],
+          "loc": {
+            "start": {
+              "line": 69,
+              "column": 0
+            },
+            "end": {
+              "line": 74,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "ClearActorAnimations",
+          "range": [
+            2242,
+            2262
+          ],
+          "loc": {
+            "start": {
+              "line": 75,
+              "column": 16
+            },
+            "end": {
+              "line": 75,
+              "column": 36
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              2264,
+              2271
+            ],
+            "loc": {
+              "start": {
+                "line": 75,
+                "column": 38
+              },
+              "end": {
+                "line": 75,
+                "column": 45
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    2284,
+                    2294
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 76,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 76,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "ClearActorAnimations",
+                    "raw": "\"ClearActorAnimations\"",
+                    "range": [
+                      2296,
+                      2318
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 76,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 76,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "i",
+                    "raw": "\"i\"",
+                    "range": [
+                      2320,
+                      2323
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 76,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 76,
+                        "column": 47
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      2325,
+                      2332
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 76,
+                        "column": 49
+                      },
+                      "end": {
+                        "line": 76,
+                        "column": 56
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  2284,
+                  2334
+                ],
+                "loc": {
+                  "start": {
+                    "line": 76,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 76,
+                    "column": 58
+                  }
+                }
+              },
+              "range": [
+                2277,
+                2335
+              ],
+              "loc": {
+                "start": {
+                  "line": 76,
+                  "column": 1
+                },
+                "end": {
+                  "line": 76,
+                  "column": 59
+                }
+              }
+            }
+          ],
+          "range": [
+            2273,
+            2338
+          ],
+          "loc": {
+            "start": {
+              "line": 75,
+              "column": 47
+            },
+            "end": {
+              "line": 77,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          2233,
+          2338
+        ],
+        "loc": {
+          "start": {
+            "line": 75,
+            "column": 7
+          },
+          "end": {
+            "line": 77,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * ClearActorAnimations\r\n * @see https://wiki.sa-mp.com/wiki/ClearActorAnimations\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              2077,
+              2224
+            ],
+            "loc": {
+              "start": {
+                "line": 69,
+                "column": 0
+              },
+              "end": {
+                "line": 74,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/SetActorPos\r\n * @param {Number} actorid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @return {Number} retval\r\n ",
+            "range": [
+              2340,
+              2535
+            ],
+            "loc": {
+              "start": {
+                "line": 78,
+                "column": 0
+              },
+              "end": {
+                "line": 86,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        2226,
+        2338
+      ],
+      "loc": {
+        "start": {
+          "line": 75,
+          "column": 0
+        },
+        "end": {
+          "line": 77,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * ClearActorAnimations\r\n * @see https://wiki.sa-mp.com/wiki/ClearActorAnimations\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            2077,
+            2224
+          ],
+          "loc": {
+            "start": {
+              "line": 69,
+              "column": 0
+            },
+            "end": {
+              "line": 74,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/SetActorPos\r\n * @param {Number} actorid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @return {Number} retval\r\n ",
+          "range": [
+            2340,
+            2535
+          ],
+          "loc": {
+            "start": {
+              "line": 78,
+              "column": 0
+            },
+            "end": {
+              "line": 86,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "SetActorPos",
+          "range": [
+            2553,
+            2564
+          ],
+          "loc": {
+            "start": {
+              "line": 87,
+              "column": 16
+            },
+            "end": {
+              "line": 87,
+              "column": 27
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              2566,
+              2573
+            ],
+            "loc": {
+              "start": {
+                "line": 87,
+                "column": 29
+              },
+              "end": {
+                "line": 87,
+                "column": 36
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "X",
+            "range": [
+              2575,
+              2576
+            ],
+            "loc": {
+              "start": {
+                "line": 87,
+                "column": 38
+              },
+              "end": {
+                "line": 87,
+                "column": 39
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "Y",
+            "range": [
+              2578,
+              2579
+            ],
+            "loc": {
+              "start": {
+                "line": 87,
+                "column": 41
+              },
+              "end": {
+                "line": 87,
+                "column": 42
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "Z",
+            "range": [
+              2581,
+              2582
+            ],
+            "loc": {
+              "start": {
+                "line": 87,
+                "column": 44
+              },
+              "end": {
+                "line": 87,
+                "column": 45
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    2595,
+                    2605
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 88,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 88,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "SetActorPos",
+                    "raw": "\"SetActorPos\"",
+                    "range": [
+                      2607,
+                      2620
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 33
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "ifff",
+                    "raw": "\"ifff\"",
+                    "range": [
+                      2622,
+                      2628
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 35
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 41
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      2630,
+                      2637
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 50
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "X",
+                    "range": [
+                      2639,
+                      2640
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 52
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 53
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "Y",
+                    "range": [
+                      2642,
+                      2643
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 55
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 56
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "Z",
+                    "range": [
+                      2645,
+                      2646
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 88,
+                        "column": 58
+                      },
+                      "end": {
+                        "line": 88,
+                        "column": 59
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  2595,
+                  2648
+                ],
+                "loc": {
+                  "start": {
+                    "line": 88,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 88,
+                    "column": 61
+                  }
+                }
+              },
+              "range": [
+                2588,
+                2649
+              ],
+              "loc": {
+                "start": {
+                  "line": 88,
+                  "column": 1
+                },
+                "end": {
+                  "line": 88,
+                  "column": 62
+                }
+              }
+            }
+          ],
+          "range": [
+            2584,
+            2652
+          ],
+          "loc": {
+            "start": {
+              "line": 87,
+              "column": 47
+            },
+            "end": {
+              "line": 89,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          2544,
+          2652
+        ],
+        "loc": {
+          "start": {
+            "line": 87,
+            "column": 7
+          },
+          "end": {
+            "line": 89,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/SetActorPos\r\n * @param {Number} actorid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @return {Number} retval\r\n ",
+            "range": [
+              2340,
+              2535
+            ],
+            "loc": {
+              "start": {
+                "line": 78,
+                "column": 0
+              },
+              "end": {
+                "line": 86,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/GetActorPos\r\n * @param {Number} actorid\r\n * @return {{ X: Number,  Y: Number,  Z: Number }}\r\n ",
+            "range": [
+              2654,
+              2807
+            ],
+            "loc": {
+              "start": {
+                "line": 90,
+                "column": 0
+              },
+              "end": {
+                "line": 95,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        2537,
+        2652
+      ],
+      "loc": {
+        "start": {
+          "line": 87,
+          "column": 0
+        },
+        "end": {
+          "line": 89,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/SetActorPos\r\n * @param {Number} actorid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @return {Number} retval\r\n ",
+          "range": [
+            2340,
+            2535
+          ],
+          "loc": {
+            "start": {
+              "line": 78,
+              "column": 0
+            },
+            "end": {
+              "line": 86,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/GetActorPos\r\n * @param {Number} actorid\r\n * @return {{ X: Number,  Y: Number,  Z: Number }}\r\n ",
+          "range": [
+            2654,
+            2807
+          ],
+          "loc": {
+            "start": {
+              "line": 90,
+              "column": 0
+            },
+            "end": {
+              "line": 95,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "GetActorPos",
+          "range": [
+            2825,
+            2836
+          ],
+          "loc": {
+            "start": {
+              "line": 96,
+              "column": 16
+            },
+            "end": {
+              "line": 96,
+              "column": 27
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              2838,
+              2845
+            ],
+            "loc": {
+              "start": {
+                "line": 96,
+                "column": 29
+              },
+              "end": {
+                "line": 96,
+                "column": 36
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    2858,
+                    2868
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 97,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 97,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "GetActorPos",
+                    "raw": "\"GetActorPos\"",
+                    "range": [
+                      2870,
+                      2883
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 97,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 97,
+                        "column": 33
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "iFFF",
+                    "raw": "\"iFFF\"",
+                    "range": [
+                      2885,
+                      2891
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 97,
+                        "column": 35
+                      },
+                      "end": {
+                        "line": 97,
+                        "column": 41
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      2893,
+                      2900
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 97,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 97,
+                        "column": 50
+                      }
+                    }
+                  },
+                  {
+                    "type": "ArrayExpression",
+                    "elements": [
+                      {
+                        "type": "Literal",
+                        "value": "X",
+                        "raw": "\"X\"",
+                        "range": [
+                          2904,
+                          2907
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 97,
+                            "column": 54
+                          },
+                          "end": {
+                            "line": 97,
+                            "column": 57
+                          }
+                        }
+                      },
+                      {
+                        "type": "Literal",
+                        "value": "Y",
+                        "raw": "\"Y\"",
+                        "range": [
+                          2909,
+                          2912
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 97,
+                            "column": 59
+                          },
+                          "end": {
+                            "line": 97,
+                            "column": 62
+                          }
+                        }
+                      },
+                      {
+                        "type": "Literal",
+                        "value": "Z",
+                        "raw": "\"Z\"",
+                        "range": [
+                          2914,
+                          2917
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 97,
+                            "column": 64
+                          },
+                          "end": {
+                            "line": 97,
+                            "column": 67
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      2902,
+                      2919
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 97,
+                        "column": 52
+                      },
+                      "end": {
+                        "line": 97,
+                        "column": 69
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  2858,
+                  2921
+                ],
+                "loc": {
+                  "start": {
+                    "line": 97,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 97,
+                    "column": 71
+                  }
+                }
+              },
+              "range": [
+                2851,
+                2922
+              ],
+              "loc": {
+                "start": {
+                  "line": 97,
+                  "column": 1
+                },
+                "end": {
+                  "line": 97,
+                  "column": 72
+                }
+              }
+            }
+          ],
+          "range": [
+            2847,
+            2925
+          ],
+          "loc": {
+            "start": {
+              "line": 96,
+              "column": 38
+            },
+            "end": {
+              "line": 98,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          2816,
+          2925
+        ],
+        "loc": {
+          "start": {
+            "line": 96,
+            "column": 7
+          },
+          "end": {
+            "line": 98,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/GetActorPos\r\n * @param {Number} actorid\r\n * @return {{ X: Number,  Y: Number,  Z: Number }}\r\n ",
+            "range": [
+              2654,
+              2807
+            ],
+            "loc": {
+              "start": {
+                "line": 90,
+                "column": 0
+              },
+              "end": {
+                "line": 95,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/SetActorFacingAngle\r\n * @param {Number} actorid\r\n * @param {Number} ang\r\n * @return {Number} retval\r\n ",
+            "range": [
+              2927,
+              3096
+            ],
+            "loc": {
+              "start": {
+                "line": 99,
+                "column": 0
+              },
+              "end": {
+                "line": 105,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        2809,
+        2925
+      ],
+      "loc": {
+        "start": {
+          "line": 96,
+          "column": 0
+        },
+        "end": {
+          "line": 98,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/GetActorPos\r\n * @param {Number} actorid\r\n * @return {{ X: Number,  Y: Number,  Z: Number }}\r\n ",
+          "range": [
+            2654,
+            2807
+          ],
+          "loc": {
+            "start": {
+              "line": 90,
+              "column": 0
+            },
+            "end": {
+              "line": 95,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/SetActorFacingAngle\r\n * @param {Number} actorid\r\n * @param {Number} ang\r\n * @return {Number} retval\r\n ",
+          "range": [
+            2927,
+            3096
+          ],
+          "loc": {
+            "start": {
+              "line": 99,
+              "column": 0
+            },
+            "end": {
+              "line": 105,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "SetActorFacingAngle",
+          "range": [
+            3114,
+            3133
+          ],
+          "loc": {
+            "start": {
+              "line": 106,
+              "column": 16
+            },
+            "end": {
+              "line": 106,
+              "column": 35
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              3135,
+              3142
+            ],
+            "loc": {
+              "start": {
+                "line": 106,
+                "column": 37
+              },
+              "end": {
+                "line": 106,
+                "column": 44
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "ang",
+            "range": [
+              3144,
+              3147
+            ],
+            "loc": {
+              "start": {
+                "line": 106,
+                "column": 46
+              },
+              "end": {
+                "line": 106,
+                "column": 49
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    3160,
+                    3170
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 107,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 107,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "SetActorFacingAngle",
+                    "raw": "\"SetActorFacingAngle\"",
+                    "range": [
+                      3172,
+                      3193
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 107,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 107,
+                        "column": 41
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "if",
+                    "raw": "\"if\"",
+                    "range": [
+                      3195,
+                      3199
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 107,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 107,
+                        "column": 47
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      3201,
+                      3208
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 107,
+                        "column": 49
+                      },
+                      "end": {
+                        "line": 107,
+                        "column": 56
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "ang",
+                    "range": [
+                      3210,
+                      3213
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 107,
+                        "column": 58
+                      },
+                      "end": {
+                        "line": 107,
+                        "column": 61
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  3160,
+                  3215
+                ],
+                "loc": {
+                  "start": {
+                    "line": 107,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 107,
+                    "column": 63
+                  }
+                }
+              },
+              "range": [
+                3153,
+                3216
+              ],
+              "loc": {
+                "start": {
+                  "line": 107,
+                  "column": 1
+                },
+                "end": {
+                  "line": 107,
+                  "column": 64
+                }
+              }
+            }
+          ],
+          "range": [
+            3149,
+            3219
+          ],
+          "loc": {
+            "start": {
+              "line": 106,
+              "column": 51
+            },
+            "end": {
+              "line": 108,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          3105,
+          3219
+        ],
+        "loc": {
+          "start": {
+            "line": 106,
+            "column": 7
+          },
+          "end": {
+            "line": 108,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/SetActorFacingAngle\r\n * @param {Number} actorid\r\n * @param {Number} ang\r\n * @return {Number} retval\r\n ",
+            "range": [
+              2927,
+              3096
+            ],
+            "loc": {
+              "start": {
+                "line": 99,
+                "column": 0
+              },
+              "end": {
+                "line": 105,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/GetActorFacingAngle\r\n * @param {Number} actorid\r\n * @return {Number} ang\r\n ",
+            "range": [
+              3221,
+              3363
+            ],
+            "loc": {
+              "start": {
+                "line": 109,
+                "column": 0
+              },
+              "end": {
+                "line": 114,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        3098,
+        3219
+      ],
+      "loc": {
+        "start": {
+          "line": 106,
+          "column": 0
+        },
+        "end": {
+          "line": 108,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/SetActorFacingAngle\r\n * @param {Number} actorid\r\n * @param {Number} ang\r\n * @return {Number} retval\r\n ",
+          "range": [
+            2927,
+            3096
+          ],
+          "loc": {
+            "start": {
+              "line": 99,
+              "column": 0
+            },
+            "end": {
+              "line": 105,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/GetActorFacingAngle\r\n * @param {Number} actorid\r\n * @return {Number} ang\r\n ",
+          "range": [
+            3221,
+            3363
+          ],
+          "loc": {
+            "start": {
+              "line": 109,
+              "column": 0
+            },
+            "end": {
+              "line": 114,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "GetActorFacingAngle",
+          "range": [
+            3381,
+            3400
+          ],
+          "loc": {
+            "start": {
+              "line": 115,
+              "column": 16
+            },
+            "end": {
+              "line": 115,
+              "column": 35
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              3402,
+              3409
+            ],
+            "loc": {
+              "start": {
+                "line": 115,
+                "column": 37
+              },
+              "end": {
+                "line": 115,
+                "column": 44
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    3422,
+                    3432
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 116,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 116,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "GetActorFacingAngle",
+                    "raw": "\"GetActorFacingAngle\"",
+                    "range": [
+                      3434,
+                      3455
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 116,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 116,
+                        "column": 41
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "iF",
+                    "raw": "\"iF\"",
+                    "range": [
+                      3457,
+                      3461
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 116,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 116,
+                        "column": 47
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      3463,
+                      3470
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 116,
+                        "column": 49
+                      },
+                      "end": {
+                        "line": 116,
+                        "column": 56
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  3422,
+                  3472
+                ],
+                "loc": {
+                  "start": {
+                    "line": 116,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 116,
+                    "column": 58
+                  }
+                }
+              },
+              "range": [
+                3415,
+                3473
+              ],
+              "loc": {
+                "start": {
+                  "line": 116,
+                  "column": 1
+                },
+                "end": {
+                  "line": 116,
+                  "column": 59
+                }
+              }
+            }
+          ],
+          "range": [
+            3411,
+            3476
+          ],
+          "loc": {
+            "start": {
+              "line": 115,
+              "column": 46
+            },
+            "end": {
+              "line": 117,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          3372,
+          3476
+        ],
+        "loc": {
+          "start": {
+            "line": 115,
+            "column": 7
+          },
+          "end": {
+            "line": 117,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/GetActorFacingAngle\r\n * @param {Number} actorid\r\n * @return {Number} ang\r\n ",
+            "range": [
+              3221,
+              3363
+            ],
+            "loc": {
+              "start": {
+                "line": 109,
+                "column": 0
+              },
+              "end": {
+                "line": 114,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/SetActorHealth\r\n * @param {Number} actorid\r\n * @param {Number} health\r\n * @return {Number} retval\r\n ",
+            "range": [
+              3478,
+              3640
+            ],
+            "loc": {
+              "start": {
+                "line": 118,
+                "column": 0
+              },
+              "end": {
+                "line": 124,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        3365,
+        3476
+      ],
+      "loc": {
+        "start": {
+          "line": 115,
+          "column": 0
+        },
+        "end": {
+          "line": 117,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/GetActorFacingAngle\r\n * @param {Number} actorid\r\n * @return {Number} ang\r\n ",
+          "range": [
+            3221,
+            3363
+          ],
+          "loc": {
+            "start": {
+              "line": 109,
+              "column": 0
+            },
+            "end": {
+              "line": 114,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/SetActorHealth\r\n * @param {Number} actorid\r\n * @param {Number} health\r\n * @return {Number} retval\r\n ",
+          "range": [
+            3478,
+            3640
+          ],
+          "loc": {
+            "start": {
+              "line": 118,
+              "column": 0
+            },
+            "end": {
+              "line": 124,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "SetActorHealth",
+          "range": [
+            3658,
+            3672
+          ],
+          "loc": {
+            "start": {
+              "line": 125,
+              "column": 16
+            },
+            "end": {
+              "line": 125,
+              "column": 30
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              3674,
+              3681
+            ],
+            "loc": {
+              "start": {
+                "line": 125,
+                "column": 32
+              },
+              "end": {
+                "line": 125,
+                "column": 39
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "health",
+            "range": [
+              3683,
+              3689
+            ],
+            "loc": {
+              "start": {
+                "line": 125,
+                "column": 41
+              },
+              "end": {
+                "line": 125,
+                "column": 47
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    3702,
+                    3712
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 126,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 126,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "SetActorHealth",
+                    "raw": "\"SetActorHealth\"",
+                    "range": [
+                      3714,
+                      3730
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 126,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 126,
+                        "column": 36
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "if",
+                    "raw": "\"if\"",
+                    "range": [
+                      3732,
+                      3736
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 126,
+                        "column": 38
+                      },
+                      "end": {
+                        "line": 126,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      3738,
+                      3745
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 126,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 126,
+                        "column": 51
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "health",
+                    "range": [
+                      3747,
+                      3753
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 126,
+                        "column": 53
+                      },
+                      "end": {
+                        "line": 126,
+                        "column": 59
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  3702,
+                  3755
+                ],
+                "loc": {
+                  "start": {
+                    "line": 126,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 126,
+                    "column": 61
+                  }
+                }
+              },
+              "range": [
+                3695,
+                3756
+              ],
+              "loc": {
+                "start": {
+                  "line": 126,
+                  "column": 1
+                },
+                "end": {
+                  "line": 126,
+                  "column": 62
+                }
+              }
+            }
+          ],
+          "range": [
+            3691,
+            3759
+          ],
+          "loc": {
+            "start": {
+              "line": 125,
+              "column": 49
+            },
+            "end": {
+              "line": 127,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          3649,
+          3759
+        ],
+        "loc": {
+          "start": {
+            "line": 125,
+            "column": 7
+          },
+          "end": {
+            "line": 127,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/SetActorHealth\r\n * @param {Number} actorid\r\n * @param {Number} health\r\n * @return {Number} retval\r\n ",
+            "range": [
+              3478,
+              3640
+            ],
+            "loc": {
+              "start": {
+                "line": 118,
+                "column": 0
+              },
+              "end": {
+                "line": 124,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/GetActorHealth\r\n * @param {Number} actorid\r\n * @return {Number} health\r\n ",
+            "range": [
+              3761,
+              3896
+            ],
+            "loc": {
+              "start": {
+                "line": 128,
+                "column": 0
+              },
+              "end": {
+                "line": 133,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        3642,
+        3759
+      ],
+      "loc": {
+        "start": {
+          "line": 125,
+          "column": 0
+        },
+        "end": {
+          "line": 127,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/SetActorHealth\r\n * @param {Number} actorid\r\n * @param {Number} health\r\n * @return {Number} retval\r\n ",
+          "range": [
+            3478,
+            3640
+          ],
+          "loc": {
+            "start": {
+              "line": 118,
+              "column": 0
+            },
+            "end": {
+              "line": 124,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/GetActorHealth\r\n * @param {Number} actorid\r\n * @return {Number} health\r\n ",
+          "range": [
+            3761,
+            3896
+          ],
+          "loc": {
+            "start": {
+              "line": 128,
+              "column": 0
+            },
+            "end": {
+              "line": 133,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "GetActorHealth",
+          "range": [
+            3914,
+            3928
+          ],
+          "loc": {
+            "start": {
+              "line": 134,
+              "column": 16
+            },
+            "end": {
+              "line": 134,
+              "column": 30
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              3930,
+              3937
+            ],
+            "loc": {
+              "start": {
+                "line": 134,
+                "column": 32
+              },
+              "end": {
+                "line": 134,
+                "column": 39
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    3950,
+                    3960
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 135,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 135,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "GetActorHealth",
+                    "raw": "\"GetActorHealth\"",
+                    "range": [
+                      3962,
+                      3978
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 135,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 135,
+                        "column": 36
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "iF",
+                    "raw": "\"iF\"",
+                    "range": [
+                      3980,
+                      3984
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 135,
+                        "column": 38
+                      },
+                      "end": {
+                        "line": 135,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      3986,
+                      3993
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 135,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 135,
+                        "column": 51
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  3950,
+                  3995
+                ],
+                "loc": {
+                  "start": {
+                    "line": 135,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 135,
+                    "column": 53
+                  }
+                }
+              },
+              "range": [
+                3943,
+                3996
+              ],
+              "loc": {
+                "start": {
+                  "line": 135,
+                  "column": 1
+                },
+                "end": {
+                  "line": 135,
+                  "column": 54
+                }
+              }
+            }
+          ],
+          "range": [
+            3939,
+            3999
+          ],
+          "loc": {
+            "start": {
+              "line": 134,
+              "column": 41
+            },
+            "end": {
+              "line": 136,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          3905,
+          3999
+        ],
+        "loc": {
+          "start": {
+            "line": 134,
+            "column": 7
+          },
+          "end": {
+            "line": 136,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * GetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/GetActorHealth\r\n * @param {Number} actorid\r\n * @return {Number} health\r\n ",
+            "range": [
+              3761,
+              3896
+            ],
+            "loc": {
+              "start": {
+                "line": 128,
+                "column": 0
+              },
+              "end": {
+                "line": 133,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/SetActorInvulnerable\r\n * @param {Number} actorid\r\n * @param {Number} invulnerable\r\n * @return {Number} retval\r\n ",
+            "range": [
+              4001,
+              4181
+            ],
+            "loc": {
+              "start": {
+                "line": 137,
+                "column": 0
+              },
+              "end": {
+                "line": 143,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        3898,
+        3999
+      ],
+      "loc": {
+        "start": {
+          "line": 134,
+          "column": 0
+        },
+        "end": {
+          "line": 136,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * GetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/GetActorHealth\r\n * @param {Number} actorid\r\n * @return {Number} health\r\n ",
+          "range": [
+            3761,
+            3896
+          ],
+          "loc": {
+            "start": {
+              "line": 128,
+              "column": 0
+            },
+            "end": {
+              "line": 133,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/SetActorInvulnerable\r\n * @param {Number} actorid\r\n * @param {Number} invulnerable\r\n * @return {Number} retval\r\n ",
+          "range": [
+            4001,
+            4181
+          ],
+          "loc": {
+            "start": {
+              "line": 137,
+              "column": 0
+            },
+            "end": {
+              "line": 143,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "SetActorInvulnerable",
+          "range": [
+            4199,
+            4219
+          ],
+          "loc": {
+            "start": {
+              "line": 144,
+              "column": 16
+            },
+            "end": {
+              "line": 144,
+              "column": 36
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              4221,
+              4228
+            ],
+            "loc": {
+              "start": {
+                "line": 144,
+                "column": 38
+              },
+              "end": {
+                "line": 144,
+                "column": 45
+              }
+            }
+          },
+          {
+            "type": "Identifier",
+            "name": "invulnerable",
+            "range": [
+              4230,
+              4242
+            ],
+            "loc": {
+              "start": {
+                "line": 144,
+                "column": 47
+              },
+              "end": {
+                "line": 144,
+                "column": 59
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ExpressionStatement",
+              "expression": {
+                "type": "AssignmentExpression",
+                "operator": "=",
+                "left": {
+                  "type": "Identifier",
+                  "name": "invulnerable",
+                  "range": [
+                    4248,
+                    4260
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 145,
+                      "column": 1
+                    },
+                    "end": {
+                      "line": 145,
+                      "column": 13
+                    }
+                  }
+                },
+                "right": {
+                  "type": "ConditionalExpression",
+                  "test": {
+                    "type": "BinaryExpression",
+                    "operator": "!==",
+                    "left": {
+                      "type": "UnaryExpression",
+                      "operator": "typeof",
+                      "argument": {
+                        "type": "Identifier",
+                        "name": "invulnerable",
+                        "range": [
+                          4270,
+                          4282
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 145,
+                            "column": 23
+                          },
+                          "end": {
+                            "line": 145,
+                            "column": 35
+                          }
+                        }
+                      },
+                      "prefix": true,
+                      "range": [
+                        4263,
+                        4282
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 145,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 145,
+                          "column": 35
+                        }
+                      }
+                    },
+                    "right": {
+                      "type": "Literal",
+                      "value": "undefined",
+                      "raw": "'undefined'",
+                      "range": [
+                        4287,
+                        4298
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 145,
+                          "column": 40
+                        },
+                        "end": {
+                          "line": 145,
+                          "column": 51
+                        }
+                      }
+                    },
+                    "range": [
+                      4263,
+                      4298
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 145,
+                        "column": 16
+                      },
+                      "end": {
+                        "line": 145,
+                        "column": 51
+                      }
+                    }
+                  },
+                  "consequent": {
+                    "type": "Identifier",
+                    "name": "invulnerable",
+                    "range": [
+                      4301,
+                      4313
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 145,
+                        "column": 54
+                      },
+                      "end": {
+                        "line": 145,
+                        "column": 66
+                      }
+                    }
+                  },
+                  "alternate": {
+                    "type": "Literal",
+                    "value": true,
+                    "raw": "true",
+                    "range": [
+                      4316,
+                      4320
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 145,
+                        "column": 69
+                      },
+                      "end": {
+                        "line": 145,
+                        "column": 73
+                      }
+                    }
+                  },
+                  "range": [
+                    4263,
+                    4320
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 145,
+                      "column": 16
+                    },
+                    "end": {
+                      "line": 145,
+                      "column": 73
+                    }
+                  }
+                },
+                "range": [
+                  4248,
+                  4320
+                ],
+                "loc": {
+                  "start": {
+                    "line": 145,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 145,
+                    "column": 73
+                  }
+                }
+              },
+              "range": [
+                4248,
+                4321
+              ],
+              "loc": {
+                "start": {
+                  "line": 145,
+                  "column": 1
+                },
+                "end": {
+                  "line": 145,
+                  "column": 74
+                }
+              }
+            },
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    4331,
+                    4341
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 146,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 146,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "SetActorInvulnerable",
+                    "raw": "\"SetActorInvulnerable\"",
+                    "range": [
+                      4343,
+                      4365
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 146,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 146,
+                        "column": 42
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "ii",
+                    "raw": "\"ii\"",
+                    "range": [
+                      4367,
+                      4371
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 146,
+                        "column": 44
+                      },
+                      "end": {
+                        "line": 146,
+                        "column": 48
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      4373,
+                      4380
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 146,
+                        "column": 50
+                      },
+                      "end": {
+                        "line": 146,
+                        "column": 57
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "invulnerable",
+                    "range": [
+                      4382,
+                      4394
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 146,
+                        "column": 59
+                      },
+                      "end": {
+                        "line": 146,
+                        "column": 71
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  4331,
+                  4396
+                ],
+                "loc": {
+                  "start": {
+                    "line": 146,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 146,
+                    "column": 73
+                  }
+                }
+              },
+              "range": [
+                4324,
+                4397
+              ],
+              "loc": {
+                "start": {
+                  "line": 146,
+                  "column": 1
+                },
+                "end": {
+                  "line": 146,
+                  "column": 74
+                }
+              }
+            }
+          ],
+          "range": [
+            4244,
+            4400
+          ],
+          "loc": {
+            "start": {
+              "line": 144,
+              "column": 61
+            },
+            "end": {
+              "line": 147,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          4190,
+          4400
+        ],
+        "loc": {
+          "start": {
+            "line": 144,
+            "column": 7
+          },
+          "end": {
+            "line": 147,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * SetActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/SetActorInvulnerable\r\n * @param {Number} actorid\r\n * @param {Number} invulnerable\r\n * @return {Number} retval\r\n ",
+            "range": [
+              4001,
+              4181
+            ],
+            "loc": {
+              "start": {
+                "line": 137,
+                "column": 0
+              },
+              "end": {
+                "line": 143,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * IsActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/IsActorInvulnerable\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              4402,
+              4547
+            ],
+            "loc": {
+              "start": {
+                "line": 148,
+                "column": 0
+              },
+              "end": {
+                "line": 153,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        4183,
+        4400
+      ],
+      "loc": {
+        "start": {
+          "line": 144,
+          "column": 0
+        },
+        "end": {
+          "line": 147,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * SetActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/SetActorInvulnerable\r\n * @param {Number} actorid\r\n * @param {Number} invulnerable\r\n * @return {Number} retval\r\n ",
+          "range": [
+            4001,
+            4181
+          ],
+          "loc": {
+            "start": {
+              "line": 137,
+              "column": 0
+            },
+            "end": {
+              "line": 143,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * IsActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/IsActorInvulnerable\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            4402,
+            4547
+          ],
+          "loc": {
+            "start": {
+              "line": 148,
+              "column": 0
+            },
+            "end": {
+              "line": 153,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "IsActorInvulnerable",
+          "range": [
+            4565,
+            4584
+          ],
+          "loc": {
+            "start": {
+              "line": 154,
+              "column": 16
+            },
+            "end": {
+              "line": 154,
+              "column": 35
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              4586,
+              4593
+            ],
+            "loc": {
+              "start": {
+                "line": 154,
+                "column": 37
+              },
+              "end": {
+                "line": 154,
+                "column": 44
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    4606,
+                    4616
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 155,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 155,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "IsActorInvulnerable",
+                    "raw": "\"IsActorInvulnerable\"",
+                    "range": [
+                      4618,
+                      4639
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 155,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 155,
+                        "column": 41
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "i",
+                    "raw": "\"i\"",
+                    "range": [
+                      4641,
+                      4644
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 155,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 155,
+                        "column": 46
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      4646,
+                      4653
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 155,
+                        "column": 48
+                      },
+                      "end": {
+                        "line": 155,
+                        "column": 55
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  4606,
+                  4655
+                ],
+                "loc": {
+                  "start": {
+                    "line": 155,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 155,
+                    "column": 57
+                  }
+                }
+              },
+              "range": [
+                4599,
+                4656
+              ],
+              "loc": {
+                "start": {
+                  "line": 155,
+                  "column": 1
+                },
+                "end": {
+                  "line": 155,
+                  "column": 58
+                }
+              }
+            }
+          ],
+          "range": [
+            4595,
+            4659
+          ],
+          "loc": {
+            "start": {
+              "line": 154,
+              "column": 46
+            },
+            "end": {
+              "line": 156,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          4556,
+          4659
+        ],
+        "loc": {
+          "start": {
+            "line": 154,
+            "column": 7
+          },
+          "end": {
+            "line": 156,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * IsActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/IsActorInvulnerable\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              4402,
+              4547
+            ],
+            "loc": {
+              "start": {
+                "line": 148,
+                "column": 0
+              },
+              "end": {
+                "line": 153,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * IsValidActor\r\n * @see https://wiki.sa-mp.com/wiki/IsValidActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              4661,
+              4792
+            ],
+            "loc": {
+              "start": {
+                "line": 157,
+                "column": 0
+              },
+              "end": {
+                "line": 162,
+                "column": 3
+              }
+            }
+          }
+        ]
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        4549,
+        4659
+      ],
+      "loc": {
+        "start": {
+          "line": 154,
+          "column": 0
+        },
+        "end": {
+          "line": 156,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * IsActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/IsActorInvulnerable\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            4402,
+            4547
+          ],
+          "loc": {
+            "start": {
+              "line": 148,
+              "column": 0
+            },
+            "end": {
+              "line": 153,
+              "column": 3
+            }
+          }
+        }
+      ],
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * IsValidActor\r\n * @see https://wiki.sa-mp.com/wiki/IsValidActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            4661,
+            4792
+          ],
+          "loc": {
+            "start": {
+              "line": 157,
+              "column": 0
+            },
+            "end": {
+              "line": 162,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "id": {
+          "type": "Identifier",
+          "name": "IsValidActor",
+          "range": [
+            4810,
+            4822
+          ],
+          "loc": {
+            "start": {
+              "line": 163,
+              "column": 16
+            },
+            "end": {
+              "line": 163,
+              "column": 28
+            }
+          }
+        },
+        "params": [
+          {
+            "type": "Identifier",
+            "name": "actorid",
+            "range": [
+              4824,
+              4831
+            ],
+            "loc": {
+              "start": {
+                "line": 163,
+                "column": 30
+              },
+              "end": {
+                "line": 163,
+                "column": 37
+              }
+            }
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "body": [
+            {
+              "type": "ReturnStatement",
+              "argument": {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "Identifier",
+                  "name": "CallNative",
+                  "range": [
+                    4844,
+                    4854
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 164,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 164,
+                      "column": 18
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "IsValidActor",
+                    "raw": "\"IsValidActor\"",
+                    "range": [
+                      4856,
+                      4870
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 164,
+                        "column": 20
+                      },
+                      "end": {
+                        "line": 164,
+                        "column": 34
+                      }
+                    }
+                  },
+                  {
+                    "type": "Literal",
+                    "value": "i",
+                    "raw": "\"i\"",
+                    "range": [
+                      4872,
+                      4875
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 164,
+                        "column": 36
+                      },
+                      "end": {
+                        "line": 164,
+                        "column": 39
+                      }
+                    }
+                  },
+                  {
+                    "type": "Identifier",
+                    "name": "actorid",
+                    "range": [
+                      4877,
+                      4884
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 164,
+                        "column": 41
+                      },
+                      "end": {
+                        "line": 164,
+                        "column": 48
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  4844,
+                  4886
+                ],
+                "loc": {
+                  "start": {
+                    "line": 164,
+                    "column": 8
+                  },
+                  "end": {
+                    "line": 164,
+                    "column": 50
+                  }
+                }
+              },
+              "range": [
+                4837,
+                4887
+              ],
+              "loc": {
+                "start": {
+                  "line": 164,
+                  "column": 1
+                },
+                "end": {
+                  "line": 164,
+                  "column": 51
+                }
+              }
+            }
+          ],
+          "range": [
+            4833,
+            4890
+          ],
+          "loc": {
+            "start": {
+              "line": 163,
+              "column": 39
+            },
+            "end": {
+              "line": 165,
+              "column": 1
+            }
+          }
+        },
+        "generator": false,
+        "expression": false,
+        "range": [
+          4801,
+          4890
+        ],
+        "loc": {
+          "start": {
+            "line": 163,
+            "column": 7
+          },
+          "end": {
+            "line": 165,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\r\n * IsValidActor\r\n * @see https://wiki.sa-mp.com/wiki/IsValidActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+            "range": [
+              4661,
+              4792
+            ],
+            "loc": {
+              "start": {
+                "line": 157,
+                "column": 0
+              },
+              "end": {
+                "line": 162,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "range": [
+        4794,
+        4890
+      ],
+      "loc": {
+        "start": {
+          "line": 163,
+          "column": 0
+        },
+        "end": {
+          "line": 165,
+          "column": 1
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\r\n * IsValidActor\r\n * @see https://wiki.sa-mp.com/wiki/IsValidActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+          "range": [
+            4661,
+            4792
+          ],
+          "loc": {
+            "start": {
+              "line": 157,
+              "column": 0
+            },
+            "end": {
+              "line": 162,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    226,
+    4890
+  ],
+  "loc": {
+    "start": {
+      "line": 11,
+      "column": 0
+    },
+    "end": {
+      "line": 165,
+      "column": 1
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\r\n * CreateActor\r\n * @see https://wiki.sa-mp.com/wiki/CreateActor\r\n * @param {Number} modelid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @param {Number} Rotation\r\n * @return {Number} retval\r\n ",
+      "range": [
+        0,
+        224
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * DestroyActor\r\n * @see https://wiki.sa-mp.com/wiki/DestroyActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+      "range": [
+        364,
+        495
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * IsActorStreamedIn\r\n * @see https://wiki.sa-mp.com/wiki/IsActorStreamedIn\r\n * @param {Number} actorid\r\n * @param {Number} forplayerid\r\n * @return {Number} retval\r\n ",
+      "range": [
+        595,
+        768
+      ],
+      "loc": {
+        "start": {
+          "line": 23,
+          "column": 0
+        },
+        "end": {
+          "line": 29,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * SetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/SetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @param {Number} vworld\r\n * @return {Number} retval\r\n ",
+      "range": [
+        905,
+        1079
+      ],
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 0
+        },
+        "end": {
+          "line": 39,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * GetActorVirtualWorld\r\n * @see https://wiki.sa-mp.com/wiki/GetActorVirtualWorld\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+      "range": [
+        1212,
+        1359
+      ],
+      "loc": {
+        "start": {
+          "line": 43,
+          "column": 0
+        },
+        "end": {
+          "line": 48,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * ApplyActorAnimation\r\n * @see https://wiki.sa-mp.com/wiki/ApplyActorAnimation\r\n * @param {Number} actorid\r\n * @param {String} animlib\r\n * @param {String} animname\r\n * @param {Number} fDelta\r\n * @param {Number} loop\r\n * @param {Number} lockx\r\n * @param {Number} locky\r\n * @param {Number} freeze\r\n * @param {Number} time\r\n * @return {Number} retval\r\n ",
+      "range": [
+        1475,
+        1833
+      ],
+      "loc": {
+        "start": {
+          "line": 52,
+          "column": 0
+        },
+        "end": {
+          "line": 65,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * ClearActorAnimations\r\n * @see https://wiki.sa-mp.com/wiki/ClearActorAnimations\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+      "range": [
+        2077,
+        2224
+      ],
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 0
+        },
+        "end": {
+          "line": 74,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * SetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/SetActorPos\r\n * @param {Number} actorid\r\n * @param {Number} X\r\n * @param {Number} Y\r\n * @param {Number} Z\r\n * @return {Number} retval\r\n ",
+      "range": [
+        2340,
+        2535
+      ],
+      "loc": {
+        "start": {
+          "line": 78,
+          "column": 0
+        },
+        "end": {
+          "line": 86,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * GetActorPos\r\n * @see https://wiki.sa-mp.com/wiki/GetActorPos\r\n * @param {Number} actorid\r\n * @return {{ X: Number,  Y: Number,  Z: Number }}\r\n ",
+      "range": [
+        2654,
+        2807
+      ],
+      "loc": {
+        "start": {
+          "line": 90,
+          "column": 0
+        },
+        "end": {
+          "line": 95,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * SetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/SetActorFacingAngle\r\n * @param {Number} actorid\r\n * @param {Number} ang\r\n * @return {Number} retval\r\n ",
+      "range": [
+        2927,
+        3096
+      ],
+      "loc": {
+        "start": {
+          "line": 99,
+          "column": 0
+        },
+        "end": {
+          "line": 105,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * GetActorFacingAngle\r\n * @see https://wiki.sa-mp.com/wiki/GetActorFacingAngle\r\n * @param {Number} actorid\r\n * @return {Number} ang\r\n ",
+      "range": [
+        3221,
+        3363
+      ],
+      "loc": {
+        "start": {
+          "line": 109,
+          "column": 0
+        },
+        "end": {
+          "line": 114,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * SetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/SetActorHealth\r\n * @param {Number} actorid\r\n * @param {Number} health\r\n * @return {Number} retval\r\n ",
+      "range": [
+        3478,
+        3640
+      ],
+      "loc": {
+        "start": {
+          "line": 118,
+          "column": 0
+        },
+        "end": {
+          "line": 124,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * GetActorHealth\r\n * @see https://wiki.sa-mp.com/wiki/GetActorHealth\r\n * @param {Number} actorid\r\n * @return {Number} health\r\n ",
+      "range": [
+        3761,
+        3896
+      ],
+      "loc": {
+        "start": {
+          "line": 128,
+          "column": 0
+        },
+        "end": {
+          "line": 133,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * SetActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/SetActorInvulnerable\r\n * @param {Number} actorid\r\n * @param {Number} invulnerable\r\n * @return {Number} retval\r\n ",
+      "range": [
+        4001,
+        4181
+      ],
+      "loc": {
+        "start": {
+          "line": 137,
+          "column": 0
+        },
+        "end": {
+          "line": 143,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * IsActorInvulnerable\r\n * @see https://wiki.sa-mp.com/wiki/IsActorInvulnerable\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+      "range": [
+        4402,
+        4547
+      ],
+      "loc": {
+        "start": {
+          "line": 148,
+          "column": 0
+        },
+        "end": {
+          "line": 153,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\r\n * IsValidActor\r\n * @see https://wiki.sa-mp.com/wiki/IsValidActor\r\n * @param {Number} actorid\r\n * @return {Number} retval\r\n ",
+      "range": [
+        4661,
+        4792
+      ],
+      "loc": {
+        "start": {
+          "line": 157,
+          "column": 0
+        },
+        "end": {
+          "line": 162,
+          "column": 3
+        }
+      }
+    }
+  ]
+}
