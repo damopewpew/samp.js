@@ -19,10 +19,13 @@ V8FLAGS := \
 	../deps/v8/lib/libv8_snapshot.a \
 	../deps/v8/lib/libv8_libplatform.a 
 	
-samp.js.so: amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o
-	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o $(V8FLAGS) $(BOOST) $(LIBS)
+MYSQL := \
+	../lib/mysql-linux/lib/libmysqlclient.a
+	
+samp.js.so: amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o MySQL.o
+	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o MySQL.o $(MYSQL) $(V8FLAGS) $(BOOST) $(LIBS)
 
-main.o: main.cpp SAMPJS.cpp Script.cpp samp/Server.cpp utils/Utils.cpp utils/Helpers.cpp samp/Callbacks.cpp samp/Events.cpp samp/Players.cpp io/FileSystem.cpp io/Sockets.cpp io/HTTP.cpp io/Timers.cpp ../lib/samp/SDK/amxplugin.cpp 
+main.o: main.cpp SAMPJS.cpp Script.cpp samp/Server.cpp utils/Utils.cpp utils/Helpers.cpp samp/Callbacks.cpp samp/Events.cpp samp/Players.cpp io/FileSystem.cpp io/Sockets.cpp io/HTTP.cpp io/Timers.cpp io/MySQL.cpp ../lib/samp/SDK/amxplugin.cpp 
 	$(CXX) $(CFLAGS) $(INCLUDES) -c main.cpp $(LIBS)
 
 
@@ -39,6 +42,9 @@ FileSystem.o: io/FileSystem.cpp
 	
 HTTP.o: io/HTTP.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c io/HTTP.cpp $(LIBS)
+	
+MySQL.o: io/MySQL.cpp
+	$(CXX) $(CFLAGS) $(INCLUDES) -c io/MySQL.cpp $(LIBS)
 	
 Sockets.o: io/Sockets.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c io/Sockets.cpp $(LIBS)
