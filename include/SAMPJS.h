@@ -1,6 +1,7 @@
 #ifndef __SAMPJS__
 #define __SAMPJS__
 
+#include <cstring>
 #include <string>
 #include <map>
 #include <memory>
