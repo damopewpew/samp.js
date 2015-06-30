@@ -6,6 +6,7 @@
 #include "../include/js/sampJS.a_players.inc"
 #include "../include/js/sampJS.a_samp.inc"
 #include "../include/js/sampJS.a_vehicles.inc"
+
 native sJS_OnGameModeInit();
 public OnGameModeInit(){
 	return sJS_OnGameModeInit();

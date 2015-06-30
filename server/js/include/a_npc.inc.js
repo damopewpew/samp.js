@@ -87,386 +87,250 @@ const KEY_DOWN = (128);
 const KEY_LEFT = (-128);
 const KEY_RIGHT = (128);
 /**
- * format
-
-{@link https://wiki.sa-mp.com/wiki/format}
-
- * @param {Number} len
- * @param {String} format
- * @return {String} output
-*/
-function format( len, format ){
-	len = typeof len !== 'undefined' ? len : 256;
-	return CallNative( "format", "Sis", len, format );
-}
-/**
  * KillTimer
-
-{@link https://wiki.sa-mp.com/wiki/KillTimer}
-
+ * @see https://wiki.sa-mp.com/wiki/KillTimer
  * @param {Number} timerid
  * @return {Number} retval
-
-*/
+ */
 function KillTimer( timerid ){
 	return CallNative( "KillTimer", "i", timerid );
 }
 /**
  * GetTickCount
-
-{@link https://wiki.sa-mp.com/wiki/GetTickCount}
-
+ * @see https://wiki.sa-mp.com/wiki/GetTickCount
  * @return {Number} retval
-
-*/
+ */
 function GetTickCount(){
 	CallNative( "GetTickCount" );
 }
 /**
- * asin
-
-{@link https://wiki.sa-mp.com/wiki/asin}
-
- * @param {Number} value
- * @return {Number} retval
-
-*/
-function asin( value ){
-	return CallNative( "asin", "f", value );
-}
-/**
- * acos
-
-{@link https://wiki.sa-mp.com/wiki/acos}
-
- * @param {Number} value
- * @return {Number} retval
-
-*/
-function acos( value ){
-	return CallNative( "acos", "f", value );
-}
-/**
- * atan
-
-{@link https://wiki.sa-mp.com/wiki/atan}
-
- * @param {Number} value
- * @return {Number} retval
-
-*/
-function atan( value ){
-	return CallNative( "atan", "f", value );
-}
-/**
- * atan2
-
-{@link https://wiki.sa-mp.com/wiki/atan2}
-
- * @param {Number} x
- * @param {Number} y
- * @return {Number} retval
-
-*/
-function atan2( x, y ){
-	return CallNative( "atan2", "ff", x, y );
-}
-/**
  * SendChat
-
-{@link https://wiki.sa-mp.com/wiki/SendChat}
-
+ * @see https://wiki.sa-mp.com/wiki/SendChat
  * @param {String} msg
  * @return {Number} retval
-
-*/
+ */
 function SendChat( msg ){
 	return CallNative( "SendChat", "s", msg );
 }
 /**
  * SendCommand
-
-{@link https://wiki.sa-mp.com/wiki/SendCommand}
-
+ * @see https://wiki.sa-mp.com/wiki/SendCommand
  * @param {String} commandtext
  * @return {Number} retval
-
-*/
+ */
 function SendCommand( commandtext ){
 	return CallNative( "SendCommand", "s", commandtext );
 }
 /**
  * GetPlayerState
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerState}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerState
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function GetPlayerState( playerid ){
 	return CallNative( "GetPlayerState", "i", playerid );
 }
 /**
  * GetPlayerPos
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerPos}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerPos
  * @param {Number} playerid
  * @return {{ x: Number,  y: Number,  z: Number }}
-*/
+ */
 function GetPlayerPos( playerid ){
 	return CallNative( "GetPlayerPos", "iFFF", playerid, [ "x", "y", "z" ] );
 }
 /**
  * GetPlayerVehicleID
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerVehicleID}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerVehicleID
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function GetPlayerVehicleID( playerid ){
 	return CallNative( "GetPlayerVehicleID", "i", playerid );
 }
 /**
  * GetPlayerArmedWeapon
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerArmedWeapon}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerArmedWeapon
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function GetPlayerArmedWeapon( playerid ){
 	return CallNative( "GetPlayerArmedWeapon", "i", playerid );
 }
 /**
  * GetPlayerHealth
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerHealth}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerHealth
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function GetPlayerHealth( playerid ){
 	return CallNative( "GetPlayerHealth", "i", playerid );
 }
 /**
  * GetPlayerArmour
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerArmour}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerArmour
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function GetPlayerArmour( playerid ){
 	return CallNative( "GetPlayerArmour", "i", playerid );
 }
 /**
  * GetPlayerSpecialAction
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerSpecialAction}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerSpecialAction
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function GetPlayerSpecialAction( playerid ){
 	return CallNative( "GetPlayerSpecialAction", "i", playerid );
 }
 /**
  * IsPlayerStreamedIn
-
-{@link https://wiki.sa-mp.com/wiki/IsPlayerStreamedIn}
-
+ * @see https://wiki.sa-mp.com/wiki/IsPlayerStreamedIn
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function IsPlayerStreamedIn( playerid ){
 	return CallNative( "IsPlayerStreamedIn", "i", playerid );
 }
 /**
  * IsVehicleStreamedIn
-
-{@link https://wiki.sa-mp.com/wiki/IsVehicleStreamedIn}
-
+ * @see https://wiki.sa-mp.com/wiki/IsVehicleStreamedIn
  * @param {Number} vehicleid
  * @return {Number} retval
-
-*/
+ */
 function IsVehicleStreamedIn( vehicleid ){
 	return CallNative( "IsVehicleStreamedIn", "i", vehicleid );
 }
 /**
  * GetPlayerKeys
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerKeys}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerKeys
  * @param {Number} playerid
  * @return {{ keys: Number,  updown: Number,  leftright: Number }}
-*/
+ */
 function GetPlayerKeys( playerid ){
 	return CallNative( "GetPlayerKeys", "iIII", playerid, [ "keys", "updown", "leftright" ] );
 }
 /**
  * GetPlayerFacingAngle
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerFacingAngle}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerFacingAngle
  * @param {Number} playerid
  * @return {Number} ang
-*/
+ */
 function GetPlayerFacingAngle( playerid ){
 	return CallNative( "GetPlayerFacingAngle", "iF", playerid );
 }
 /**
  * GetMyPos
-
-{@link https://wiki.sa-mp.com/wiki/GetMyPos}
-
+ * @see https://wiki.sa-mp.com/wiki/GetMyPos
  * @return {{ x: Number,  y: Number,  z: Number }}
-*/
+ */
 function GetMyPos(){
 	CallNative( "GetMyPos" );
 }
 /**
  * SetMyPos
-
-{@link https://wiki.sa-mp.com/wiki/SetMyPos}
-
+ * @see https://wiki.sa-mp.com/wiki/SetMyPos
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
  * @return {Number} retval
-
-*/
+ */
 function SetMyPos( x, y, z ){
 	return CallNative( "SetMyPos", "fff", x, y, z );
 }
 /**
  * GetMyFacingAngle
-
-{@link https://wiki.sa-mp.com/wiki/GetMyFacingAngle}
-
+ * @see https://wiki.sa-mp.com/wiki/GetMyFacingAngle
  * @return {Number} ang
-*/
+ */
 function GetMyFacingAngle(){
 	CallNative( "GetMyFacingAngle" );
 }
 /**
  * SetMyFacingAngle
-
-{@link https://wiki.sa-mp.com/wiki/SetMyFacingAngle}
-
+ * @see https://wiki.sa-mp.com/wiki/SetMyFacingAngle
  * @param {Number} ang
  * @return {Number} retval
-
-*/
+ */
 function SetMyFacingAngle( ang ){
 	return CallNative( "SetMyFacingAngle", "f", ang );
 }
 /**
  * GetDistanceFromMeToPoint
-
-{@link https://wiki.sa-mp.com/wiki/GetDistanceFromMeToPoint}
-
+ * @see https://wiki.sa-mp.com/wiki/GetDistanceFromMeToPoint
  * @param {Number} X
  * @param {Number} Y
  * @param {Number} Z
- * @return {Number} Distance
-*/
+ * @return {Number} distance
+ */
 function GetDistanceFromMeToPoint( X, Y, Z ){
 	return CallNative( "GetDistanceFromMeToPoint", "fffF", X, Y, Z );
 }
 /**
  * IsPlayerInRangeOfPoint
-
-{@link https://wiki.sa-mp.com/wiki/IsPlayerInRangeOfPoint}
-
+ * @see https://wiki.sa-mp.com/wiki/IsPlayerInRangeOfPoint
  * @param {Number} playerid
  * @param {Number} range
  * @param {Number} X
  * @param {Number} Y
  * @param {Number} Z
  * @return {Number} retval
-
-*/
+ */
 function IsPlayerInRangeOfPoint( playerid, range, X, Y, Z ){
 	return CallNative( "IsPlayerInRangeOfPoint", "iffff", playerid, range, X, Y, Z );
 }
 /**
  * GetPlayerName
-
-{@link https://wiki.sa-mp.com/wiki/GetPlayerName}
-
+ * @see https://wiki.sa-mp.com/wiki/GetPlayerName
  * @param {Number} playerid
- * @param {Number} len
+ * @param {Number} [len]
  * @return {String} name
-*/
+ */
 function GetPlayerName( playerid, len ){
 	len = typeof len !== 'undefined' ? len : 256;
 	return CallNative( "GetPlayerName", "iSi", playerid, len );
 }
 /**
  * IsPlayerConnected
-
-{@link https://wiki.sa-mp.com/wiki/IsPlayerConnected}
-
+ * @see https://wiki.sa-mp.com/wiki/IsPlayerConnected
  * @param {Number} playerid
  * @return {Number} retval
-
-*/
+ */
 function IsPlayerConnected( playerid ){
 	return CallNative( "IsPlayerConnected", "i", playerid );
 }
 /**
  * StartRecordingPlayback
-
-{@link https://wiki.sa-mp.com/wiki/StartRecordingPlayback}
-
+ * @see https://wiki.sa-mp.com/wiki/StartRecordingPlayback
  * @param {Number} playbacktype
  * @param {String} recordname
  * @return {Number} retval
-
-*/
+ */
 function StartRecordingPlayback( playbacktype, recordname ){
 	return CallNative( "StartRecordingPlayback", "is", playbacktype, recordname );
 }
 /**
  * StopRecordingPlayback
-
-{@link https://wiki.sa-mp.com/wiki/StopRecordingPlayback}
-
+ * @see https://wiki.sa-mp.com/wiki/StopRecordingPlayback
  * @return {Number} retval
-
-*/
+ */
 function StopRecordingPlayback(){
 	CallNative( "StopRecordingPlayback" );
 }
 /**
  * PauseRecordingPlayback
-
-{@link https://wiki.sa-mp.com/wiki/PauseRecordingPlayback}
-
+ * @see https://wiki.sa-mp.com/wiki/PauseRecordingPlayback
  * @return {Number} retval
-
-*/
+ */
 function PauseRecordingPlayback(){
 	CallNative( "PauseRecordingPlayback" );
 }
 /**
  * ResumeRecordingPlayback
-
-{@link https://wiki.sa-mp.com/wiki/ResumeRecordingPlayback}
-
+ * @see https://wiki.sa-mp.com/wiki/ResumeRecordingPlayback
  * @return {Number} retval
-
-*/
+ */
 function ResumeRecordingPlayback(){
 	CallNative( "ResumeRecordingPlayback" );
 }

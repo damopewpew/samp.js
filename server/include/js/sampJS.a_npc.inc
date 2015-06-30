@@ -4,13 +4,8 @@ public Invoke_a_npcinc(){
 	new iVar;
 	new Float:fVar;
 
-	format( Str, 0, "" );
 	KillTimer( 0 );
 	GetTickCount(  );
-	asin( 0.0 );
-	acos( 0.0 );
-	atan( 0.0 );
-	atan2( 0.0, 0.0 );
 	SendChat( "" );
 	SendCommand( "" );
 	GetPlayerState( 0 );

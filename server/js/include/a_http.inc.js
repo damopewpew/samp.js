@@ -9,17 +9,14 @@ const HTTP_ERROR_CONTENT_TOO_BIG = 5;
 const HTTP_ERROR_MALFORMED_RESPONSE = 6;
 /**
  * HTTP
-
-{@link https://wiki.sa-mp.com/wiki/HTTP}
-
+ * @see https://wiki.sa-mp.com/wiki/HTTP
  * @param {Number} index
  * @param {Number} type
  * @param {String} url
  * @param {String} data
  * @param {String} callback
  * @return {Number} retval
-
-*/
+ */
 function HTTP( index, type, url, data, callback ){
 	return CallNative( "HTTP", "iisss", index, type, url, data, callback );
 }

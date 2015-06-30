@@ -4,7 +4,6 @@ public Invoke_a_sampinc(){
 	new iVar;
 	new Float:fVar;
 
-	format( Str, 0, "" );
 	SendClientMessage( 0, 0, "" );
 	SendClientMessageToAll( 0, "" );
 	SendPlayerMessageToPlayer( 0, 0, "" );
@@ -20,10 +19,6 @@ public Invoke_a_sampinc(){
 	CallRemoteFunction( "", "" );
 	CallLocalFunction( "", "" );
 	VectorSize( 0.0, 0.0, 0.0 );
-	asin( 0.0 );
-	acos( 0.0 );
-	atan( 0.0 );
-	atan2( 0.0, 0.0 );
 	GetPlayerPoolSize(  );
 	GetVehiclePoolSize(  );
 	GetActorPoolSize(  );
