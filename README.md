@@ -4,6 +4,8 @@ samp.js is a plugin which allows you to write scripts and gamemodes for [San And
 
 samp.js is using version 4.3.61.23 of the V8 engine ( found in Chromium/Chrome ) and is very fast.
 
+[Documentation](http://damospiderman.github.io/samp.js/)
+
 ##### Server Setup
 
 Add samp.js.(dll/so) to your plugins folder. Add samp.js.(dll/so) to the plugins line in your server.cfg. You will also need to add a samp.js.amx filterscript file or gamemode. See [FilterScripts/GameModes](#gamemodesfilterscripts) section
