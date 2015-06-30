@@ -169,6 +169,7 @@ Local<Object> Sockets::CreateSocket(){
 	socket.Set("send", Sockets::JS_Send);
 	socket.Set("close", Sockets::JS_Close);
 	// Find delete handler for V8 Objects to remove socket from map on delete
+	// Possibly can set weak and get the delete callback
 	socket.get()->SetPrototype(global.getObject("$server")->GetPrototype());
 
 	// Need to create the ids array for events due to a class extends quirk

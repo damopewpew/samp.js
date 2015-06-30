@@ -2,6 +2,8 @@
 #include "utils/Helpers.h"
 #include "utils/Utils.h"
 
+#include "SAMPJS.h"
+
 #include <boost/filesystem.hpp>
 #include <boost/iostreams/stream.hpp>
 #include <boost/filesystem/fstream.hpp>
@@ -24,9 +26,6 @@ const char *UTF_32_LE_BOM = "\xFF\xFE\x00\x00";
 
 using namespace sampjs;
 
-std::list<std::thread*> FileSystem::_threads;
-std::map<int, JS_Callback*> FileSystem::_callbacks;
-int FileSystem::_callback_count = 0;
 
 const char* check_bom(const char *data, size_t size)
 {
@@ -122,13 +121,17 @@ int isUTF8(const char *data, size_t size)
 	return 1;
 }
 
-void FileSystem::Init(Local<Context> context){
-	isolate = context->GetIsolate();
+void FileSystem::Init(Local<Context> ctx){
+	_cbLocalCount = 0;
+	_bufferCount = 0;
+
+	isolate = ctx->GetIsolate();
+	context.Reset(isolate, ctx);
 
 	Locker v8locker(isolate);
 	Isolate::Scope isoscope(isolate);
 	HandleScope hs(isolate);
-	Context::Scope cs(context);
+	Context::Scope cs(ctx);
 
 	auto fs_templ = ObjectTemplate::New(isolate);
 	fs_templ->SetInternalFieldCount(1);
@@ -136,6 +139,9 @@ void FileSystem::Init(Local<Context> context){
 	auto fs = fs_templ->NewInstance();
 	fs->SetInternalField(0, External::New(isolate, this));
 
+	AddFunction(fs, "open", FileSystem::open);
+	AddFunction(fs, "close", FileSystem::close);
+	AddFunction(fs, "read", FileSystem::read);
 	AddFunction(fs, "rename", FileSystem::rename);
 	AddFunction(fs, "unlink", FileSystem::unlink);
 	AddFunction(fs, "remove", FileSystem::unlink);
@@ -147,26 +153,144 @@ void FileSystem::Init(Local<Context> context){
 	AddFunction(fs, "appendFile", FileSystem::appendFile);
 	AddFunction(fs, "exists", FileSystem::exists);
 
-	JS_Object global(context->Global());
-	global.Set("$fs", fs);
+
+	ifstream bufferFile("js/samp.js/Buffer.js", std::ios::in);
+	if (!bufferFile){
+		sjs::logger::error("Missing required file Buffer.js");
+		SAMPJS::Shutdown();
+	}
+	std::string bufferSource((std::istreambuf_iterator<char>(bufferFile)), std::istreambuf_iterator<char>());
+	SAMPJS::ExecuteCode(ctx, "Buffer.js", bufferSource);
+	
+	ifstream fsFile("js/samp.js/FileSystem.js", std::ios::in);
+	if (!fsFile){
+		sjs::logger::error("Missing required file FileSystem.js");
+		SAMPJS::Shutdown();
+	}
+	std::string fsSource((std::istreambuf_iterator<char>(fsFile)), std::istreambuf_iterator<char>());
+	SAMPJS::ExecuteCode(ctx, "FileSystem.js", fsSource);
+
+	SAMPJS::ExecuteCode(ctx, "$fs", "var $fs = new FileSystem();");
+
+	JS_Object global(ctx->Global());
+	JS_Object fsobj(global.getObject("$fs"));
+	fsobj.Set("internal", fs);
 }
 
 void FileSystem::Shutdown(){
 	// Do Cleanup
-	for (auto callback : _callbacks){
-		if (callback.second->isolate == isolate){
+	
+
+	if (!_cbLocal.empty()){
+		for (auto callback : _cbLocal){
 			callback.second->callback.Reset();
 			callback.second->context.Reset();
 			delete callback.second;
-			_callbacks.erase(callback.first);
 		}
 	}
+
+	if (!buffers.empty()){
+		for (auto buf : buffers){
+			buf.second->buffer.resize(0);
+			buf.second->ab.Reset();
+			delete buf.second;
+		}
+	}
+}
+
+void FileSystem::FreeCallback(const WeakCallbackInfo<JS_AB>& data){
+	sjs::logger::debug("Freeing");
+	JS_Object global(data.GetIsolate()->GetCallingContext()->Global());
+	
+	JS_Object fsobj(global.getObject("$fs"));
+
+	Local<Object> obj = fsobj.getObject("internal");
+
+
+
+	auto wrap2 = Local<External>::Cast(obj->GetInternalField(0));
+	void *ptr2 = wrap2->Value();
+	FileSystem* fs = static_cast<FileSystem*>(ptr2);
+
+	unsigned int id = data.GetParameter()->id;
+	fs->buffers[id]->ab.Reset();
+
+	fs->buffers[id]->buffer.resize(0);
+
+	
+	delete fs->buffers[id];
+	fs->buffers.erase(id);
+
+	//cb->buffer.resize(0);
+//	cb->ab.Reset();
 }
 
 void FileSystem::AddFunction(Local<Object> obj, std::string name, FunctionCallback callback){
 	Local<FunctionTemplate> fntmp = FunctionTemplate::New(isolate, callback);
 	obj->Set(String::NewFromUtf8(isolate, name.c_str()), fntmp->GetFunction());
 
+}
+
+void FileSystem::open(const FunctionCallbackInfo<Value>& args){
+	if (args.Length() < 1){
+		return;
+	}
+
+
+	std::string path = JS2STRING(args[0]);
+	fs::path file(path);
+	fs::ifstream* infile = new fs::ifstream(file, std::ios::in | std::ios::binary | std::ios::ate);
+
+	Local<ObjectTemplate> obt = ObjectTemplate::New();
+	obt->SetInternalFieldCount(1);
+	
+	Local<Object> obj = obt->NewInstance();
+	obj->SetInternalField(0, External::New(args.GetIsolate(), infile));
+
+	
+	args.GetReturnValue().Set(obj);
+}
+
+void FileSystem::close(const FunctionCallbackInfo<Value>& args){
+	Local<Object> obj = Local<Object>::Cast(args[0]);
+	auto wrap = Local<External>::Cast(obj->GetInternalField(0));
+	void *ptr = wrap->Value();
+	fs::ifstream* infile = static_cast<fs::ifstream*>(ptr);
+
+	infile->close();
+}
+
+
+#include <chrono>
+#include <inttypes.h>
+void FileSystem::read(const FunctionCallbackInfo<Value>& args){
+	auto wrap2 = Local<External>::Cast(args.Holder()->GetInternalField(0));
+	void *ptr2 = wrap2->Value();
+	FileSystem* fs = static_cast<FileSystem*>(ptr2);
+
+	Local<Object> obj = Local<Object>::Cast(args[0]);
+	auto wrap = Local<External>::Cast(obj->GetInternalField(0));
+	void *ptr = wrap->Value();
+	fs::ifstream* infile = static_cast<fs::ifstream*>(ptr);
+
+	int offset = args[1]->Int32Value();
+	const int amount = args[2]->Int32Value();
+	infile->seekg(offset,std::ios::beg);
+	
+	std::vector<char> buf(amount);
+	infile->read(buf.data(), buf.size());
+	
+	Local<ArrayBuffer> ab = ArrayBuffer::New(args.GetIsolate(), buf.data(), buf.size());
+
+	unsigned int id = fs->_bufferCount++;
+	fs->buffers[id] = new JS_AB();
+	fs->buffers[id]->ab.Reset(args.GetIsolate(), ab);
+	fs->buffers[id]->buffer = buf;
+	fs->buffers[id]->id = id;
+
+	args.GetIsolate()->AdjustAmountOfExternalAllocatedMemory(buf.size());
+	fs->buffers[id]->ab.SetWeak(fs->buffers[id], FileSystem::FreeCallback, WeakCallbackType::kParameter);
+	args.GetReturnValue().Set(ab);
 }
 
 void FileSystem::rename(const FunctionCallbackInfo<Value>& args){
@@ -317,80 +441,111 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 		return;
 	}
 
-	if (args.Length() > 1 && args[1]->IsFunction()){
+	if (args.Length() > 1){
+		std::string encoding = "utf8";
+		Local<Function> func;
+		if (args[1]->IsString()){
+			encoding = JS2STRING(args[1]);
+			func = Local<Function>::Cast(args[2]);
+		}
+		else {
+			func = Local<Function>::Cast(args[1]);
+		}
 		// Async Callback mode
-		
-		int id = _callback_count;
-		Local<Function> func = Local<Function>::Cast(args[1]);
-		JS_Callback *callback= new JS_Callback(func);
 
+		auto wrap = Local<External>::Cast(args.Holder()->GetInternalField(0));
+		void *ptr = wrap->Value();
+		FileSystem* fs = static_cast<FileSystem*>(ptr);
+
+		JS_Callback *callback= new JS_Callback(func);
+		callback->encoding = encoding;
+
+		int lid = fs->_cbLocalCount;
+		fs->_cbLocal[fs->_cbLocalCount++] = callback;
 		
-		FileSystem::_callbacks[_callback_count++] = callback;
+	//	FileSystem::_callbacks[_callback_count++] = callback;
 		std::string path2(path);
 
-		auto future = std::async(std::launch::async, [path2, id](){
+		auto future = std::async(std::launch::async, [fs, path2,lid](){
 			
-			sjs::logger::debug("Starting Async");
-			JS_Callback *callback = FileSystem::_callbacks[id];
-
+			JS_Callback *callback = fs->_cbLocal[lid];
+			
 			fs::path file(path2);
-			fs::ifstream infile(file, std::ios::in | std::ios::binary );
+			fs::ifstream infile(file, std::ios::in | std::ios::binary | std::ios::ate );
 
-			std::string data((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
-	
+
+			infile.seekg(0, std::ios::end);
+			std::streampos length = infile.tellg();
+
+			std::vector<char> buffer((unsigned int)length);
+
+			infile.seekg(0, std::ios::beg);
+
+			infile.read(&buffer[0], length);
+
 			infile.close();
-			//sjs::logger::debug("Checked Bom");
+
+
 			Locker locker(callback->isolate);
 			Isolate::Scope isoscope(callback->isolate);
 			HandleScope handle_scope(callback->isolate);
-			Local<Context> ctx = Local<Context>::New(callback->isolate, callback->context);
 
-			
+			Local<Context> ctx = Local<Context>::New(callback->isolate, callback->context);
 			Context::Scope cs(ctx);
+
 			Local<Value> argv[1] = { String::NewFromUtf8(callback->isolate, "") };
 
-			if (memcmp(data.c_str(), UTF_8_BOM, 3) == 0){
-				data = data.substr(3);
-				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
+			if (callback->encoding == "utf8"){
+				std::string data(buffer.data(),buffer.size());
+
+				if (memcmp(data.c_str(), UTF_8_BOM, 3) == 0){
+					data = data.substr(3);
+					argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
+				}
+#ifdef WIN32
+				else if (memcmp(data.c_str(), UTF_16_LE_BOM, 2) == 0){
+
+					std::vector<std::uint16_t> result((data.size() + sizeof(std::uint16_t) - 1) / sizeof std::uint16_t);
+					std::copy_n(data.data(), data.size(), reinterpret_cast<char*>(&result[0]));
+					argv[0] = String::NewFromTwoByte(callback->isolate, std::vector<std::uint16_t>(result.begin() + 1, result.end() - 1).data());
+				}
+				else if (memcmp(data.c_str(), UTF_16_BE_BOM, 2) == 0){
+
+					sjs::logger::error("Error reading file %s: UCS-2 Big Endian not supported.", path2.c_str());
+					return;
+				}
+
+				else {
+					argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
+				}
+#endif
 			}
-			#ifdef WIN32
-			else if (memcmp(data.c_str(), UTF_16_LE_BOM, 2) == 0){	
-	
-				std::vector<std::uint16_t> result((data.size() + sizeof(std::uint16_t) - 1) / sizeof std::uint16_t);
-				std::copy_n(data.data(), data.size(), reinterpret_cast<char*>(&result[0]));
-				argv[0] = String::NewFromTwoByte(callback->isolate, std::vector<std::uint16_t>(result.begin()+1, result.end()-1).data()); 
+			else if (callback->encoding == "raw"){
+				JS_AB *jab = new JS_AB();
+				jab->buffer = buffer;
+		
+				Local<ArrayBuffer> ab = ArrayBuffer::New(callback->isolate, jab->buffer.data(), buffer.size());
+				jab->ab.Reset(callback->isolate, ab);
+				unsigned int id = fs->_bufferCount++;
+				jab->id = id;
+				fs->buffers[id] = jab;
+				jab->ab.SetWeak(jab, FileSystem::FreeCallback, WeakCallbackType::kParameter);
+				argv[0] =ab;
+
+				callback->isolate->AdjustAmountOfExternalAllocatedMemory(buffer.size());
 			}
-			else if (memcmp(data.c_str(), UTF_16_BE_BOM, 2) == 0){
 			
-				sjs::logger::error("Error reading file %s: UCS-2 Big Endian not supported.", path2.c_str());
-				return;
-			}
-			#endif
-			else {
-			//	sjs::logger::error("Data Size: %i", data.size());
-			//	//callback->data = malloc(data.size());
-				
-				//Local<ArrayBuffer> ab = ArrayBuffer::New(callback->isolate, callback->data, data.size());
-				//Persistent<ArrayBuffer> p_obj(callback->isolate, ab);
-			//	p_obj.SetWeak(callback->data, FileSystem::FreeCallback);
-				
-			//	callback->isolate->AdjustAmountOfExternalAllocatedMemory(data.size());
-				argv[0] = String::NewFromUtf8(callback->isolate, data.c_str());
-			} 
+
+		
 			Local<Function> func = Local<Function>::New(callback->isolate, callback->callback);
 			TryCatch try_catch;
-			if (func.IsEmpty()){
 			
-			}
-			else {
+			if (!func.IsEmpty()){
 				func->Call(func->CreationContext()->Global(), 1, argv);
 				if (try_catch.HasCaught()){
 					Utils::PrintException(&try_catch);
 				}
 			}
-
-			FileSystem::_callbacks.erase(id);
-
 		});
 
 	}	
@@ -404,7 +559,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 		infile.close();
 
 		if (!isUTF8(data.c_str(), data.length())){
-			std::cout << "[samp.js] Error: $fs::readFile() - only UTF-8 encoding is supported (" << path << ")" << std::endl;
+			sjs::logger::error("Error: $fs::readFile() - only UTF-8 encoding is supported (%s)", path);
 			args.GetReturnValue().Set(false);
 			return;
 		}

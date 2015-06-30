@@ -7,6 +7,11 @@
 
 #include "utils/SysInfo.h"
 
+#include <iostream>
+#include <sstream>
+#include <ostream>
+#include <fstream>
+
 using namespace std;
 using namespace sampjs;
 
@@ -16,71 +21,16 @@ void Server::Init(Local<Context> ctx){
 	isolate = ctx->GetIsolate();
 	context.Reset(ctx->GetIsolate(), ctx);
 
-	string src = R"(
-"use strict";
-class $SERVER extends $EVENTS {
-	constructor(){
-		super();
-		this.weather_ = 0;
-		this.gravity_ = 0.008;
-		this.time_ = 0;
 
-		this.memory = {
-			heap() {
-				return (%GetHeapUsage()/1024/1024).toFixed(2);
-			}
-		};
+	ifstream serverFile("js/samp.js/Server.js", std::ios::in);
+	if (!serverFile){
+		sjs::logger::error("Missing required file Server.js");
+		SAMPJS::Shutdown();
 	}
+	std::string serverSource((std::istreambuf_iterator<char>(serverFile)), std::istreambuf_iterator<char>());
+	SAMPJS::ExecuteCode(ctx, "Server.js", serverSource);
 
-	checkPlayers(){
-		let highest_id = CallNative("GetPlayerPoolSize");
-		for(var i = 0; i < highest_id+1; i++){
-			if(CallNative("IsPlayerConnected", "i", i)){
-			//	print("Player "+i+" is connected");
-				$players.addPlayer(i);
-			}
-		}
-	}
-			
-	set time(hour){
-		SetWorldTime(hour);
-	}
-
-	get time(){
-		return hour;
-	}
-
-	set gravity(amount){
-		SetGravity(amount);
-	}
-
-	get gravity(){
-		return GetGravity();
-	}
-
-
-	set weather(weatherid){
-		SetWeather(weaterid);
-		this.weather_ = weatherid;
-	}
-
-	get weather(){
-		return this.weather_;
-	}	
-};
-	var $server = new $SERVER();
-)";
-
-	auto source = String::NewFromUtf8(ctx->GetIsolate(), src.c_str());
-	auto  name = String::NewFromUtf8(ctx->GetIsolate(), "[server.js]");
-
-	TryCatch try_catch;
-	auto script = v8::Script::Compile(source, name);
-	Local<Value> result = script->Run();
-
-	if (result.IsEmpty()){
-		Utils::PrintException(&try_catch);
-	}
+	SAMPJS::ExecuteCode(ctx, "$server", "var $server = new Server();");
 
 	JS_Object global(ctx->Global());
 
@@ -94,6 +44,8 @@ class $SERVER extends $EVENTS {
 	memory.Set("peak", Server::JS_PeakMemory);
 	
 	server.Set("Debug", Utils::JS_Debug);
+
+	
 }
 
 void Server::Shutdown(){

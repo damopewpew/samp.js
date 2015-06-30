@@ -2,42 +2,40 @@
 #include "Script.h"
 
 #include "utils/Helpers.h"
+#include "utils/Utils.h"
 
 #include <include/v8.h>
 #include <include/libplatform/libplatform.h>
+
+#include "io/MySQL.h"
 
 
 using namespace sampjs;
 
 AMX *SAMPJS::amx;
-string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax --harmony";
+string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax --harmony --harmony-modules --use_strict ";
+Platform *SAMPJS::platform;
+ArrayBufferAllocator SAMPJS::array_buffer_allocator;
 
 map<string, shared_ptr<sampjs::Script>> SAMPJS::scripts;
 
-class ArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
-public:
-	virtual void* Allocate(size_t length) {
-		void* data = AllocateUninitialized(length);
-		return data == NULL ? data : memset(data, 0, length);
-	}
-	virtual void* AllocateUninitialized(size_t length) { return malloc(length); }
-	virtual void Free(void* data, size_t) { free(data); }
-};
+
 
 
 void SAMPJS::Init(){
-	ArrayBufferAllocator array_buffer_allocator;
-	V8::SetArrayBufferAllocator(&array_buffer_allocator);
-
 	sjs::logger::debug("v8flags: %s", v8flags.c_str());
 	if (v8flags.length() > 0)V8::SetFlagsFromString(v8flags.c_str(), v8flags.length());
 
 	V8::InitializeICU();
-	Platform* platform = v8::platform::CreateDefaultPlatform();
+	platform = v8::platform::CreateDefaultPlatform();
 	V8::InitializePlatform(platform);
 	V8::Initialize();
 
-	sjs::logger::debug("V8 Initialized");
+	V8::SetArrayBufferAllocator(&array_buffer_allocator);
+
+	sjs::logger::log("v8 Engine version %s loaded.", V8::GetVersion());
+	
+	MySQL::StaticInit();
 }
 
 void SAMPJS::Shutdown(){
@@ -47,8 +45,10 @@ void SAMPJS::Shutdown(){
 		scripts.erase(script.first);
 	}
 
-	sjs::logger::debug("SAMPJS Shutdown");
+	MySQL::StaticShutdown();
+	V8::Dispose();
 	V8::ShutdownPlatform();
+	delete platform;
 }
 
 void SAMPJS::ProcessTick(){
@@ -100,6 +100,53 @@ void SAMPJS::JS_Reload(const FunctionCallbackInfo<Value> & args){
 	string file = JS2STRING(args[0]);
 	RemoveScript(file);
 	CreateScript(file);
+}
+
+Local<Value> SAMPJS::ExecuteCode(Local<Context> context, string name, string code,int offset){
+	Isolate *isolate = context->GetIsolate();
+	Locker v8Locker(isolate);
+	Isolate::Scope isolate_scope(isolate);
+	HandleScope hs(isolate);
+	EscapableHandleScope handle_scope(isolate);
+	Local<Context> ctx = Local<Context>::New(isolate, context);
+	Context::Scope context_scope(ctx);
+
+	auto scriptname = String::NewFromUtf8(isolate, name.c_str());
+	ScriptOrigin origin(scriptname, Integer::New(isolate,offset));
+
+	
+/*	if (strict){
+		code = "\"use strict\"\r\n" + code;
+	} */
+
+	auto source = String::NewFromUtf8(isolate, code.c_str());
+
+
+	TryCatch try_catch;
+	
+	
+	auto script = v8::Script::Compile(source, &origin);
+
+
+
+	if (script.IsEmpty()){
+		isolate->CancelTerminateExecution();
+		Utils::PrintException(&try_catch);
+	}
+	else {
+		try_catch.Reset();
+		Local<Value> result = script->Run();
+		if (try_catch.HasCaught()){
+			isolate->CancelTerminateExecution();
+			Utils::PrintException(&try_catch);
+			Local<Value> ret;
+			return ret;
+		}
+
+		return handle_scope.Escape(result);
+	}
+
+	return Local<Value>();
 }
 
 

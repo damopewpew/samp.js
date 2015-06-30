@@ -1,5 +1,6 @@
 
 AMX_NATIVE_INFO PluginNatives[] = {
+	{ "ExecuteJS", sampjs::Callbacks::ExecuteJS },
 	{ "sJS_OnGameModeInit", sampjs::Callbacks::OnGameModeInit },
 	{ "sJS_OnGameModeExit", sampjs::Callbacks::OnGameModeExit },
 	{ "sJS_OnFilterScriptInit", sampjs::Callbacks::OnFilterScriptInit },

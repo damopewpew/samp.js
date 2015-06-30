@@ -9,17 +9,26 @@
 #include <map>
 
 
+#include <boost/filesystem/fstream.hpp>
+
+
 namespace sampjs {
 	struct JS_Callback {
 		Isolate* isolate;
 		Persistent<Function, CopyablePersistentTraits<Function>> callback;
 		Persistent<Context, CopyablePersistentTraits<Context>> context;
-		void* data;
+		std::string encoding = "";
 		JS_Callback(Local<Function> callback_){
 			this->isolate = callback_->CreationContext()->GetIsolate();
 			this->callback.Reset(callback_->CreationContext()->GetIsolate(), callback_);
 			this->context.Reset(this->isolate, callback_->CreationContext());
 		}
+	};
+
+	struct JS_AB {
+		Persistent<ArrayBuffer> ab;
+		std::vector<char> buffer;
+		unsigned int id = 0;
 	};
 
 	class FileSystem : public Module {
@@ -29,7 +38,7 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){}
 
-		//static void FreeCallback(const v8::WeakCallbackData<v8::ArrayBuffer, void*>& data);
+		static void FreeCallback(const WeakCallbackInfo<JS_AB>& data);
 
 		static void rename(const FunctionCallbackInfo<Value>& args);
 		static void unlink(const FunctionCallbackInfo<Value>& args);
@@ -45,15 +54,17 @@ namespace sampjs {
 		static void appendFile(const FunctionCallbackInfo<Value>& args);
 		static void exists(const FunctionCallbackInfo<Value>& args);
 
-		static std::list<std::thread*> _threads;
-
-
-		static std::map<int, JS_Callback*> _callbacks;
-
-		static int _callback_count;
+		std::map<unsigned int, JS_Callback*> _cbLocal;
+		int _cbLocalCount;
+		
+		int _bufferCount;
+		std::map<unsigned int,JS_AB*> buffers;
 
 	private:
 		Isolate *isolate;
+		Persistent<Context, CopyablePersistentTraits<Context>> context;
+
+		
 
 		void AddFunction(Local<Object> obj, std::string name, FunctionCallback callback);
 	};

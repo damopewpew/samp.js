@@ -4,7 +4,12 @@
 #include "utils/Helpers.h"
 #include "utils/Utils.h"
 
+#include "SAMPJS.h"
 
+#include <iostream>
+#include <sstream>
+#include <ostream>
+#include <fstream>
 #include <memory>
 
 using namespace sampjs;
@@ -13,17 +18,44 @@ using namespace std;
 void Events::Init(Local<Context> context){
 	isolate = context->GetIsolate();
 	string src = R"(
-"use strict";		
+"use strict";
+
+class $EVENT {
+	constructor(name,fn,type){
+		this.name = name;
+		this.fn = fn;
+		this.type = type;
+	}
+}		
 class $EVENTS {
 	constructor(){
 		this.ids = {};
 	}
 	
-	on(events, fn){
-		if(!this.ids[events])this.ids[events] = [];
-		this.ids[events].push(fn);
+	on(event, fn){
+		this.addEvent(event,fn,-1);
 	}
-	
+
+	one(event,fn){
+		this.addEvent(event,fn,0);
+	}
+
+	some(event,fn,times){
+		this.addEvent(event,fn,times-1);
+	}
+
+	off(event,fn){
+		if(this.ids[event])
+			for(var id in this.ids[event])
+				if(this.ids[event][id].fn == fn)
+					delete this.ids[event][id];
+	}
+
+	addEvent(event,fn,type){
+		if(!this.ids[event])this.ids[event] = [];
+		this.ids[event].push(new $EVENT(event,fn,type));	
+	}
+
 	fire( event ){
 		var args = [];
 		for(var i in arguments){
@@ -31,8 +63,12 @@ class $EVENTS {
 		}
 		
 		for(var id in this.ids[event]){
-			var fn = this.ids[event][id];
+			var fn = this.ids[event][id].fn;
 			var ret = fn.apply(null, args);	
+			
+			if(this.ids[event][id].type == 0) delete this.ids[event][id];
+			else if(this.ids[event][id].type > 0) this.ids[event][id].type--;
+
 			if(event == "PlayerCommandText" || event == "RconCommand"){
 				if(ret === 1){
 					return 1;
@@ -47,11 +83,22 @@ class $EVENTS {
 };
 
 )";
-	Local<String> source = String::NewFromUtf8(isolate, src.c_str());
-	Local<String> name = String::NewFromUtf8(isolate, "[events.js]");
 
-	Local<Script> script = Script::Compile(source, name);
-	script->Run();
+	ifstream eventFile("js/samp.js/Event.js", std::ios::in);
+	if (!eventFile){
+		sjs::logger::error("Missing required file Event.js");
+		SAMPJS::Shutdown();
+	}
+	std::string eventSource((std::istreambuf_iterator<char>(eventFile)), std::istreambuf_iterator<char>());
+	SAMPJS::ExecuteCode(context, "Event.js", eventSource);
+
+	ifstream eventsFile("js/samp.js/Events.js", std::ios::in);
+	if (!eventsFile){
+		sjs::logger::error("Missing required file Events.js");
+		SAMPJS::Shutdown();
+	}
+	std::string eventsSource((std::istreambuf_iterator<char>(eventsFile)), std::istreambuf_iterator<char>());
+	SAMPJS::ExecuteCode(context, "Events.js", eventsSource);
 
 }
 

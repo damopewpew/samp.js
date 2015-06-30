@@ -4,8 +4,11 @@
 
 #include "io/FileSystem.h"
 #include "io/HTTP.h"
+
 #include "io/Sockets.h"
 #include "io/Timers.h"
+
+#include "io/MySQL.h"
 
 #include "samp/Server.h"
 #include "samp/Players.h"
@@ -119,8 +122,6 @@ void sampjs::Script::Tick(){
 	for (auto module : modules){
 		module.second->Tick();
 	}
-
-	
 }
 
 bool sampjs::Script::IsReady(){
@@ -135,6 +136,7 @@ void sampjs::Script::LoadModules(){
 	modules["$fs"] = make_shared<sampjs::FileSystem>();
 	modules["$io"] = make_shared<sampjs::Sockets>();
 	modules["$HTTP"] = make_shared<sampjs::HTTP>();
+	modules["$mysql"] = make_shared<sampjs::MySQL>();
 
 	this->server = make_shared<sampjs::Server>();
 	modules["$server"] = server;
@@ -337,22 +339,11 @@ bool sampjs::Script::ModuleExists(std::string name){
 	return (modules.find(name) != modules.end());
 }
 
-/*
-int sampjs::Script::FireNative(std::string name, std::string param_types, std::vector<std::string> param_names, cell* params){
-	for (auto module : modules){
-		if (module.second->IsListener()){
-			auto listener = (EventListener*)(modules["$server"].get());
-			int retval = listener->FireNative(name, param_types, param_names, params);
-			if (name == "PlayerCommandText" || name == "RconCommand"){
-				if (retval == 1) return 1;
-			}
-			else {
-				if (!retval) return 0;
-			}
-			
-		}
-	}
-	if (name == "PlayerCommandText" || name == "RconCommand") return 0;
-	return 1;
-} */
+Local<Value> sampjs::Script::ExecuteCode(std::string name, std::string code){
+	Locker v8Locker(isolate);
+	Isolate::Scope isolate_scope(isolate);
+	HandleScope hs(isolate);
+	Local<Context> ctx = Local<Context>::New(isolate, context);
+	return SAMPJS::ExecuteCode(ctx, name, code);
+}
 

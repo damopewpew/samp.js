@@ -78,11 +78,36 @@ namespace sampjs {
 			return object;
 		}
 
+		JS_Object* SetUndefined(std::string name){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Undefined(object->GetIsolate())
+				);
+			return this;
+		}
+
+		JS_Object* SetNull(std::string name){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Null(object->GetIsolate())
+				);
+			return this;
+		}
+
 		JS_Object* Set(std::string name, FunctionCallback callback){
 			object->Set(
 				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
 				FunctionTemplate::New(isolate, callback)->GetFunction()
-			);
+				);
+			return this;
+		}
+
+
+		JS_Object* Set(std::string name){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Null(object->GetIsolate())
+				);
 			return this;
 		}
 
@@ -90,7 +115,7 @@ namespace sampjs {
 			object->Set(
 				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
 				value
-			);
+				);
 			return this;
 		}
 
@@ -106,6 +131,63 @@ namespace sampjs {
 			object->Set(
 				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
 				obj
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, unsigned int value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Integer::NewFromUnsigned(object->GetIsolate(), value)
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, int value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Integer::New(object->GetIsolate(), value)
+				);
+			return this;
+		}
+
+
+		JS_Object* Set(std::string name, int64_t value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Integer::New(object->GetIsolate(), (int32_t)value)
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, uint64_t value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Integer::NewFromUnsigned(object->GetIsolate(), (uint32_t)value)
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, float value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				Number::New(object->GetIsolate(), value)
+				);
+			return this;
+		}
+
+		JS_Object *Set(std::string name, char* value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				String::NewFromUtf8(object->GetIsolate(), value)
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, std::string value){
+			object->Set(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				String::NewFromUtf8(object->GetIsolate(), value.c_str())
 			);
 			return this;
 		}

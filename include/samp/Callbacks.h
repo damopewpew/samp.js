@@ -3,6 +3,9 @@
 namespace sampjs {
 	class Callbacks {
 	public:
+
+		static cell AMX_NATIVE_CALL ExecuteJS(AMX* amx, cell* params);
+
 		static cell AMX_NATIVE_CALL OnGameModeInit(AMX* amx, cell* params);
 		static cell AMX_NATIVE_CALL OnGameModeExit(AMX* amx, cell* params);
 		static cell AMX_NATIVE_CALL OnFilterScriptInit(AMX* amx, cell* params);
