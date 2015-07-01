@@ -466,7 +466,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 	//	FileSystem::_callbacks[_callback_count++] = callback;
 		std::string path2(path);
 
-		auto future = std::async(std::launch::async, [fs, path2,lid](){
+		thread( [fs, path2,lid](){
 			
 			JS_Callback *callback = fs->_cbLocal[lid];
 			
@@ -546,7 +546,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 					Utils::PrintException(&try_catch);
 				}
 			}
-		});
+		}).detach();
 
 	}	
 	else {
