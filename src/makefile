@@ -1,7 +1,7 @@
 CXX = g++
 INCLUDES = -I../include -I../lib -I../lib/samp/SDK/amx -I../deps/v8 -I../deps/boost_1_58_0 -I../lib/mysql-linux/include
 CFLAGS = -fPIC -m32 -Os -Wall -DLINUX -D__linux___
-LIBS = -lrt -lpthread -static-libgcc -static-libstdc++ -std=c++11 
+LIBS = -lrt -lpthread -lm -lz -ldl -static-libgcc -static-libstdc++ -std=c++11 
 LDFLAGS = -shared -fPIC -Os -m32 -static-libgcc -static-libstdc++
 BOOST_DIR = ../deps/boost_1_58_0/stage/lib
 BOOST := \
@@ -19,8 +19,7 @@ V8FLAGS := \
 	../deps/v8/lib/libv8_snapshot.a \
 	../deps/v8/lib/libv8_libplatform.a 
 	
-MYSQL := \
-	../lib/mysql-linux/lib/libmysqlclient.a
+MYSQL := ../lib/mysql-linux/lib/libmysqlclient_r.a
 	
 samp.js.so: amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o MySQL.o
 	$(CXX) $(LDFLAGS) $(INCLUDES) -d samp.js.def -o ../bin/samp.js.so amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o MySQL.o $(MYSQL) $(V8FLAGS) $(BOOST) $(LIBS)
