@@ -149,7 +149,9 @@ void MySQL::JS_Connect(const FunctionCallbackInfo<Value> & args){
 		func.Reset(args.GetIsolate(), Local<Function>::Cast(args[4]));
 
 		async(launch::async, [mysql, mysqlconn, host, user, password, database,func](){
+			mysql_thread_init();
 			mysql->ConnectAsync(mysqlconn->id, host, user, password, database,func);
+			mysql_thread_end();
 		});
 	}
 	else {
@@ -224,7 +226,7 @@ bool MySQL::isConnected(MYSQL *mysql){
 }
 
 void MySQL::ConnectAsync(int id, string host, string user, string password, string database, Persistent<Function, CopyablePersistentTraits<Function>> callback){
-	connections[id]->mysql = mysql_init(NULL);
+	//connections[id]->mysql = mysql_init(NULL);
 	if (mysql_real_connect(
 		connections[id]->mysql,
 		host.c_str(),
@@ -257,6 +259,7 @@ void MySQL::QueryAsync(int id, string query, Persistent<Function, CopyablePersis
 	cb.Reset(isolate, callback);
 
 	async(launch::async, [this, id, cb, query](){
+		mysql_thread_init();
 		connections[id]->lock.lock();
 		MYSQL* msql = connections[id]->mysql;
 		if (!isConnected(msql)){
@@ -280,6 +283,7 @@ void MySQL::QueryAsync(int id, string query, Persistent<Function, CopyablePersis
 				}
 
 				connections[id]->lock.unlock();
+				mysql_thread_end();
 				return;
 			}
 
@@ -360,5 +364,6 @@ void MySQL::QueryAsync(int id, string query, Persistent<Function, CopyablePersis
 			}
 		}
 		connections[id]->lock.unlock();
+		mysql_thread_end();
 	});
 }
