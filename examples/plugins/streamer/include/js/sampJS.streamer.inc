@@ -171,20 +171,22 @@ public Invoke_streamerinc(){
 	DestroyDynamicMapIcon( 0 );
 	IsValidDynamicMapIcon( 0 );
 	CreateDynamic3DTextLabel( "", 0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0, 0, 0, 0, 0.0 );
-	DestroyDynamic3DTextLabel( 0 );
-	IsValidDynamic3DTextLabel( 0 );
-	GetDynamic3DTextLabelText( 0, Str, 0 );
-	UpdateDynamic3DTextLabelText( 0, 0, "" );
+	
+
+	DestroyDynamic3DTextLabel( Text3D:0 );
+	IsValidDynamic3DTextLabel( Text3D:0 );
+	GetDynamic3DTextLabelText(  Text3D:0, Str, 0 );
+	UpdateDynamic3DTextLabelText(  Text3D:0, 0, "" );
 	CreateDynamicCircle( 0.0, 0.0, 0.0, 0, 0, 0 );
 	CreateDynamicCylinder( 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0 );
 	CreateDynamicSphere( 0.0, 0.0, 0.0, 0.0, 0, 0, 0 );
 	CreateDynamicRectangle( 0.0, 0.0, 0.0, 0.0, 0, 0, 0 );
 	CreateDynamicCuboid( 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0 );
 	CreateDynamicCube( 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0 );
-	CreateDynamicPolygon( {0.0}, 0.0, 0.0, 0, 0, 0, 0 );
+	CreateDynamicPolygon( Float:{0.0}, 0.0, 0.0, 0, 0, 0, 0 );
 	DestroyDynamicArea( 0 );
 	IsValidDynamicArea( 0 );
-	GetDynamicPolygonPoints( 0,{ 0.0 }, 0 );
+	GetDynamicPolygonPoints( 0,Float:{ 0.0 }, 0 );
 	GetDynamicPolygonNumberPoints( 0 );
 	TogglePlayerDynamicArea( 0, 0, 0 );
 	TogglePlayerAllDynamicAreas( 0, 0 );
@@ -213,7 +215,7 @@ public Invoke_streamerinc(){
 	CreateDynamicRectangleEx( 0.0, 0.0, 0.0, 0.0, Str, Str, Str, 0, 0, 0 );
 	CreateDynamicCuboidEx( 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Str, Str, Str, 0, 0, 0 );
 	CreateDynamicCubeEx( 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Str, Str, Str, 0, 0, 0 );
-	CreateDynamicPolygonEx( { 0.0 }, 0.0, 0.0, 0, Str, Str, Str, 0, 0, 0 );
+	CreateDynamicPolygonEx( Float:{ 0.0 }, 0.0, 0.0, 0, Str, Str, Str, 0, 0, 0 );
 	Streamer_TickRate( 0 );
 	Streamer_MaxItems( 0, 0 );
 	Streamer_VisibleItems( 0, 0, 0 );
