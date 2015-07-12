@@ -18,5 +18,6 @@ const HTTP_ERROR_MALFORMED_RESPONSE = 6;
  * @return {Number} retval
  */
 function HTTP( index, type, url, data, callback ){
-	return CallNative( "HTTP", "iisss", index, type, url, data, callback );
+	var out = CallNativeGDK( "HTTP", "iisss", index, type, url, data, callback );
+	return out;
 }

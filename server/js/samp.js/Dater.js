@@ -1,0 +1,3 @@
+class Dater extends Date {
+
+}

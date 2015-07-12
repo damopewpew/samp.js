@@ -40,7 +40,8 @@ const VEHICLE_MODEL_INFO_REAR_BUMPER_Z = 9;
  */
 function CreateVehicle( vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren ){
 	addsiren = typeof addsiren !== 'undefined' ? addsiren : 0;
-	return CallNative( "CreateVehicle", "iffffiiii", vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren );
+	var out = CallNativeGDK( "CreateVehicle", "iffffiiii", vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren );
+	return out;
 }
 /**
  * DestroyVehicle
@@ -49,7 +50,8 @@ function CreateVehicle( vehicletype, x, y, z, rotation, color1, color2, respawn_
  * @return {Number} retval
  */
 function DestroyVehicle( vehicleid ){
-	return CallNative( "DestroyVehicle", "i", vehicleid );
+	var out = CallNativeGDK( "DestroyVehicle", "i", vehicleid );
+	return out;
 }
 /**
  * IsVehicleStreamedIn
@@ -59,7 +61,8 @@ function DestroyVehicle( vehicleid ){
  * @return {Number} retval
  */
 function IsVehicleStreamedIn( vehicleid, forplayerid ){
-	return CallNative( "IsVehicleStreamedIn", "ii", vehicleid, forplayerid );
+	var out = CallNativeGDK( "IsVehicleStreamedIn", "ii", vehicleid, forplayerid );
+	return out;
 }
 /**
  * GetVehiclePos
@@ -68,7 +71,8 @@ function IsVehicleStreamedIn( vehicleid, forplayerid ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetVehiclePos( vehicleid ){
-	return CallNative( "GetVehiclePos", "iFFF", vehicleid, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetVehiclePos", "iFFF", vehicleid, [ "x", "y", "z" ] );
+	return {x: out[0],y: out[1],z: out[2]};
 }
 /**
  * SetVehiclePos
@@ -80,7 +84,8 @@ function GetVehiclePos( vehicleid ){
  * @return {Number} retval
  */
 function SetVehiclePos( vehicleid, x, y, z ){
-	return CallNative( "SetVehiclePos", "ifff", vehicleid, x, y, z );
+	var out = CallNativeGDK( "SetVehiclePos", "ifff", vehicleid, x, y, z );
+	return out;
 }
 /**
  * GetVehicleZAngle
@@ -89,7 +94,8 @@ function SetVehiclePos( vehicleid, x, y, z ){
  * @return {Number} z_angle
  */
 function GetVehicleZAngle( vehicleid ){
-	return CallNative( "GetVehicleZAngle", "iF", vehicleid );
+	var out = CallNativeGDK( "GetVehicleZAngle", "iF", vehicleid );
+	return out;
 }
 /**
  * GetVehicleRotationQuat
@@ -98,7 +104,8 @@ function GetVehicleZAngle( vehicleid ){
  * @return {{ w: Number,  x: Number,  y: Number,  z: Number }}
  */
 function GetVehicleRotationQuat( vehicleid ){
-	return CallNative( "GetVehicleRotationQuat", "iFFFF", vehicleid, [ "w", "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetVehicleRotationQuat", "iFFFF", vehicleid, [ "w", "x", "y", "z" ] );
+	return {w: out[0],x: out[1],y: out[2],z: out[3]};
 }
 /**
  * GetVehicleDistanceFromPoint
@@ -110,7 +117,8 @@ function GetVehicleRotationQuat( vehicleid ){
  * @return {Number} retval
  */
 function GetVehicleDistanceFromPoint( vehicleid, X, Y, Z ){
-	return CallNative( "GetVehicleDistanceFromPoint", "ifff", vehicleid, X, Y, Z );
+	var out = CallNativeGDK( "GetVehicleDistanceFromPoint", "ifff", vehicleid, X, Y, Z );
+	return out;
 }
 /**
  * SetVehicleZAngle
@@ -120,7 +128,8 @@ function GetVehicleDistanceFromPoint( vehicleid, X, Y, Z ){
  * @return {Number} retval
  */
 function SetVehicleZAngle( vehicleid, z_angle ){
-	return CallNative( "SetVehicleZAngle", "if", vehicleid, z_angle );
+	var out = CallNativeGDK( "SetVehicleZAngle", "if", vehicleid, z_angle );
+	return out;
 }
 /**
  * SetVehicleParamsForPlayer
@@ -132,7 +141,8 @@ function SetVehicleZAngle( vehicleid, z_angle ){
  * @return {Number} retval
  */
 function SetVehicleParamsForPlayer( vehicleid, playerid, objective, doorslocked ){
-	return CallNative( "SetVehicleParamsForPlayer", "iiii", vehicleid, playerid, objective, doorslocked );
+	var out = CallNativeGDK( "SetVehicleParamsForPlayer", "iiii", vehicleid, playerid, objective, doorslocked );
+	return out;
 }
 /**
  * ManualVehicleEngineAndLights
@@ -140,7 +150,7 @@ function SetVehicleParamsForPlayer( vehicleid, playerid, objective, doorslocked 
  * @return {Number} retval
  */
 function ManualVehicleEngineAndLights(){
-	CallNative( "ManualVehicleEngineAndLights" );
+	 return CallNativeGDK( "ManualVehicleEngineAndLights" );
 }
 /**
  * SetVehicleParamsEx
@@ -156,7 +166,8 @@ function ManualVehicleEngineAndLights(){
  * @return {Number} retval
  */
 function SetVehicleParamsEx( vehicleid, engine, lights, alarm, doors, bonnet, boot, objective ){
-	return CallNative( "SetVehicleParamsEx", "iiiiiiii", vehicleid, engine, lights, alarm, doors, bonnet, boot, objective );
+	var out = CallNativeGDK( "SetVehicleParamsEx", "iiiiiiii", vehicleid, engine, lights, alarm, doors, bonnet, boot, objective );
+	return out;
 }
 /**
  * GetVehicleParamsEx
@@ -165,7 +176,8 @@ function SetVehicleParamsEx( vehicleid, engine, lights, alarm, doors, bonnet, bo
  * @return {{ engine: Number,  lights: Number,  alarm: Number,  doors: Number,  bonnet: Number,  boot: Number,  objective: Number }}
  */
 function GetVehicleParamsEx( vehicleid ){
-	return CallNative( "GetVehicleParamsEx", "iIIIIIII", vehicleid, [ "engine", "lights", "alarm", "doors", "bonnet", "boot", "objective" ] );
+	var out = CallNativeGDK( "GetVehicleParamsEx", "iIIIIIII", vehicleid, [ "engine", "lights", "alarm", "doors", "bonnet", "boot", "objective" ] );
+	return {engine: out[0],lights: out[1],alarm: out[2],doors: out[3],bonnet: out[4],boot: out[5],objective: out[6]};
 }
 /**
  * GetVehicleParamsSirenState
@@ -174,7 +186,8 @@ function GetVehicleParamsEx( vehicleid ){
  * @return {Number} retval
  */
 function GetVehicleParamsSirenState( vehicleid ){
-	return CallNative( "GetVehicleParamsSirenState", "i", vehicleid );
+	var out = CallNativeGDK( "GetVehicleParamsSirenState", "i", vehicleid );
+	return out;
 }
 /**
  * SetVehicleParamsCarDoors
@@ -187,7 +200,8 @@ function GetVehicleParamsSirenState( vehicleid ){
  * @return {Number} retval
  */
 function SetVehicleParamsCarDoors( vehicleid, driver, passenger, backleft, backright ){
-	return CallNative( "SetVehicleParamsCarDoors", "iiiii", vehicleid, driver, passenger, backleft, backright );
+	var out = CallNativeGDK( "SetVehicleParamsCarDoors", "iiiii", vehicleid, driver, passenger, backleft, backright );
+	return out;
 }
 /**
  * GetVehicleParamsCarDoors
@@ -196,7 +210,8 @@ function SetVehicleParamsCarDoors( vehicleid, driver, passenger, backleft, backr
  * @return {{ driver: Number,  passenger: Number,  backleft: Number,  backright: Number }}
  */
 function GetVehicleParamsCarDoors( vehicleid ){
-	return CallNative( "GetVehicleParamsCarDoors", "iIIII", vehicleid, [ "driver", "passenger", "backleft", "backright" ] );
+	var out = CallNativeGDK( "GetVehicleParamsCarDoors", "iIIII", vehicleid, [ "driver", "passenger", "backleft", "backright" ] );
+	return {driver: out[0],passenger: out[1],backleft: out[2],backright: out[3]};
 }
 /**
  * SetVehicleParamsCarWindows
@@ -209,7 +224,8 @@ function GetVehicleParamsCarDoors( vehicleid ){
  * @return {Number} retval
  */
 function SetVehicleParamsCarWindows( vehicleid, driver, passenger, backleft, backright ){
-	return CallNative( "SetVehicleParamsCarWindows", "iiiii", vehicleid, driver, passenger, backleft, backright );
+	var out = CallNativeGDK( "SetVehicleParamsCarWindows", "iiiii", vehicleid, driver, passenger, backleft, backright );
+	return out;
 }
 /**
  * GetVehicleParamsCarWindows
@@ -218,7 +234,8 @@ function SetVehicleParamsCarWindows( vehicleid, driver, passenger, backleft, bac
  * @return {{ driver: Number,  passenger: Number,  backleft: Number,  backright: Number }}
  */
 function GetVehicleParamsCarWindows( vehicleid ){
-	return CallNative( "GetVehicleParamsCarWindows", "iIIII", vehicleid, [ "driver", "passenger", "backleft", "backright" ] );
+	var out = CallNativeGDK( "GetVehicleParamsCarWindows", "iIIII", vehicleid, [ "driver", "passenger", "backleft", "backright" ] );
+	return {driver: out[0],passenger: out[1],backleft: out[2],backright: out[3]};
 }
 /**
  * SetVehicleToRespawn
@@ -227,7 +244,8 @@ function GetVehicleParamsCarWindows( vehicleid ){
  * @return {Number} retval
  */
 function SetVehicleToRespawn( vehicleid ){
-	return CallNative( "SetVehicleToRespawn", "i", vehicleid );
+	var out = CallNativeGDK( "SetVehicleToRespawn", "i", vehicleid );
+	return out;
 }
 /**
  * LinkVehicleToInterior
@@ -237,7 +255,8 @@ function SetVehicleToRespawn( vehicleid ){
  * @return {Number} retval
  */
 function LinkVehicleToInterior( vehicleid, interiorid ){
-	return CallNative( "LinkVehicleToInterior", "ii", vehicleid, interiorid );
+	var out = CallNativeGDK( "LinkVehicleToInterior", "ii", vehicleid, interiorid );
+	return out;
 }
 /**
  * AddVehicleComponent
@@ -247,7 +266,8 @@ function LinkVehicleToInterior( vehicleid, interiorid ){
  * @return {Number} retval
  */
 function AddVehicleComponent( vehicleid, componentid ){
-	return CallNative( "AddVehicleComponent", "ii", vehicleid, componentid );
+	var out = CallNativeGDK( "AddVehicleComponent", "ii", vehicleid, componentid );
+	return out;
 }
 /**
  * RemoveVehicleComponent
@@ -257,7 +277,8 @@ function AddVehicleComponent( vehicleid, componentid ){
  * @return {Number} retval
  */
 function RemoveVehicleComponent( vehicleid, componentid ){
-	return CallNative( "RemoveVehicleComponent", "ii", vehicleid, componentid );
+	var out = CallNativeGDK( "RemoveVehicleComponent", "ii", vehicleid, componentid );
+	return out;
 }
 /**
  * ChangeVehicleColor
@@ -268,7 +289,8 @@ function RemoveVehicleComponent( vehicleid, componentid ){
  * @return {Number} retval
  */
 function ChangeVehicleColor( vehicleid, color1, color2 ){
-	return CallNative( "ChangeVehicleColor", "iii", vehicleid, color1, color2 );
+	var out = CallNativeGDK( "ChangeVehicleColor", "iii", vehicleid, color1, color2 );
+	return out;
 }
 /**
  * ChangeVehiclePaintjob
@@ -278,7 +300,8 @@ function ChangeVehicleColor( vehicleid, color1, color2 ){
  * @return {Number} retval
  */
 function ChangeVehiclePaintjob( vehicleid, paintjobid ){
-	return CallNative( "ChangeVehiclePaintjob", "ii", vehicleid, paintjobid );
+	var out = CallNativeGDK( "ChangeVehiclePaintjob", "ii", vehicleid, paintjobid );
+	return out;
 }
 /**
  * SetVehicleHealth
@@ -288,7 +311,8 @@ function ChangeVehiclePaintjob( vehicleid, paintjobid ){
  * @return {Number} retval
  */
 function SetVehicleHealth( vehicleid, health ){
-	return CallNative( "SetVehicleHealth", "if", vehicleid, health );
+	var out = CallNativeGDK( "SetVehicleHealth", "if", vehicleid, health );
+	return out;
 }
 /**
  * GetVehicleHealth
@@ -297,7 +321,8 @@ function SetVehicleHealth( vehicleid, health ){
  * @return {Number} health
  */
 function GetVehicleHealth( vehicleid ){
-	return CallNative( "GetVehicleHealth", "iF", vehicleid );
+	var out = CallNativeGDK( "GetVehicleHealth", "iF", vehicleid );
+	return out;
 }
 /**
  * AttachTrailerToVehicle
@@ -307,7 +332,8 @@ function GetVehicleHealth( vehicleid ){
  * @return {Number} retval
  */
 function AttachTrailerToVehicle( trailerid, vehicleid ){
-	return CallNative( "AttachTrailerToVehicle", "ii", trailerid, vehicleid );
+	var out = CallNativeGDK( "AttachTrailerToVehicle", "ii", trailerid, vehicleid );
+	return out;
 }
 /**
  * DetachTrailerFromVehicle
@@ -316,7 +342,8 @@ function AttachTrailerToVehicle( trailerid, vehicleid ){
  * @return {Number} retval
  */
 function DetachTrailerFromVehicle( vehicleid ){
-	return CallNative( "DetachTrailerFromVehicle", "i", vehicleid );
+	var out = CallNativeGDK( "DetachTrailerFromVehicle", "i", vehicleid );
+	return out;
 }
 /**
  * IsTrailerAttachedToVehicle
@@ -325,7 +352,8 @@ function DetachTrailerFromVehicle( vehicleid ){
  * @return {Number} retval
  */
 function IsTrailerAttachedToVehicle( vehicleid ){
-	return CallNative( "IsTrailerAttachedToVehicle", "i", vehicleid );
+	var out = CallNativeGDK( "IsTrailerAttachedToVehicle", "i", vehicleid );
+	return out;
 }
 /**
  * GetVehicleTrailer
@@ -334,7 +362,8 @@ function IsTrailerAttachedToVehicle( vehicleid ){
  * @return {Number} retval
  */
 function GetVehicleTrailer( vehicleid ){
-	return CallNative( "GetVehicleTrailer", "i", vehicleid );
+	var out = CallNativeGDK( "GetVehicleTrailer", "i", vehicleid );
+	return out;
 }
 /**
  * SetVehicleNumberPlate
@@ -344,7 +373,8 @@ function GetVehicleTrailer( vehicleid ){
  * @return {Number} retval
  */
 function SetVehicleNumberPlate( vehicleid, numberplate ){
-	return CallNative( "SetVehicleNumberPlate", "is", vehicleid, numberplate );
+	var out = CallNativeGDK( "SetVehicleNumberPlate", "is", vehicleid, numberplate );
+	return out;
 }
 /**
  * GetVehicleModel
@@ -353,7 +383,8 @@ function SetVehicleNumberPlate( vehicleid, numberplate ){
  * @return {Number} retval
  */
 function GetVehicleModel( vehicleid ){
-	return CallNative( "GetVehicleModel", "i", vehicleid );
+	var out = CallNativeGDK( "GetVehicleModel", "i", vehicleid );
+	return out;
 }
 /**
  * GetVehicleComponentInSlot
@@ -363,7 +394,8 @@ function GetVehicleModel( vehicleid ){
  * @return {Number} retval
  */
 function GetVehicleComponentInSlot( vehicleid, slot ){
-	return CallNative( "GetVehicleComponentInSlot", "ii", vehicleid, slot );
+	var out = CallNativeGDK( "GetVehicleComponentInSlot", "ii", vehicleid, slot );
+	return out;
 }
 /**
  * GetVehicleComponentType
@@ -372,7 +404,8 @@ function GetVehicleComponentInSlot( vehicleid, slot ){
  * @return {Number} retval
  */
 function GetVehicleComponentType( component ){
-	return CallNative( "GetVehicleComponentType", "i", component );
+	var out = CallNativeGDK( "GetVehicleComponentType", "i", component );
+	return out;
 }
 /**
  * RepairVehicle
@@ -381,7 +414,8 @@ function GetVehicleComponentType( component ){
  * @return {Number} retval
  */
 function RepairVehicle( vehicleid ){
-	return CallNative( "RepairVehicle", "i", vehicleid );
+	var out = CallNativeGDK( "RepairVehicle", "i", vehicleid );
+	return out;
 }
 /**
  * GetVehicleVelocity
@@ -390,7 +424,8 @@ function RepairVehicle( vehicleid ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetVehicleVelocity( vehicleid ){
-	return CallNative( "GetVehicleVelocity", "iFFF", vehicleid, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetVehicleVelocity", "iFFF", vehicleid, [ "x", "y", "z" ] );
+	return {X: out[0],Y: out[1],Z: out[2]};
 }
 /**
  * SetVehicleVelocity
@@ -402,7 +437,8 @@ function GetVehicleVelocity( vehicleid ){
  * @return {Number} retval
  */
 function SetVehicleVelocity( vehicleid, X, Y, Z ){
-	return CallNative( "SetVehicleVelocity", "ifff", vehicleid, X, Y, Z );
+	var out = CallNativeGDK( "SetVehicleVelocity", "ifff", vehicleid, X, Y, Z );
+	return out;
 }
 /**
  * SetVehicleAngularVelocity
@@ -414,7 +450,8 @@ function SetVehicleVelocity( vehicleid, X, Y, Z ){
  * @return {Number} retval
  */
 function SetVehicleAngularVelocity( vehicleid, X, Y, Z ){
-	return CallNative( "SetVehicleAngularVelocity", "ifff", vehicleid, X, Y, Z );
+	var out = CallNativeGDK( "SetVehicleAngularVelocity", "ifff", vehicleid, X, Y, Z );
+	return out;
 }
 /**
  * GetVehicleDamageStatus
@@ -423,7 +460,8 @@ function SetVehicleAngularVelocity( vehicleid, X, Y, Z ){
  * @return {{ panels: Number,  doors: Number,  lights: Number,  tires: Number }}
  */
 function GetVehicleDamageStatus( vehicleid ){
-	return CallNative( "GetVehicleDamageStatus", "iIIII", vehicleid, [ "panels", "doors", "lights", "tires" ] );
+	var out = CallNativeGDK( "GetVehicleDamageStatus", "iIIII", vehicleid, [ "panels", "doors", "lights", "tires" ] );
+	return {panels: out[0],doors: out[1],lights: out[2],tires: out[3]};
 }
 /**
  * UpdateVehicleDamageStatus
@@ -436,7 +474,8 @@ function GetVehicleDamageStatus( vehicleid ){
  * @return {Number} retval
  */
 function UpdateVehicleDamageStatus( vehicleid, panels, doors, lights, tires ){
-	return CallNative( "UpdateVehicleDamageStatus", "iiiii", vehicleid, panels, doors, lights, tires );
+	var out = CallNativeGDK( "UpdateVehicleDamageStatus", "iiiii", vehicleid, panels, doors, lights, tires );
+	return out;
 }
 /**
  * GetVehicleModelInfo
@@ -446,7 +485,8 @@ function UpdateVehicleDamageStatus( vehicleid, panels, doors, lights, tires ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetVehicleModelInfo( vehiclemodel, infotype ){
-	return CallNative( "GetVehicleModelInfo", "iiFFF", vehiclemodel, infotype, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetVehicleModelInfo", "iiFFF", vehiclemodel, infotype, [ "x", "y", "z" ] );
+	return {X: out[0],Y: out[1],Z: out[2]};
 }
 /**
  * SetVehicleVirtualWorld
@@ -456,7 +496,8 @@ function GetVehicleModelInfo( vehiclemodel, infotype ){
  * @return {Number} retval
  */
 function SetVehicleVirtualWorld( vehicleid, worldid ){
-	return CallNative( "SetVehicleVirtualWorld", "ii", vehicleid, worldid );
+	var out = CallNativeGDK( "SetVehicleVirtualWorld", "ii", vehicleid, worldid );
+	return out;
 }
 /**
  * GetVehicleVirtualWorld
@@ -465,5 +506,6 @@ function SetVehicleVirtualWorld( vehicleid, worldid ){
  * @return {Number} retval
  */
 function GetVehicleVirtualWorld( vehicleid ){
-	return CallNative( "GetVehicleVirtualWorld", "i", vehicleid );
+	var out = CallNativeGDK( "GetVehicleVirtualWorld", "i", vehicleid );
+	return out;
 }

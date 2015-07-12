@@ -5,7 +5,8 @@
  * @return {Number} retval
  */
 function db_open( name ){
-	return CallNative( "db_open", "s", name );
+	var out = CallNativeGDK( "db_open", "s", name );
+	return out;
 }
 /**
  * db_close
@@ -14,7 +15,8 @@ function db_open( name ){
  * @return {Number} retval
  */
 function db_close( db ){
-	return CallNative( "db_close", "i", db );
+	var out = CallNativeGDK( "db_close", "i", db );
+	return out;
 }
 /**
  * db_query
@@ -24,7 +26,8 @@ function db_close( db ){
  * @return {Number} retval
  */
 function db_query( db, query ){
-	return CallNative( "db_query", "is", db, query );
+	var out = CallNativeGDK( "db_query", "is", db, query );
+	return out;
 }
 /**
  * db_free_result
@@ -33,7 +36,8 @@ function db_query( db, query ){
  * @return {Number} retval
  */
 function db_free_result( dbresult ){
-	return CallNative( "db_free_result", "i", dbresult );
+	var out = CallNativeGDK( "db_free_result", "i", dbresult );
+	return out;
 }
 /**
  * db_num_rows
@@ -42,7 +46,8 @@ function db_free_result( dbresult ){
  * @return {Number} retval
  */
 function db_num_rows( dbresult ){
-	return CallNative( "db_num_rows", "i", dbresult );
+	var out = CallNativeGDK( "db_num_rows", "i", dbresult );
+	return out;
 }
 /**
  * db_next_row
@@ -51,7 +56,8 @@ function db_num_rows( dbresult ){
  * @return {Number} retval
  */
 function db_next_row( dbresult ){
-	return CallNative( "db_next_row", "i", dbresult );
+	var out = CallNativeGDK( "db_next_row", "i", dbresult );
+	return out;
 }
 /**
  * db_num_fields
@@ -60,7 +66,8 @@ function db_next_row( dbresult ){
  * @return {Number} retval
  */
 function db_num_fields( dbresult ){
-	return CallNative( "db_num_fields", "i", dbresult );
+	var out = CallNativeGDK( "db_num_fields", "i", dbresult );
+	return out;
 }
 /**
  * db_field_name
@@ -72,7 +79,8 @@ function db_num_fields( dbresult ){
  * @return {Number} retval
  */
 function db_field_name( dbresult, field, result, maxlength ){
-	return CallNative( "db_field_name", "iisi", dbresult, field, result, maxlength );
+	var out = CallNativeGDK( "db_field_name", "iisi", dbresult, field, result, maxlength );
+	return out;
 }
 /**
  * db_get_field
@@ -84,7 +92,8 @@ function db_field_name( dbresult, field, result, maxlength ){
  * @return {Number} retval
  */
 function db_get_field( dbresult, field, result, maxlength ){
-	return CallNative( "db_get_field", "iisi", dbresult, field, result, maxlength );
+	var out = CallNativeGDK( "db_get_field", "iisi", dbresult, field, result, maxlength );
+	return out;
 }
 /**
  * db_get_field_assoc
@@ -96,5 +105,6 @@ function db_get_field( dbresult, field, result, maxlength ){
  * @return {Number} retval
  */
 function db_get_field_assoc( dbresult, field, result, maxlength ){
-	return CallNative( "db_get_field_assoc", "issi", dbresult, field, result, maxlength );
+	var out = CallNativeGDK( "db_get_field_assoc", "issi", dbresult, field, result, maxlength );
+	return out;
 }

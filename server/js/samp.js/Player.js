@@ -155,7 +155,7 @@ class Player extends Events {
 			this._pos.y = pos.y;
 			this._pos.z = pos.z;
 		}
-		SetPlayerPos(this._id,this.pos_.x,this.pos_.y,this.pos.z);
+		SetPlayerPos(this._id,this._pos.x,this._pos.y,this._pos.z);
 	}
 	
 /**

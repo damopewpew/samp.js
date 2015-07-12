@@ -30,7 +30,8 @@ const OBJECT_MATERIAL_TEXT_ALIGN_RIGHT = 2;
  */
 function CreateObject( modelid, X, Y, Z, rX, rY, rZ, DrawDistance ){
 	DrawDistance = typeof DrawDistance !== 'undefined' ? DrawDistance : 0.0;
-	return CallNative( "CreateObject", "ifffffff", modelid, X, Y, Z, rX, rY, rZ, DrawDistance );
+	var out = CallNativeGDK( "CreateObject", "ifffffff", modelid, X, Y, Z, rX, rY, rZ, DrawDistance );
+	return out;
 }
 /**
  * AttachObjectToVehicle
@@ -46,7 +47,8 @@ function CreateObject( modelid, X, Y, Z, rX, rY, rZ, DrawDistance ){
  * @return {Number} retval
  */
 function AttachObjectToVehicle( objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ ){
-	return CallNative( "AttachObjectToVehicle", "iiffffff", objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ );
+	var out = CallNativeGDK( "AttachObjectToVehicle", "iiffffff", objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ );
+	return out;
 }
 /**
  * AttachObjectToObject
@@ -64,7 +66,8 @@ function AttachObjectToVehicle( objectid, vehicleid, OffsetX, OffsetY, OffsetZ, 
  */
 function AttachObjectToObject( objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, SyncRotation ){
 	SyncRotation = typeof SyncRotation !== 'undefined' ? SyncRotation : 1;
-	return CallNative( "AttachObjectToObject", "iiffffffi", objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, SyncRotation );
+	var out = CallNativeGDK( "AttachObjectToObject", "iiffffffi", objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, SyncRotation );
+	return out;
 }
 /**
  * AttachObjectToPlayer
@@ -80,7 +83,8 @@ function AttachObjectToObject( objectid, attachtoid, OffsetX, OffsetY, OffsetZ, 
  * @return {Number} retval
  */
 function AttachObjectToPlayer( objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ ){
-	return CallNative( "AttachObjectToPlayer", "iiffffff", objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ );
+	var out = CallNativeGDK( "AttachObjectToPlayer", "iiffffff", objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ );
+	return out;
 }
 /**
  * SetObjectPos
@@ -92,7 +96,8 @@ function AttachObjectToPlayer( objectid, playerid, OffsetX, OffsetY, OffsetZ, Ro
  * @return {Number} retval
  */
 function SetObjectPos( objectid, X, Y, Z ){
-	return CallNative( "SetObjectPos", "ifff", objectid, X, Y, Z );
+	var out = CallNativeGDK( "SetObjectPos", "ifff", objectid, X, Y, Z );
+	return out;
 }
 /**
  * GetObjectPos
@@ -101,7 +106,8 @@ function SetObjectPos( objectid, X, Y, Z ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetObjectPos( objectid ){
-	return CallNative( "GetObjectPos", "iFFF", objectid, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetObjectPos", "iFFF", objectid, [ "x", "y", "z" ] );
+	return {X: out[0],Y: out[1],Z: out[2]};
 }
 /**
  * SetObjectRot
@@ -113,7 +119,8 @@ function GetObjectPos( objectid ){
  * @return {Number} retval
  */
 function SetObjectRot( objectid, RotX, RotY, RotZ ){
-	return CallNative( "SetObjectRot", "ifff", objectid, RotX, RotY, RotZ );
+	var out = CallNativeGDK( "SetObjectRot", "ifff", objectid, RotX, RotY, RotZ );
+	return out;
 }
 /**
  * GetObjectRot
@@ -122,7 +129,8 @@ function SetObjectRot( objectid, RotX, RotY, RotZ ){
  * @return {{ rotx: Number,  roty: Number,  rotz: Number }}
  */
 function GetObjectRot( objectid ){
-	return CallNative( "GetObjectRot", "iFFF", objectid, [ "rotx", "roty", "rotz" ] );
+	var out = CallNativeGDK( "GetObjectRot", "iFFF", objectid, [ "rotx", "roty", "rotz" ] );
+	return {RotX: out[0],RotY: out[1],RotZ: out[2]};
 }
 /**
  * GetObjectModel
@@ -131,7 +139,8 @@ function GetObjectRot( objectid ){
  * @return {Number} retval
  */
 function GetObjectModel( objectid ){
-	return CallNative( "GetObjectModel", "i", objectid );
+	var out = CallNativeGDK( "GetObjectModel", "i", objectid );
+	return out;
 }
 /**
  * SetObjectNoCameraCol
@@ -140,7 +149,8 @@ function GetObjectModel( objectid ){
  * @return {Number} retval
  */
 function SetObjectNoCameraCol( objectid ){
-	return CallNative( "SetObjectNoCameraCol", "i", objectid );
+	var out = CallNativeGDK( "SetObjectNoCameraCol", "i", objectid );
+	return out;
 }
 /**
  * IsValidObject
@@ -149,7 +159,8 @@ function SetObjectNoCameraCol( objectid ){
  * @return {Number} retval
  */
 function IsValidObject( objectid ){
-	return CallNative( "IsValidObject", "i", objectid );
+	var out = CallNativeGDK( "IsValidObject", "i", objectid );
+	return out;
 }
 /**
  * DestroyObject
@@ -158,7 +169,8 @@ function IsValidObject( objectid ){
  * @return {Number} retval
  */
 function DestroyObject( objectid ){
-	return CallNative( "DestroyObject", "i", objectid );
+	var out = CallNativeGDK( "DestroyObject", "i", objectid );
+	return out;
 }
 /**
  * MoveObject
@@ -177,7 +189,8 @@ function MoveObject( objectid, X, Y, Z, Speed, RotX, RotY, RotZ ){
 	RotX = typeof RotX !== 'undefined' ? RotX : -1000.0;
 	RotY = typeof RotY !== 'undefined' ? RotY : -1000.0;
 	RotZ = typeof RotZ !== 'undefined' ? RotZ : -1000.0;
-	return CallNative( "MoveObject", "ifffffff", objectid, X, Y, Z, Speed, RotX, RotY, RotZ );
+	var out = CallNativeGDK( "MoveObject", "ifffffff", objectid, X, Y, Z, Speed, RotX, RotY, RotZ );
+	return out;
 }
 /**
  * StopObject
@@ -186,7 +199,8 @@ function MoveObject( objectid, X, Y, Z, Speed, RotX, RotY, RotZ ){
  * @return {Number} retval
  */
 function StopObject( objectid ){
-	return CallNative( "StopObject", "i", objectid );
+	var out = CallNativeGDK( "StopObject", "i", objectid );
+	return out;
 }
 /**
  * IsObjectMoving
@@ -195,7 +209,8 @@ function StopObject( objectid ){
  * @return {Number} retval
  */
 function IsObjectMoving( objectid ){
-	return CallNative( "IsObjectMoving", "i", objectid );
+	var out = CallNativeGDK( "IsObjectMoving", "i", objectid );
+	return out;
 }
 /**
  * EditObject
@@ -205,7 +220,8 @@ function IsObjectMoving( objectid ){
  * @return {Number} retval
  */
 function EditObject( playerid, objectid ){
-	return CallNative( "EditObject", "ii", playerid, objectid );
+	var out = CallNativeGDK( "EditObject", "ii", playerid, objectid );
+	return out;
 }
 /**
  * EditPlayerObject
@@ -215,7 +231,8 @@ function EditObject( playerid, objectid ){
  * @return {Number} retval
  */
 function EditPlayerObject( playerid, objectid ){
-	return CallNative( "EditPlayerObject", "ii", playerid, objectid );
+	var out = CallNativeGDK( "EditPlayerObject", "ii", playerid, objectid );
+	return out;
 }
 /**
  * SelectObject
@@ -224,7 +241,8 @@ function EditPlayerObject( playerid, objectid ){
  * @return {Number} retval
  */
 function SelectObject( playerid ){
-	return CallNative( "SelectObject", "i", playerid );
+	var out = CallNativeGDK( "SelectObject", "i", playerid );
+	return out;
 }
 /**
  * CancelEdit
@@ -233,7 +251,8 @@ function SelectObject( playerid ){
  * @return {Number} retval
  */
 function CancelEdit( playerid ){
-	return CallNative( "CancelEdit", "i", playerid );
+	var out = CallNativeGDK( "CancelEdit", "i", playerid );
+	return out;
 }
 /**
  * CreatePlayerObject
@@ -251,7 +270,8 @@ function CancelEdit( playerid ){
  */
 function CreatePlayerObject( playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistance ){
 	DrawDistance = typeof DrawDistance !== 'undefined' ? DrawDistance : 0.0;
-	return CallNative( "CreatePlayerObject", "iifffffff", playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistance );
+	var out = CallNativeGDK( "CreatePlayerObject", "iifffffff", playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistance );
+	return out;
 }
 /**
  * AttachPlayerObjectToVehicle
@@ -268,7 +288,8 @@ function CreatePlayerObject( playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistanc
  * @return {Number} retval
  */
 function AttachPlayerObjectToVehicle( playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ ){
-	return CallNative( "AttachPlayerObjectToVehicle", "iiiffffff", playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ );
+	var out = CallNativeGDK( "AttachPlayerObjectToVehicle", "iiiffffff", playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ );
+	return out;
 }
 /**
  * SetPlayerObjectPos
@@ -281,7 +302,8 @@ function AttachPlayerObjectToVehicle( playerid, objectid, vehicleid, fOffsetX, f
  * @return {Number} retval
  */
 function SetPlayerObjectPos( playerid, objectid, X, Y, Z ){
-	return CallNative( "SetPlayerObjectPos", "iifff", playerid, objectid, X, Y, Z );
+	var out = CallNativeGDK( "SetPlayerObjectPos", "iifff", playerid, objectid, X, Y, Z );
+	return out;
 }
 /**
  * GetPlayerObjectPos
@@ -291,7 +313,8 @@ function SetPlayerObjectPos( playerid, objectid, X, Y, Z ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetPlayerObjectPos( playerid, objectid ){
-	return CallNative( "GetPlayerObjectPos", "iiFFF", playerid, objectid, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetPlayerObjectPos", "iiFFF", playerid, objectid, [ "x", "y", "z" ] );
+	return {X: out[0],Y: out[1],Z: out[2]};
 }
 /**
  * SetPlayerObjectRot
@@ -304,7 +327,8 @@ function GetPlayerObjectPos( playerid, objectid ){
  * @return {Number} retval
  */
 function SetPlayerObjectRot( playerid, objectid, RotX, RotY, RotZ ){
-	return CallNative( "SetPlayerObjectRot", "iifff", playerid, objectid, RotX, RotY, RotZ );
+	var out = CallNativeGDK( "SetPlayerObjectRot", "iifff", playerid, objectid, RotX, RotY, RotZ );
+	return out;
 }
 /**
  * GetPlayerObjectRot
@@ -314,7 +338,8 @@ function SetPlayerObjectRot( playerid, objectid, RotX, RotY, RotZ ){
  * @return {{ rotx: Number,  roty: Number,  rotz: Number }}
  */
 function GetPlayerObjectRot( playerid, objectid ){
-	return CallNative( "GetPlayerObjectRot", "iiFFF", playerid, objectid, [ "rotx", "roty", "rotz" ] );
+	var out = CallNativeGDK( "GetPlayerObjectRot", "iiFFF", playerid, objectid, [ "rotx", "roty", "rotz" ] );
+	return {RotX: out[0],RotY: out[1],RotZ: out[2]};
 }
 /**
  * GetPlayerObjectModel
@@ -324,7 +349,8 @@ function GetPlayerObjectRot( playerid, objectid ){
  * @return {Number} retval
  */
 function GetPlayerObjectModel( playerid, objectid ){
-	return CallNative( "GetPlayerObjectModel", "ii", playerid, objectid );
+	var out = CallNativeGDK( "GetPlayerObjectModel", "ii", playerid, objectid );
+	return out;
 }
 /**
  * SetPlayerObjectNoCameraCol
@@ -334,7 +360,8 @@ function GetPlayerObjectModel( playerid, objectid ){
  * @return {Number} retval
  */
 function SetPlayerObjectNoCameraCol( playerid, objectid ){
-	return CallNative( "SetPlayerObjectNoCameraCol", "ii", playerid, objectid );
+	var out = CallNativeGDK( "SetPlayerObjectNoCameraCol", "ii", playerid, objectid );
+	return out;
 }
 /**
  * IsValidPlayerObject
@@ -344,7 +371,8 @@ function SetPlayerObjectNoCameraCol( playerid, objectid ){
  * @return {Number} retval
  */
 function IsValidPlayerObject( playerid, objectid ){
-	return CallNative( "IsValidPlayerObject", "ii", playerid, objectid );
+	var out = CallNativeGDK( "IsValidPlayerObject", "ii", playerid, objectid );
+	return out;
 }
 /**
  * DestroyPlayerObject
@@ -354,7 +382,8 @@ function IsValidPlayerObject( playerid, objectid ){
  * @return {Number} retval
  */
 function DestroyPlayerObject( playerid, objectid ){
-	return CallNative( "DestroyPlayerObject", "ii", playerid, objectid );
+	var out = CallNativeGDK( "DestroyPlayerObject", "ii", playerid, objectid );
+	return out;
 }
 /**
  * MovePlayerObject
@@ -374,7 +403,8 @@ function MovePlayerObject( playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ 
 	RotX = typeof RotX !== 'undefined' ? RotX : -1000.0;
 	RotY = typeof RotY !== 'undefined' ? RotY : -1000.0;
 	RotZ = typeof RotZ !== 'undefined' ? RotZ : -1000.0;
-	return CallNative( "MovePlayerObject", "iifffffff", playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ );
+	var out = CallNativeGDK( "MovePlayerObject", "iifffffff", playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ );
+	return out;
 }
 /**
  * StopPlayerObject
@@ -384,7 +414,8 @@ function MovePlayerObject( playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ 
  * @return {Number} retval
  */
 function StopPlayerObject( playerid, objectid ){
-	return CallNative( "StopPlayerObject", "ii", playerid, objectid );
+	var out = CallNativeGDK( "StopPlayerObject", "ii", playerid, objectid );
+	return out;
 }
 /**
  * IsPlayerObjectMoving
@@ -394,7 +425,8 @@ function StopPlayerObject( playerid, objectid ){
  * @return {Number} retval
  */
 function IsPlayerObjectMoving( playerid, objectid ){
-	return CallNative( "IsPlayerObjectMoving", "ii", playerid, objectid );
+	var out = CallNativeGDK( "IsPlayerObjectMoving", "ii", playerid, objectid );
+	return out;
 }
 /**
  * AttachPlayerObjectToPlayer
@@ -411,7 +443,8 @@ function IsPlayerObjectMoving( playerid, objectid ){
  * @return {Number} retval
  */
 function AttachPlayerObjectToPlayer( objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ ){
-	return CallNative( "AttachPlayerObjectToPlayer", "iiiffffff", objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ );
+	var out = CallNativeGDK( "AttachPlayerObjectToPlayer", "iiiffffff", objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ );
+	return out;
 }
 /**
  * SetObjectMaterial
@@ -426,7 +459,8 @@ function AttachPlayerObjectToPlayer( objectplayer, objectid, attachplayer, Offse
  */
 function SetObjectMaterial( objectid, materialindex, modelid, txdname, texturename, materialcolor ){
 	materialcolor = typeof materialcolor !== 'undefined' ? materialcolor : 0;
-	return CallNative( "SetObjectMaterial", "iiissi", objectid, materialindex, modelid, txdname, texturename, materialcolor );
+	var out = CallNativeGDK( "SetObjectMaterial", "iiissi", objectid, materialindex, modelid, txdname, texturename, materialcolor );
+	return out;
 }
 /**
  * SetPlayerObjectMaterial
@@ -442,7 +476,8 @@ function SetObjectMaterial( objectid, materialindex, modelid, txdname, texturena
  */
 function SetPlayerObjectMaterial( playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor ){
 	materialcolor = typeof materialcolor !== 'undefined' ? materialcolor : 0;
-	return CallNative( "SetPlayerObjectMaterial", "iiiissi", playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor );
+	var out = CallNativeGDK( "SetPlayerObjectMaterial", "iiiissi", playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor );
+	return out;
 }
 /**
  * SetObjectMaterialText
@@ -468,7 +503,8 @@ function SetObjectMaterialText( objectid, text, materialindex, materialsize, fon
 	fontcolor = typeof fontcolor !== 'undefined' ? fontcolor : 0xFFFFFFFF;
 	backcolor = typeof backcolor !== 'undefined' ? backcolor : 0;
 	textalignment = typeof textalignment !== 'undefined' ? textalignment : 0;
-	return CallNative( "SetObjectMaterialText", "isiisiiiii", objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
+	var out = CallNativeGDK( "SetObjectMaterialText", "isiisiiiii", objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
+	return out;
 }
 /**
  * SetPlayerObjectMaterialText
@@ -495,7 +531,8 @@ function SetPlayerObjectMaterialText( playerid, objectid, text, materialindex, m
 	fontcolor = typeof fontcolor !== 'undefined' ? fontcolor : 0xFFFFFFFF;
 	backcolor = typeof backcolor !== 'undefined' ? backcolor : 0;
 	textalignment = typeof textalignment !== 'undefined' ? textalignment : 0;
-	return CallNative( "SetPlayerObjectMaterialText", "iisiisiiiii", playerid, objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
+	var out = CallNativeGDK( "SetPlayerObjectMaterialText", "iisiisiiiii", playerid, objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
+	return out;
 }
 /**
  * SetObjectsDefaultCameraCol
@@ -504,5 +541,6 @@ function SetPlayerObjectMaterialText( playerid, objectid, text, materialindex, m
  * @return {Number} retval
  */
 function SetObjectsDefaultCameraCol( disable ){
-	return CallNative( "SetObjectsDefaultCameraCol", "i", disable );
+	var out = CallNativeGDK( "SetObjectsDefaultCameraCol", "i", disable );
+	return out;
 }

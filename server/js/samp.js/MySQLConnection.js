@@ -48,6 +48,7 @@ class MySQLConnection extends Events {
 						qry = qry.slice(0,i)+escaped+qry.slice(i+1);
 					}
 				}
+				
 				if(arguments.length > 2 && typeof(arguments[2])==='function'){
 					this.internal.query(qry,arguments[2]);
 					return this;
@@ -63,6 +64,18 @@ class MySQLConnection extends Events {
 		this.internal.query(qry);
 	}
 	
+	parseArray(array){
+		return array.map(function(v){
+			if(Array.isArray(v)) return '(' + this.parseArray(v) +')';
+			return this.varEscape(v);
+		}.bind(this)).join(', ');
+	}
+	
+	parseDate(date){
+		let year = date.getFullYear();
+		let month = date.g
+	}
+	
 	varEscape(val){
 		if(val === undefined || val === null){
 			return 'NULL';	
@@ -71,6 +84,11 @@ class MySQLConnection extends Events {
 		switch(typeof val){
 			case 'boolean': return (val) ? 'true' : 'false';
 			case 'number': return val+'';
+		}
+		
+		
+		if(Array.isArray(val)){
+			return this.parseArray(val);	
 		}
 		
 		if(typeof val === 'object'){

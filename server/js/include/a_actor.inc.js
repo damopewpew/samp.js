@@ -9,7 +9,8 @@
  * @return {Number} retval
  */
 function CreateActor( modelid, X, Y, Z, Rotation ){
-	return CallNative( "CreateActor", "iffff", modelid, X, Y, Z, Rotation );
+	var out = CallNativeGDK( "CreateActor", "iffff", modelid, X, Y, Z, Rotation );
+	return out;
 }
 /**
  * DestroyActor
@@ -18,7 +19,8 @@ function CreateActor( modelid, X, Y, Z, Rotation ){
  * @return {Number} retval
  */
 function DestroyActor( actorid ){
-	return CallNative( "DestroyActor", "i", actorid );
+	var out = CallNativeGDK( "DestroyActor", "i", actorid );
+	return out;
 }
 /**
  * IsActorStreamedIn
@@ -28,7 +30,8 @@ function DestroyActor( actorid ){
  * @return {Number} retval
  */
 function IsActorStreamedIn( actorid, forplayerid ){
-	return CallNative( "IsActorStreamedIn", "ii", actorid, forplayerid );
+	var out = CallNativeGDK( "IsActorStreamedIn", "ii", actorid, forplayerid );
+	return out;
 }
 /**
  * SetActorVirtualWorld
@@ -38,7 +41,8 @@ function IsActorStreamedIn( actorid, forplayerid ){
  * @return {Number} retval
  */
 function SetActorVirtualWorld( actorid, vworld ){
-	return CallNative( "SetActorVirtualWorld", "ii", actorid, vworld );
+	var out = CallNativeGDK( "SetActorVirtualWorld", "ii", actorid, vworld );
+	return out;
 }
 /**
  * GetActorVirtualWorld
@@ -47,7 +51,8 @@ function SetActorVirtualWorld( actorid, vworld ){
  * @return {Number} retval
  */
 function GetActorVirtualWorld( actorid ){
-	return CallNative( "GetActorVirtualWorld", "i", actorid );
+	var out = CallNativeGDK( "GetActorVirtualWorld", "i", actorid );
+	return out;
 }
 /**
  * ApplyActorAnimation
@@ -64,7 +69,8 @@ function GetActorVirtualWorld( actorid ){
  * @return {Number} retval
  */
 function ApplyActorAnimation( actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time ){
-	return CallNative( "ApplyActorAnimation", "issfiiiii", actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time );
+	var out = CallNativeGDK( "ApplyActorAnimation", "issfiiiii", actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time );
+	return out;
 }
 /**
  * ClearActorAnimations
@@ -73,7 +79,8 @@ function ApplyActorAnimation( actorid, animlib, animname, fDelta, loop, lockx, l
  * @return {Number} retval
  */
 function ClearActorAnimations( actorid ){
-	return CallNative( "ClearActorAnimations", "i", actorid );
+	var out = CallNativeGDK( "ClearActorAnimations", "i", actorid );
+	return out;
 }
 /**
  * SetActorPos
@@ -85,7 +92,8 @@ function ClearActorAnimations( actorid ){
  * @return {Number} retval
  */
 function SetActorPos( actorid, X, Y, Z ){
-	return CallNative( "SetActorPos", "ifff", actorid, X, Y, Z );
+	var out = CallNativeGDK( "SetActorPos", "ifff", actorid, X, Y, Z );
+	return out;
 }
 /**
  * GetActorPos
@@ -94,7 +102,8 @@ function SetActorPos( actorid, X, Y, Z ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetActorPos( actorid ){
-	return CallNative( "GetActorPos", "iFFF", actorid, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetActorPos", "iFFF", actorid, [ "x", "y", "z" ] );
+	return {X: out[0],Y: out[1],Z: out[2]};
 }
 /**
  * SetActorFacingAngle
@@ -104,7 +113,8 @@ function GetActorPos( actorid ){
  * @return {Number} retval
  */
 function SetActorFacingAngle( actorid, ang ){
-	return CallNative( "SetActorFacingAngle", "if", actorid, ang );
+	var out = CallNativeGDK( "SetActorFacingAngle", "if", actorid, ang );
+	return out;
 }
 /**
  * GetActorFacingAngle
@@ -113,7 +123,8 @@ function SetActorFacingAngle( actorid, ang ){
  * @return {Number} ang
  */
 function GetActorFacingAngle( actorid ){
-	return CallNative( "GetActorFacingAngle", "iF", actorid );
+	var out = CallNativeGDK( "GetActorFacingAngle", "iF", actorid );
+	return out;
 }
 /**
  * SetActorHealth
@@ -123,7 +134,8 @@ function GetActorFacingAngle( actorid ){
  * @return {Number} retval
  */
 function SetActorHealth( actorid, health ){
-	return CallNative( "SetActorHealth", "if", actorid, health );
+	var out = CallNativeGDK( "SetActorHealth", "if", actorid, health );
+	return out;
 }
 /**
  * GetActorHealth
@@ -132,7 +144,8 @@ function SetActorHealth( actorid, health ){
  * @return {Number} health
  */
 function GetActorHealth( actorid ){
-	return CallNative( "GetActorHealth", "iF", actorid );
+	var out = CallNativeGDK( "GetActorHealth", "iF", actorid );
+	return out;
 }
 /**
  * SetActorInvulnerable
@@ -143,7 +156,8 @@ function GetActorHealth( actorid ){
  */
 function SetActorInvulnerable( actorid, invulnerable ){
 	invulnerable = typeof invulnerable !== 'undefined' ? invulnerable : true;
-	return CallNative( "SetActorInvulnerable", "ii", actorid, invulnerable );
+	var out = CallNativeGDK( "SetActorInvulnerable", "ii", actorid, invulnerable );
+	return out;
 }
 /**
  * IsActorInvulnerable
@@ -152,7 +166,8 @@ function SetActorInvulnerable( actorid, invulnerable ){
  * @return {Number} retval
  */
 function IsActorInvulnerable( actorid ){
-	return CallNative( "IsActorInvulnerable", "i", actorid );
+	var out = CallNativeGDK( "IsActorInvulnerable", "i", actorid );
+	return out;
 }
 /**
  * IsValidActor
@@ -161,5 +176,6 @@ function IsActorInvulnerable( actorid ){
  * @return {Number} retval
  */
 function IsValidActor( actorid ){
-	return CallNative( "IsValidActor", "i", actorid );
+	var out = CallNativeGDK( "IsValidActor", "i", actorid );
+	return out;
 }

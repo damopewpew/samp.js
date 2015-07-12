@@ -93,7 +93,8 @@ const KEY_RIGHT = (128);
  * @return {Number} retval
  */
 function KillTimer( timerid ){
-	return CallNative( "KillTimer", "i", timerid );
+	var out = CallNativeGDK( "KillTimer", "i", timerid );
+	return out;
 }
 /**
  * GetTickCount
@@ -101,7 +102,7 @@ function KillTimer( timerid ){
  * @return {Number} retval
  */
 function GetTickCount(){
-	CallNative( "GetTickCount" );
+	 return CallNativeGDK( "GetTickCount" );
 }
 /**
  * SendChat
@@ -110,7 +111,8 @@ function GetTickCount(){
  * @return {Number} retval
  */
 function SendChat( msg ){
-	return CallNative( "SendChat", "s", msg );
+	var out = CallNativeGDK( "SendChat", "s", msg );
+	return out;
 }
 /**
  * SendCommand
@@ -119,7 +121,8 @@ function SendChat( msg ){
  * @return {Number} retval
  */
 function SendCommand( commandtext ){
-	return CallNative( "SendCommand", "s", commandtext );
+	var out = CallNativeGDK( "SendCommand", "s", commandtext );
+	return out;
 }
 /**
  * GetPlayerState
@@ -128,7 +131,8 @@ function SendCommand( commandtext ){
  * @return {Number} retval
  */
 function GetPlayerState( playerid ){
-	return CallNative( "GetPlayerState", "i", playerid );
+	var out = CallNativeGDK( "GetPlayerState", "i", playerid );
+	return out;
 }
 /**
  * GetPlayerPos
@@ -137,7 +141,8 @@ function GetPlayerState( playerid ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetPlayerPos( playerid ){
-	return CallNative( "GetPlayerPos", "iFFF", playerid, [ "x", "y", "z" ] );
+	var out = CallNativeGDK( "GetPlayerPos", "iFFF", playerid, [ "x", "y", "z" ] );
+	return {x: out[0],y: out[1],z: out[2]};
 }
 /**
  * GetPlayerVehicleID
@@ -146,7 +151,8 @@ function GetPlayerPos( playerid ){
  * @return {Number} retval
  */
 function GetPlayerVehicleID( playerid ){
-	return CallNative( "GetPlayerVehicleID", "i", playerid );
+	var out = CallNativeGDK( "GetPlayerVehicleID", "i", playerid );
+	return out;
 }
 /**
  * GetPlayerArmedWeapon
@@ -155,7 +161,8 @@ function GetPlayerVehicleID( playerid ){
  * @return {Number} retval
  */
 function GetPlayerArmedWeapon( playerid ){
-	return CallNative( "GetPlayerArmedWeapon", "i", playerid );
+	var out = CallNativeGDK( "GetPlayerArmedWeapon", "i", playerid );
+	return out;
 }
 /**
  * GetPlayerHealth
@@ -164,7 +171,8 @@ function GetPlayerArmedWeapon( playerid ){
  * @return {Number} retval
  */
 function GetPlayerHealth( playerid ){
-	return CallNative( "GetPlayerHealth", "i", playerid );
+	var out = CallNativeGDK( "GetPlayerHealth", "i", playerid );
+	return out;
 }
 /**
  * GetPlayerArmour
@@ -173,7 +181,8 @@ function GetPlayerHealth( playerid ){
  * @return {Number} retval
  */
 function GetPlayerArmour( playerid ){
-	return CallNative( "GetPlayerArmour", "i", playerid );
+	var out = CallNativeGDK( "GetPlayerArmour", "i", playerid );
+	return out;
 }
 /**
  * GetPlayerSpecialAction
@@ -182,7 +191,8 @@ function GetPlayerArmour( playerid ){
  * @return {Number} retval
  */
 function GetPlayerSpecialAction( playerid ){
-	return CallNative( "GetPlayerSpecialAction", "i", playerid );
+	var out = CallNativeGDK( "GetPlayerSpecialAction", "i", playerid );
+	return out;
 }
 /**
  * IsPlayerStreamedIn
@@ -191,7 +201,8 @@ function GetPlayerSpecialAction( playerid ){
  * @return {Number} retval
  */
 function IsPlayerStreamedIn( playerid ){
-	return CallNative( "IsPlayerStreamedIn", "i", playerid );
+	var out = CallNativeGDK( "IsPlayerStreamedIn", "i", playerid );
+	return out;
 }
 /**
  * IsVehicleStreamedIn
@@ -200,7 +211,8 @@ function IsPlayerStreamedIn( playerid ){
  * @return {Number} retval
  */
 function IsVehicleStreamedIn( vehicleid ){
-	return CallNative( "IsVehicleStreamedIn", "i", vehicleid );
+	var out = CallNativeGDK( "IsVehicleStreamedIn", "i", vehicleid );
+	return out;
 }
 /**
  * GetPlayerKeys
@@ -209,7 +221,8 @@ function IsVehicleStreamedIn( vehicleid ){
  * @return {{ keys: Number,  updown: Number,  leftright: Number }}
  */
 function GetPlayerKeys( playerid ){
-	return CallNative( "GetPlayerKeys", "iIII", playerid, [ "keys", "updown", "leftright" ] );
+	var out = CallNativeGDK( "GetPlayerKeys", "iIII", playerid, [ "keys", "updown", "leftright" ] );
+	return {keys: out[0],updown: out[1],leftright: out[2]};
 }
 /**
  * GetPlayerFacingAngle
@@ -218,7 +231,8 @@ function GetPlayerKeys( playerid ){
  * @return {Number} ang
  */
 function GetPlayerFacingAngle( playerid ){
-	return CallNative( "GetPlayerFacingAngle", "iF", playerid );
+	var out = CallNativeGDK( "GetPlayerFacingAngle", "iF", playerid );
+	return out;
 }
 /**
  * GetMyPos
@@ -226,7 +240,7 @@ function GetPlayerFacingAngle( playerid ){
  * @return {{ x: Number,  y: Number,  z: Number }}
  */
 function GetMyPos(){
-	CallNative( "GetMyPos" );
+	 return CallNativeGDK( "GetMyPos" );
 }
 /**
  * SetMyPos
@@ -237,7 +251,8 @@ function GetMyPos(){
  * @return {Number} retval
  */
 function SetMyPos( x, y, z ){
-	return CallNative( "SetMyPos", "fff", x, y, z );
+	var out = CallNativeGDK( "SetMyPos", "fff", x, y, z );
+	return out;
 }
 /**
  * GetMyFacingAngle
@@ -245,7 +260,7 @@ function SetMyPos( x, y, z ){
  * @return {Number} ang
  */
 function GetMyFacingAngle(){
-	CallNative( "GetMyFacingAngle" );
+	 return CallNativeGDK( "GetMyFacingAngle" );
 }
 /**
  * SetMyFacingAngle
@@ -254,7 +269,8 @@ function GetMyFacingAngle(){
  * @return {Number} retval
  */
 function SetMyFacingAngle( ang ){
-	return CallNative( "SetMyFacingAngle", "f", ang );
+	var out = CallNativeGDK( "SetMyFacingAngle", "f", ang );
+	return out;
 }
 /**
  * GetDistanceFromMeToPoint
@@ -265,7 +281,8 @@ function SetMyFacingAngle( ang ){
  * @return {Number} distance
  */
 function GetDistanceFromMeToPoint( X, Y, Z ){
-	return CallNative( "GetDistanceFromMeToPoint", "fffF", X, Y, Z );
+	var out = CallNativeGDK( "GetDistanceFromMeToPoint", "fffF", X, Y, Z );
+	return out;
 }
 /**
  * IsPlayerInRangeOfPoint
@@ -278,7 +295,8 @@ function GetDistanceFromMeToPoint( X, Y, Z ){
  * @return {Number} retval
  */
 function IsPlayerInRangeOfPoint( playerid, range, X, Y, Z ){
-	return CallNative( "IsPlayerInRangeOfPoint", "iffff", playerid, range, X, Y, Z );
+	var out = CallNativeGDK( "IsPlayerInRangeOfPoint", "iffff", playerid, range, X, Y, Z );
+	return out;
 }
 /**
  * GetPlayerName
@@ -289,7 +307,8 @@ function IsPlayerInRangeOfPoint( playerid, range, X, Y, Z ){
  */
 function GetPlayerName( playerid, len ){
 	len = typeof len !== 'undefined' ? len : 256;
-	return CallNative( "GetPlayerName", "iSi", playerid, len );
+	var out = CallNativeGDK( "GetPlayerName", "iSi", playerid, len );
+	return out;
 }
 /**
  * IsPlayerConnected
@@ -298,7 +317,8 @@ function GetPlayerName( playerid, len ){
  * @return {Number} retval
  */
 function IsPlayerConnected( playerid ){
-	return CallNative( "IsPlayerConnected", "i", playerid );
+	var out = CallNativeGDK( "IsPlayerConnected", "i", playerid );
+	return out;
 }
 /**
  * StartRecordingPlayback
@@ -308,7 +328,8 @@ function IsPlayerConnected( playerid ){
  * @return {Number} retval
  */
 function StartRecordingPlayback( playbacktype, recordname ){
-	return CallNative( "StartRecordingPlayback", "is", playbacktype, recordname );
+	var out = CallNativeGDK( "StartRecordingPlayback", "is", playbacktype, recordname );
+	return out;
 }
 /**
  * StopRecordingPlayback
@@ -316,7 +337,7 @@ function StartRecordingPlayback( playbacktype, recordname ){
  * @return {Number} retval
  */
 function StopRecordingPlayback(){
-	CallNative( "StopRecordingPlayback" );
+	 return CallNativeGDK( "StopRecordingPlayback" );
 }
 /**
  * PauseRecordingPlayback
@@ -324,7 +345,7 @@ function StopRecordingPlayback(){
  * @return {Number} retval
  */
 function PauseRecordingPlayback(){
-	CallNative( "PauseRecordingPlayback" );
+	 return CallNativeGDK( "PauseRecordingPlayback" );
 }
 /**
  * ResumeRecordingPlayback
@@ -332,5 +353,5 @@ function PauseRecordingPlayback(){
  * @return {Number} retval
  */
 function ResumeRecordingPlayback(){
-	CallNative( "ResumeRecordingPlayback" );
+	 return CallNativeGDK( "ResumeRecordingPlayback" );
 }

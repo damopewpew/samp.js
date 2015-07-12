@@ -13,9 +13,9 @@ class Server extends Events {
 	}
 
 	checkPlayers(){
-		let highest_id = CallNative("GetPlayerPoolSize");
+		let highest_id = CallNativeGDK("GetPlayerPoolSize");
 		for(var i = 0; i < highest_id+1; i++){
-			if(CallNative("IsPlayerConnected", "i", i)){
+			if(CallNativeGDK("IsPlayerConnected", "i", i)){
 				$players.addPlayer(i);
 			}
 		}
