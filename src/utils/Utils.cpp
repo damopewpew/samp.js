@@ -2,7 +2,9 @@
 
 #include "utils/Helpers.h"
 
+#ifdef WIN32
 #include <Windows.h>
+#endif
 #include "SAMPJS.h"
 
 #include <iostream>
