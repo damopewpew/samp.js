@@ -12,12 +12,23 @@
 #include <ostream>
 #include <fstream>
 
+#include <chrono>
+
+#include <sampgdk/sampgdk.h>
+
 using namespace std;
 using namespace sampjs;
 
-std::map<std::string, int> Server::_native_func_cache;
+std::unordered_map<std::string, amx_Function_t> Server::_native_func_cache;
+std::unordered_map<std::string, AMX_NATIVE> Server::_gdk_native_funcs;
+
+AMX_NATIVE Server:: last_native = NULL;
+std::string Server::last_native_name = "";
 
 void Server::Init(Local<Context> ctx){
+
+
+	
 	isolate = ctx->GetIsolate();
 	context.Reset(ctx->GetIsolate(), ctx);
 
@@ -32,9 +43,19 @@ void Server::Init(Local<Context> ctx){
 
 	SAMPJS::ExecuteCode(ctx, "$server", "var $server = new Server();");
 
+
+	ifstream pubFile("js/samp.js/Publics.js", std::ios::in);
+	if (!pubFile){
+		sjs::logger::error("Missing required file Publics.js");
+		SAMPJS::Shutdown();
+	}
+	std::string pubSource((std::istreambuf_iterator<char>(pubFile)), std::istreambuf_iterator<char>());
+	SAMPJS::ExecuteCode(ctx, "Publics.js", pubSource);
+
 	JS_Object global(ctx->Global());
 
 	global.Set("CallNative", Server::JS_CallNative);
+	global.Set("CallNativeGDK", Server::JS_CallNativeGDK);
 
 	JS_Object server(global.getObject("$server"));
 
@@ -53,9 +74,10 @@ void Server::Shutdown(){
 	sjs::logger::debug("Server Shutdown");
 }
 
+
 void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
-	typedef int(*amx_Function_t)(AMX * amx, cell * params);
-	TryCatch try_catch;
+
+//	TryCatch try_catch;
 
 	if (args.Length() < 1){
 		sjs::logger::error("Function CallNative requires at least 1 argument CallNative(nativeName, params, args);");
@@ -63,52 +85,58 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 		return;
 	}
 
-	std::string func_name = JS2STRING(args[0]);
 
-	int func_idx;
-	AMX_HEADER *amx_hdr = (AMX_HEADER *)SAMPJS::amx->base;
+	std::string func_name(*String::Utf8Value(args[0]));
 
+//	std::string func_name = JS2STRING(args[0]);
+
+	amx_Function_t amx_Function;
+	
 	auto iter = _native_func_cache.find(func_name);
-	if (iter != _native_func_cache.end()) func_idx = iter->second;
+	if (iter != _native_func_cache.end()) amx_Function = iter->second;
 	else {
+		int func_idx;
 		if (amx_FindNative(SAMPJS::amx, func_name.c_str(), &func_idx)){
 			sjs::logger::error("Cannot find native function %s", func_name.c_str());
 			return;
 		}
-		_native_func_cache[func_name] = func_idx;
+
+		amx_Function = (amx_Function_t)((AMX_FUNCSTUB *)((char *)SAMPJS::amx_hdr + SAMPJS::amx_hdr->natives + SAMPJS::amx_hdr->defsize * func_idx))->address;
+		_native_func_cache[func_name] = amx_Function;
 	}
 
-	unsigned int amx_addr = (unsigned int)((AMX_FUNCSTUB *)((char *)amx_hdr + amx_hdr->natives + amx_hdr->defsize * func_idx))->address;
+	
 
 	if (args.Length() > 1){
 		if (!args[1]->IsString()){
-			sjs::logger::error("CallNative %s, 2nd argument must be a string", func_name.c_str());
+			sjs::logger::error("CallNative %s, 2nd argument must be a string", func_name);
 			return;
 		}
 
 
-		std::string param = JS2STRING(args[1]);
-		size_t S_oc = std::count(param.begin(), param.end(), 'S');
-		size_t I_oc = std::count(param.begin(), param.end(), 'I');
-		size_t F_oc = std::count(param.begin(), param.end(), 'F');
+		std::string format(*String::Utf8Value(args[1]));
+		size_t S_oc = std::count(format.begin(), format.end(), 'S');
+		size_t I_oc = std::count(format.begin(), format.end(), 'I');
+		size_t F_oc = std::count(format.begin(), format.end(), 'F');
 		
-
+	
 		bool multi = false;
 		if ((S_oc + I_oc + F_oc) > 1) multi = true;
-		if (!args[args.Length() - 1]->IsArray() && multi){
-			sjs::logger::error("CallNative %s, you must supply an array of strings for functions with multiple references", func_name.c_str());
-			return;
-		}
-
-		unsigned int count = (param.length()), variables = 0;
+	//	if (!args[args.Length() - 1]->IsArray() && multi){
+		//	sjs::logger::error("CallNative %s, you must supply an array of strings for functions with multiple references", func_name.c_str());
+	//		return;
+	//	}
+	//
+		unsigned int count = (format.length()), variables = 0;
 
 		cell *physAddr[6];
 		cell *params = new cell[count + 1];
 		params[0] = count * sizeof(cell);
 		unsigned int strVars = 0;
 		unsigned int k = 2, j = 1;
-		for (unsigned int i = 0; i < param.length(); i++){
-			switch (param[i]){
+		size_t len_p =format.length();
+		for (unsigned int i = 0; i < len_p; i++){
+			switch (format[i]){
 			case 'd':
 			case 'i':
 			{
@@ -130,11 +158,22 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 			}
 			case 's':
 			{
+				
+				size_t len = 0;
 				std::string str = "";
-				if (!args[k]->IsUndefined()) str = JS2STRING(args[k]);
-				const char* val = str.c_str();
-				amx_Allot(SAMPJS::amx, strlen(val) + 1, &params[j++], &physAddr[variables++]);
-				amx_SetString(physAddr[variables - 1], val, 0, 0, strlen(val) + 1);
+				if (!args[k]->IsUndefined()){
+					//str = JS2STRING(args[k]);
+					const wchar_t *wstr = (wchar_t*)*String::Value(args[k]->ToString());
+					len = args[k]->ToString()->Length();
+					char *sstr = new char[len+1];
+					wcstombs(sstr, wstr, len);
+					sstr[len] = '\0';
+					str = std::string(sstr);
+				}
+				
+
+				amx_Allot(SAMPJS::amx, len + 1, &params[j++], &physAddr[variables++]);
+				amx_SetString(physAddr[variables - 1], str.c_str(), 0, 0, len + 1);
 				k++;
 				break;
 			}
@@ -158,28 +197,41 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 		}
 
 
-
-
-		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
+		//amx_Function_t amx_Function = (amx_Function_t)amx_addr;		
 		int value = amx_Function(SAMPJS::amx, params);
-
 	
 
+		
 		if (variables){
 			Local<Object> retobj;
+
 			Local<Value> retval;
 			Local<Array> arr;
+
+			bool doObj = false;
+
 			if (multi){
-				arr = Local<Array>::Cast(args[args.Length() - 1]);
-				retobj = Object::New(args.GetIsolate());
+				if (args[args.Length() - 1]->IsArray()){
+				//	sjs::logger::printf("Doing Object");
+					doObj = true;
+					arr = Local<Array>::Cast(args[args.Length() - 1]);
+					retobj = Object::New(args.GetIsolate());
+				}
+				else {
+
+					arr = Array::New(args.GetIsolate(), (S_oc + I_oc + F_oc));
+				}
 			}
+			
+	//		if (multi)  arr = Array::New(args.GetIsolate(), (S_oc + I_oc + F_oc));
+			
 
 			unsigned int k = 1;
 			unsigned int j = 0;
 			variables = 0;
 			strVars = 0;
-			for (unsigned int i = 0; i < param.length(); i++){
-				switch (param[i]){
+			for (unsigned int i = 0; i < len_p; i++){
+				switch (format[i]){
 				default: k++;
 					break;
 
@@ -197,7 +249,8 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 					i++;
 					k++;
 
-					if (multi) retobj->Set(arr->Get(j++), STRING2JS(args.GetIsolate(), text));
+					if (!doObj && multi) arr->Set(j++, STRING2JS(args.GetIsolate(), text));
+					else if (multi) retobj->Set(arr->Get(j++), STRING2JS(args.GetIsolate(), text));
 					else retval = STRING2JS(args.GetIsolate(), text);
 					delete text;
 					//amx_Release(sampjs.GetAMX(), params[i]);
@@ -205,10 +258,11 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 				}
 
 				case 'F':{
-					cell* returnValue = (cell*)physAddr[variables++];
-					float fl = amx_ctof(*returnValue);
-
-					if (multi) retobj->Set(arr->Get(j++), Number::New(args.GetIsolate(), fl));
+				//	cell* returnValue = (cell*)physAddr[variables++];
+					float fl = amx_ctof(*(cell*)physAddr[variables++]);
+			
+					if (!doObj && multi) arr->Set(j++, Number::New(args.GetIsolate(), 0.0));
+					else if (multi) retobj->Set(arr->Get(j++), Number::New(args.GetIsolate(), fl));
 					else retval = Number::New(args.GetIsolate(), fl);
 					//amx_Release(sampjs.GetAMX(), params[i]);
 					break;
@@ -216,56 +270,202 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 				case 'I':{
 					cell* returnValue = (cell*)physAddr[variables++];
 					int value = *returnValue;
-					if (multi) retobj->Set(arr->Get(j++), Integer::New(args.GetIsolate(), value));
+					if (!doObj && multi) arr->Set(j++, Integer::New(args.GetIsolate(), value));
+					else if (multi) retobj->Set(arr->Get(j++), Integer::New(args.GetIsolate(), value));
 					else retval = Integer::New(args.GetIsolate(), value);
 					//amx_Release(sampjs.GetAMX(), params[i]);
 					break;
 				}
 
 				}
-			}
+			} 
 
-			for (int i = param.length() - 1; i >= 0; i--){
-				if (param[i] == 'F' || param[i] == 'I' || param[i] == 'S' || param[i] == 's'){
+			for (int i = len_p - 1; i >= 0; i--){
+				if (format[i] == 'F' || format[i] == 'I' || format[i] == 'S' || format[i] == 's'){
 					amx_Release(SAMPJS::amx, params[i + 1]);
 				}
 			}
-
-			if (try_catch.HasCaught()){
+			delete[] params;
+			/*if (try_catch.HasCaught()){
 				args.GetIsolate()->CancelTerminateExecution();
 				Utils::PrintException(&try_catch);
 				delete[] params;
 				return;
-			}
+			} */
 			if (multi){
-				args.GetReturnValue().Set(retobj);
-				delete[] params;
+				if(doObj)args.GetReturnValue().Set(retobj);
+				else args.GetReturnValue().Set(arr);
+				
 				return;
 			}
 			else if (!retval.IsEmpty()){
 				args.GetReturnValue().Set(Local<Value>::Cast(retval));
-				delete[] params;
 				return;
 			}
 
 		}
 
 		args.GetReturnValue().Set(value);
-		delete[] params;
 		return;
 	}
 	else {
-		if (try_catch.HasCaught()){
+		/*if (try_catch.HasCaught()){
 			args.GetIsolate()->CancelTerminateExecution();
 			Utils::PrintException(&try_catch);
 			return;
-		}
-		amx_Function_t amx_Function = (amx_Function_t)amx_addr;
+		}*/
+	//	amx_Function_t amx_Function = (amx_Function_t)amx_addr;
 		int value = amx_Function(SAMPJS::amx, NULL);
 		args.GetReturnValue().Set(value);
 		return;
 	}
 }
+
+void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
+
+	String::Utf8Value jsname(args[0]);
+	char* name(*jsname);
+
+
+	String::Value jsformat(args[1]);
+	char16_t* format(*jsformat);
+
+	AMX_NATIVE native;
+
+	auto iter = _gdk_native_funcs.find(name);
+	if (iter != _gdk_native_funcs.end()) native = iter->second;
+	else {
+		native = sampgdk::FindNative(name);
+		if (!native){
+			return;
+		}
+		_gdk_native_funcs[name] = native;
+	}
+
+//	SetVehiclePos(0, 0.0, 0.0, 0.0);
+	
+	void *params[20];
+	cell param_value[20];
+	std::vector<char*> param_str;
+	int j = 0;
+	int k = 2;
+	int vars = 0;
+	int strs = 0;
+	size_t len = sizeof(format);
+	std::string format_str;
+
+	for (unsigned int i = 0; i < len; i++){
+		switch (format[i]){
+		case 'i':
+			{
+				param_value[i] = args[k]->Int32Value();
+				params[j++] = &param_value[i];
+				k++;
+				format_str += format[i];
+			}
+			break;
+		case 'f':
+			{
+				float val = 0.0;
+				if (!args[k]->IsUndefined()) val = args[k]->NumberValue();
+
+				params[j++] = &amx_ftoc(val);
+				k++;
+				format_str += format[i];
+			}
+			break;
+		case 's':
+			{
+				String::Value jstring(args[k]->ToString());
+				wchar_t *wstr = (wchar_t*)*jstring;
+				size_t slen = args[k]->ToString()->Length();
+				params[j]  = new char[slen + 1];
+				wcstombs((char*)params[j], wstr, slen+1);
+				j++;
+				k++;
+				format_str += format[i];
+				strs++;
+			}
+			break;
+		case 'F':
+		case 'I':
+			{
+				params[j++] = &param_value[vars++];
+				format_str += 'R';
+			}
+			break;
+
+		case 'S':
+			{
+				format_str += "S[*2]";
+				int strlen = args[k]->Int32Value();
+				params[j++] = new char[strlen + 1];
+				vars++;
+			}
+			break;
+	
+		}
+	}
+	
+	int retval = sampgdk::InvokeNativeArray(native, format_str.c_str(), params);
+
+	if (vars > 0 || strs > 0){
+		Local<Array> arr = Array::New(args.GetIsolate(), vars);
+		j = 0;
+		vars = 0;
+		for (unsigned int i = 0; i < len; i++){
+			switch (format[i]){
+			case 'i':
+			case 'f':
+				{
+					j++;
+				}
+				break;
+			case 's':
+				{
+					delete[] params[j++];
+				//	j++;
+					
+				}
+				break;
+			case 'I':
+				{
+					int val = *(int *)params[j++];
+					arr->Set(vars++, Integer::New(args.GetIsolate(), val));
+
+				}
+				break;
+			case 'F':
+				{
+					float val = amx_ctof(*(cell *)params[j++]);
+					arr->Set(vars++, Number::New(args.GetIsolate(), val));
+				}
+				break;
+			case 'S':
+				{
+					char* str = (char*)params[j];
+					arr->Set(vars++, String::NewFromUtf8(args.GetIsolate(), str));
+				//	delete[] params[j++];
+					delete str;
+					
+				}
+				break;
+			}
+		}
+
+		if (vars == 1){
+			Local<Value> jsval = arr->Get(0);
+			args.GetReturnValue().Set(jsval);
+		}
+		else if(vars > 1) args.GetReturnValue().Set(arr);
+	}
+
+	else {
+		args.GetReturnValue().Set(retval);
+	}
+
+}
+
 
 void Server::JS_CurrentMemory(const FunctionCallbackInfo<Value> & args){
 	double current = (double)(double(sampjs::getCurrentRSS()) / 1024 / 1024);

@@ -29,6 +29,7 @@ namespace sampjs {
 	public:
 		static Platform* platform;
 		static AMX *amx;
+		static AMX_HEADER *amx_hdr;
 		static string v8flags;
 		static ArrayBufferAllocator array_buffer_allocator;
 
@@ -40,11 +41,14 @@ namespace sampjs {
 		static void RemoveScript( string filename );
 		static bool ScriptLoaded( string filename );
 
+		static void SetAMX(AMX *amx);
+
 		static void JS_Load(const FunctionCallbackInfo<Value> & args);
 		static void JS_Unload(const FunctionCallbackInfo<Value> & args);
 		static void JS_Reload(const FunctionCallbackInfo<Value> & args);
 
-		
+		static bool PublicCall(const char *name, cell *params, cell *retval);
+
 		static Local<Value> ExecuteCode(Local<Context> context, string name, string code, int offset=1);
 
 

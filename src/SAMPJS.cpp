@@ -13,6 +13,7 @@
 using namespace sampjs;
 
 AMX *SAMPJS::amx;
+AMX_HEADER *SAMPJS::amx_hdr;
 string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax --harmony --harmony-modules --use_strict ";
 Platform *SAMPJS::platform;
 ArrayBufferAllocator SAMPJS::array_buffer_allocator;
@@ -35,6 +36,7 @@ void SAMPJS::Init(){
 
 	sjs::logger::log("v8 Engine version %s loaded.", V8::GetVersion());
 	
+
 	MySQL::StaticInit();
 }
 
@@ -61,11 +63,14 @@ void SAMPJS::ProcessTick(){
 
 void SAMPJS::CreateScript(string filename){
 	if (ScriptLoaded(filename)){
+		sjs::logger::log("Script: %s, already loaded", filename.c_str());
 		return;
 	}
 	filename = "js/" + filename;
 	scripts[filename] = make_shared<Script>();
-	scripts[filename]->Init(filename);
+	if (!scripts[filename]->Init(filename)){
+		scripts.erase(filename);
+	}
 }
 
 void SAMPJS::RemoveScript(string filename){
@@ -81,6 +86,11 @@ void SAMPJS::RemoveScript(string filename){
 
 bool SAMPJS::ScriptLoaded(string filename){
 	return (scripts.find(filename) != scripts.end());
+}
+
+void SAMPJS::SetAMX(AMX *amx){
+	SAMPJS::amx = amx;
+	SAMPJS::amx_hdr = (AMX_HEADER *)SAMPJS::amx->base;
 }
 
 void SAMPJS::JS_Load(const FunctionCallbackInfo<Value> & args){
@@ -100,6 +110,18 @@ void SAMPJS::JS_Reload(const FunctionCallbackInfo<Value> & args){
 	string file = JS2STRING(args[0]);
 	RemoveScript(file);
 	CreateScript(file);
+}
+
+bool SAMPJS::PublicCall(const char *name, cell *params, cell *retval){
+	if (Script::_publics.find(name) == Script::_publics.end()) return true;
+	for (auto script : scripts){
+		bool shouldReturn = false;
+		bool returnval = script.second->PublicCall(name, params, shouldReturn);
+		if (shouldReturn){
+			return returnval;
+		}
+	}	
+	return NULL;
 }
 
 Local<Value> SAMPJS::ExecuteCode(Local<Context> context, string name, string code,int offset){

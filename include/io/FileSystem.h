@@ -38,6 +38,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){}
 
+		virtual std::string Name(){ return "FileSystem"; };
+
 		static void FreeCallback(const WeakCallbackInfo<JS_AB>& data);
 
 		static void rename(const FunctionCallbackInfo<Value>& args);

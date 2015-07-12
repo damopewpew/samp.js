@@ -25,6 +25,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){ }
 
+		virtual std::string Name(){ return "HTTP"; };
+
 		static void JS_Get(const FunctionCallbackInfo<Value> & args);
 
 		static std::string Get(std::string url);

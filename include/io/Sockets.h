@@ -63,6 +63,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){}
 
+		virtual std::string Name(){ return "Sockets"; };
+
 		static Sockets * Instance(Local<Object> holder);
 
 		static void JS_Socket(const FunctionCallbackInfo<Value> & args);

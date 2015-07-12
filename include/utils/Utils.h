@@ -11,6 +11,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){};
 
+		virtual std::string Name(){ return "Utils"; };
+
 		static void JS_Debug(const FunctionCallbackInfo<Value> & args);
 
 		static void Print(const FunctionCallbackInfo<Value> & args);

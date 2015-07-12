@@ -27,6 +27,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){}
 
+		virtual std::string Name(){ return "MySQL"; };
+
 		static MySQL *Instance(Local<Object> obj);
 		static MySQLConnection *ConnectionInstance(Local<Object> self);
 

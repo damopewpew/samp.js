@@ -3,16 +3,25 @@
 
 #include "Module.h"
 #include <map>
+#include <unordered_map>
 namespace sampjs {
+	typedef int(*amx_Function_t)(AMX * amx, cell * params);
 	class Server : public Module {
 	public:
-		static std::map<std::string, int> _native_func_cache;
+		static std::unordered_map<std::string, amx_Function_t> _native_func_cache;
+		static std::unordered_map<std::string, AMX_NATIVE> _gdk_native_funcs;
+		static AMX_NATIVE last_native;
+		static std::string last_native_name;
 		virtual void Init(Local<Context> context);
 		virtual void Shutdown();
 		virtual void Tick(){};
 
+		virtual std::string Name(){ return "Server"; };
+
 		static void JS_CallNative(const FunctionCallbackInfo<Value> & args);
 		
+		static void JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args);
+
 		static void JS_CurrentMemory(const FunctionCallbackInfo<Value> & args);
 		static void JS_PeakMemory(const FunctionCallbackInfo<Value> & args);
 

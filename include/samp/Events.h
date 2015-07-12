@@ -22,6 +22,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){};
 
+		virtual std::string Name(){ return "Events"; };
+
 		void FireEvent(std::string name);
 		void FireEvent(std::string name, const int argc, v8::Local<v8::Value> argv[]);
 

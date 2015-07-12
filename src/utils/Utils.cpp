@@ -2,6 +2,10 @@
 
 #include "utils/Helpers.h"
 
+#include <Windows.h>
+#include "SAMPJS.h"
+
+#include <iostream>
 using namespace sampjs;
 
 void sampjs::Utils::Init(Local<Context> ctx){
@@ -63,8 +67,19 @@ void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Valu
 		sjs::logger::printf("%s}", rpt.c_str());
 	}
 	else {
-		std::string n = JS2STRING(value);
-		sjs::logger::printf("%s", n.c_str());
+	//	setlocale(LC_ALL, "Russian");
+	//	LPCWSTR wstr = (LPCWSTR)* String::Value(value);
+		const wchar_t *wstr = (wchar_t*)*String::Value(value);
+		char* sstr = new char[wcslen(wstr)+1];
+		wcstombs(sstr, wstr, wcslen(wstr));
+		sstr[wcslen(wstr)] = '\0';
+	//	std::string n = JS2STRING(value);
+		sjs::logger::printf("%s",sstr);
+		//printf("%s\n", n.c_str());
+		//wprintf(L"%s\n", n2);
+	//	std::cout << n2 << std::endl;
+		//sjs::logger::printf("%s", wstr);
+		//std::wcout << wstr << std::endl;
 	}
 }
 

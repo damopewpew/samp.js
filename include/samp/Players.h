@@ -17,6 +17,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick(){};
 
+		virtual std::string Name(){ return "Players"; };
+
 		void GetPlayer(const FunctionCallbackInfo<Value> & args);
 
 		static void CreatePlayer(const FunctionCallbackInfo<Value> & args);

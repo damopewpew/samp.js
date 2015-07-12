@@ -61,6 +61,8 @@ namespace sampjs {
 		virtual void Shutdown() = 0;
 		virtual void Tick() = 0;
 
+		virtual std::string Name() = 0;
+
 	};
 
 	class JS_Object {
@@ -127,11 +129,13 @@ namespace sampjs {
 			return this;
 		}
 
-		JS_Object* Set(std::string name, Local<Object> obj){
-			object->Set(
+		JS_Object* Set(std::string name, Local<Object> obj, PropertyAttribute attribute = PropertyAttribute::None){
+			object->ForceSet(
 				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
-				obj
-				);
+				obj,
+				attribute
+			);
+		
 			return this;
 		}
 

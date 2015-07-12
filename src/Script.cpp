@@ -30,6 +30,8 @@ using namespace v8;
 
 using namespace sampjs;
 
+std::unordered_map<std::string, PublicDef*> sampjs::Script::_publics;
+
 sampjs::Script::Script(){
 	ready = false;
 	Isolate::CreateParams create_params;
@@ -55,7 +57,7 @@ sampjs::Script::Script(){
 
 
 	JS_Object gbl(ctx->Global());
-	gbl.Set("$script", self);
+	gbl.Set("$script", self, PropertyAttribute::DontDelete );
 
 	gbl.Set("load", SAMPJS::JS_Load);
 	gbl.Set("unload", SAMPJS::JS_Unload);
@@ -63,6 +65,10 @@ sampjs::Script::Script(){
 
 	gbl.Set("require", sampjs::Script::JS_RequireScript);
 	gbl.Set("include", sampjs::Script::JS_LoadScript);
+
+	gbl.Set("setlocale", sampjs::Script::JS_SetLocale);
+
+	gbl.Set("RegisterPublic", sampjs::Script::JS_RegisterPublic);
 
 	JSObjectTemplate module_tmpl(isolate);
 	JSObjectTemplate cache_tmpl(isolate);
@@ -74,12 +80,12 @@ sampjs::Script::Script(){
 
 }
 
-void sampjs::Script::Init(std::string filename){
+bool sampjs::Script::Init(std::string filename){
 	this->filename = filename;
 	std::ifstream t(filename);
 	if (!t){
 		sjs::logger::error("Script does not exists: %s", filename.c_str());
-		exit(0);
+		return false;
 	}
 	LoadModules();
 
@@ -103,24 +109,25 @@ void sampjs::Script::Init(std::string filename){
 	LoadScript(filename, isolate, ctx);
 	this->ready = true;
 	server->FireEvent("ScriptInit");
-
+	return true;
 }
 
 void sampjs::Script::Unload(){
 
 	server->FireEvent("ScriptExit");
 	for (auto module : modules){
-		module.second->Shutdown();
-		module.second.reset();
-		modules.erase(module.first);
+		module->Shutdown();
+		module.reset();
+		//modules.erase(module.first);
 	}
+	modules.resize(0);
 	context.Reset();
 	isolate->Dispose();
 }
 
 void sampjs::Script::Tick(){
 	for (auto module : modules){
-		module.second->Tick();
+		module->Tick();
 	}
 }
 
@@ -129,7 +136,7 @@ bool sampjs::Script::IsReady(){
 }
 
 void sampjs::Script::LoadModules(){
-	modules["$utils"] = make_shared<sampjs::Utils>();
+	/*modules["$utils"] = make_shared<sampjs::Utils>();
 	modules["$timers"] = make_shared<sampjs::Timers>();
 	modules["$events"] = make_shared<sampjs::Events>();
 	modules["$players"] = make_shared<sampjs::Players>();
@@ -139,7 +146,19 @@ void sampjs::Script::LoadModules(){
 	modules["$mysql"] = make_shared<sampjs::MySQL>();
 
 	this->server = make_shared<sampjs::Server>();
-	modules["$server"] = server;
+	modules["$server"] = server; */
+
+	modules.push_back(make_shared<sampjs::Utils>());
+	modules.push_back(make_shared<sampjs::Timers>());
+	modules.push_back(make_shared<sampjs::Events>());
+	modules.push_back(make_shared<sampjs::Players>());
+	modules.push_back(make_shared<sampjs::FileSystem>());
+	modules.push_back(make_shared<sampjs::Sockets>());
+	modules.push_back(make_shared<sampjs::HTTP>());
+	modules.push_back(make_shared<sampjs::MySQL>());
+
+	this->server = make_shared<sampjs::Server>();
+	modules.push_back(server);
 	
 
 	Locker v8Locker(isolate);
@@ -150,8 +169,8 @@ void sampjs::Script::LoadModules(){
 	TryCatch try_catch;
 	ctx->Enter();
 	for (auto module : modules){
-		sjs::logger::debug("Loading Module: %s", module.first.c_str());
-		module.second->Init(ctx);
+		sjs::logger::log("Loading Module: %s", module->Name().c_str());
+		module->Init(ctx);
 	}
 
 	if (try_catch.HasCaught()){
@@ -174,6 +193,44 @@ void sampjs::Script::JS_LoadScript(const FunctionCallbackInfo<Value> & args){
 	}
 	string file = JS2STRING(args[0]);
 	args.GetReturnValue().Set(LoadScript(file, args.GetIsolate(), args.GetIsolate()->GetCallingContext()));
+}
+
+void sampjs::Script::JS_RegisterPublic(const FunctionCallbackInfo<Value> & args){
+	string name;
+	string event;
+	string format;
+	bool cancel = false;
+
+	name = JS2STRING(args[0]);
+	format = JS2STRING(args[1]);
+
+
+	if (args.Length() > 2){
+		if (args[2]->IsBoolean()){
+			cancel = args[2]->BooleanValue();
+			event = name;
+		}
+		else {
+			event = JS2STRING(args[2]);
+		}
+
+		if (args.Length() > 3){
+			cancel = args[3]->BooleanValue();
+		}
+	}
+	
+//	sjs::logger::log("Registered Public: %s,%s,%s", name.c_str(), format.c_str(), event.c_str());
+	PublicDef *def = new PublicDef(name, event, format, cancel);
+	if (args[args.Length() - 1]->IsArray()){
+		Local<Array> arr = Local<Array>::Cast(args[args.Length() - 1]);
+		int len = arr->Length();
+		for (int i = 0; i < len; i++){
+			string arg_name = JS2STRING(arr->Get(i));
+			def->arg_names.push_back(arg_name);
+		}
+	}
+
+	_publics[name] = def;
 }
 
 string sampjs::Script::SearchScript(string filename, string directory ){
@@ -331,12 +388,24 @@ Local<Value> sampjs::Script::LoadScript(string filename, Isolate *isolate,Local<
 
 }
 
+
+bool sampjs::Script::PublicCall(string name, cell *params, bool &shouldReturn){
+	PublicDef* def = _publics[name];
+	int retval = server->FireNative(def->event, def->format, def->arg_names, params);
+	if ((retval >0) == def->cancel){
+		shouldReturn = true;
+	}
+
+	return (retval > 0);
+}
+
 shared_ptr<Server> sampjs::Script::Server(){
 	return server;
 }
 
 bool sampjs::Script::ModuleExists(std::string name){
-	return (modules.find(name) != modules.end());
+	//return (modules.find(name) != modules.end());
+	return true;
 }
 
 Local<Value> sampjs::Script::ExecuteCode(std::string name, std::string code){
@@ -345,5 +414,12 @@ Local<Value> sampjs::Script::ExecuteCode(std::string name, std::string code){
 	HandleScope hs(isolate);
 	Local<Context> ctx = Local<Context>::New(isolate, context);
 	return SAMPJS::ExecuteCode(ctx, name, code);
+}
+
+void sampjs::Script::JS_SetLocale(const FunctionCallbackInfo<Value> & args){
+	if (args.Length() > 0 && args[0]->IsString()){
+		std::string locale = JS2STRING(args[0]);
+		setlocale(LC_ALL, locale.c_str());
+	}
 }
 

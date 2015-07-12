@@ -31,6 +31,8 @@ namespace sampjs {
 		virtual void Shutdown();
 		virtual void Tick();
 
+		virtual std::string Name(){ return "Timers"; };
+
 		int AddTimer(Local<Function> callback, int delay, int repeat);
 		void RemoveTimer(int id);
 
