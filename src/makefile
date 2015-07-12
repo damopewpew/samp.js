@@ -1,7 +1,8 @@
 CXX = g++
+CC = gcc
 OUTDIR = "out"
-INCLUDES = -I../include -I../lib -I../lib/samp/SDK/amx -I../deps/v8 -I../deps/boost_1_58_0 
-CFLAGS = -fPIC -m32 -Os -Wall -DLINUX -D__linux___
+INCLUDES = -I../include -I../lib -I../lib/samp/SDK/amx -I../deps/v8 -I../deps/boost_1_58_0 -I../lib/samp/SDK
+CFLAGS = -fPIC -m32 -Os -Wall -DLINUX -D__linux___ -DSAMPGDK_AMALGAMATION
 
 LIBS += -lrt -lpthread -lm -lz -ldl -static-libgcc -static-libstdc++ -std=c++11 
 LDFLAGS = -shared -fPIC -Os -m32 -static-libgcc -static-libstdc++
@@ -22,7 +23,7 @@ V8FLAGS := \
 	../deps/v8/lib/libv8_libplatform.a 
 
 
-_OBJS = amxplugin.o main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o
+_OBJS = amxplugin.o sampgdk.o  main.o SAMPJS.o Script.o Server.o Utils.o FileSystem.o Sockets.o Timers.o Callbacks.o Events.o Players.o Helpers.o HTTP.o
 
 
 ifdef MYSQL
@@ -100,6 +101,8 @@ Utils.o: utils/Utils.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c utils/Utils.cpp $(LIBS)
 	
 	
+sampgdk.o: ../lib/sampgdk/sampgdk.c
+	$(CC) $(CFLAGS) $(INCLUDES) -c ../lib/sampgdk/sampgdk.c $(LIBS)
 
 amxplugin.o:  ../lib/samp/SDK/amxplugin.cpp
 	$(CXX) $(CFLAGS) $(INCLUDES) -c  ../lib/samp/SDK/amxplugin.cpp $(LIBS)
