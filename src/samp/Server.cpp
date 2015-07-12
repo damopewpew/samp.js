@@ -109,7 +109,7 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 
 	if (args.Length() > 1){
 		if (!args[1]->IsString()){
-			sjs::logger::error("CallNative %s, 2nd argument must be a string", func_name);
+			sjs::logger::error("CallNative %s, 2nd argument must be a string", func_name.c_str());
 			return;
 		}
 
@@ -328,7 +328,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 
 
 	String::Value jsformat(args[1]);
-	char16_t* format(*jsformat);
+	uint16_t* format(*jsformat);
 
 	AMX_NATIVE native;
 
