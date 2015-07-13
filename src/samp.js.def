@@ -6,5 +6,3 @@ EXPORTS
 	AmxUnload
 	ProcessTick
 	OnPublicCall
-	OnPlayerCommandText
-	OnRconCommand

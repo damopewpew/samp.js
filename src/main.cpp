@@ -123,7 +123,8 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	return 1;
 }
 
-PLUGIN_EXPORT bool PLUGIN_CALL OnRconCommand(const char *cmd){
+ bool RconCommand(const char *cmd){
+	sjs::logger::log("RC");
 	std::vector<std::string> args = sjs::string::split(cmd);
 	if (args[0] == "loadjs"){
 		if (args.size() > 1){
@@ -147,13 +148,34 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnRconCommand(const char *cmd){
 	return false;
 }
 
-PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerCommandText(int playerid, const char *cmd){
-	return true;
-}
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *params, cell *retval){
+	sjs::logger::log("PC: %s", name);
 	sampjs::SAMPJS::amx = amx;
-	return sampjs::SAMPJS::PublicCall(name, params, retval);
+	if (string(name) == "OnRconCommand"){
+		cell* maddr = NULL;
+		int len = 0;
+		char* sval;
+		if (amx_GetAddr(amx, params[1], &maddr) != AMX_ERR_NONE){
+			sjs::logger::error("Can't get string address: %s", name);
+			return 1;
+		}
+
+		amx_StrLen(maddr, &len);
+
+		sval = new char[len + 1];
+		if (amx_GetString(sval, maddr, 0, len + 1) != AMX_ERR_NONE){
+			sjs::logger::error("Can't get string: %s", name);
+
+			return 1;
+		}
+		if (RconCommand(sval)){
+			*retval = true;
+			return true;
+		}
+	} 
+	sampjs::SAMPJS::PublicCall(name, params, retval);
+	return true;
 }
 
 

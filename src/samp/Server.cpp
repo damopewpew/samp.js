@@ -632,7 +632,6 @@ int Server::FireNative(std::string name, std::string param_types, std::vector<st
 		}
 		else {
 			if (ret->IsNumber()) retval = ret->Int32Value();
-			else if (name == "PlayerCommandText" || name == "RconCommand") retval = 0;
 		}
 		return retval;
 	}
