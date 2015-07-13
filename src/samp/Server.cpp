@@ -75,6 +75,8 @@ void Server::Shutdown(){
 }
 
 
+
+
 void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 
 //	TryCatch try_catch;
@@ -536,19 +538,29 @@ int Server::FireNative(std::string name, std::string param_types, std::vector<st
 		unsigned int argc = param_types.length() + 1;
 		argv = new Local<Value>[argc];
 
+		size_t param_count = params[0] / sizeof(cell);
 		argv[0] = String::NewFromUtf8(isolate, name.c_str());
 		for (unsigned int i = 1; i < argc; i++){
 			switch (param_types[(i - 1)]){
 			case 's':{
-				cell* addr = NULL;
+				cell* maddr = NULL;
 				int len = 0;
-				amx_GetAddr(SAMPJS::amx, params[i], &addr);
-				amx_StrLen(addr, &len);
-				char* val = new char[len + 2];
-				amx_GetString(val, addr, 0, len + 2);
-				argv[i] = String::NewFromUtf8(isolate, val);
+				char* sval;
+				if (amx_GetAddr(SAMPJS::amx,params[i], &maddr) != AMX_ERR_NONE){
+					sjs::logger::error("Can't get string address: %s", name.c_str());
+					return 1;
+				}
 
-				delete[] val;
+				amx_StrLen(maddr, &len);
+				
+				sval = new char[len + 1];
+				if (amx_GetString(sval, maddr, 0, len + 1) != AMX_ERR_NONE){
+					sjs::logger::error("Can't get string: %s", name.c_str());
+
+					return 1;
+				}
+				argv[i] = String::NewFromUtf8(isolate, sval);
+
 
 				break;
 			}

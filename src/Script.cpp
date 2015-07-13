@@ -219,7 +219,7 @@ void sampjs::Script::JS_RegisterPublic(const FunctionCallbackInfo<Value> & args)
 		}
 	}
 	
-//	sjs::logger::log("Registered Public: %s,%s,%s", name.c_str(), format.c_str(), event.c_str());
+	
 	PublicDef *def = new PublicDef(name, event, format, cancel);
 	if (args[args.Length() - 1]->IsArray()){
 		Local<Array> arr = Local<Array>::Cast(args[args.Length() - 1]);
@@ -326,7 +326,6 @@ $modules._cache[")" + safepath + R"("] = (function(){
 	}
 	else {
 		try_catch.Reset();
-		sjs::logger::log("Loaded Module %s", name.c_str());
 		Local<Value> module = script->Run();
 		if (try_catch.HasCaught()){
 			isolate->CancelTerminateExecution();

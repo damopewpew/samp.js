@@ -124,7 +124,6 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 }
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnRconCommand(const char *cmd){
-	sjs::logger::log("On RCON COmmand");
 	std::vector<std::string> args = sjs::string::split(cmd);
 	if (args[0] == "loadjs"){
 		if (args.size() > 1){
@@ -153,6 +152,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPlayerCommandText(int playerid, const char *cmd
 }
 
 PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *params, cell *retval){
+	sampjs::SAMPJS::amx = amx;
 	return sampjs::SAMPJS::PublicCall(name, params, retval);
 }
 
