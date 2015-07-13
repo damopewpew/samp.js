@@ -1,5 +1,5 @@
 "use strict";
-class Irc extends $EVENTS {
+class Irc extends Events {
 	constructor(server, port, nick, options){
 		super();
 		this.commandPrefix_ = options.cmdPrefix;
