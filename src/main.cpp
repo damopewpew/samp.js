@@ -124,7 +124,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 }
 
  bool RconCommand(const char *cmd){
-	sjs::logger::log("RC");
+
 	std::vector<std::string> args = sjs::string::split(cmd);
 	if (args[0] == "loadjs"){
 		if (args.size() > 1){
@@ -149,8 +149,8 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 }
 
 
+
 PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *params, cell *retval){
-	sjs::logger::log("PC: %s", name);
 	sampjs::SAMPJS::amx = amx;
 	if (string(name) == "OnRconCommand"){
 		cell* maddr = NULL;
@@ -174,8 +174,9 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *pa
 			return true;
 		}
 	} 
-	sampjs::SAMPJS::PublicCall(name, params, retval);
-	return true;
+	bool ret = sampjs::SAMPJS::PublicCall(name, params, retval); 
+
+	return ret;
 }
 
 

@@ -394,7 +394,7 @@ bool sampjs::Script::PublicCall(string name, cell *params, bool &shouldReturn){
 	if ((retval >0) == def->cancel){
 		shouldReturn = true;
 	}
-
+	if (retval == -1) return !def->cancel;
 	return (retval > 0);
 }
 

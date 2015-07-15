@@ -371,7 +371,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				float val = 0.0;
 				if (!args[k]->IsUndefined()) val = args[k]->NumberValue();
 
-				params[j++] = &amx_ftoc(val);
+				param_value[i] = amx_ftoc(val);
+				params[j++] = &param_value[i];
 				k++;
 				format_str += format[i];
 			}
@@ -410,6 +411,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 	}
 	
 	int retval = sampgdk::InvokeNativeArray(native, format_str.c_str(), params);
+
+
 
 	if (vars > 0 || strs > 0){
 		Local<Array> arr = Array::New(args.GetIsolate(), vars);
@@ -460,6 +463,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 			args.GetReturnValue().Set(jsval);
 		}
 		else if(vars > 1) args.GetReturnValue().Set(arr);
+		else args.GetReturnValue().Set(retval);
 	}
 
 	else {
