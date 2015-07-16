@@ -329,8 +329,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 	char* name(*jsname);
 
 
-	String::Value jsformat(args[1]);
-	uint16_t* format(*jsformat);
+	String::Utf8Value jsformat(args[1]);
+	char* format(*jsformat);
 
 	AMX_NATIVE native;
 
@@ -353,7 +353,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 	int k = 2;
 	int vars = 0;
 	int strs = 0;
-	size_t len = sizeof(format);
+	size_t len = strlen(format);
 	std::string format_str;
 
 	for (unsigned int i = 0; i < len; i++){
@@ -382,8 +382,10 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				String::Value jstring(args[k]->ToString());
 				wchar_t *wstr = (wchar_t*)*jstring;
 				size_t slen = args[k]->ToString()->Length();
-				params[j]  = new char[slen + 1];
-				wcstombs((char*)params[j], wstr, slen+1);
+				param_str.push_back(new char[slen + 1]);
+				wcstombs(param_str.back(), wstr, slen+1);
+
+				params[j] = param_str.back();
 				j++;
 				k++;
 				format_str += format[i];
@@ -393,7 +395,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 		case 'F':
 		case 'I':
 			{
-				params[j++] = &param_value[vars++];
+				vars++;
+				params[j++] = &param_value[i];
 				format_str += 'R';
 			}
 			break;
@@ -402,7 +405,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 			{
 				format_str += "S[*2]";
 				int strlen = args[k]->Int32Value();
-				params[j++] = new char[strlen + 1];
+				param_str.push_back(new char[strlen + 1]);
+				params[j++] = param_str.back();
 				vars++;
 			}
 			break;
@@ -448,7 +452,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				break;
 			case 'S':
 				{
-					char* str = (char*)params[j];
+					char* str = (char*)params[j++];
 					arr->Set(vars++, String::NewFromUtf8(args.GetIsolate(), str));
 				//	delete[] params[j++];
 					delete str;

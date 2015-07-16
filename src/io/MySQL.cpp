@@ -78,7 +78,7 @@ void MySQL::Init(Local<Context> ctx){
 
 void MySQL::Shutdown(){
 	for (auto conn : connections){
-		if(!mysql_ping(conn.second->mysql)) mysql_close(conn.second->mysql);
+		CloseConnection(conn.first);
 	}
 }
 
@@ -102,8 +102,6 @@ void MySQL::JS_New(const FunctionCallbackInfo<Value> & args){
 	auto conn_tmpl = ObjectTemplate::New(args.GetIsolate());
 	
 	conn_tmpl->SetInternalFieldCount(1);
-
-	MYSQL *mysql2 = mysql_init(NULL);
 
 	auto conn = mysql->createConnection();
 
@@ -150,7 +148,6 @@ void MySQL::JS_Connect(const FunctionCallbackInfo<Value> & args){
 
 		thread( [mysql, mysqlconn, host, user, password, database,func](){
 			mysql_thread_init();
-			std::lock_guard<std::mutex> lock{ mysqlconn->lock };
 			mysql->ConnectAsync(mysqlconn->id, host, user, password, database,func);
 			mysql_thread_end();
 		}).detach();
@@ -169,6 +166,7 @@ void MySQL::JS_Connect(const FunctionCallbackInfo<Value> & args){
 			args.GetReturnValue().Set(false);
 			return;
 		}
+		mysqlconn->connected = true;
 	}
 	args.GetReturnValue().Set(true);
 }
@@ -177,18 +175,22 @@ void MySQL::JS_Close(const FunctionCallbackInfo<Value> & args){
 	auto mysql = Instance(args.Holder());
 	auto mysqlconn = ConnectionInstance(args.Holder());
 
-	std::lock_guard<std::mutex> lock{ mysqlconn->lock };
-	if (mysql->isConnected(mysqlconn->mysql)){
-
-		mysql_close(mysqlconn->mysql);
-	}
+	mysql->CloseConnection(mysqlconn->id);
 }
 
+void MySQL::CloseConnection(int id){
+	std::lock_guard<std::mutex> lock{ connections[id]->lock };
+	if (isConnected(id)){
+		mysql_close(connections[id]->mysql);
+		connections[id]->connected = false;
+	}
+}
+ 
 void MySQL::JS_Connected(const FunctionCallbackInfo<Value> & args){
 	auto mysql = Instance(args.Holder());
 	auto mysqlconn = ConnectionInstance(args.Holder());
 
-	args.GetReturnValue().Set(mysql->isConnected(mysqlconn->mysql));
+	args.GetReturnValue().Set(mysql->isConnected(mysqlconn->id));
 }
 
 void MySQL::JS_Query(const FunctionCallbackInfo<Value> & args){
@@ -222,12 +224,14 @@ MySQLConnection *MySQL::createConnection(){
 	
 }
 
-bool MySQL::isConnected(MYSQL *mysql){
-	return !mysql_ping(mysql);
+bool MySQL::isConnected(int id){
+	if (!connections[id]->connected) return false;
+	return !mysql_ping(connections[id]->mysql);
 }
 
 void MySQL::ConnectAsync(int id, string host, string user, string password, string database, Persistent<Function, CopyablePersistentTraits<Function>> callback){
 	//connections[id]->mysql = mysql_init(NULL);
+	connections[id]->lock.lock();
 	if (mysql_real_connect(
 		connections[id]->mysql,
 		host.c_str(),
@@ -237,16 +241,17 @@ void MySQL::ConnectAsync(int id, string host, string user, string password, stri
 		0,
 		NULL,
 		0) == NULL){
+
+		connections[id]->lock.unlock();
 		V8PCONTEXT(isolate, context);
 		Local<Function> func = Local<Function>::New(isolate, callback);
-		sjs::logger::debug("Could not connect");
 		Local<String> err = String::NewFromUtf8(isolate, mysql_error(connections[id]->mysql));
 		Local<Value> argv[1] = { err };
 		func->Call(func, 1, argv );
-		sjs::logger::debug("Called Function");
 		return;
 	}
-	
+	connections[id]->connected = true;
+	connections[id]->lock.unlock();
 	V8PCONTEXT(isolate, context);
 	Local<Function> func = Local<Function>::New(isolate, callback);
 	func->Call(func, 0, NULL);
@@ -263,7 +268,7 @@ void MySQL::QueryAsync(int id, string query, Persistent<Function, CopyablePersis
 		mysql_thread_init();
 		std::lock_guard<std::mutex> lock{ connections[id]->lock };
 		MYSQL* msql = connections[id]->mysql;
-		if (!isConnected(msql)){
+		if (!isConnected(id)){
 			sjs::logger::error("MYSQL Error: Not connected");
 		} else {
 			mysql_query(msql, query.c_str());

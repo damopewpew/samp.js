@@ -12,6 +12,7 @@ namespace sampjs {
 	struct MySQLConnection {
 		MYSQL * mysql;
 		int id;
+		bool connected = false;
 		std::mutex lock;
 		MySQLConnection(int idx, MYSQL *mysqlx): id(idx), mysql(mysqlx){
 			
@@ -44,7 +45,8 @@ namespace sampjs {
 
 		MySQLConnection * createConnection();
 		
-		bool isConnected(MYSQL *mysql);
+		void CloseConnection(int id);
+		bool isConnected(int id);
 		void ConnectAsync(int id, std::string host, std::string user, std::string password, std::string database, Persistent<Function, CopyablePersistentTraits<Function>> callback);
 		void QueryAsync(int id, std::string query, Persistent<Function, CopyablePersistentTraits<Function>> callback);
 	private:

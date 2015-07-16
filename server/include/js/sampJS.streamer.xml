@@ -1,0 +1,3378 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet href="file:///E|/samp-server/pawno/xml/pawndoc.xsl" type="text/xsl"?>
+<doc source="sampJS.streamer.inc">
+	<assembly>
+		<name>sampJS.streamer.inc</name>
+	</assembly>
+	<members>
+
+		<!-- enumerations -->
+
+		<!-- constants -->
+		<member name="C:cellmax" value="2147483647">
+			<referrer name="operator!(Float:)"/>
+		</member>
+		<member name="C:cellmin" value="-2147483648">
+			<referrer name="operator-(Float:)"/>
+		</member>
+		<member name="C:false" value="0">
+			<tagname value="bool"/>
+		</member>
+		<member name="C:true" value="1">
+			<tagname value="bool"/>
+		</member>
+
+		<!-- variables -->
+		<member name="F:Streamer_IncludeFileVersion">
+			<attribute name="public"/>
+		</member>
+
+		<!-- functions -->
+		<member name="M:operator!(Float:)" syntax="operator!(Float:)(oper)">
+			<tagname value="bool"/>
+			<stacksize value="1"/>
+			<dependency name="cellmax"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator%(_:,Float:)" syntax="operator%(_:,Float:)(oper1, oper2)">
+			<stacksize value="1"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator%(Float:,_:)" syntax="operator%(Float:,_:)(oper1, oper2)">
+			<stacksize value="1"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator%(Float:,Float:)" syntax="operator%(Float:,Float:)(oper1, oper2)">
+			<stacksize value="1"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator!=(Float:,_:)" syntax="operator!=(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator!=(Float:,Float:)" syntax="operator!=(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(_:,Float:)" syntax="operator-(_:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatsub"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(Float:,_:)" syntax="operator-(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatsub"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator+(Float:,_:)" syntax="operator+(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatadd"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator/(_:,Float:)" syntax="operator/(_:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatdiv"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator/(Float:,_:)" syntax="operator/(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatdiv"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator*(Float:,_:)" syntax="operator*(Float:,_:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatmul"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator++(Float:)" syntax="operator++(Float:)(oper)">
+			<tagname value="Float"/>
+			<stacksize value="1"/>
+			<dependency name="operator+(Float:,Float:)"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(Float:)" syntax="operator-(Float:)(oper)">
+			<tagname value="Float"/>
+			<stacksize value="1"/>
+			<dependency name="cellmin"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator--(Float:)" syntax="operator--(Float:)(oper)">
+			<tagname value="Float"/>
+			<stacksize value="1"/>
+			<dependency name="operator-(Float:,Float:)"/>
+			<param name="oper">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator-(Float:,Float:)" syntax="operator-(Float:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator--(Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator+(Float:,Float:)" syntax="operator+(Float:,Float:)(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator++(Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator==(Float:,Float:)" syntax="operator==(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator==(Float:,_:)" syntax="operator==(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&gt;(Float:,Float:)" syntax="operator&gt;(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&gt;(Float:,_:)" syntax="operator&gt;(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&gt;(_:,Float:)" syntax="operator&gt;(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&gt;=(Float:,Float:)" syntax="operator&gt;=(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&gt;=(Float:,_:)" syntax="operator&gt;=(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&gt;=(_:,Float:)" syntax="operator&gt;=(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;(Float:,Float:)" syntax="operator&lt;(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;(Float:,_:)" syntax="operator&lt;(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&lt;(_:,Float:)" syntax="operator&lt;(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;=(Float:,Float:)" syntax="operator&lt;=(Float:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:operator&lt;=(Float:,_:)" syntax="operator&lt;=(Float:,_:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+			</param>
+		</member>
+		<member name="M:operator&lt;=(_:,Float:)" syntax="operator&lt;=(_:,Float:)(oper1, oper2)">
+			<tagname value="bool"/>
+			<stacksize value="4"/>
+			<dependency name="float"/>
+			<dependency name="floatcmp"/>
+			<param name="oper1">
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:@receivepacket" syntax="@receivepacket(packet[], size, source[])">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<param name="packet">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="size">
+			</param>
+			<param name="source">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:@receivestring" syntax="@receivestring(message[], source[])">
+			<attribute name="public"/>
+			<stacksize value="1"/>
+			<param name="message">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="source">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:AttachCameraToDynamicObject" syntax="AttachCameraToDynamicObject(playerid, objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:AttachDynamicAreaToObject" syntax="AttachDynamicAreaToObject(areaid, objectid, type, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+			<param name="objectid">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="type">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:AttachDynamicAreaToPlayer" syntax="AttachDynamicAreaToPlayer(areaid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:AttachDynamicAreaToVehicle" syntax="AttachDynamicAreaToVehicle(areaid, vehicleid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:AttachDynamicObjectToObject" syntax="AttachDynamicObjectToObject(objectid, attachtoid, offsetx, offsety, offsetz, rx, ry, rz, syncrotation)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="attachtoid">
+			</param>
+			<param name="offsetx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="offsety">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="offsetz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="syncrotation">
+			</param>
+		</member>
+		<member name="M:AttachDynamicObjectToPlayer" syntax="AttachDynamicObjectToPlayer(objectid, playerid, offsetx, offsety, offsetz, rx, ry, rz)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="offsetx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="offsety">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="offsetz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:AttachDynamicObjectToVehicle" syntax="AttachDynamicObjectToVehicle(objectid, vehicleid, offsetx, offsety, offsetz, rx, ry, rz)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="offsetx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="offsety">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="offsetz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:CountDynamic3DTextLabels" syntax="CountDynamic3DTextLabels()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CountDynamicAreas" syntax="CountDynamicAreas()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CountDynamicCPs" syntax="CountDynamicCPs()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CountDynamicMapIcons" syntax="CountDynamicMapIcons()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CountDynamicObjects" syntax="CountDynamicObjects()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CountDynamicPickups" syntax="CountDynamicPickups()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CountDynamicRaceCPs" syntax="CountDynamicRaceCPs()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:CreateDynamic3DTextLabel" syntax="CreateDynamic3DTextLabel(text[], color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, worldid, interiorid, playerid, streamdistance)">
+			<tagname value="Text3D"/>
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="drawdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="attachedplayer">
+			</param>
+			<param name="attachedvehicle">
+			</param>
+			<param name="testlos">
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:CreateDynamic3DTextLabelEx" syntax="CreateDynamic3DTextLabelEx(text[], color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, streamdistance, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<tagname value="Text3D"/>
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="drawdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="attachedplayer">
+			</param>
+			<param name="attachedvehicle">
+			</param>
+			<param name="testlos">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCP" syntax="CreateDynamicCP(x, y, z, size, worldid, interiorid, playerid, streamdistance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:CreateDynamicCPEx" syntax="CreateDynamicCPEx(x, y, z, size, streamdistance, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCircle" syntax="CreateDynamicCircle(x, y, size, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCircleEx" syntax="CreateDynamicCircleEx(x, y, size, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCube" syntax="CreateDynamicCube(minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="minx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="miny">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxy">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCubeEx" syntax="CreateDynamicCubeEx(minx, miny, minz, maxx, maxy, maxz, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="minx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="miny">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxy">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCuboid" syntax="CreateDynamicCuboid(minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="minx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="miny">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxy">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCuboidEx" syntax="CreateDynamicCuboidEx(minx, miny, minz, maxx, maxy, maxz, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="minx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="miny">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxy">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCylinder" syntax="CreateDynamicCylinder(x, y, minz, maxz, size, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicCylinderEx" syntax="CreateDynamicCylinderEx(x, y, minz, maxz, size, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicMapIcon" syntax="CreateDynamicMapIcon(x, y, z, type, color, worldid, interiorid, playerid, streamdistance, style)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="type">
+			</param>
+			<param name="color">
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="style">
+			</param>
+		</member>
+		<member name="M:CreateDynamicMapIconEx" syntax="CreateDynamicMapIconEx(x, y, z, type, color, style, streamdistance, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="type">
+			</param>
+			<param name="color">
+			</param>
+			<param name="style">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicObject" syntax="CreateDynamicObject(modelid, x, y, z, rx, ry, rz, worldid, interiorid, playerid, streamdistance, drawdistance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="modelid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="drawdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:CreateDynamicObjectEx" syntax="CreateDynamicObjectEx(modelid, x, y, z, rx, ry, rz, drawdistance, streamdistance, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="modelid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="drawdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicPickup" syntax="CreateDynamicPickup(modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="modelid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:CreateDynamicPickupEx" syntax="CreateDynamicPickupEx(modelid, type, x, y, z, streamdistance, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="modelid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicPolygon" syntax="CreateDynamicPolygon(points[], minz, maxz, maxpoints, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="points">
+				<paraminfo>Float [] </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxpoints">
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicPolygonEx" syntax="CreateDynamicPolygonEx(points[], minz, maxz, maxpoints, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="points">
+				<paraminfo>Float [] </paraminfo>
+			</param>
+			<param name="minz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxpoints">
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicRaceCP" syntax="CreateDynamicRaceCP(type, x, y, z, nextx, nexty, nextz, size, worldid, interiorid, playerid, streamdistance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="nextx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="nexty">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="nextz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:CreateDynamicRaceCPEx" syntax="CreateDynamicRaceCPEx(type, x, y, z, nextx, nexty, nextz, size, streamdistance, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="nextx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="nexty">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="nextz">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="streamdistance">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicRectangle" syntax="CreateDynamicRectangle(minx, miny, maxx, maxy, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="minx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="miny">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxy">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicRectangleEx" syntax="CreateDynamicRectangleEx(minx, miny, maxx, maxy, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="minx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="miny">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="maxy">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:CreateDynamicSphere" syntax="CreateDynamicSphere(x, y, z, size, worldid, interiorid, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:CreateDynamicSphereEx" syntax="CreateDynamicSphereEx(x, y, z, size, worlds[], interiors[], players[], maxworlds, maxinteriors, maxplayers)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worlds">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="interiors">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="players">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxworlds">
+			</param>
+			<param name="maxinteriors">
+			</param>
+			<param name="maxplayers">
+			</param>
+		</member>
+		<member name="M:DestroyAllDynamic3DTextLabels" syntax="DestroyAllDynamic3DTextLabels()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyAllDynamicAreas" syntax="DestroyAllDynamicAreas()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyAllDynamicCPs" syntax="DestroyAllDynamicCPs()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyAllDynamicMapIcons" syntax="DestroyAllDynamicMapIcons()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyAllDynamicObjects" syntax="DestroyAllDynamicObjects()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyAllDynamicPickups" syntax="DestroyAllDynamicPickups()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyAllDynamicRaceCPs" syntax="DestroyAllDynamicRaceCPs()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:DestroyDynamic3DTextLabel" syntax="DestroyDynamic3DTextLabel(id)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="id">
+				<paraminfo>Text3D </paraminfo>
+			</param>
+		</member>
+		<member name="M:DestroyDynamicArea" syntax="DestroyDynamicArea(areaid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+		</member>
+		<member name="M:DestroyDynamicCP" syntax="DestroyDynamicCP(checkpointid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:DestroyDynamicMapIcon" syntax="DestroyDynamicMapIcon(iconid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="iconid">
+			</param>
+		</member>
+		<member name="M:DestroyDynamicObject" syntax="DestroyDynamicObject(objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:DestroyDynamicPickup" syntax="DestroyDynamicPickup(pickupid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="pickupid">
+			</param>
+		</member>
+		<member name="M:DestroyDynamicRaceCP" syntax="DestroyDynamicRaceCP(checkpointid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:EditDynamicObject" syntax="EditDynamicObject(playerid, objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:ExecuteJS" syntax="ExecuteJS(code[])">
+			<attribute name="native"/>
+			<referrer name="OnDynamicObjectMoved"/>
+			<referrer name="OnPlayerEditDynamicObject"/>
+			<referrer name="OnPlayerSelectDynamicObject"/>
+			<referrer name="OnPlayerShootDynamicObject"/>
+			<referrer name="OnPlayerPickUpDynamicPickup"/>
+			<referrer name="OnPlayerEnterDynamicCP"/>
+			<referrer name="OnPlayerLeaveDynamicCP"/>
+			<referrer name="OnPlayerEnterDynamicRaceCP"/>
+			<referrer name="OnPlayerLeaveDynamicRaceCP"/>
+			<referrer name="OnPlayerEnterDynamicArea"/>
+			<referrer name="OnPlayerLeaveDynamicArea"/>
+			<referrer name="Streamer_OnPluginError"/>
+			<param name="code">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetDynamic3DTextLabelText" syntax="GetDynamic3DTextLabelText(id, text[], maxtext)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="id">
+				<paraminfo>Text3D </paraminfo>
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxtext">
+			</param>
+		</member>
+		<member name="M:GetDynamicAreasForPoint" syntax="GetDynamicAreasForPoint(x, y, z, areas[], maxareas)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="areas">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxareas">
+			</param>
+		</member>
+		<member name="M:GetDynamicObjectMaterial" syntax="GetDynamicObjectMaterial(objectid, materialindex, &amp;modelid, txdname[], texturename[], &amp;materialcolor, maxtxdname, maxtexturename)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="modelid">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="txdname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="texturename">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialcolor">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="maxtxdname">
+			</param>
+			<param name="maxtexturename">
+			</param>
+		</member>
+		<member name="M:GetDynamicObjectMaterialText" syntax="GetDynamicObjectMaterialText(objectid, materialindex, text[], &amp;materialsize, fontface[], &amp;fontsize, &amp;bold, &amp;fontcolor, &amp;backcolor, &amp;textalignment, maxtext, maxfontface)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialsize">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="fontface">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fontsize">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="bold">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="fontcolor">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="backcolor">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="textalignment">
+				<paraminfo> &amp; </paraminfo>
+			</param>
+			<param name="maxtext">
+			</param>
+			<param name="maxfontface">
+			</param>
+		</member>
+		<member name="M:GetDynamicObjectPos" syntax="GetDynamicObjectPos(objectid, &amp;x, &amp;y, &amp;z)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="x">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetDynamicObjectRot" syntax="GetDynamicObjectRot(objectid, &amp;rx, &amp;ry, &amp;rz)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="rx">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetDynamicPolygonNumberPoints" syntax="GetDynamicPolygonNumberPoints(areaid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+		</member>
+		<member name="M:GetDynamicPolygonPoints" syntax="GetDynamicPolygonPoints(areaid, points[], maxpoints)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+			<param name="points">
+				<paraminfo>Float [] </paraminfo>
+			</param>
+			<param name="maxpoints">
+			</param>
+		</member>
+		<member name="M:GetNumberDynamicAreasForPoint" syntax="GetNumberDynamicAreasForPoint(x, y, z)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:GetPlayerDynamicAreas" syntax="GetPlayerDynamicAreas(playerid, areas[], maxareas)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="areas">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxareas">
+			</param>
+		</member>
+		<member name="M:GetPlayerNumberDynamicAreas" syntax="GetPlayerNumberDynamicAreas(playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:GetPlayerVisibleDynamicCP" syntax="GetPlayerVisibleDynamicCP(playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:GetPlayerVisibleDynamicRaceCP" syntax="GetPlayerVisibleDynamicRaceCP(playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Invoke_streamerinc" syntax="Invoke_streamerinc()">
+			<attribute name="public"/>
+			<stacksize value="276"/>
+			<dependency name="AttachCameraToDynamicObject"/>
+			<dependency name="AttachDynamicAreaToObject"/>
+			<dependency name="AttachDynamicAreaToPlayer"/>
+			<dependency name="AttachDynamicAreaToVehicle"/>
+			<dependency name="AttachDynamicObjectToObject"/>
+			<dependency name="AttachDynamicObjectToPlayer"/>
+			<dependency name="AttachDynamicObjectToVehicle"/>
+			<dependency name="CountDynamic3DTextLabels"/>
+			<dependency name="CountDynamicAreas"/>
+			<dependency name="CountDynamicCPs"/>
+			<dependency name="CountDynamicMapIcons"/>
+			<dependency name="CountDynamicObjects"/>
+			<dependency name="CountDynamicPickups"/>
+			<dependency name="CountDynamicRaceCPs"/>
+			<dependency name="CreateDynamic3DTextLabel"/>
+			<dependency name="CreateDynamic3DTextLabelEx"/>
+			<dependency name="CreateDynamicCP"/>
+			<dependency name="CreateDynamicCPEx"/>
+			<dependency name="CreateDynamicCircle"/>
+			<dependency name="CreateDynamicCircleEx"/>
+			<dependency name="CreateDynamicCube"/>
+			<dependency name="CreateDynamicCubeEx"/>
+			<dependency name="CreateDynamicCuboid"/>
+			<dependency name="CreateDynamicCuboidEx"/>
+			<dependency name="CreateDynamicCylinder"/>
+			<dependency name="CreateDynamicCylinderEx"/>
+			<dependency name="CreateDynamicMapIcon"/>
+			<dependency name="CreateDynamicMapIconEx"/>
+			<dependency name="CreateDynamicObject"/>
+			<dependency name="CreateDynamicObjectEx"/>
+			<dependency name="CreateDynamicPickup"/>
+			<dependency name="CreateDynamicPickupEx"/>
+			<dependency name="CreateDynamicPolygon"/>
+			<dependency name="CreateDynamicPolygonEx"/>
+			<dependency name="CreateDynamicRaceCP"/>
+			<dependency name="CreateDynamicRaceCPEx"/>
+			<dependency name="CreateDynamicRectangle"/>
+			<dependency name="CreateDynamicRectangleEx"/>
+			<dependency name="CreateDynamicSphere"/>
+			<dependency name="CreateDynamicSphereEx"/>
+			<dependency name="DestroyAllDynamic3DTextLabels"/>
+			<dependency name="DestroyAllDynamicAreas"/>
+			<dependency name="DestroyAllDynamicCPs"/>
+			<dependency name="DestroyAllDynamicMapIcons"/>
+			<dependency name="DestroyAllDynamicObjects"/>
+			<dependency name="DestroyAllDynamicPickups"/>
+			<dependency name="DestroyAllDynamicRaceCPs"/>
+			<dependency name="DestroyDynamic3DTextLabel"/>
+			<dependency name="DestroyDynamicArea"/>
+			<dependency name="DestroyDynamicCP"/>
+			<dependency name="DestroyDynamicMapIcon"/>
+			<dependency name="DestroyDynamicObject"/>
+			<dependency name="DestroyDynamicPickup"/>
+			<dependency name="DestroyDynamicRaceCP"/>
+			<dependency name="EditDynamicObject"/>
+			<dependency name="GetDynamic3DTextLabelText"/>
+			<dependency name="GetDynamicAreasForPoint"/>
+			<dependency name="GetDynamicObjectMaterial"/>
+			<dependency name="GetDynamicObjectMaterialText"/>
+			<dependency name="GetDynamicObjectPos"/>
+			<dependency name="GetDynamicObjectRot"/>
+			<dependency name="GetDynamicPolygonNumberPoints"/>
+			<dependency name="GetDynamicPolygonPoints"/>
+			<dependency name="GetNumberDynamicAreasForPoint"/>
+			<dependency name="GetPlayerDynamicAreas"/>
+			<dependency name="GetPlayerNumberDynamicAreas"/>
+			<dependency name="GetPlayerVisibleDynamicCP"/>
+			<dependency name="GetPlayerVisibleDynamicRaceCP"/>
+			<dependency name="IsAnyPlayerInAnyDynamicArea"/>
+			<dependency name="IsAnyPlayerInDynamicArea"/>
+			<dependency name="IsDynamicObjectMaterialTextUsed"/>
+			<dependency name="IsDynamicObjectMaterialUsed"/>
+			<dependency name="IsDynamicObjectMoving"/>
+			<dependency name="IsPlayerInAnyDynamicArea"/>
+			<dependency name="IsPlayerInDynamicArea"/>
+			<dependency name="IsPlayerInDynamicCP"/>
+			<dependency name="IsPlayerInDynamicRaceCP"/>
+			<dependency name="IsPointInAnyDynamicArea"/>
+			<dependency name="IsPointInDynamicArea"/>
+			<dependency name="IsValidDynamic3DTextLabel"/>
+			<dependency name="IsValidDynamicArea"/>
+			<dependency name="IsValidDynamicCP"/>
+			<dependency name="IsValidDynamicMapIcon"/>
+			<dependency name="IsValidDynamicObject"/>
+			<dependency name="IsValidDynamicPickup"/>
+			<dependency name="IsValidDynamicRaceCP"/>
+			<dependency name="MoveDynamicObject"/>
+			<dependency name="SetDynamicObjectMaterial"/>
+			<dependency name="SetDynamicObjectMaterialText"/>
+			<dependency name="SetDynamicObjectNoCameraCol"/>
+			<dependency name="SetDynamicObjectPos"/>
+			<dependency name="SetDynamicObjectRot"/>
+			<dependency name="StopDynamicObject"/>
+			<dependency name="Streamer_AppendArrayData"/>
+			<dependency name="Streamer_CallbackHook"/>
+			<dependency name="Streamer_CellDistance"/>
+			<dependency name="Streamer_CellSize"/>
+			<dependency name="Streamer_CountItems"/>
+			<dependency name="Streamer_CountVisibleItems"/>
+			<dependency name="Streamer_DestroyAllItems"/>
+			<dependency name="Streamer_DestroyAllVisibleItems"/>
+			<dependency name="Streamer_GetArrayData"/>
+			<dependency name="Streamer_GetCellDistance"/>
+			<dependency name="Streamer_GetCellSize"/>
+			<dependency name="Streamer_GetDistanceToItem"/>
+			<dependency name="Streamer_GetFloatData"/>
+			<dependency name="Streamer_GetIntData"/>
+			<dependency name="Streamer_GetItemInternalID"/>
+			<dependency name="Streamer_GetItemStreamerID"/>
+			<dependency name="Streamer_GetMaxItems"/>
+			<dependency name="Streamer_GetRadiusMultiplier"/>
+			<dependency name="Streamer_GetTickRate"/>
+			<dependency name="Streamer_GetUpperBound"/>
+			<dependency name="Streamer_GetVisibleItems"/>
+			<dependency name="Streamer_IsInArrayData"/>
+			<dependency name="Streamer_IsItemVisible"/>
+			<dependency name="Streamer_IsToggleCameraUpdate"/>
+			<dependency name="Streamer_IsToggleErrorCallback"/>
+			<dependency name="Streamer_IsToggleIdleUpdate"/>
+			<dependency name="Streamer_IsToggleItemUpdate"/>
+			<dependency name="Streamer_IsToggleStaticItem"/>
+			<dependency name="Streamer_MaxItems"/>
+			<dependency name="Streamer_ProcessActiveItems"/>
+			<dependency name="Streamer_RemoveArrayData"/>
+			<dependency name="Streamer_SetArrayData"/>
+			<dependency name="Streamer_SetCellDistance"/>
+			<dependency name="Streamer_SetCellSize"/>
+			<dependency name="Streamer_SetFloatData"/>
+			<dependency name="Streamer_SetIntData"/>
+			<dependency name="Streamer_SetMaxItems"/>
+			<dependency name="Streamer_SetRadiusMultiplier"/>
+			<dependency name="Streamer_SetTickRate"/>
+			<dependency name="Streamer_SetVisibleItems"/>
+			<dependency name="Streamer_TickRate"/>
+			<dependency name="Streamer_ToggleCameraUpdate"/>
+			<dependency name="Streamer_ToggleErrorCallback"/>
+			<dependency name="Streamer_ToggleIdleUpdate"/>
+			<dependency name="Streamer_ToggleItemUpdate"/>
+			<dependency name="Streamer_ToggleStaticItem"/>
+			<dependency name="Streamer_Update"/>
+			<dependency name="Streamer_UpdateEx"/>
+			<dependency name="Streamer_VisibleItems"/>
+			<dependency name="TogglePlayerAllDynamicAreas"/>
+			<dependency name="TogglePlayerAllDynamicCPs"/>
+			<dependency name="TogglePlayerAllDynamicRaceCPs"/>
+			<dependency name="TogglePlayerDynamicArea"/>
+			<dependency name="TogglePlayerDynamicCP"/>
+			<dependency name="TogglePlayerDynamicRaceCP"/>
+			<dependency name="UpdateDynamic3DTextLabelText"/>
+		</member>
+		<member name="M:IsAnyPlayerInAnyDynamicArea" syntax="IsAnyPlayerInAnyDynamicArea(recheck)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="recheck">
+			</param>
+		</member>
+		<member name="M:IsAnyPlayerInDynamicArea" syntax="IsAnyPlayerInDynamicArea(areaid, recheck)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+			<param name="recheck">
+			</param>
+		</member>
+		<member name="M:IsDynamicObjectMaterialTextUsed" syntax="IsDynamicObjectMaterialTextUsed(objectid, materialindex)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+		</member>
+		<member name="M:IsDynamicObjectMaterialUsed" syntax="IsDynamicObjectMaterialUsed(objectid, materialindex)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+		</member>
+		<member name="M:IsDynamicObjectMoving" syntax="IsDynamicObjectMoving(objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:IsPlayerInAnyDynamicArea" syntax="IsPlayerInAnyDynamicArea(playerid, recheck)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="recheck">
+			</param>
+		</member>
+		<member name="M:IsPlayerInDynamicArea" syntax="IsPlayerInDynamicArea(playerid, areaid, recheck)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="areaid">
+			</param>
+			<param name="recheck">
+			</param>
+		</member>
+		<member name="M:IsPlayerInDynamicCP" syntax="IsPlayerInDynamicCP(playerid, checkpointid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:IsPlayerInDynamicRaceCP" syntax="IsPlayerInDynamicRaceCP(playerid, checkpointid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:IsPointInAnyDynamicArea" syntax="IsPointInAnyDynamicArea(x, y, z)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:IsPointInDynamicArea" syntax="IsPointInDynamicArea(areaid, x, y, z)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:IsValidDynamic3DTextLabel" syntax="IsValidDynamic3DTextLabel(id)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="id">
+				<paraminfo>Text3D </paraminfo>
+			</param>
+		</member>
+		<member name="M:IsValidDynamicArea" syntax="IsValidDynamicArea(areaid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="areaid">
+			</param>
+		</member>
+		<member name="M:IsValidDynamicCP" syntax="IsValidDynamicCP(checkpointid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:IsValidDynamicMapIcon" syntax="IsValidDynamicMapIcon(iconid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="iconid">
+			</param>
+		</member>
+		<member name="M:IsValidDynamicObject" syntax="IsValidDynamicObject(objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:IsValidDynamicPickup" syntax="IsValidDynamicPickup(pickupid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="pickupid">
+			</param>
+		</member>
+		<member name="M:IsValidDynamicRaceCP" syntax="IsValidDynamicRaceCP(checkpointid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:MoveDynamicObject" syntax="MoveDynamicObject(objectid, x, y, z, speed, rx, ry, rz)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="speed">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnActorStreamIn" syntax="OnActorStreamIn(actorid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="actorid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnActorStreamOut" syntax="OnActorStreamOut(actorid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="actorid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnDialogResponse" syntax="OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="dialogid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="listitem">
+			</param>
+			<param name="inputtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnDynamicObjectMoved" syntax="OnDynamicObjectMoved(objectid)">
+			<attribute name="public"/>
+			<stacksize value="261"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:OnEnterExitModShop" syntax="OnEnterExitModShop(playerid, enterexit, interiorid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="enterexit">
+			</param>
+			<param name="interiorid">
+			</param>
+		</member>
+		<member name="M:OnFilterScriptExit" syntax="OnFilterScriptExit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnFilterScriptInit" syntax="OnFilterScriptInit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnGameModeExit" syntax="OnGameModeExit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnGameModeInit" syntax="OnGameModeInit()">
+			<stacksize value="1"/>
+		</member>
+		<member name="M:OnIncomingConnection" syntax="OnIncomingConnection(playerid, ip_address[], port)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="ip_address">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="port">
+			</param>
+		</member>
+		<member name="M:OnObjectMoved" syntax="OnObjectMoved(objectid)">
+			<stacksize value="1"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:OnPlayerClickMap" syntax="OnPlayerClickMap(playerid, fX, fY, fZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerClickPlayer" syntax="OnPlayerClickPlayer(playerid, clickedplayerid, source)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="clickedplayerid">
+			</param>
+			<param name="source">
+			</param>
+		</member>
+		<member name="M:OnPlayerClickPlayerTextDraw" syntax="OnPlayerClickPlayerTextDraw(playerid, playertextid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="playertextid">
+				<paraminfo>PlayerText </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerClickTextDraw" syntax="OnPlayerClickTextDraw(playerid, clickedid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="clickedid">
+				<paraminfo>Text </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerCommandText" syntax="OnPlayerCommandText(playerid, cmdtext[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="cmdtext">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerConnect" syntax="OnPlayerConnect(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerDeath" syntax="OnPlayerDeath(playerid, killerid, reason)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="killerid">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:OnPlayerDisconnect" syntax="OnPlayerDisconnect(playerid, reason)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="reason">
+			</param>
+		</member>
+		<member name="M:OnPlayerEditAttachedObject" syntax="OnPlayerEditAttachedObject(playerid, response, index, modelid, boneid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="index">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="boneid">
+			</param>
+			<param name="fOffsetX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fOffsetY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fOffsetZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fScaleX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fScaleY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fScaleZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerEditDynamicObject" syntax="OnPlayerEditDynamicObject(playerid, objectid, response, x, y, z, rx, ry, rz)">
+			<attribute name="public"/>
+			<stacksize value="1038"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerEditObject" syntax="OnPlayerEditObject(playerid, playerobject, objectid, response, fX, fY, fZ, fRotX, fRotY, fRotZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="playerobject">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="response">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fRotZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterCheckpoint" syntax="OnPlayerEnterCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterDynamicArea" syntax="OnPlayerEnterDynamicArea(playerid, areaid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="areaid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterDynamicCP" syntax="OnPlayerEnterDynamicCP(playerid, checkpointid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterDynamicRaceCP" syntax="OnPlayerEnterDynamicRaceCP(playerid, checkpointid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterRaceCheckpoint" syntax="OnPlayerEnterRaceCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerEnterVehicle" syntax="OnPlayerEnterVehicle(playerid, vehicleid, ispassenger)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="ispassenger">
+			</param>
+		</member>
+		<member name="M:OnPlayerExitVehicle" syntax="OnPlayerExitVehicle(playerid, vehicleid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:OnPlayerExitedMenu" syntax="OnPlayerExitedMenu(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerGiveDamage" syntax="OnPlayerGiveDamage(playerid, damagedid, amount, weaponid, bodypart)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="damagedid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="bodypart">
+			</param>
+		</member>
+		<member name="M:OnPlayerGiveDamageActor" syntax="OnPlayerGiveDamageActor(playerid, damaged_actorid, amount, weaponid, bodypart)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="damaged_actorid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="bodypart">
+			</param>
+		</member>
+		<member name="M:OnPlayerInteriorChange" syntax="OnPlayerInteriorChange(playerid, newinteriorid, oldinteriorid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="newinteriorid">
+			</param>
+			<param name="oldinteriorid">
+			</param>
+		</member>
+		<member name="M:OnPlayerKeyStateChange" syntax="OnPlayerKeyStateChange(playerid, newkeys, oldkeys)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="newkeys">
+			</param>
+			<param name="oldkeys">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveCheckpoint" syntax="OnPlayerLeaveCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveDynamicArea" syntax="OnPlayerLeaveDynamicArea(playerid, areaid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="areaid">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveDynamicCP" syntax="OnPlayerLeaveDynamicCP(playerid, checkpointid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveDynamicRaceCP" syntax="OnPlayerLeaveDynamicRaceCP(playerid, checkpointid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+		</member>
+		<member name="M:OnPlayerLeaveRaceCheckpoint" syntax="OnPlayerLeaveRaceCheckpoint(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerObjectMoved" syntax="OnPlayerObjectMoved(playerid, objectid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:OnPlayerPickUpDynamicPickup" syntax="OnPlayerPickUpDynamicPickup(playerid, pickupid)">
+			<attribute name="public"/>
+			<stacksize value="1031"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="pickupid">
+			</param>
+		</member>
+		<member name="M:OnPlayerPickUpPickup" syntax="OnPlayerPickUpPickup(playerid, pickupid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="pickupid">
+			</param>
+		</member>
+		<member name="M:OnPlayerRequestClass" syntax="OnPlayerRequestClass(playerid, classid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="classid">
+			</param>
+		</member>
+		<member name="M:OnPlayerRequestSpawn" syntax="OnPlayerRequestSpawn(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerSelectDynamicObject" syntax="OnPlayerSelectDynamicObject(playerid, objectid, modelid, x, y, z)">
+			<attribute name="public"/>
+			<stacksize value="1035"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerSelectObject" syntax="OnPlayerSelectObject(playerid, type, objectid, modelid, fX, fY, fZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerSelectedMenuRow" syntax="OnPlayerSelectedMenuRow(playerid, row)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="row">
+			</param>
+		</member>
+		<member name="M:OnPlayerShootDynamicObject" syntax="OnPlayerShootDynamicObject(playerid, weaponid, objectid, x, y, z)">
+			<attribute name="public"/>
+			<stacksize value="1035"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="playerid">
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="objectid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerSpawn" syntax="OnPlayerSpawn(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerStateChange" syntax="OnPlayerStateChange(playerid, newstate, oldstate)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="newstate">
+			</param>
+			<param name="oldstate">
+			</param>
+		</member>
+		<member name="M:OnPlayerStreamIn" syntax="OnPlayerStreamIn(playerid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerStreamOut" syntax="OnPlayerStreamOut(playerid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerTakeDamage" syntax="OnPlayerTakeDamage(playerid, issuerid, amount, weaponid, bodypart)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="issuerid">
+			</param>
+			<param name="amount">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="bodypart">
+			</param>
+		</member>
+		<member name="M:OnPlayerText" syntax="OnPlayerText(playerid, text[])">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnPlayerUpdate" syntax="OnPlayerUpdate(playerid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnPlayerWeaponShot" syntax="OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, fX, fY, fZ)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="weaponid">
+			</param>
+			<param name="hittype">
+			</param>
+			<param name="hitid">
+			</param>
+			<param name="fX">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fY">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="fZ">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnRconCommand" syntax="OnRconCommand(cmd[])">
+			<stacksize value="1"/>
+			<param name="cmd">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnRconLoginAttempt" syntax="OnRconLoginAttempt(ip[], password[], success)">
+			<stacksize value="1"/>
+			<param name="ip">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="password">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="success">
+			</param>
+		</member>
+		<member name="M:OnTrailerUpdate" syntax="OnTrailerUpdate(playerid, vehicleid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:OnUnoccupiedVehicleUpdate" syntax="OnUnoccupiedVehicleUpdate(vehicleid, playerid, passenger_seat, new_x, new_y, new_z, vel_x, vel_y, vel_z)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="playerid">
+			</param>
+			<param name="passenger_seat">
+			</param>
+			<param name="new_x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="new_y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="new_z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="vel_x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="vel_y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="vel_z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:OnVehicleDamageStatusUpdate" syntax="OnVehicleDamageStatusUpdate(vehicleid, playerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:OnVehicleDeath" syntax="OnVehicleDeath(vehicleid, killerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="killerid">
+			</param>
+		</member>
+		<member name="M:OnVehicleMod" syntax="OnVehicleMod(playerid, vehicleid, componentid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="componentid">
+			</param>
+		</member>
+		<member name="M:OnVehiclePaintjob" syntax="OnVehiclePaintjob(playerid, vehicleid, paintjobid)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="paintjobid">
+			</param>
+		</member>
+		<member name="M:OnVehicleRespray" syntax="OnVehicleRespray(playerid, vehicleid, color1, color2)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="color1">
+			</param>
+			<param name="color2">
+			</param>
+		</member>
+		<member name="M:OnVehicleSirenStateChange" syntax="OnVehicleSirenStateChange(playerid, vehicleid, newstate)">
+			<stacksize value="1"/>
+			<param name="playerid">
+			</param>
+			<param name="vehicleid">
+			</param>
+			<param name="newstate">
+			</param>
+		</member>
+		<member name="M:OnVehicleSpawn" syntax="OnVehicleSpawn(vehicleid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+		</member>
+		<member name="M:OnVehicleStreamIn" syntax="OnVehicleStreamIn(vehicleid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:OnVehicleStreamOut" syntax="OnVehicleStreamOut(vehicleid, forplayerid)">
+			<stacksize value="1"/>
+			<param name="vehicleid">
+			</param>
+			<param name="forplayerid">
+			</param>
+		</member>
+		<member name="M:SetDynamicObjectMaterial" syntax="SetDynamicObjectMaterial(objectid, materialindex, modelid, txdname[], texturename[], materialcolor)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="modelid">
+			</param>
+			<param name="txdname">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="texturename">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialcolor">
+			</param>
+		</member>
+		<member name="M:SetDynamicObjectMaterialText" syntax="SetDynamicObjectMaterialText(objectid, materialindex, text[], materialsize, fontface[], fontsize, bold, fontcolor, backcolor, textalignment)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="materialindex">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="materialsize">
+			</param>
+			<param name="fontface">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="fontsize">
+			</param>
+			<param name="bold">
+			</param>
+			<param name="fontcolor">
+			</param>
+			<param name="backcolor">
+			</param>
+			<param name="textalignment">
+			</param>
+		</member>
+		<member name="M:SetDynamicObjectNoCameraCol" syntax="SetDynamicObjectNoCameraCol(objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:SetDynamicObjectPos" syntax="SetDynamicObjectPos(objectid, x, y, z)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:SetDynamicObjectRot" syntax="SetDynamicObjectRot(objectid, rx, ry, rz)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+			<param name="rx">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="ry">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="rz">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:StopDynamicObject" syntax="StopDynamicObject(objectid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="objectid">
+			</param>
+		</member>
+		<member name="M:Streamer_AppendArrayData" syntax="Streamer_AppendArrayData(type, id, data, value)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="value">
+			</param>
+		</member>
+		<member name="M:Streamer_CallbackHook" syntax="Streamer_CallbackHook(callback, ...)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="callback">
+			</param>
+			<param name="...">
+				<paraminfo> {Float,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_CellDistance" syntax="Streamer_CellDistance(distance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="distance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_CellSize" syntax="Streamer_CellSize(size)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_CountItems" syntax="Streamer_CountItems(type, serverwide)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="serverwide">
+			</param>
+		</member>
+		<member name="M:Streamer_CountVisibleItems" syntax="Streamer_CountVisibleItems(playerid, type, serverwide)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="serverwide">
+			</param>
+		</member>
+		<member name="M:Streamer_DestroyAllItems" syntax="Streamer_DestroyAllItems(type, serverwide)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="serverwide">
+			</param>
+		</member>
+		<member name="M:Streamer_DestroyAllVisibleItems" syntax="Streamer_DestroyAllVisibleItems(playerid, type, serverwide)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="serverwide">
+			</param>
+		</member>
+		<member name="M:Streamer_GetArrayData" syntax="Streamer_GetArrayData(type, id, data, dest[], maxdest)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="dest">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxdest">
+			</param>
+		</member>
+		<member name="M:Streamer_GetCellDistance" syntax="Streamer_GetCellDistance(&amp;distance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="distance">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_GetCellSize" syntax="Streamer_GetCellSize(&amp;size)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="size">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_GetDistanceToItem" syntax="Streamer_GetDistanceToItem(x, y, z, type, id, &amp;distance, dimensions)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="distance">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="dimensions">
+			</param>
+		</member>
+		<member name="M:Streamer_GetFloatData" syntax="Streamer_GetFloatData(type, id, data, &amp;result)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="result">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_GetIntData" syntax="Streamer_GetIntData(type, id, data)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+		</member>
+		<member name="M:Streamer_GetItemInternalID" syntax="Streamer_GetItemInternalID(playerid, type, streamerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="streamerid">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_GetItemStreamerID" syntax="Streamer_GetItemStreamerID(playerid, type, internalid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="internalid">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_GetMaxItems" syntax="Streamer_GetMaxItems(type)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:Streamer_GetRadiusMultiplier" syntax="Streamer_GetRadiusMultiplier(type, &amp;multiplier, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="multiplier">
+				<paraminfo>Float &amp; </paraminfo>
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Streamer_GetTickRate" syntax="Streamer_GetTickRate()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:Streamer_GetUpperBound" syntax="Streamer_GetUpperBound(type)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:Streamer_GetVisibleItems" syntax="Streamer_GetVisibleItems(type, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Streamer_IsInArrayData" syntax="Streamer_IsInArrayData(type, id, data, value)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="value">
+			</param>
+		</member>
+		<member name="M:Streamer_IsItemVisible" syntax="Streamer_IsItemVisible(playerid, type, id)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_IsToggleCameraUpdate" syntax="Streamer_IsToggleCameraUpdate(playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Streamer_IsToggleErrorCallback" syntax="Streamer_IsToggleErrorCallback()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:Streamer_IsToggleIdleUpdate" syntax="Streamer_IsToggleIdleUpdate(playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Streamer_IsToggleItemUpdate" syntax="Streamer_IsToggleItemUpdate(playerid, type)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:Streamer_IsToggleStaticItem" syntax="Streamer_IsToggleStaticItem(type, id)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_MaxItems" syntax="Streamer_MaxItems(type, items)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="items">
+			</param>
+		</member>
+		<member name="M:Streamer_OnPluginError" syntax="Streamer_OnPluginError(error[])">
+			<attribute name="public"/>
+			<stacksize value="1030"/>
+			<dependency name="ExecuteJS"/>
+			<dependency name="format"/>
+			<param name="error">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_ProcessActiveItems" syntax="Streamer_ProcessActiveItems()">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+		</member>
+		<member name="M:Streamer_RemoveArrayData" syntax="Streamer_RemoveArrayData(type, id, data, value)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="value">
+			</param>
+		</member>
+		<member name="M:Streamer_SetArrayData" syntax="Streamer_SetArrayData(type, id, data, src[], maxsrc)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="src">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="maxsrc">
+			</param>
+		</member>
+		<member name="M:Streamer_SetCellDistance" syntax="Streamer_SetCellDistance(distance)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="distance">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_SetCellSize" syntax="Streamer_SetCellSize(size)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="size">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_SetFloatData" syntax="Streamer_SetFloatData(type, id, data, value)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="value">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:Streamer_SetIntData" syntax="Streamer_SetIntData(type, id, data, value)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="data">
+			</param>
+			<param name="value">
+			</param>
+		</member>
+		<member name="M:Streamer_SetMaxItems" syntax="Streamer_SetMaxItems(type, items)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="items">
+			</param>
+		</member>
+		<member name="M:Streamer_SetRadiusMultiplier" syntax="Streamer_SetRadiusMultiplier(type, multiplier, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="multiplier">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Streamer_SetTickRate" syntax="Streamer_SetTickRate(rate)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="rate">
+			</param>
+		</member>
+		<member name="M:Streamer_SetVisibleItems" syntax="Streamer_SetVisibleItems(type, items, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="items">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:Streamer_TickRate" syntax="Streamer_TickRate(rate)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="rate">
+			</param>
+		</member>
+		<member name="M:Streamer_ToggleCameraUpdate" syntax="Streamer_ToggleCameraUpdate(playerid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:Streamer_ToggleErrorCallback" syntax="Streamer_ToggleErrorCallback(toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:Streamer_ToggleIdleUpdate" syntax="Streamer_ToggleIdleUpdate(playerid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:Streamer_ToggleItemUpdate" syntax="Streamer_ToggleItemUpdate(playerid, type, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:Streamer_ToggleStaticItem" syntax="Streamer_ToggleStaticItem(type, id, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="id">
+				<paraminfo> {Text3D,_} </paraminfo>
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:Streamer_Update" syntax="Streamer_Update(playerid, type)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:Streamer_UpdateEx" syntax="Streamer_UpdateEx(playerid, x, y, z, worldid, interiorid, type)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="x">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="y">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="z">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="worldid">
+			</param>
+			<param name="interiorid">
+			</param>
+			<param name="type">
+			</param>
+		</member>
+		<member name="M:Streamer_VisibleItems" syntax="Streamer_VisibleItems(type, items, playerid)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="type">
+			</param>
+			<param name="items">
+			</param>
+			<param name="playerid">
+			</param>
+		</member>
+		<member name="M:TogglePlayerAllDynamicAreas" syntax="TogglePlayerAllDynamicAreas(playerid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:TogglePlayerAllDynamicCPs" syntax="TogglePlayerAllDynamicCPs(playerid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:TogglePlayerAllDynamicRaceCPs" syntax="TogglePlayerAllDynamicRaceCPs(playerid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:TogglePlayerDynamicArea" syntax="TogglePlayerDynamicArea(playerid, areaid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="areaid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:TogglePlayerDynamicCP" syntax="TogglePlayerDynamicCP(playerid, checkpointid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:TogglePlayerDynamicRaceCP" syntax="TogglePlayerDynamicRaceCP(playerid, checkpointid, toggle)">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="playerid">
+			</param>
+			<param name="checkpointid">
+			</param>
+			<param name="toggle">
+			</param>
+		</member>
+		<member name="M:UpdateDynamic3DTextLabelText" syntax="UpdateDynamic3DTextLabelText(id, color, text[])">
+			<attribute name="native"/>
+			<referrer name="Invoke_streamerinc"/>
+			<param name="id">
+				<paraminfo>Text3D </paraminfo>
+			</param>
+			<param name="color">
+			</param>
+			<param name="text">
+				<paraminfo> [] </paraminfo>
+			</param>
+		</member>
+		<member name="M:float" syntax="float(value)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator*(Float:,_:)"/>
+			<referrer name="operator/(Float:,_:)"/>
+			<referrer name="operator/(_:,Float:)"/>
+			<referrer name="operator+(Float:,_:)"/>
+			<referrer name="operator-(Float:,_:)"/>
+			<referrer name="operator-(_:,Float:)"/>
+			<referrer name="operator==(Float:,_:)"/>
+			<referrer name="operator!=(Float:,_:)"/>
+			<referrer name="operator&gt;(Float:,_:)"/>
+			<referrer name="operator&gt;(_:,Float:)"/>
+			<referrer name="operator&gt;=(Float:,_:)"/>
+			<referrer name="operator&gt;=(_:,Float:)"/>
+			<referrer name="operator&lt;(Float:,_:)"/>
+			<referrer name="operator&lt;(_:,Float:)"/>
+			<referrer name="operator&lt;=(Float:,_:)"/>
+			<referrer name="operator&lt;=(_:,Float:)"/>
+			<param name="value">
+			</param>
+		</member>
+		<member name="M:floatadd" syntax="floatadd(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator+(Float:,_:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatcmp" syntax="floatcmp(oper1, oper2)">
+			<attribute name="native"/>
+			<referrer name="operator==(Float:,Float:)"/>
+			<referrer name="operator==(Float:,_:)"/>
+			<referrer name="operator!=(Float:,Float:)"/>
+			<referrer name="operator!=(Float:,_:)"/>
+			<referrer name="operator&gt;(Float:,Float:)"/>
+			<referrer name="operator&gt;(Float:,_:)"/>
+			<referrer name="operator&gt;(_:,Float:)"/>
+			<referrer name="operator&gt;=(Float:,Float:)"/>
+			<referrer name="operator&gt;=(Float:,_:)"/>
+			<referrer name="operator&gt;=(_:,Float:)"/>
+			<referrer name="operator&lt;(Float:,Float:)"/>
+			<referrer name="operator&lt;(Float:,_:)"/>
+			<referrer name="operator&lt;(_:,Float:)"/>
+			<referrer name="operator&lt;=(Float:,Float:)"/>
+			<referrer name="operator&lt;=(Float:,_:)"/>
+			<referrer name="operator&lt;=(_:,Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatdiv" syntax="floatdiv(dividend, divisor)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator/(Float:,_:)"/>
+			<referrer name="operator/(_:,Float:)"/>
+			<param name="dividend">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="divisor">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatmul" syntax="floatmul(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator*(Float:,_:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:floatsub" syntax="floatsub(oper1, oper2)">
+			<tagname value="Float"/>
+			<attribute name="native"/>
+			<referrer name="operator-(Float:,_:)"/>
+			<referrer name="operator-(_:,Float:)"/>
+			<param name="oper1">
+				<paraminfo>Float </paraminfo>
+			</param>
+			<param name="oper2">
+				<paraminfo>Float </paraminfo>
+			</param>
+		</member>
+		<member name="M:format" syntax="format(output[], len, format[], ...)">
+			<attribute name="native"/>
+			<referrer name="OnDynamicObjectMoved"/>
+			<referrer name="OnPlayerEditDynamicObject"/>
+			<referrer name="OnPlayerSelectDynamicObject"/>
+			<referrer name="OnPlayerShootDynamicObject"/>
+			<referrer name="OnPlayerPickUpDynamicPickup"/>
+			<referrer name="OnPlayerEnterDynamicCP"/>
+			<referrer name="OnPlayerLeaveDynamicCP"/>
+			<referrer name="OnPlayerEnterDynamicRaceCP"/>
+			<referrer name="OnPlayerLeaveDynamicRaceCP"/>
+			<referrer name="OnPlayerEnterDynamicArea"/>
+			<referrer name="OnPlayerLeaveDynamicArea"/>
+			<referrer name="Streamer_OnPluginError"/>
+			<param name="output">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="len">
+			</param>
+			<param name="format">
+				<paraminfo> [] </paraminfo>
+			</param>
+			<param name="...">
+				<paraminfo> {Float,_} </paraminfo>
+			</param>
+		</member>
+
+	</members>
+</doc>

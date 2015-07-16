@@ -76,9 +76,10 @@ class Events {
 			if(i != 0) args.push(arguments[i]);
 		}
 		
+		var ret = -1;
 		for(var id in this.ids[event]){
 			var fn = this.ids[event][id].fn;
-			var ret = fn.apply(null, args);	
+			ret = fn.apply(null, args);	
 			
 			if(this.ids[event][id].type == 0) delete this.ids[event][id];
 			else if(this.ids[event][id].type > 0) this.ids[event][id].type--;
@@ -94,5 +95,7 @@ class Events {
 				}
 			}
 		}
+		
+		return ret;
 	}
 };
