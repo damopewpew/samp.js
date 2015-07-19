@@ -79,6 +79,12 @@ class Player extends Events {
 /** Cached wanted level 
  * @type {Number} */
 		this._wantedLevel = 0;
+/** Cached camera position 
+ * @type {Position} */
+		this._cameraPos = {x:0,y:0,z:0};
+/** Cached camera look at position 
+ * @type {Position} */
+		this._cameraLookAt = {x:0,y:0,z:0,cut:0};
 	}
 
 /**
@@ -554,6 +560,94 @@ class Player extends Events {
 	}
 	
 	/**
+	 * Gets the ID of the vehicle that the player is surfing
+	 * @type {Number}
+	 */ 
+	get surfingVehicle() {
+		return GetPlayerSurfingVehicleID(this.id);
+	}
+	
+	/**
+	 * Gets the ID of the seat the player is in
+	 * @type {Number}
+	 */ 
+	get vehicleSeat() {
+		return GetPlayerVehicleSeat(this.id);
+	}
+	
+	/**
+	 * Sets the camera to a specific position
+	 * @type {Position|Array[3]}
+	 */ 
+	set cameraPos(pos)
+	{
+		if(Array.isArray(pos)) {
+			this._cameraPos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return SetPlayerCameraPos(this.id, this._cameraPos.x, this._cameraPos.y, this._cameraPos.z);
+	}
+	
+	/**
+	 * Get the player's camera position
+	 * @type {Object}
+	 */ 
+	get cameraPos() {
+		return (this._cameraPos = GetPlayerCameraPos(this.id));
+	}
+	
+	/**
+	 * Set the direction a player's camera looks at
+	 * @type {Position|Array[4]}
+	 */ 
+	set cameraLookAt(pos)
+	{
+		if(Array.isArray(pos)) {
+			this._cameraLookAt = {x: pos[0], y: pos[1], z: pos[2], cut: pos[3]};
+		}
+		return SetPlayerCameraLookAt(this.id, this._cameraLookAt.x, this._cameraLookAt.y, this._cameraLookAt.z, this._cameraLookAt.cut);
+	}
+	
+	/**
+	 * Gets the direction a player's camera looks at
+	 * @type {Object}
+	 */ 
+	get cameraLookAt() {
+		return this._cameraLookAt;
+	}
+	
+	/**
+	 * Returns the aspect ratio of the player's camera
+	 * @type {Number}
+	 */
+	get cameraAspectRatio() {
+		return GetPlayerCameraAspectRatio(this.id);
+	}
+	
+	/**
+	 * Returns the player's camera zoom level (camera, sniper etc.)
+	 * @type {Number}
+	 */
+	get cameraZoom() {
+		return GetPlayerCameraZoom(this.id);
+	}
+	
+	/**
+	 * Returns the player's camera front vector
+	 * @type {Position}
+	 */
+	get cameraFrontVector() {
+		return GetPlayerCameraFrontVector(this.id);
+	}
+	
+	/**
+	 * Toggle whether a player is in spectator mode or not
+	 * @type {Boolean}
+	 */
+	set toggleSpectate(toggle) {
+		return TogglePlayerSpectating(this.id, toggle);
+	}
+	
+	/**
 	 * Send Message to player
 	 * @param {String} color   Color
 	 * @param {String} message Message
@@ -565,6 +659,86 @@ class Player extends Events {
 		}
 		
 		SendClientMessage(this.id, color, message );
+	}
+	
+	/**
+	 * Sets camera behind player
+	 */
+	setCameraBehind() {
+		SetCameraBehindPlayer(this.id);
+	}
+	
+	/**
+	 * Check if a player is inside a specific vehicle
+	 * @returns {Boolean} true if in vehicle, false if not
+	 */
+	inVehicle(vehicleid) {
+		return IsPlayerInVehicle(this.id, vehicleid);
+	}
+	
+	/**
+	 * Check if a player is inside any vehicle
+	 * @returns {Boolean} true if in any vehicle, false if not
+	 */
+	inAnyVehicle() {
+		return IsPlayerInAnyVehicle(this.id);
+	}
+	
+	/**
+	 * Sets a player to spectate another vehicle
+	 * @returns {Boolean}
+	 * @see http://wiki.sa-mp.com/wiki/PlayerSpectateVehicle
+	 */
+	spectateVehicle(vehicleid, mode) {
+		return PlayerSpectateVehicle(this.id, vehicleid, mode);
+	}
+	
+	/**
+	 * Sets a player to spectate another player
+	 * @returns {Boolean}
+	 * @see http://wiki.sa-mp.com/wiki/PlayerSpectatePlayer
+	 */
+	spectatePlayer(target, mode)
+	{
+		if(typeof target === 'object') {
+			target = target.id;
+		}
+		return PlayerSpectatePlayer(this.id, target, mode);
+	}
+	
+	/**
+	 * Checks if a player is logged in as an RCON admin.
+	 * @returns {Boolean} true if rcon admin, false if not
+	 */
+	isAdmin() {
+		return IsPlayerAdmin(this.id);
+	}
+	
+	/**
+	 * Checks if a player is an actual player or an NPC
+	 * @returns {Boolean} true if npc, false if not
+	 */
+	isNPC() {
+		return IsPlayerNPC(this.id);
+	}
+	
+	/**
+	 * Kicks the specific player from the server
+	 */
+	kick() {
+		Kick(this.id);
+	}
+	
+	/**
+	 * Bans the specific player from the server
+	 * @param {String} [reason]
+	 */
+	ban(reason) 
+	{
+		if(arguments.length) {
+			BanEx(this.id, reason);
+		}
+		else Ban(this.id);
 	}
 
 /**
