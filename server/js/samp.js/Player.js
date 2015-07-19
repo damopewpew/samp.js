@@ -25,6 +25,9 @@ class Player extends Events {
 /** Cached interior
  * @type {Number} */
 		this._interior = 0;
+/** Cached world
+ * @type {Number} */
+		this._world = 0;
 /** Cached ip address
  * @type {String} */
 		this._ip = null;
@@ -260,6 +263,22 @@ class Player extends Events {
 	set interior(interior) {
 		this._interior = interior;
 		SetPlayerInterior(this.id,interior);
+	}
+/**
+ * Get Player Current World id | GetPlayerVirtualWorld(playerid)
+ * @type {Number}
+ */
+	get world() {
+		this._world = GetPlayerVirtualWorld(this.id);
+		return this._world;
+	}
+/**
+ * Set Player World | SetPlayerVirtualWorld(playerid, worldid)
+ * @type {Number}
+ */ 
+	set world(world) {
+		this._world = world;
+		SetPlayerVirtualWorld(this.id,world);
 	}
 
 /**
