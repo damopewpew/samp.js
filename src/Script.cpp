@@ -203,18 +203,10 @@ void sampjs::Script::JS_RegisterPublic(const FunctionCallbackInfo<Value> & args)
 
 	name = JS2STRING(args[0]);
 	format = JS2STRING(args[1]);
+	event = JS2STRING(args[2]);
 
-
-	if (args.Length() > 2){
-		if (args[2]->IsBoolean()){
-			cancel = args[2]->BooleanValue();
-			event = name;
-		}
-		else {
-			event = JS2STRING(args[2]);
-		}
-
-		if (args.Length() > 3){
+	if (args.Length() > 3){
+		if (args[3]->IsBoolean()){
 			cancel = args[3]->BooleanValue();
 		}
 	}
