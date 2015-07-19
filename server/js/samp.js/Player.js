@@ -155,7 +155,7 @@ class Player extends Events {
 			this._pos.y = pos.y;
 			this._pos.z = pos.z;
 		}
-		SetPlayerPos(this._id,this._pos.x,this._pos.y,this._pos.z);
+		SetPlayerPos(this.id,this._pos.x,this._pos.y,this._pos.z);
 	}
 	
 /**
@@ -172,7 +172,7 @@ class Player extends Events {
  */ 
 	set health(health){
 		this._health = health;
-		SetPlayerHealth(this._id, this.health);
+		SetPlayerHealth(this.id, this._health);
 	}
 
 /**
@@ -189,7 +189,7 @@ class Player extends Events {
  */ 
 	set armour(armour){
 		this._armour = armour;
-		SetPlayerArmour(this._id, this.armour);
+		SetPlayerArmour(this.id, this._armour);
 	}
 	
 /**
@@ -208,7 +208,7 @@ class Player extends Events {
  */
 	setAmmo(weaponid,ammo) {
 		this._weapons[weaponid] = ammo;
-		SetPlayerAmmo(this._id,weaponid,this.weapons[weaponid]);
+		SetPlayerAmmo(this.id,weaponid,this._weapons[weaponid]);
 	}
 	
 /**
@@ -271,7 +271,7 @@ class Player extends Events {
  */
 	giveWeapon(weaponid,ammo) {
 		this._weapons[weaponid] = ammo;
-		GivePlayerWeapon(this._id,weaponid,this.weapons[weaponid]);
+		GivePlayerWeapon(this.id,weaponid,this._weapons[weaponid]);
 	}
 /**
  * Reset players weapons
@@ -298,7 +298,7 @@ class Player extends Events {
  */ 
 	set weapon(weaponid) {
 		this._currentWeapon = weaponid;
-		SetPlayerArmedWeapon(this._id,this._currentWeapon);
+		SetPlayerArmedWeapon(this.id,this._currentWeapon);
 	}
 	
 /** 
@@ -327,7 +327,7 @@ class Player extends Events {
  */ 
 	set color(color) {
 		this._color = color;
-		SetPlayerColor(this._id,this.colour);
+		SetPlayerColor(this.id,this._color);
 	}
 	
 /**
@@ -406,7 +406,7 @@ class Player extends Events {
  * @type {Number}
  */ 
 	set money(money) {
-		var currentMoney = this.money;
+		var currentMoney = this._money;
 		this._money = money;
 		this.giveMoney(money - currentMoney);
 	}
@@ -443,7 +443,7 @@ class Player extends Events {
  */ 
 	set score(score) {
 		this._score = score;
-		SetPlayerScore(this._id,this.score);
+		SetPlayerScore(this.id,this.score);
 	}
 	
 /**
@@ -461,7 +461,7 @@ class Player extends Events {
  */ 
 	set skin(skin) {
 		this._skin = skin;
-		SetPlayerSkin(this._id,this.skin);
+		SetPlayerSkin(this.id,this._skin);
 	}
 	
 /**
@@ -487,7 +487,7 @@ class Player extends Events {
  */ 
 	set wantedLevel(wantedLevel) {
 		this._wantedLevel = wantedLevel;
-		SetPlayerWantedLevel(this._id,this.wantedLevel);
+		SetPlayerWantedLevel(this.id,this._wantedLevel);
 	}
 	
 /**
@@ -514,7 +514,7 @@ class Player extends Events {
 			this._velocity.y = vel.y;
 			this._velocity.z = vel.z;
 		}
-		SetPlayerVelocity(this._id,this.velocity_.x,this.velocity_.y,this.velocity.z);
+		SetPlayerVelocity(this.id,this._velocity.x,this._velocity.y,this._velocity.z);
 	}
 
 /**
@@ -532,6 +532,20 @@ class Player extends Events {
  */ 
 	get vehicle(){
 		return GetPlayerVehicleID(this.id);
+	}
+	
+	/**
+	 * Send Message to player
+	 * @param {String} color   Color
+	 * @param {String} message Message
+	 */
+	message(color,message){
+		if(arguments.length < 2){
+			message = color;
+			color = -1;
+		}
+		
+		SendClientMessage(this.id, color, message );
 	}
 
 /**
