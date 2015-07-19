@@ -110,7 +110,7 @@ class Player extends Events {
  * @type {String}
  */
 	get ip() {
-		if(this._ip_ == null) this.ip = GetPlayerIp(this.id);
+		if(this._ip == null) this._ip = GetPlayerIp(this.id);
 		return this._ip;
 	}
 	
