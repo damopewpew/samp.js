@@ -76,7 +76,7 @@ class Events {
 			if(i != 0) args.push(arguments[i]);
 		}
 		
-		var ret = -1;
+		var ret =(event == "PlayerCommandText" || event == "RconCommand")?0:1;
 		for(var id in this.ids[event]){
 			var fn = this.ids[event][id].fn;
 			ret = fn.apply(null, args);	
