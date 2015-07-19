@@ -443,7 +443,7 @@ class Player extends Events {
  */ 
 	set score(score) {
 		this._score = score;
-		SetPlayerScore(this.id,this.score);
+		SetPlayerScore(this.id,this._score);
 	}
 	
 /**
