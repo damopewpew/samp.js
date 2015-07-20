@@ -7,6 +7,7 @@ class MySQLConnection extends Events
 		this.user = user;
 		this.password = password;
 		this.database = database;
+		this._utc = true;
 	}
 	
 	connect(callback)
@@ -43,7 +44,7 @@ class MySQLConnection extends Events
 		}
 		let isObject;
 		
-		if(Array.isArray(arguments[1]) || (isObject = typeof arguments[1] === 'object' && arguments[1] !== null))
+		if(Array.isArray(arguments[1]) || (isObject = typeof arguments[1] === 'object'))
 		{
 			let
 				args = arguments[1],
@@ -63,25 +64,41 @@ class MySQLConnection extends Events
 		return array.map(function(v)
 		{
 			if(Array.isArray(v)) {
-				return '(' + this.parseArray(v) +')';
+				return '(' + this.parseArray(v) + ')';
 			}
 			return this.varEscape(v);
 		}.bind(this)).join(', ');
 	}
 	
+	parseObject(object) {
+		var vals = [];
+			
+		for(let key in object)
+		{
+			if(typeof object[key] == 'function'){
+				continue;	
+			}
+			vals.push(this.escape(key) + ' = ' + this.varEscape(object[key]));
+		}
+		return vals.join(', ');
+	}
+	
 	parseDate(date)
 	{
-		//Assuming 'date' was supposed to be mysql's DATETIME (YYYY-MM-DD HH:MM:SS)
-		let d = date.split(/[- :]/g);
-		
-		return {
-			year: +d[0],
-			month: +d[1],
-			day: +d[2],
-			hour: +d[3],
-			minute: +d[4],
-			second: +d[5]
-		};
+		let
+			year   = this._utc ? date.getUTCFullYear() : date.getFullYear(),
+			month  = this._utc ? date.getUTCMonth() : date.getMonth(),
+			day    = this._utc ? date.getUTCDate() : date.getDate(),
+			hour   = this._utc ? date.getUTCHours() : date.getHours(),
+			minute = this._utc ? date.getUTCMinutes() : date.getMinutes(),
+			second = this._utc ? date.getUTCSeconds() : date.getSeconds()
+		;
+		month  = ('0' + (month + 1)).slice(-2);
+		day    = ('0' + day).slice(-2);
+		hour   = ('0' + hour).slice(-2);
+		minute = ('0' + minute).slice(-2);
+		second = ('0' + second).slice(-2);
+		return `'${year}-${month}-${day} ${hour}:${minute}:${second}'`;
 	}
 	
 	varEscape(val)
@@ -93,31 +110,29 @@ class MySQLConnection extends Events
 		switch(typeof val)
 		{
 			case 'boolean': return (val) ? 'true' : 'false';
-			case 'number': return val+'';
+			case 'number': return val + '';
 		}
 		
-		if(Array.isArray(val)) {
+		if(Array.isArray(val)){
 			return this.parseArray(val);	
 		}
 		
-		if(typeof val === 'object') {
-			var vals = [];
-			
-			for(var k in val) {
-				var value = val[k];
-				
-				if(typeof value == 'function') {
-					continue;	
-				}
-				vals.push(this.escape(k)+ ' = '+this.varEscape(value));
+		if(typeof val === 'object')
+		{
+			if(val instanceof Date) {
+				return this.parseDate(val);
 			}
-			return vals.join(', ');
+			return this.parseObject(val);
 		}
-		return "'"+this.escape(val)+"'";
+		return "'" + this.escape(val) + "'";
 		
 	}
 	
 	escape(string) {
 		return this.internal.escape(string);
+	}
+	
+	set utc(toggle) {
+		this._utc = toggle;
 	}
 }
