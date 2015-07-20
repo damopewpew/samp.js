@@ -4,6 +4,7 @@ class Server extends Events {
 		this._weather = 0;
 		this._gravity = 0.008;
 		this._time = 0;
+		this._gamemode = 'Unknown';
 
 		this.memory = {
 			heap() {
@@ -19,6 +20,10 @@ class Server extends Events {
 				$players.addPlayer(i);
 			}
 		}
+	}
+	
+	rcon(cmd) {
+		return SendRconCommand(cmd);
 	}
 			
 	set time(hour){
@@ -40,7 +45,6 @@ class Server extends Events {
 		return this._gravity;
 	}
 
-
 	set weather(weatherid){
 		SetWeather(weaterid);
 		this._weather = weatherid;
@@ -48,5 +52,15 @@ class Server extends Events {
 
 	get weather(){
 		return this._weather;
-	}	
+	}
+	
+	set gamemode(text) 
+	{
+		this._gamemode = text;
+		SetGameModeText(text);
+	}
+	
+	get gamemode() {
+		return this._gamemode;
+	}
 };
