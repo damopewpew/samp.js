@@ -31,8 +31,8 @@ class Buffer {
 	toString(format,offset,length){
 		format = format||'utf8';
 		offset = offset||0;
-		length=  length||this.buffer.length;
-		
+		length=  length||this.buffer.byteLength;
+	
 		let arr = {};
 		if(format =='utf8'){
 			arr = new Uint8Array(this.buffer, offset, length )
@@ -40,6 +40,14 @@ class Buffer {
 			arr = new Uint16Array(this.buffer,offset,length)
 		}
 		//return arr;
+		
+		if(length > 64000){
+			var str = "";
+			for(let i = 0; i < length; i++){
+				str+= String.fromCharCode(arr[i]);	
+			}
+			return str;
+		}
 		return String.fromCharCode.apply(null, arr);	
 	}
 	
