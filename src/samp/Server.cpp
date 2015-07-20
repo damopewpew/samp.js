@@ -67,6 +67,8 @@ void Server::Init(Local<Context> ctx){
 	server.Set("Debug", Utils::JS_Debug);
 
 	
+
+	
 }
 
 void Server::Shutdown(){

@@ -71,12 +71,22 @@ void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Valu
 	else {
 	//	setlocale(LC_ALL, "Russian");
 	//	LPCWSTR wstr = (LPCWSTR)* String::Value(value);
-		const wchar_t *wstr = (wchar_t*)*String::Value(value);
-		char* sstr = new char[wcslen(wstr)+1];
-		wcstombs(sstr, wstr, wcslen(wstr));
-		sstr[wcslen(wstr)] = '\0';
+	//	const wchar_t *wstr = (wchar_t*)*String::Value(value);
+	//	char* sstr = new char[wcslen(wstr)+1];
+	//	wcstombs(sstr, wstr, wcslen(wstr));
+	//	sstr[wcslen(wstr)] = '\0';
 	//	std::string n = JS2STRING(value);
-		sjs::logger::printf("%s",sstr);
+		
+
+		String::Value jstring(value);
+		wchar_t *wstr = (wchar_t*)*jstring;
+		size_t slen = value->ToString()->Length();
+		char* sstr = new char[slen + 1];
+		wcstombs(sstr, wstr, slen + 1);
+		sjs::logger::printf("%s", sstr);
+
+		delete[] wstr;
+		delete[] sstr;
 		//printf("%s\n", n.c_str());
 		//wprintf(L"%s\n", n2);
 	//	std::cout << n2 << std::endl;

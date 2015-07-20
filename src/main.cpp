@@ -20,6 +20,7 @@
 
 #include <sampgdk/sampgdk.h>
 
+
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 2
 #define VERSION_BUGFIX 0
@@ -77,6 +78,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData){
 	sjs::logger::log("*** Loaded samp.js v%i.%i.%i by !damo!spiderman ***", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX);
 	sjs::logger::log("%s", std::string(69, '-').c_str());
 	ReadConfig();
+
 	return true;
 }
 
