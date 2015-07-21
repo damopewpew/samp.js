@@ -85,6 +85,9 @@ class Player extends Events {
 /** Cached camera look at position 
  * @type {Position} */
 		this._cameraLookAt = {x:0,y:0,z:0,cut:0};
+/** Cached special action 
+ * @type {Number} */
+		this._specialAction = 0;
 	}
 
 /**
@@ -190,7 +193,7 @@ class Player extends Events {
  */ 
 	get armour(){
 		this._armour = GetPlayerArmour(this.id);
-		return this._health;
+		return this._armour;
 	}
 /**
  * Set Player Armour | SetPlayerArmour(playerid, amount)
@@ -503,7 +506,7 @@ class Player extends Events {
  */ 
 	get wantedLevel() {
 		this._wantedLevel = GetPlayerWantedLevel(this.id);
-		return this._velocity;
+		return this._wantedLevel;
 	}
 	
 /**
@@ -582,8 +585,9 @@ class Player extends Events {
 	set cameraPos(pos)
 	{
 		if(Array.isArray(pos)) {
-			this._cameraPos = {x: pos[0], y: pos[1], z: pos[2]};
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
 		}
+		this._cameraPos = pos;
 		return SetPlayerCameraPos(this.id, this._cameraPos.x, this._cameraPos.y, this._cameraPos.z);
 	}
 	
@@ -601,9 +605,18 @@ class Player extends Events {
 	 */ 
 	set cameraLookAt(pos)
 	{
-		if(Array.isArray(pos)) {
-			this._cameraLookAt = {x: pos[0], y: pos[1], z: pos[2], cut: pos[3]};
+		if(Array.isArray(pos))
+		{
+			if(pos.length > 3) {
+				var cut = pos[3];
+			}
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+			if(cut) pos.cut = cut;
 		}
+		if(pos.hasOwnProperty('cut')) {
+			this._cameraLookAt = pos;
+		}
+		else this._cameraLookAt = {x: pos.x, y: pos.y, z: pos.z};
 		return SetPlayerCameraLookAt(this.id, this._cameraLookAt.x, this._cameraLookAt.y, this._cameraLookAt.z, this._cameraLookAt.cut);
 	}
 	
@@ -740,7 +753,95 @@ class Player extends Events {
 		}
 		else Ban(this.id);
 	}
-
+	
+	/**
+	 * Attach object to player
+	 * @param   {Number} objectid the id of an object
+	 * @param   {Object|Array[6]} coords x, y, z, rx, ry, rz
+	 */
+	attachObject(objectid, coords)
+	{
+		if(arguments.length > 2) {
+			coords = {x: arguments[1], y: arguments[2], z: arguments[3], rx: arguments[4], ry: arguments[5], rz: arguments[6]};
+		}
+		if(Array.isArray(coords)) {
+			coords = {x: coords[0], y: coords[1], z: coords[2], rx: coords[3], ry: coords[4], rz: coords[5]};
+		}
+		return AttachObjectToPlayer(objectid, this.id, coords.x, coords.y, coords.z, coords.rx, coords.ry, coords.rz);
+	}
+	
+	/**
+	 * Attach an object to a specific bone on a player.
+	 * @param   {Number} objectid The object to attach
+	 * @param   {Number} index The slot to assign the object (0-9)
+	 * @param   {Number} bone The bone to attach the object to
+	 * @param   {Object|Array[3]} [offet] x, y, z
+	 * @param   {Object|Array[3]} [rot] x, y, z
+	 * @param   {Object|Array[3]} [scale] x, y, z
+	 * @param   {Object|Array[2]} [matColor] color1, color2
+	 */
+	setAttachedObject(objectid, index, bone, offset, rot, scale, matColor)
+	{
+		if(Array.isArray(offset)) {
+			offset = {x: offset[0], y: offset[1], z: offset[2]};
+		}
+		if(Array.isArray(rot)) {
+			rot = {x: rot[0], y: rot[1], z: rot[2]};
+		}
+		if(Array.isArray(scale)) {
+			scale = {x: scale[0], y: scale[1], z: scale[2]};
+		}
+		if(Array.isArray(matColor)) {
+			matColor = {color1: matColor[0], color2: matColor[1]};
+		}
+		return SetPlayerAttachedObject(this.id, index, objectid, bone, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, scale.x, scale.y, scale.z, matColor.color1, matColor.color2);
+	}
+	
+	/**
+	 * Apply animation for player
+	 * @param   {Object|Array[2]} anim lib, name
+	 * @param   {Number} 
+	 * @param   {Boolean} loop 
+	 * @param   {Number} lockx
+	 * @param   {Number} locky
+	 * @param   {Number} freeze
+	 * @param   {Number} time
+	 * @param   {Number} [forcesync]
+	 * @see https://wiki.sa-mp.com/wiki/ApplyAnimation
+	 */
+	animation(anim, delta, loop, lockx, locky, freeze, time, forcesync)
+	{
+		if(Array.isArray(anim)) {
+			anim = {lib: anim[0], name: anim[1]};
+		}
+		return ApplyAnimation(this.id, anim.lib, anim.name, delta, loop, lockx, locky, freeze, time, forcesync);
+	}
+	
+	/**
+	 * Clears all animations for the given player
+	 * @param   {Number} [forcesync]
+	 * @see https://wiki.sa-mp.com/wiki/ClearAnimations
+	*/
+	clearAnimations(forcesync) {
+		return ClearAnimations(this.id, forcesync);
+	}
+	
+	/**
+	 * Set special action for player
+	 * @type {Number}
+	 */ 
+	set action(actionid) {
+		return SetPlayerSpecialAction(this.id, (this._specialAction = actionid));
+	}
+	
+	/**
+	 * Returns current special action
+	 * @type {Number}
+	 */ 
+	get action() {
+		return (this._specialAction = GetPlayerSpecialAction(this.id));
+	}
+	
 /**
  * Returns the player's id
  * @returns {Number} Player's internal sa-mp id
