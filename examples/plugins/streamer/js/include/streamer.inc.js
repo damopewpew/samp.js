@@ -28,6 +28,20 @@ const STREAMER_TAG_MAP_ICON = DynamicMapIcon:;
 const STREAMER_TAG_3D_TEXT_LABEL = DynamicText3D:;
 const STREAMER_TAG_AREA = DynamicArea:;
 const STREAMER_ALL_TAGS = {DynamicObject,DynamicPickup,DynamicCP,DynamicRaceCP,DynamicMapIcon,DynamicText3D,DynamicArea,_}:;
+
+RegisterPublic("OnDynamicObjectMoved","i","DynamicObjectMoved",["STREAMER_TAG_OBJECT objectid"]);
+RegisterPublic("OnPlayerEditDynamicObject","iiiffffff","PlayerEditDynamicObject",["playerid", "STREAMER_TAG_OBJECT objectid", "response", "x", "y", "z", "rx", "ry", "rz"]);
+RegisterPublic("OnPlayerSelectDynamicObject","iiifff","PlayerSelectDynamicObject",["playerid", "STREAMER_TAG_OBJECT objectid", "modelid", "x", "y", "z"]);
+RegisterPublic("OnPlayerShootDynamicObject","iiifff","PlayerShootDynamicObject",["playerid", "weaponid", "STREAMER_TAG_OBJECT objectid", "x", "y", "z"]);
+RegisterPublic("OnPlayerPickUpDynamicPickup","ii","PlayerPickUpDynamicPickup",["playerid", "STREAMER_TAG_PICKUP pickupid"]);
+RegisterPublic("OnPlayerEnterDynamicCP","ii","PlayerEnterDynamicCP",["playerid", "STREAMER_TAG_CP checkpointid"]);
+RegisterPublic("OnPlayerLeaveDynamicCP","ii","PlayerLeaveDynamicCP",["playerid", "STREAMER_TAG_CP checkpointid"]);
+RegisterPublic("OnPlayerEnterDynamicRaceCP","ii","PlayerEnterDynamicRaceCP",["playerid", "STREAMER_TAG_RACE_CP checkpointid"]);
+RegisterPublic("OnPlayerLeaveDynamicRaceCP","ii","PlayerLeaveDynamicRaceCP",["playerid", "STREAMER_TAG_RACE_CP checkpointid"]);
+RegisterPublic("OnPlayerEnterDynamicArea","ii","PlayerEnterDynamicArea",["playerid", "STREAMER_TAG_AREA areaid"]);
+RegisterPublic("OnPlayerLeaveDynamicArea","ii","PlayerLeaveDynamicArea",["playerid", "STREAMER_TAG_AREA areaid"]);
+RegisterPublic("Streamer_OnPluginError","s","Streamer_OnPluginError",["error"]);
+
 /**
  * Streamer_GetTickRate
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetTickRate
