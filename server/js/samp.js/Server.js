@@ -25,6 +25,16 @@ class Server extends Events {
 	rcon(cmd) {
 		return SendRconCommand(cmd);
 	}
+	
+	message(color, message)
+	{
+		if(arguments.length < 2)
+		{
+			color = -1;
+			message = arguments[0];
+		}
+		SendClientMessageToAll(color, message);
+	}
 			
 	set time(hour){
 		this._time = hour;
