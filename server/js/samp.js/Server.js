@@ -56,7 +56,7 @@ class Server extends Events {
 	}
 
 	set weather(weatherid){
-		SetWeather(weaterid);
+		SetWeather(weatherid);
 		this._weather = weatherid;
 	}
 
@@ -72,5 +72,21 @@ class Server extends Events {
 	
 	get gamemode() {
 		return this._gamemode;
+	}
+	
+	set markers(mode){
+		ShowPlayerMarkers(mode);
+	}
+	
+	set nameTags(enable){
+		ShowNameTags(enable);	
+	}
+	
+	set nameTagDrawDistance(distance){
+		SetNameTagDrawDistance(distance);
+	}
+	
+	set stuntBonus(enable){
+		EnableStuntBonusForAll(enable);	
 	}
 };

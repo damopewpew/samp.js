@@ -95,7 +95,7 @@ class Player extends Events {
  * @type {Boolean}
  */
 	get isValid(){
-		return (this.id < 65535);
+		return (this.id < INVALID_PLAYER_ID);
 	}
 
 /**
@@ -657,7 +657,7 @@ class Player extends Events {
 	 * @type {Boolean}
 	 */
 	set toggleSpectate(toggle) {
-		return TogglePlayerSpectating(this.id, toggle);
+		TogglePlayerSpectating(this.id, toggle);
 	}
 	
 	/**
@@ -840,6 +840,31 @@ class Player extends Events {
 	 */ 
 	get action() {
 		return (this._specialAction = GetPlayerSpecialAction(this.id));
+	}
+	
+	
+	gameText(text,time,style){
+		return GameTextForPlayer(this.id, text,time,style);	
+	}
+	
+	toggleClock(toggle){
+		return TogglePlayerClock(this.id,toggle);	
+	}
+	
+	showTextDraw(tdid){
+		return TextDrawShowForPlayer(this.id, tdid);	
+	}
+	
+	hideTextDraw(tdid){
+		return TextDrawHideForPlayer(this.id, tdid);	
+	}
+	
+	playSound(soundid, x, y, z ){
+		PlayerPlaySound(this.id, soundid, x,y,z);	
+	}
+	
+	connected(){
+		return IsPlayerConnected(this.id);	
 	}
 	
 /**
