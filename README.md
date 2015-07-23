@@ -8,7 +8,7 @@ samp.js is using version 4.3.61.23 of the V8 engine ( found in Chromium/Chrome )
 
 ##### Server Setup
 
-Add samp.js.(dll/so) to your plugins folder. Add samp.js.(dll/so) to the plugins line in your server.cfg. You will also need to add a samp.js.amx filterscript file or gamemode. See [FilterScripts/GameModes](#gamemodesfilterscripts) section
+Add samp.js.(dll/so) to your plugins folder. Add samp.js.(dll/so) to the plugins line in your server.cfg.
 
 Create a new line in server.cfg and add jsfiles yourscript.js
 
@@ -23,7 +23,6 @@ maxplayers 50
 port 7777
 hostname samp.js server
 gamemode0 blank 1
-filterscripts <b>samp.js</b>
 query 1
 chatlogging 0
 weburl www.sa-mp.com
@@ -39,24 +38,6 @@ plugins <b>samp.js.dll</b>
 <b>jsfiles main.js commands.js admin.js</b>
 </pre>
 
-##### <a name="gamemodesfilterscripts"></a>GameModes/FilterScripts
-
-With samp.js you should only have one samp.js filterscript or gamemode, not both. We recommend you use a filterscript otherwise OnRconCommand may not work. 
-
-For samp.js to load any scripts a gamemode/filterscript should include sampJS.inc. This registers callbacks to samp.js and also includes other files which registers SAMP functions with samp.js.
-
-The only other requirement for the script is a public function called public SAMPJS_Init(){}, which is empty. samp.js checks if this fucntion exists in the AMX then loads any scripts you have added to the server.cfg
-
-Here is an example of a simple filterscript
-
-```
-#include <a_samp>
-#include "../include/sampJS.inc"
-
-main(){}
-forward SAMPJS_Init();
-public SAMPJS_Init(){}
-```
 
 ##### Native Functions
 
@@ -93,6 +74,8 @@ $server.on("PlayerConnect", function(player/playerid){
 You can register as many of these events as many times as you want in any script.
 
 Returning 0 will stop event propagation for that event ( except for in the case of OnPlayerCommandText and OnRconCommand ).
+
+Note: For the RconCommand to work (include loadjs,unloadjs,reloadjs) you need to have at least 1 filterscript loaded with the OnRconCommand callback ( this is a sa-mp limitation ).
 
 
 ##### The Player Object
