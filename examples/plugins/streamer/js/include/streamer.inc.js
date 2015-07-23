@@ -27,7 +27,6 @@ const STREAMER_TAG_RACE_CP = DynamicRaceCP:;
 const STREAMER_TAG_MAP_ICON = DynamicMapIcon:;
 const STREAMER_TAG_3D_TEXT_LABEL = DynamicText3D:;
 const STREAMER_TAG_AREA = DynamicArea:;
-const STREAMER_ALL_TAGS = {DynamicObject,DynamicPickup,DynamicCP,DynamicRaceCP,DynamicMapIcon,DynamicText3D,DynamicArea,_}:;
 
 RegisterPublic("OnDynamicObjectMoved","i","DynamicObjectMoved",["STREAMER_TAG_OBJECT objectid"]);
 RegisterPublic("OnPlayerEditDynamicObject","iiiffffff","PlayerEditDynamicObject",["playerid", "STREAMER_TAG_OBJECT objectid", "response", "x", "y", "z", "rx", "ry", "rz"]);
