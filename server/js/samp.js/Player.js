@@ -91,6 +91,16 @@ class Player extends Events {
 /** Cached weather
  * @type {Number} */
 		this._weather = 0;
+		this._targetActor = INVALID_ACTOR_ID;
+		this._drunkLevel = 0;
+		this._time = {hour: 0, minute: 0};
+		this._shopName = '';
+		this._skillLevel = [];
+		this._worldBounds = {
+			x: {max: 20000.0, min: -20000.0},
+			y: {max: 20000.0, min: -20000.0}
+		};
+		this._stuntBonus = 0;
 	}
 
 /**
@@ -724,7 +734,7 @@ class Player extends Events {
 	 */
 	spectatePlayer(target, mode)
 	{
-		if(typeof target === 'object') {
+		if(target instanceof this.constructor) {
 			target = target.id;
 		}
 		return PlayerSpectatePlayer(this.id, target, mode);
@@ -850,6 +860,153 @@ class Player extends Events {
 		return (this._specialAction = GetPlayerSpecialAction(this.id));
 	}
 	
+	set shopName(name) {
+		SetPlayerShopName(this.id, (this._shopName = name));
+	}
+
+	set controllable(toggle) {
+		TogglePlayerControllable(this.id, toggle);
+	}
+
+	set disableRemoteVehicleCollisions(diable) {
+		DisableRemoteVehicleCollisions(this.id, disable);
+	}
+
+	set enableCameraTarget(enable) {
+		EnablePlayerCameraTarget(this.id, enable);
+	}
+
+	set stuntBonus(toggle) {
+		EnableStuntBonusForPlayer(this.id, (this._stuntBonus = toggle));
+	}
+
+	get cameraTargetObject() {
+		return GetPlayerCameraTargetObject(this.id);
+	}
+
+	get cameraTargetVehicle() {
+		return GetPlayerCameraTargetVehicle(this.id);
+	}
+
+	get cameraTargetPlayer() {
+		return GetPlayerCameraTargetPlayer(this.id);
+	}
+
+	get cameraTargetActor() {
+		return GetPlayerCameraTargetActor(this.id);
+	}
+
+	get cameraMode() {
+		return GetPlayerCameraMode(this.id);
+	}
+
+	get targetActor() {
+		return (this._targetActor = GetPlayerTargetActor(this.id));
+	}
+
+	get ping() {
+		return GetPlayerPing(this.id);
+	}
+
+	get surfingObjectID() {
+		return GetPlayerSurfingObjectID(this.id);
+	}
+
+	get isInCheckpoint() {
+		return IsPlayerInCheckpoint(this.id);
+	}
+
+	get isInRaceCheckpoint() {
+		return IsPlayerInCheckpoint(this.id);
+	}
+
+	get animationIndex() {
+		return GetPlayerAnimationIndex(this.id);
+	}
+
+	get version() {
+		return GetPlayerVersion(this.id);
+	}
+
+	get netStats_ConnectedTime() {
+		return NetStats_GetConnectedTime(this.id);
+	}
+
+	get netStats_MessagesReceived() {
+		return NetStats_MessagesReceived(this.id);
+	}
+
+	get netStats_BytesReceived() {
+		return NetStats_BytesReceived(this.id);
+	}
+
+	get netStats_MessagesSent() {
+		return NetStats_MessagesSent(this.id);
+	}
+
+	get netStats_BytesSent() {
+		return NetStats_BytesSent(this.id);
+	}
+
+	get netStats_MessagesRecvPerSecond() {
+		return NetStats_MessagesRecvPerSecond(this.id);
+	}
+
+	get netStats_ConnectionStatus() {
+		return NetStats_ConnectionStatus(this.id);
+	}
+
+	get netStats_GetIpPort() {
+		return NetStats_GetIpPort(this.id);
+	}
+
+	set drunkLevel(level) {
+		SetPlayerDrunkLevel(this.id, (this._drunkLevel = level));
+	}
+
+	get drunkLevel() {
+		return (this._drunkLevel = GetPlayerDrunkLevel(this.id));
+	}
+
+	set time(time)
+	{
+		if(Array.isArray(time)) {
+			time = {hour: time[0], minute: time[1]};
+		}
+		this._time = time;
+		SetPlayerTime(this.id, time.hour, time.minute);
+	}
+
+	get time() {
+		return (this._time = GetPlayerTime(this.id));
+	}
+
+	set fightingStyle(style) {
+		SetPlayerFightingStyle(this.id, (this._fightingStyle = style));
+	}
+
+	get fightingStyle() {
+		return (this._fightingStyle = GetPlayerFightingStyle(this.id));
+	}
+
+	set worldBounds(bounds) 
+	{
+		if(Array.isArray(bounds)) 
+		{
+			bounds = 
+			{
+				x: {max: bounds[0], min: bounds[1]},
+				y: {max: bounds[2], min: bounds[3]}
+			};
+		}
+		this._worldBounds = bounds;
+		return SetPlayerWorldBounds(this.id, bounds.x.max, bounds.x.min, bounds.y.max, bounds.y.min);
+	}
+
+	get worldBounds() {
+		return this._worldBounds;
+	}
+	
 	/**
 	 * Remove san andreas model for player
 	 * @param   {Number} modelid
@@ -892,6 +1049,374 @@ class Player extends Events {
 	
 	connected(){
 		return IsPlayerConnected(this.id);	
+	}
+	
+	streamedInFor(target)
+	{
+		if(target instanceof this.constructor) {
+			target = target.id;
+		}
+		return IsPlayerStreamedIn(playerid, target);
+	}
+
+	setMarkerFor(target, color) 
+	{
+		if(target instanceof this.constructor) {
+			target = target.id;
+		}
+		return SetPlayerMarkerForPlayer(this.id, target, color);
+	}
+
+	showNameTagFor(target, show) 
+	{
+		if(target instanceof this.constructor) {
+			target = target.id;
+		}
+		return ShowPlayerNameTagForPlayer(this.id, target, color);
+	}
+
+	sendMessageTo(target, message)
+	{
+		if(target instanceof this.constructor) {
+			target = target.id;
+		}
+		return SendPlayerMessageToPlayer(this.id, target, message);
+	}
+
+	sendDeathMessageToPlayer(killer, victim, weapon) 
+	{
+		if(killer instanceof this.constructor) {
+			killer = killer.id;
+		}
+		if(victim instanceof this.constructor) {
+			victim = victim.id;
+		}
+		return SendDeathMessageToPlayer(this.id, killer, victim, weapon);
+	}
+
+	editObject(objectid) {
+		return EditObject(this.id, objectid);
+	}
+
+
+	selectObject() {
+		return SelectObject(this.id);
+	}
+
+	cancelEdit() {
+		return CancelEdit(this.id);
+	}
+
+	objectCreate(objectid, pos, rot, drawDistance)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		if(Array.isArray(rot)) {
+			rot = {x: rot[0], y: rot[1], z: rot[2]};
+		}
+		return CreatePlayerObject(this.id, objectid, pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, drawDistance);
+	}
+
+	objectDestroy(objectid) {
+		return DestroyPlayerObject(this.id, objectid);
+	}
+
+	objectIsValid(objectid) {
+		return IsValidPlayerObject(this.id, objectid);
+	}
+
+	objectIsMoving(objectid) {
+		return IsPlayerObjectMoving(this.id, objectid);
+	}
+
+	objectEdit(objectid) {
+		return EditPlayerObject(this.id, objectid);
+	}
+
+	objectAttachToVehicle(objectid, vehicleid, offset, rot)
+	{
+		if(Array.isArray(offset)) {
+			offset = {x: offset[0], y: offset[1], z: offset[2]};
+		}
+		if(Array.isArray(rot)) {
+			rot = {x: rot[0], y: rot[1], z: rot[2]};
+		}
+		return AttachPlayerObjectToVehicle(this.id, objectid, vehicleid, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
+	}
+
+	objectAttachCamera(playerid, objectid) {
+		return AttachCameraToPlayerObject(this.id, objectid);
+	}
+
+	objectMove(objectid, speed, pos, rot)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		if(Array.isArray(rot)) {
+			rot = {x: rot[0], y: rot[1], z: rot[2]};
+		}
+		return MovePlayerObject(this.id, objectid, pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, speed);
+	}
+
+	objectStop(objectid) {
+		return StopPlayerObject(this.id, objectid);
+	}
+
+	objectSetPos(objectid, pos)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return SetPlayerObjectPos(this.id, objectid, pos.x, pos.y, pos.z);
+	}
+
+	objectGetPos(objectid) {
+		return GetPlayerObjectPos(this.id, objectid); //returns X, Y, Z object (yeah, uppercase =/)
+	}
+
+	objectSetRot(objectid, rot)
+	{
+		if(Array.isArray(rot)) {
+			rot = {x: rot[0], y: rot[1], z: rot[2]};
+		}
+		return SetPlayerObjectRot(this.id, objectid, rot.x, rot.y, rot.z);
+	}
+
+	objectGetRot(objectid) {
+		return GetPlayerObjectRot(this.id, objectid); //returns X, Y, Z object (yeah, uppercase =/)
+	}
+
+	objectModel(objectid) {
+		return GetPlayerObjectModel(this.id, objectid);
+	}
+
+	objectSetNoCameraCol(objectid) {
+		return SetPlayerObjectNoCameraCol(this.id, objectid);
+	}
+
+	objectSetMaterial(objectid, materialIndex, modelid, txdName, textureName, materialColor) {
+		SetPlayerObjectMaterial(this.id, objectid, materialIndex, modelid, txdName, textureName, materialColor);
+	}
+
+	objectSetMaterialText(objectid, text, materialIndex, materialSize, fontFace, fontSize, bold, fontColor, backColor, textAlignment) {
+		return SetPlayerObjectMaterialText(this.id, objectid, text, materialIndex, materialSize, fontFace, fontSize, bold, fontColor, backColor, textAlignment);
+	}
+
+	spawnInfo(team, skin, pos, weaponData1, weaponData2, weaponData3)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		if(Array.isArray(weaponData1)) {
+			weaponData1 = {weapon: weaponData1[0], ammo: weaponData1[1]};
+		}
+		if(Array.isArray(weaponData2)) {
+			weaponData2 = {weapon: weaponData2[0], ammo: weaponData2[1]};
+		}
+		if(Array.isArray(weaponData3)) {
+			weaponData3 = {weapon: weaponData3[0], ammo: weaponData3[1]};
+		}
+		return SetSpawnInfo(this.id, team, skin, pos.x, pos.y, pos.z, pos.a, weaponData1.weapon, weaponData1.ammo, weaponData2.weapon, weaponData2.ammo, weaponData3.weapon, weaponData3.ammo);
+	}
+
+	spawn() {
+		return SpawnPlayer(this.id);
+	}
+
+	forceClassSelection() {
+		return ForceClassSelection(this.id);
+	}
+
+	posFindZ(pos)
+	{
+		if(arguments.length > 1) {
+			pos = {x: arguments[0], y: arguments[1], z: arguments[2]};
+		}
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return SetPlayerPosFindZ(this.id, pos.x, pos.y, pos.z);
+	}
+
+	playCrimeReport(target, crimeId)
+	{
+		if(target instanceof this.constructor) {
+			target = target.id;
+		}
+		return PlayCrimeReportForPlayer(this.id, target, crimeId);
+	}
+
+	playAudioStream(url, pos, distance, usePos)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return PlayAudioStreamForPlayer(this.id, url, pos.x, pos.y, pos.z, distance, usePos);
+	}
+
+	stopAudioStream() {
+		return StopAudioStreamForPlayer(this.id);
+	}
+
+	setSkillLevel(skill, level)
+	{
+		this._skillLevel[skill] = level;
+		SetPlayerSkillLevel(this.id, skill, level);
+	}
+
+	removeAttachedObject(index) {
+		return RemovePlayerAttachedObject(this.id, index);
+	}
+
+	attachedObjectSlotUsed(index) {
+		return IsPlayerAttachedObjectSlotUsed(this.id, index);
+	}
+
+	editAttachedObject(index) {
+		return EditAttachedObject(this.id, index);
+	}
+
+	setChatBubble(text, color, drawDistance, expireTime) {
+		return SetPlayerChatBubble(this.id, color, drawDistance, expireTime);
+	}
+
+	setCheckpoint(size, pos)
+	{
+		if(arguments.length > 2) {
+			pos = {x: arguments[1], y: arguments[2], z: arguments[3]};
+		}
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		SetPlayerCheckpoint(this.id, pos.x, pos.y, pos.z, size);
+	}
+
+	disableCheckpoint() {
+		return DisablePlayerCheckpoint(this.id);
+	}
+
+	setRaceCheckpoint(type, pos, nextPos, size) {
+		return SetPlayerRaceCheckpoint(this.id, type, pos.x, pos.y, pos.z, nextPos.x, nextPos.y, nextPos.z, size);
+	}
+
+	disableRaceCheckpoint() {
+		return DisablePlayerRaceCheckpoint(this.id);
+	}
+
+	setMapIcon(iconid, pos, markerType, color, style)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return SetPlayerMapIcon(iconid, pos.x, pos.y, pos.z, markerType, color, style);
+	}
+
+	removeMapIcon(iconid) {
+		return RemovePlayerMapIcon(this.id, iconid);
+	}
+
+	attachCameraToObject(objectid) {
+		return AttachCameraToObject(this.id, objectid);
+	}
+
+	interpolateCameraPos(from, to, time, cut)
+	{
+		if(Array.isArray(from)) {
+			from = {x: from[0], y: from[1], z: from[2]};
+		}
+		if(Array.isArray(to)) {
+			to = {x: to[0], y: to[1], z: to[2]};
+		}
+		return InterpolateCameraPos(this.id, from.x, from.y, from.z, to.x, to.y, to.z, time, cut);
+	}
+
+	interpolateCameraLookAt(from, to, time, cut)
+	{
+		if(Array.isArray(from)) {
+			from = {x: from[0], y: from[1], z: from[2]};
+		}
+		if(Array.isArray(to)) {
+			to = {x: to[0], y: to[1], z: to[2]};
+		}
+		return InterpolateCameraLookAt(this.id, from.x, from.y, from.z, to.x, to.y, to.z, time, cut);
+	}
+
+	startRecordingData(recordType, recordName) {
+		return StartRecordingPlayerData(this.id, recordType, recordName);
+	}
+
+	stopRecordingData() {
+		return StopRecordingPlayerData(this.id);
+	}
+
+	selectTextdraw(color) {
+		return SelectTextDraw(this.id, color);
+	}
+
+	cancelSelectTextdraw() {
+		return SelectTextDraw(this.id);
+	}
+
+	createExplosion(pos, type, radius)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return CreateExplosionForPlayer(this.id, pos.x, pos.y, pos.z, type, radius);
+	}
+
+	getNetworkStats() {
+		return GetPlayerNetworkStats(this.id);
+	}
+
+	showMenu(menuId) {
+		return ShowMenuForPlayer(menuId, this.id);
+	}
+
+	hideMenu(menuId) {
+		return HideMenuForPlayer(menuId, this.id);
+	}
+
+	gangZoneShow(zone, color) {
+		return GangZoneShowForPlayer(this.id, zone, color);
+	}
+
+	gangZoneHide(zone, color) {
+		return GangZoneHideForPlayer(this.id, zone);
+	}
+
+	gangZoneFlash(zone, color) {
+		return GangZoneFlashForPlayer(this.id, zone, color);
+	}
+
+	gangZoneStopFlash(zone) {
+		return GangZoneStopFlashForPlayer(this.id, zone);
+	}
+
+	attach3DTextLabel(label, pos)
+	{
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1], z: pos[2]};
+		}
+		return Attach3DTextLabelToPlayer(label, this.id, pos.x, pos.y, pos.z);
+	}
+
+	delete3DTextLabel(label) {
+		return DeletePlayer3DTextLabel(this.id, label);
+	}
+
+	update3DTextLabel(label, color, text) {
+		return UpdatePlayer3DTextLabelText(this.id, label, color, text);
+	}
+
+	showDialog(dialogid, style, caption, info, button1, button2) {
+		return ShowPlayerDialog(this.id, style, caption, info, button1, button2);
+	}
+
+	setVehicleParams(vehicleid, objective, doorsLocked) {
+		return SetVehicleParamsForPlayer(vehicleid, this.id, objective, doorsLocked);
 	}
 	
 /**
