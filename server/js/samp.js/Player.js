@@ -917,7 +917,7 @@ class Player extends Events {
 	}
 
 	get isInRaceCheckpoint() {
-		return IsPlayerInCheckpoint(this.id);
+		return IsPlayerInRaceCheckpoint(this.id);
 	}
 
 	get animationIndex() {
@@ -1356,7 +1356,7 @@ class Player extends Events {
 	}
 
 	cancelSelectTextdraw() {
-		return SelectTextDraw(this.id);
+		return CancelSelectTextDraw(this.id);
 	}
 
 	createExplosion(pos, type, radius)
@@ -1514,7 +1514,7 @@ class Player extends Events {
 	}
 
 	textDrawColor(textDraw, color) {
-		return PlayerTextDrawAlignment(this.id, textDraw, color);
+		return PlayerTextDrawColor(this.id, textDraw, color);
 	}
 
 	textDrawUseBox(textDraw, toggle) {
