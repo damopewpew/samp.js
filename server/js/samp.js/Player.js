@@ -88,6 +88,9 @@ class Player extends Events {
 /** Cached special action 
  * @type {Number} */
 		this._specialAction = 0;
+/** Cached weather
+ * @type {Number} */
+		this._weather = 0;
 	}
 
 /**
@@ -289,6 +292,15 @@ class Player extends Events {
 		this._world = world;
 		SetPlayerVirtualWorld(this.id,world);
 	}
+/**
+ * Set player weather | SetPlayerWeather(playerid, weatherid)
+ * @type {Number}
+ */ 
+	set weather(weather)
+	{
+		this._weather = weather;
+		SetPlayerWeather(this.id, weather);
+	}
 
 /**
  * Give Player a weapon | GivePlayerWeapon(playerid,weaponid, ammo)
@@ -435,7 +447,6 @@ class Player extends Events {
  */ 
 	set money(money) {
 		var currentMoney = this._money;
-		this._money = money;
 		this.giveMoney(money - currentMoney);
 	}
 	
@@ -799,8 +810,9 @@ class Player extends Events {
 	
 	/**
 	 * Apply animation for player
-	 * @param   {Object|Array[2]} anim lib, name
-	 * @param   {Number} 
+	 * @param   {String} animlib
+	 * @param   {String} animname
+	 * @param   {Number}  delta
 	 * @param   {Boolean} loop 
 	 * @param   {Number} lockx
 	 * @param   {Number} locky
@@ -809,12 +821,8 @@ class Player extends Events {
 	 * @param   {Number} [forcesync]
 	 * @see https://wiki.sa-mp.com/wiki/ApplyAnimation
 	 */
-	animation(anim, delta, loop, lockx, locky, freeze, time, forcesync)
-	{
-		if(Array.isArray(anim)) {
-			anim = {lib: anim[0], name: anim[1]};
-		}
-		return ApplyAnimation(this.id, anim.lib, anim.name, delta, loop, lockx, locky, freeze, time, forcesync);
+	animation(animlib, animname, delta, loop, lockx, locky, freeze, time, forcesync) {
+		return ApplyAnimation(this.id, animlib, animname, delta, loop, lockx, locky, freeze, time, forcesync);
 	}
 	
 	/**
@@ -831,7 +839,7 @@ class Player extends Events {
 	 * @type {Number}
 	 */ 
 	set action(actionid) {
-		return SetPlayerSpecialAction(this.id, (this._specialAction = actionid));
+		SetPlayerSpecialAction(this.id, (this._specialAction = actionid));
 	}
 	
 	/**
@@ -842,6 +850,25 @@ class Player extends Events {
 		return (this._specialAction = GetPlayerSpecialAction(this.id));
 	}
 	
+	/**
+	 * Remove san andreas model for player
+	 * @param   {Number} modelid
+	 * @param   {Number} radius
+	 * @param   {Position|Array[3]|Number} coords Object, array: x, y, z or x
+	 * @param   {Number} [y] y coord when 3rd argument is x
+	 * @param   {Number} [z] z coord when 3rd argument is x
+	 * @see https://wiki.sa-mp.com/wiki/RemoveBuildingForPlayer
+	 */
+	removeBuilding(modelid, radius, coords)
+	{
+		if(arguments.length > 3) {
+			coords = {x: arguments[2], y: arguments[3], z: arguments[4]};
+		}
+		if(Array.isArray(coords)) {
+			coords = {x: coords[0], y: coords[1], z: coords[2]};
+		}
+		return RemoveBuildingForPlayer(this.id, modelid, coords.x, coords.y, coords.z, radius);
+	}
 	
 	gameText(text,time,style){
 		return GameTextForPlayer(this.id, text,time,style);	
