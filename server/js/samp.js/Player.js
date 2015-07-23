@@ -1419,6 +1419,166 @@ class Player extends Events {
 		return SetVehicleParamsForPlayer(vehicleid, this.id, objective, doorsLocked);
 	}
 	
+	setVar(type, varName, value)
+	{
+		switch(type.charAt(0))
+		{
+			case 's': return SetPVarString(this.id, varName, value);
+			case 'i': return SetPVarInt(this.id, varName, value);
+			case 'f': return SetPVarFloat(this.id, varName, value);
+		}
+		return null;
+	}
+
+	deleteVar(varName) {
+		return DeletePVar(this.id, varName);
+	}
+
+	getVar(type, varName)
+	{
+		switch(type.charAt(0))
+		{
+			case 's': return GetPVarString(this.id, varName);
+			case 'i': return GetPVarInt(this.id, varName);
+			case 'f': return GetPVarFloat(this.id, varName);
+		}
+		return null;
+	}
+
+	getVarType(varName)
+	{
+		switch(GetPVarType(this.id, varName))
+		{
+			case PLAYER_VARTYPE_STRING: return 'string';
+			case PLAYER_VARTYPE_INT: return 'integer';
+			case PLAYER_VARTYPE_FLOAT: return 'float';
+		}
+		return '';
+	}
+
+	getVarUpperIndex(varName) {
+		return GetPVarsUpperIndex(this.id);
+	}
+
+	getVarNameAtIndex(index) {
+		return GetPVarNameAtIndex(this.id, index);
+	}
+
+	textDrawCreate(text, pos) 
+	{
+		if(arguments.length > 2) {
+			pos = {x: arguments[1], y: arguments[2]};
+		}
+		if(Array.isArray(pos)) {
+			pos = {x: pos[0], y: pos[1]};
+		}
+		return CreatePlayerTextDraw(this.id, pos.x, pos.y, text);
+	}
+
+	textDrawDestroy(textDraw) {
+		return PlayerTextDrawDestroy(this.id, textDraw);
+	}
+
+	textDrawShow(textDraw) {
+		return PlayerTextDrawShow(this.id, textDraw);
+	}
+
+	textDrawHide(textDraw) {
+		return PlayerTextDrawHide(this.id, textDraw);
+	}
+
+	textDrawLetterSize(textDraw, size)
+	{
+		if(arguments.length > 2) {
+			size = {x: arguments[1], y: arguments[2]};
+		}
+		if(Array.isArray(size)) {
+			size = {x: size[0], y: size[1]};
+		}
+		return PlayerTextDrawLetterSize(this.id, textDraw, size.x, size.y);
+	}
+
+	textDrawTextSize(textDraw, size)
+	{
+		if(arguments.length > 2) {
+			size = {x: arguments[1], y: arguments[2]};
+		}
+		if(Array.isArray(size)) {
+			size = {x: size[0], y: size[1]};
+		}
+		return PlayerTextDrawTextSize(this.id, textDraw, size.x, size.y);
+	}
+
+	textDrawAlignment(textDraw, align) {
+		return PlayerTextDrawAlignment(this.id, textDraw, align);
+	}
+
+	textDrawColor(textDraw, color) {
+		return PlayerTextDrawAlignment(this.id, textDraw, color);
+	}
+
+	textDrawUseBox(textDraw, toggle) {
+		return PlayerTextDrawUseBox(this.id, textDraw, toggle);
+	}
+
+	textDrawBoxColor(textDraw, color) {
+		return PlayerTextDrawBoxColor(this.id, textDraw, color);
+	}
+
+	textDrawSetShadow(textDraw, shadow) {
+		return PlayerTextDrawSetShadow(this.id, textDraw, shadow);
+	}
+
+	textDrawSetOutline(textDraw, outline) {
+		return PlayerTextDrawSetOutline(this.id, textDraw, outline);
+	}
+
+	textDrawBackgroundColor(textDraw, color) {
+		return PlayerTextDrawBackgroundColor(this.id, textDraw, color);
+	}
+
+	textDrawSetFont(textDraw, font) {
+		return PlayerTextDrawFont(this.id, textDraw, font);
+	}
+
+	textDrawSetProportional(textDraw, toggle) {
+		return PlayerTextDrawSetProportional(this.id, textDraw, toggle);
+	}
+
+	textDrawSetSelectable(textDraw, toggle) {
+		return PlayerTextDrawSetSelectable(this.id, textDraw, toggle);
+	}
+
+	textDrawSetString(textDraw, string) {
+		return PlayerTextDrawSetString(this.id, textDraw, string);
+	}
+
+	textDrawSetPreviewModel(textDraw, previewModel) {
+		return PlayerTextDrawSetPreviewModel(this.id, textDraw, previewModel);
+	}
+
+	textDrawSetPreviewRot(textDraw, previewRot)
+	{
+		if(arguments.length > 2) {
+			previewRot = {x: arguments[1], y: arguments[2], z: arguments[3], zoom: arguments[4]};
+		}
+		if(Array.isArray(previewRot)) {
+			previewRot = {x: previewRot[0], y: previewRot[1], z: previewRot[2], zoom: previewRot[3]};
+		}
+		return PlayerTextDrawSetPreviewRot(this.id, textDraw, previewRot.x, previewRot.y, previewRot.z, previewRot.zoom);
+	}
+
+	textDrawSetPreviewVehCol(textDraw, color)
+	{
+		if(arguments.length > 2) {
+			previewRot = {color1: arguments[1], color2: arguments[2]};
+		}
+		if(Array.isArray(color)) {
+			color = {color1: color[0], color2: color[1]};
+		}
+		return PlayerTextDrawSetPreviewVehCol(this.id, textDraw, color.color1, color.color2);
+	}
+	
 /**
  * Returns the player's id
  * @returns {Number} Player's internal sa-mp id
