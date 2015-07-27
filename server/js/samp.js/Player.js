@@ -732,11 +732,7 @@ class Player extends Events {
 	 * @returns {Boolean}
 	 * @see http://wiki.sa-mp.com/wiki/PlayerSpectatePlayer
 	 */
-	spectatePlayer(target, mode)
-	{
-		if(target instanceof this.constructor) {
-			target = target.id;
-		}
+	spectatePlayer(target, mode) {
 		return PlayerSpectatePlayer(this.id, target, mode);
 	}
 	
@@ -1051,46 +1047,23 @@ class Player extends Events {
 		return IsPlayerConnected(this.id);	
 	}
 	
-	streamedInFor(target)
-	{
-		if(target instanceof this.constructor) {
-			target = target.id;
-		}
+	streamedInFor(target) {
 		return IsPlayerStreamedIn(playerid, target);
 	}
 
-	setMarkerFor(target, color) 
-	{
-		if(target instanceof this.constructor) {
-			target = target.id;
-		}
+	setMarkerFor(target, color) {
 		return SetPlayerMarkerForPlayer(this.id, target, color);
 	}
 
-	showNameTagFor(target, show) 
-	{
-		if(target instanceof this.constructor) {
-			target = target.id;
-		}
+	showNameTagFor(target, show) {
 		return ShowPlayerNameTagForPlayer(this.id, target, color);
 	}
 
-	sendMessageTo(target, message)
-	{
-		if(target instanceof this.constructor) {
-			target = target.id;
-		}
+	sendMessageTo(target, message) {
 		return SendPlayerMessageToPlayer(this.id, target, message);
 	}
 
-	sendDeathMessageToPlayer(killer, victim, weapon) 
-	{
-		if(killer instanceof this.constructor) {
-			killer = killer.id;
-		}
-		if(victim instanceof this.constructor) {
-			victim = victim.id;
-		}
+	sendDeathMessageToPlayer(killer, victim, weapon) {
 		return SendDeathMessageToPlayer(this.id, killer, victim, weapon);
 	}
 
@@ -1240,11 +1213,7 @@ class Player extends Events {
 		return SetPlayerPosFindZ(this.id, pos.x, pos.y, pos.z);
 	}
 
-	playCrimeReport(target, crimeId)
-	{
-		if(target instanceof this.constructor) {
-			target = target.id;
-		}
+	playCrimeReport(target, crimeId) {
 		return PlayCrimeReportForPlayer(this.id, target, crimeId);
 	}
 
