@@ -1,63 +1,64 @@
-const STREAMER_TYPE_OBJECT = (0);
-const STREAMER_TYPE_PICKUP = (1);
-const STREAMER_TYPE_CP = (2);
-const STREAMER_TYPE_RACE_CP = (3);
-const STREAMER_TYPE_MAP_ICON = (4);
-const STREAMER_TYPE_3D_TEXT_LABEL = (5);
-const STREAMER_TYPE_AREA = (6);
-const STREAMER_AREA_TYPE_CIRCLE = (0);
-const STREAMER_AREA_TYPE_CYLINDER = (1);
-const STREAMER_AREA_TYPE_SPHERE = (2);
-const STREAMER_AREA_TYPE_RECTANGLE = (3);
-const STREAMER_AREA_TYPE_CUBOID = (4);
-const STREAMER_AREA_TYPE_POLYGON = (5);
-const STREAMER_OBJECT_TYPE_GLOBAL = (0);
-const STREAMER_OBJECT_TYPE_PLAYER = (1);
-const STREAMER_OBJECT_TYPE_DYNAMIC = (2);
-const INVALID_STREAMER_ID = (0);
-const FLOAT_INFINITY = (0x7F800000);
+const STREAMER_TYPE_OBJECT = 0;
+const STREAMER_TYPE_PICKUP = 1;
+const STREAMER_TYPE_CP = 2;
+const STREAMER_TYPE_RACE_CP = 3;
+const STREAMER_TYPE_MAP_ICON = 4;
+const STREAMER_TYPE_3D_TEXT_LABEL = 5;
+const STREAMER_TYPE_AREA = 6;
+const STREAMER_AREA_TYPE_CIRCLE = 0;
+const STREAMER_AREA_TYPE_CYLINDER = 1;
+const STREAMER_AREA_TYPE_SPHERE = 2;
+const STREAMER_AREA_TYPE_RECTANGLE = 3;
+const STREAMER_AREA_TYPE_CUBOID = 4;
+const STREAMER_AREA_TYPE_POLYGON = 5;
+const STREAMER_OBJECT_TYPE_GLOBAL = 0;
+const STREAMER_OBJECT_TYPE_PLAYER = 1;
+const STREAMER_OBJECT_TYPE_DYNAMIC = 2;
+const INVALID_STREAMER_ID = 0;
+const FLOAT_INFINITY = 0x7F800000;
 
-RegisterPublic("OnDynamicObjectMoved","i","DynamicObjectMoved",["STREAMER_TAG_OBJECT objectid"]);
-RegisterPublic("OnPlayerEditDynamicObject","iiiffffff","PlayerEditDynamicObject",["playerid", "STREAMER_TAG_OBJECT objectid", "response", "x", "y", "z", "rx", "ry", "rz"]);
-RegisterPublic("OnPlayerSelectDynamicObject","iiifff","PlayerSelectDynamicObject",["playerid", "STREAMER_TAG_OBJECT objectid", "modelid", "x", "y", "z"]);
-RegisterPublic("OnPlayerShootDynamicObject","iiifff","PlayerShootDynamicObject",["playerid", "weaponid", "STREAMER_TAG_OBJECT objectid", "x", "y", "z"]);
-RegisterPublic("OnPlayerPickUpDynamicPickup","ii","PlayerPickUpDynamicPickup",["playerid", "STREAMER_TAG_PICKUP pickupid"]);
-RegisterPublic("OnPlayerEnterDynamicCP","ii","PlayerEnterDynamicCP",["playerid", "STREAMER_TAG_CP checkpointid"]);
-RegisterPublic("OnPlayerLeaveDynamicCP","ii","PlayerLeaveDynamicCP",["playerid", "STREAMER_TAG_CP checkpointid"]);
-RegisterPublic("OnPlayerEnterDynamicRaceCP","ii","PlayerEnterDynamicRaceCP",["playerid", "STREAMER_TAG_RACE_CP checkpointid"]);
-RegisterPublic("OnPlayerLeaveDynamicRaceCP","ii","PlayerLeaveDynamicRaceCP",["playerid", "STREAMER_TAG_RACE_CP checkpointid"]);
-RegisterPublic("OnPlayerEnterDynamicArea","ii","PlayerEnterDynamicArea",["playerid", "STREAMER_TAG_AREA areaid"]);
-RegisterPublic("OnPlayerLeaveDynamicArea","ii","PlayerLeaveDynamicArea",["playerid", "STREAMER_TAG_AREA areaid"]);
-RegisterPublic("Streamer_OnPluginError","s","Streamer_OnPluginError",["error"]);
+RegisterPublic("OnDynamicObjectMoved", "DynamicObjectMoved", "i", ['objectid']);
+RegisterPublic("OnPlayerEditDynamicObject", "PlayerEditDynamicObject", "iiiffffff", ['playerid', 'objectid', 'response', 'x', 'y', 'z', 'rx', 'ry', 'rz']);
+RegisterPublic("OnPlayerSelectDynamicObject", "PlayerSelectDynamicObject", "iiifff", ['playerid', 'objectid', 'modelid', 'x', 'y', 'z']);
+RegisterPublic("OnPlayerShootDynamicObject", "PlayerShootDynamicObject", "iiifff", ['playerid', 'weaponid', 'objectid', 'x', 'y', 'z']);
+RegisterPublic("OnPlayerPickUpDynamicPickup", "PlayerPickUpDynamicPickup", "ii", ['playerid', 'pickupid']);
+RegisterPublic("OnPlayerEnterDynamicCP", "PlayerEnterDynamicCP", "ii", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerLeaveDynamicCP", "PlayerLeaveDynamicCP", "ii", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerEnterDynamicRaceCP", "PlayerEnterDynamicRaceCP", "ii", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerLeaveDynamicRaceCP", "PlayerLeaveDynamicRaceCP", "ii", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerEnterDynamicArea", "PlayerEnterDynamicArea", "ii", ['playerid', 'areaid']);
+RegisterPublic("OnPlayerLeaveDynamicArea", "PlayerLeaveDynamicArea", "ii", ['playerid', 'areaid']);
+RegisterPublic("Streamer_OnPluginError", "Streamer_OnPluginError", "s", ['error']);
 
 /**
  * Streamer_GetTickRate
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetTickRate
  * @return {Number} retval
  */
-function Streamer_GetTickRate(){
-	 return CallNativeGDK( "Streamer_GetTickRate" );
+function Streamer_GetTickRate() {
+	return CallNativeGDK("Streamer_GetTickRate");
 }
+
 /**
  * Streamer_SetTickRate
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetTickRate
  * @param {Number} rate
  * @return {Number} retval
  */
-function Streamer_SetTickRate( rate ){
-	var out = CallNativeGDK( "Streamer_SetTickRate", "i", rate );
-	return out;
+function Streamer_SetTickRate(rate) {
+	return CallNativeGDK("Streamer_SetTickRate", "i", rate);
 }
+
 /**
  * Streamer_GetMaxItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetMaxItems
  * @param {Number} type
  * @return {Number} retval
  */
-function Streamer_GetMaxItems( type ){
-	var out = CallNativeGDK( "Streamer_GetMaxItems", "i", type );
-	return out;
+function Streamer_GetMaxItems(type) {
+	return CallNativeGDK("Streamer_GetMaxItems", "i", type);
 }
+
 /**
  * Streamer_SetMaxItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetMaxItems
@@ -65,122 +66,130 @@ function Streamer_GetMaxItems( type ){
  * @param {Number} items
  * @return {Number} retval
  */
-function Streamer_SetMaxItems( type, items ){
-	var out = CallNativeGDK( "Streamer_SetMaxItems", "ii", type, items );
-	return out;
+function Streamer_SetMaxItems(type, items) {
+	return CallNativeGDK("Streamer_SetMaxItems", "ii", type, items);
 }
+
 /**
  * Streamer_GetVisibleItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetVisibleItems
  * @param {Number} type
- * @param {Number} playerid
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function Streamer_GetVisibleItems( type, playerid ){
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "Streamer_GetVisibleItems", "ii", type, playerid );
-	return out;
+function Streamer_GetVisibleItems(type, playerid)
+{
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("Streamer_GetVisibleItems", "ii", type, playerid);
 }
+
 /**
  * Streamer_SetVisibleItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetVisibleItems
  * @param {Number} type
  * @param {Number} items
- * @param {Number} playerid
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function Streamer_SetVisibleItems( type, items, playerid ){
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "Streamer_SetVisibleItems", "iii", type, items, playerid );
-	return out;
+function Streamer_SetVisibleItems(type, items, playerid)
+{
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("Streamer_SetVisibleItems", "iii", type, items, playerid);
 }
+
 /**
  * Streamer_GetRadiusMultiplier
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetRadiusMultiplier
  * @param {Number} type
- * @param {Number} playerid
+ * @param {Number} [playerid=-1]
  * @return {Number} multiplier
  */
-function Streamer_GetRadiusMultiplier( type, playerid ){
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "Streamer_GetRadiusMultiplier", "iFi", type, playerid );
-	return out;
+function Streamer_GetRadiusMultiplier(type, playerid)
+{
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("Streamer_GetRadiusMultiplier", "iFi", type, playerid);
 }
+
 /**
  * Streamer_SetRadiusMultiplier
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetRadiusMultiplier
  * @param {Number} type
  * @param {Number} multiplier
- * @param {Number} playerid
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function Streamer_SetRadiusMultiplier( type, multiplier, playerid ){
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "Streamer_SetRadiusMultiplier", "ifi", type, multiplier, playerid );
-	return out;
+function Streamer_SetRadiusMultiplier(type, multiplier, playerid)
+{
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("Streamer_SetRadiusMultiplier", "ifi", type, multiplier, playerid);
 }
+
 /**
  * Streamer_GetCellDistance
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetCellDistance
  * @return {Number} distance
  */
-function Streamer_GetCellDistance(){
-	 return CallNativeGDK( "Streamer_GetCellDistance" );
+function Streamer_GetCellDistance() {
+	return CallNativeGDK("Streamer_GetCellDistance");
 }
+
 /**
  * Streamer_SetCellDistance
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetCellDistance
  * @param {Number} distance
  * @return {Number} retval
  */
-function Streamer_SetCellDistance( distance ){
-	var out = CallNativeGDK( "Streamer_SetCellDistance", "f", distance );
-	return out;
+function Streamer_SetCellDistance(distance) {
+	return CallNativeGDK("Streamer_SetCellDistance", "f", distance);
 }
+
 /**
  * Streamer_GetCellSize
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetCellSize
  * @return {Number} size
  */
-function Streamer_GetCellSize(){
-	 return CallNativeGDK( "Streamer_GetCellSize" );
+function Streamer_GetCellSize() {
+	return CallNativeGDK("Streamer_GetCellSize");
 }
+
 /**
  * Streamer_SetCellSize
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetCellSize
  * @param {Number} size
  * @return {Number} retval
  */
-function Streamer_SetCellSize( size ){
-	var out = CallNativeGDK( "Streamer_SetCellSize", "f", size );
-	return out;
+function Streamer_SetCellSize(size) {
+	return CallNativeGDK("Streamer_SetCellSize", "f", size);
 }
+
 /**
  * Streamer_ToggleErrorCallback
  * @see https://wiki.sa-mp.com/wiki/Streamer_ToggleErrorCallback
  * @param {Number} toggle
  * @return {Number} retval
  */
-function Streamer_ToggleErrorCallback( toggle ){
-	var out = CallNativeGDK( "Streamer_ToggleErrorCallback", "i", toggle );
-	return out;
+function Streamer_ToggleErrorCallback(toggle) {
+	return CallNativeGDK("Streamer_ToggleErrorCallback", "i", toggle);
 }
+
 /**
  * Streamer_IsToggleErrorCallback
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsToggleErrorCallback
  * @return {Number} retval
  */
-function Streamer_IsToggleErrorCallback(){
-	 return CallNativeGDK( "Streamer_IsToggleErrorCallback" );
+function Streamer_IsToggleErrorCallback() {
+	return CallNativeGDK("Streamer_IsToggleErrorCallback");
 }
+
 /**
  * Streamer_ProcessActiveItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_ProcessActiveItems
  * @return {Number} retval
  */
-function Streamer_ProcessActiveItems(){
-	 return CallNativeGDK( "Streamer_ProcessActiveItems" );
+function Streamer_ProcessActiveItems() {
+	return CallNativeGDK("Streamer_ProcessActiveItems");
 }
+
 /**
  * Streamer_ToggleIdleUpdate
  * @see https://wiki.sa-mp.com/wiki/Streamer_ToggleIdleUpdate
@@ -188,20 +197,20 @@ function Streamer_ProcessActiveItems(){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function Streamer_ToggleIdleUpdate( playerid, toggle ){
-	var out = CallNativeGDK( "Streamer_ToggleIdleUpdate", "ii", playerid, toggle );
-	return out;
+function Streamer_ToggleIdleUpdate(playerid, toggle) {
+	return CallNativeGDK("Streamer_ToggleIdleUpdate", "ii", playerid, toggle);
 }
+
 /**
  * Streamer_IsToggleIdleUpdate
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsToggleIdleUpdate
  * @param {Number} playerid
  * @return {Number} retval
  */
-function Streamer_IsToggleIdleUpdate( playerid ){
-	var out = CallNativeGDK( "Streamer_IsToggleIdleUpdate", "i", playerid );
-	return out;
+function Streamer_IsToggleIdleUpdate(playerid) {
+	return CallNativeGDK("Streamer_IsToggleIdleUpdate", "i", playerid);
 }
+
 /**
  * Streamer_ToggleCameraUpdate
  * @see https://wiki.sa-mp.com/wiki/Streamer_ToggleCameraUpdate
@@ -209,20 +218,20 @@ function Streamer_IsToggleIdleUpdate( playerid ){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function Streamer_ToggleCameraUpdate( playerid, toggle ){
-	var out = CallNativeGDK( "Streamer_ToggleCameraUpdate", "ii", playerid, toggle );
-	return out;
+function Streamer_ToggleCameraUpdate(playerid, toggle) {
+	return CallNativeGDK("Streamer_ToggleCameraUpdate", "ii", playerid, toggle);
 }
+
 /**
  * Streamer_IsToggleCameraUpdate
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsToggleCameraUpdate
  * @param {Number} playerid
  * @return {Number} retval
  */
-function Streamer_IsToggleCameraUpdate( playerid ){
-	var out = CallNativeGDK( "Streamer_IsToggleCameraUpdate", "i", playerid );
-	return out;
+function Streamer_IsToggleCameraUpdate(playerid) {
+	return CallNativeGDK("Streamer_IsToggleCameraUpdate", "i", playerid);
 }
+
 /**
  * Streamer_ToggleItemUpdate
  * @see https://wiki.sa-mp.com/wiki/Streamer_ToggleItemUpdate
@@ -231,10 +240,10 @@ function Streamer_IsToggleCameraUpdate( playerid ){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function Streamer_ToggleItemUpdate( playerid, type, toggle ){
-	var out = CallNativeGDK( "Streamer_ToggleItemUpdate", "iii", playerid, type, toggle );
-	return out;
+function Streamer_ToggleItemUpdate(playerid, type, toggle) {
+	return CallNativeGDK("Streamer_ToggleItemUpdate", "iii", playerid, type, toggle);
 }
+
 /**
  * Streamer_IsToggleItemUpdate
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsToggleItemUpdate
@@ -242,22 +251,23 @@ function Streamer_ToggleItemUpdate( playerid, type, toggle ){
  * @param {Number} type
  * @return {Number} retval
  */
-function Streamer_IsToggleItemUpdate( playerid, type ){
-	var out = CallNativeGDK( "Streamer_IsToggleItemUpdate", "ii", playerid, type );
-	return out;
+function Streamer_IsToggleItemUpdate(playerid, type) {
+	return CallNativeGDK("Streamer_IsToggleItemUpdate", "ii", playerid, type);
 }
+
 /**
  * Streamer_Update
  * @see https://wiki.sa-mp.com/wiki/Streamer_Update
  * @param {Number} playerid
- * @param {Number} type
+ * @param {Number} [type=-1]
  * @return {Number} retval
  */
-function Streamer_Update( playerid, type ){
-	type = typeof type !== 'undefined' ? type : -1;
-	var out = CallNativeGDK( "Streamer_Update", "ii", playerid, type );
-	return out;
+function Streamer_Update(playerid, type)
+{
+	type = typeof type === 'undefined' ? -1 : type;
+	return CallNativeGDK("Streamer_Update", "ii", playerid, type);
 }
+
 /**
  * Streamer_UpdateEx
  * @see https://wiki.sa-mp.com/wiki/Streamer_UpdateEx
@@ -265,145 +275,148 @@ function Streamer_Update( playerid, type ){
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} type
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [type=-1]
  * @return {Number} retval
  */
-function Streamer_UpdateEx( playerid, x, y, z, worldid, interiorid, type ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	type = typeof type !== 'undefined' ? type : -1;
-	var out = CallNativeGDK( "Streamer_UpdateEx", "ifffiii", playerid, x, y, z, worldid, interiorid, type );
-	return out;
+function Streamer_UpdateEx(playerid, x, y, z, worldid, interiorid, type)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	type = typeof type === 'undefined' ? -1 : type;
+	return CallNativeGDK("Streamer_UpdateEx", "ifffiii", playerid, x, y, z, worldid, interiorid, type);
 }
+
 /**
  * Streamer_GetFloatData
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetFloatData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @return {Number} result
  */
-function Streamer_GetFloatData( type, STREAMER_ALL_TAGS id, data ){
-	var out = CallNativeGDK( "Streamer_GetFloatData", "iiiF", type, STREAMER_ALL_TAGS id, data );
-	return out;
+function Streamer_GetFloatData(type, id, data) {
+	return CallNativeGDK("Streamer_GetFloatData", "iiiF", type, id, data);
 }
+
 /**
  * Streamer_SetFloatData
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetFloatData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @param {Number} value
  * @return {Number} retval
  */
-function Streamer_SetFloatData( type, STREAMER_ALL_TAGS id, data, value ){
-	var out = CallNativeGDK( "Streamer_SetFloatData", "iiif", type, STREAMER_ALL_TAGS id, data, value );
-	return out;
+function Streamer_SetFloatData(type, id, data, value) {
+	return CallNativeGDK("Streamer_SetFloatData", "iiif", type, id, data, value);
 }
+
 /**
  * Streamer_GetIntData
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetIntData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @return {Number} retval
  */
-function Streamer_GetIntData( type, STREAMER_ALL_TAGS id, data ){
-	var out = CallNativeGDK( "Streamer_GetIntData", "iii", type, STREAMER_ALL_TAGS id, data );
-	return out;
+function Streamer_GetIntData(type, id, data) {
+	return CallNativeGDK("Streamer_GetIntData", "iii", type, id, data);
 }
+
 /**
  * Streamer_SetIntData
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetIntData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @param {Number} value
  * @return {Number} retval
  */
-function Streamer_SetIntData( type, STREAMER_ALL_TAGS id, data, value ){
-	var out = CallNativeGDK( "Streamer_SetIntData", "iiii", type, STREAMER_ALL_TAGS id, data, value );
-	return out;
+function Streamer_SetIntData(type, id, data, value) {
+	return CallNativeGDK("Streamer_SetIntData", "iiii", type, id, data, value);
 }
+
 /**
  * Streamer_GetArrayData
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetArrayData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
- * @param {Number} maxdest
+ * @param {Number} [maxdest=256]
  * @return {String} dest
  */
-function Streamer_GetArrayData( type, STREAMER_ALL_TAGS id, data, maxdest ){
-	maxdest = typeof maxdest !== 'undefined' ? maxdest : 256;
-	var out = CallNativeGDK( "Streamer_GetArrayData", "iiiSi", type, STREAMER_ALL_TAGS id, data, maxdest );
-	return out;
+function Streamer_GetArrayData(type, id, data, maxdest)
+{
+	maxdest = typeof maxdest === 'undefined' ? 256 : maxdest;
+	return CallNativeGDK("Streamer_GetArrayData", "iiiSi", type, id, data, maxdest);
 }
+
 /**
  * Streamer_SetArrayData
  * @see https://wiki.sa-mp.com/wiki/Streamer_SetArrayData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
- * @param {Number} maxsrc
+ * @param {Number} [maxsrc=256]
  * @return {String} src
  */
-function Streamer_SetArrayData( type, STREAMER_ALL_TAGS id, data, maxsrc ){
-	maxsrc = typeof maxsrc !== 'undefined' ? maxsrc : 256;
-	var out = CallNativeGDK( "Streamer_SetArrayData", "iiiSi", type, STREAMER_ALL_TAGS id, data, maxsrc );
-	return out;
+function Streamer_SetArrayData(type, id, data, maxsrc)
+{
+	maxsrc = typeof maxsrc === 'undefined' ? 256 : maxsrc;
+	return CallNativeGDK("Streamer_SetArrayData", "iiiSi", type, id, data, maxsrc);
 }
+
 /**
  * Streamer_IsInArrayData
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsInArrayData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @param {Number} value
  * @return {Number} retval
  */
-function Streamer_IsInArrayData( type, STREAMER_ALL_TAGS id, data, value ){
-	var out = CallNativeGDK( "Streamer_IsInArrayData", "iiii", type, STREAMER_ALL_TAGS id, data, value );
-	return out;
+function Streamer_IsInArrayData(type, id, data, value) {
+	return CallNativeGDK("Streamer_IsInArrayData", "iiii", type, id, data, value);
 }
+
 /**
  * Streamer_AppendArrayData
  * @see https://wiki.sa-mp.com/wiki/Streamer_AppendArrayData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @param {Number} value
  * @return {Number} retval
  */
-function Streamer_AppendArrayData( type, STREAMER_ALL_TAGS id, data, value ){
-	var out = CallNativeGDK( "Streamer_AppendArrayData", "iiii", type, STREAMER_ALL_TAGS id, data, value );
-	return out;
+function Streamer_AppendArrayData(type, id, data, value) {
+	return CallNativeGDK("Streamer_AppendArrayData", "iiii", type, id, data, value);
 }
+
 /**
  * Streamer_RemoveArrayData
  * @see https://wiki.sa-mp.com/wiki/Streamer_RemoveArrayData
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} data
  * @param {Number} value
  * @return {Number} retval
  */
-function Streamer_RemoveArrayData( type, STREAMER_ALL_TAGS id, data, value ){
-	var out = CallNativeGDK( "Streamer_RemoveArrayData", "iiii", type, STREAMER_ALL_TAGS id, data, value );
-	return out;
+function Streamer_RemoveArrayData(type, id, data, value) {
+	return CallNativeGDK("Streamer_RemoveArrayData", "iiii", type, id, data, value);
 }
+
 /**
  * Streamer_GetUpperBound
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetUpperBound
  * @param {Number} type
  * @return {Number} retval
  */
-function Streamer_GetUpperBound( type ){
-	var out = CallNativeGDK( "Streamer_GetUpperBound", "i", type );
-	return out;
+function Streamer_GetUpperBound(type) {
+	return CallNativeGDK("Streamer_GetUpperBound", "i", type);
 }
+
 /**
  * Streamer_GetDistanceToItem
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetDistanceToItem
@@ -411,124 +424,129 @@ function Streamer_GetUpperBound( type ){
  * @param {Number} y
  * @param {Number} z
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
- * @param {Number} dimensions
+ * @param {Number} id
+ * @param {Number} [dimensions=3]
  * @return {Number} distance
  */
-function Streamer_GetDistanceToItem( x, y, z, type, STREAMER_ALL_TAGS id, dimensions ){
-	dimensions = typeof dimensions !== 'undefined' ? dimensions : 3;
-	var out = CallNativeGDK( "Streamer_GetDistanceToItem", "fffiiFi", x, y, z, type, STREAMER_ALL_TAGS id, dimensions );
-	return out;
+function Streamer_GetDistanceToItem(x, y, z, type, id, dimensions)
+{
+	dimensions = typeof dimensions === 'undefined' ? 3 : dimensions;
+	return CallNativeGDK("Streamer_GetDistanceToItem", "fffiiFi", x, y, z, type, id, dimensions);
 }
+
 /**
  * Streamer_ToggleStaticItem
  * @see https://wiki.sa-mp.com/wiki/Streamer_ToggleStaticItem
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @param {Number} toggle
  * @return {Number} retval
  */
-function Streamer_ToggleStaticItem( type, STREAMER_ALL_TAGS id, toggle ){
-	var out = CallNativeGDK( "Streamer_ToggleStaticItem", "iii", type, STREAMER_ALL_TAGS id, toggle );
-	return out;
+function Streamer_ToggleStaticItem(type, id, toggle) {
+	return CallNativeGDK("Streamer_ToggleStaticItem", "iii", type, id, toggle);
 }
+
 /**
  * Streamer_IsToggleStaticItem
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsToggleStaticItem
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @return {Number} retval
  */
-function Streamer_IsToggleStaticItem( type, STREAMER_ALL_TAGS id ){
-	var out = CallNativeGDK( "Streamer_IsToggleStaticItem", "ii", type, STREAMER_ALL_TAGS id );
-	return out;
+function Streamer_IsToggleStaticItem(type, id) {
+	return CallNativeGDK("Streamer_IsToggleStaticItem", "ii", type, id);
 }
+
 /**
  * Streamer_GetItemInternalID
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetItemInternalID
  * @param {Number} playerid
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS streamerid
+ * @param {Number} streamerid
  * @return {Number} retval
  */
-function Streamer_GetItemInternalID( playerid, type, STREAMER_ALL_TAGS streamerid ){
-	var out = CallNativeGDK( "Streamer_GetItemInternalID", "iii", playerid, type, STREAMER_ALL_TAGS streamerid );
-	return out;
+function Streamer_GetItemInternalID(playerid, type, streamerid) {
+	return CallNativeGDK("Streamer_GetItemInternalID", "iii", playerid, type, streamerid);
 }
+
 /**
  * Streamer_GetItemStreamerID
  * @see https://wiki.sa-mp.com/wiki/Streamer_GetItemStreamerID
  * @param {Number} playerid
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS internalid
+ * @param {Number} internalid
  * @return {Number} retval
  */
-function Streamer_GetItemStreamerID( playerid, type, STREAMER_ALL_TAGS internalid ){
-	var out = CallNativeGDK( "Streamer_GetItemStreamerID", "iii", playerid, type, STREAMER_ALL_TAGS internalid );
-	return out;
+function Streamer_GetItemStreamerID(playerid, type, internalid) {
+	return CallNativeGDK("Streamer_GetItemStreamerID", "iii", playerid, type, internalid);
 }
+
 /**
  * Streamer_IsItemVisible
  * @see https://wiki.sa-mp.com/wiki/Streamer_IsItemVisible
  * @param {Number} playerid
  * @param {Number} type
- * @param {Number} STREAMER_ALL_TAGS id
+ * @param {Number} id
  * @return {Number} retval
  */
-function Streamer_IsItemVisible( playerid, type, STREAMER_ALL_TAGS id ){
-	var out = CallNativeGDK( "Streamer_IsItemVisible", "iii", playerid, type, STREAMER_ALL_TAGS id );
-	return out;
+function Streamer_IsItemVisible(playerid, type, id) {
+	return CallNativeGDK("Streamer_IsItemVisible", "iii", playerid, type, id);
 }
+
 /**
  * Streamer_DestroyAllVisibleItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_DestroyAllVisibleItems
  * @param {Number} playerid
  * @param {Number} type
- * @param {Number} serverwide
+ * @param {Number} [serverwide=1]
  * @return {Number} retval
  */
-function Streamer_DestroyAllVisibleItems( playerid, type, serverwide ){
-	serverwide = typeof serverwide !== 'undefined' ? serverwide : 1;
-	var out = CallNativeGDK( "Streamer_DestroyAllVisibleItems", "iii", playerid, type, serverwide );
-	return out;
+function Streamer_DestroyAllVisibleItems(playerid, type, serverwide)
+{
+	serverwide = typeof serverwide === 'undefined' ? 1 : serverwide;
+	return CallNativeGDK("Streamer_DestroyAllVisibleItems", "iii", playerid, type, serverwide);
 }
+
 /**
  * Streamer_CountVisibleItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_CountVisibleItems
  * @param {Number} playerid
  * @param {Number} type
- * @param {Number} serverwide
+ * @param {Number} [serverwide=1]
  * @return {Number} retval
  */
-function Streamer_CountVisibleItems( playerid, type, serverwide ){
-	serverwide = typeof serverwide !== 'undefined' ? serverwide : 1;
-	var out = CallNativeGDK( "Streamer_CountVisibleItems", "iii", playerid, type, serverwide );
-	return out;
+function Streamer_CountVisibleItems(playerid, type, serverwide)
+{
+	serverwide = typeof serverwide === 'undefined' ? 1 : serverwide;
+	return CallNativeGDK("Streamer_CountVisibleItems", "iii", playerid, type, serverwide);
 }
+
 /**
  * Streamer_DestroyAllItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_DestroyAllItems
  * @param {Number} type
- * @param {Number} serverwide
+ * @param {Number} [serverwide=1]
  * @return {Number} retval
  */
-function Streamer_DestroyAllItems( type, serverwide ){
-	serverwide = typeof serverwide !== 'undefined' ? serverwide : 1;
-	var out = CallNativeGDK( "Streamer_DestroyAllItems", "ii", type, serverwide );
-	return out;
+function Streamer_DestroyAllItems(type, serverwide)
+{
+	serverwide = typeof serverwide === 'undefined' ? 1 : serverwide;
+	return CallNativeGDK("Streamer_DestroyAllItems", "ii", type, serverwide);
 }
+
 /**
  * Streamer_CountItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_CountItems
  * @param {Number} type
- * @param {Number} serverwide
+ * @param {Number} [serverwide=1]
  * @return {Number} retval
  */
-function Streamer_CountItems( type, serverwide ){
-	serverwide = typeof serverwide !== 'undefined' ? serverwide : 1;
-	var out = CallNativeGDK( "Streamer_CountItems", "ii", type, serverwide );
-	return out;
+function Streamer_CountItems(type, serverwide)
+{
+	serverwide = typeof serverwide === 'undefined' ? 1 : serverwide;
+	return CallNativeGDK("Streamer_CountItems", "ii", type, serverwide);
 }
+
 /**
  * CreateDynamicObject
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicObject
@@ -539,153 +557,159 @@ function Streamer_CountItems( type, serverwide ){
  * @param {Number} rx
  * @param {Number} ry
  * @param {Number} rz
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
- * @param {Number} streamdistance
- * @param {Number} drawdistance
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
+ * @param {Number} [streamdistance=200.0]
+ * @param {Number} [drawdistance=0.0]
  * @return {Number} retval
  */
-function CreateDynamicObject( modelid, x, y, z, rx, ry, rz, worldid, interiorid, playerid, streamdistance, drawdistance ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 200.0;
-	drawdistance = typeof drawdistance !== 'undefined' ? drawdistance : 0.0;
-	var out = CallNativeGDK( "CreateDynamicObject", "iffffffiiiff", modelid, x, y, z, rx, ry, rz, worldid, interiorid, playerid, streamdistance, drawdistance );
-	return out;
+function CreateDynamicObject(modelid, x, y, z, rx, ry, rz, worldid, interiorid, playerid, streamdistance, drawdistance)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	streamdistance = typeof streamdistance === 'undefined' ? 200.0 : streamdistance;
+	drawdistance = typeof drawdistance === 'undefined' ? 0.0 : drawdistance;
+	return CallNativeGDK("CreateDynamicObject", "iffffffiiiff", modelid, x, y, z, rx, ry, rz, worldid, interiorid, playerid, streamdistance, drawdistance);
 }
+
 /**
  * DestroyDynamicObject
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamicObject
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function DestroyDynamicObject( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "DestroyDynamicObject", "i", STREAMER_TAG_OBJECT objectid );
-	return out;
+function DestroyDynamicObject(objectid) {
+	return CallNativeGDK("DestroyDynamicObject", "i", objectid);
 }
+
 /**
  * IsValidDynamicObject
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamicObject
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function IsValidDynamicObject( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "IsValidDynamicObject", "i", STREAMER_TAG_OBJECT objectid );
-	return out;
+function IsValidDynamicObject(objectid) {
+	return CallNativeGDK("IsValidDynamicObject", "i", objectid);
 }
+
 /**
  * SetDynamicObjectPos
  * @see https://wiki.sa-mp.com/wiki/SetDynamicObjectPos
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
  * @return {Number} retval
  */
-function SetDynamicObjectPos( STREAMER_TAG_OBJECT objectid, x, y, z ){
-	var out = CallNativeGDK( "SetDynamicObjectPos", "ifff", STREAMER_TAG_OBJECT objectid, x, y, z );
-	return out;
+function SetDynamicObjectPos(objectid, x, y, z) {
+	return CallNativeGDK("SetDynamicObjectPos", "ifff", objectid, x, y, z);
 }
+
 /**
  * GetDynamicObjectPos
  * @see https://wiki.sa-mp.com/wiki/GetDynamicObjectPos
- * @param {Number} STREAMER_TAG_OBJECT objectid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @param {Number} objectid
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetDynamicObjectPos( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "GetDynamicObjectPos", "iFFF", STREAMER_TAG_OBJECT objectid, [ "x", "y", "z" ] );
-	return {x: out[0],y: out[1],z: out[2]};
+function GetDynamicObjectPos(objectid)
+{
+	let out = CallNativeGDK("GetDynamicObjectPos", "iFFF", objectid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * SetDynamicObjectRot
  * @see https://wiki.sa-mp.com/wiki/SetDynamicObjectRot
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} rx
  * @param {Number} ry
  * @param {Number} rz
  * @return {Number} retval
  */
-function SetDynamicObjectRot( STREAMER_TAG_OBJECT objectid, rx, ry, rz ){
-	var out = CallNativeGDK( "SetDynamicObjectRot", "ifff", STREAMER_TAG_OBJECT objectid, rx, ry, rz );
-	return out;
+function SetDynamicObjectRot(objectid, rx, ry, rz) {
+	return CallNativeGDK("SetDynamicObjectRot", "ifff", objectid, rx, ry, rz);
 }
+
 /**
  * GetDynamicObjectRot
  * @see https://wiki.sa-mp.com/wiki/GetDynamicObjectRot
- * @param {Number} STREAMER_TAG_OBJECT objectid
- * @return {{ rx: Number,  ry: Number,  rz: Number }}
+ * @param {Number} objectid
+ * @return {rx: Number, ry: Number, rz: Number}
  */
-function GetDynamicObjectRot( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "GetDynamicObjectRot", "iFFF", STREAMER_TAG_OBJECT objectid, [ "rx", "ry", "rz" ] );
-	return {rx: out[0],ry: out[1],rz: out[2]};
+function GetDynamicObjectRot(objectid)
+{
+	let out = CallNativeGDK("GetDynamicObjectRot", "iFFF", objectid);
+	return {rx: out[0], ry: out[1], rz: out[2]};
 }
+
 /**
  * SetDynamicObjectNoCameraCol
  * @see https://wiki.sa-mp.com/wiki/SetDynamicObjectNoCameraCol
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function SetDynamicObjectNoCameraCol( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "SetDynamicObjectNoCameraCol", "i", STREAMER_TAG_OBJECT objectid );
-	return out;
+function SetDynamicObjectNoCameraCol(objectid) {
+	return CallNativeGDK("SetDynamicObjectNoCameraCol", "i", objectid);
 }
+
 /**
  * MoveDynamicObject
  * @see https://wiki.sa-mp.com/wiki/MoveDynamicObject
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
  * @param {Number} speed
- * @param {Number} rx
- * @param {Number} ry
- * @param {Number} rz
+ * @param {Number} [rx=-1000.0]
+ * @param {Number} [ry=-1000.0]
+ * @param {Number} [rz=-1000.0]
  * @return {Number} retval
  */
-function MoveDynamicObject( STREAMER_TAG_OBJECT objectid, x, y, z, speed, rx, ry, rz ){
-	rx = typeof rx !== 'undefined' ? rx : -1000.0;
-	ry = typeof ry !== 'undefined' ? ry : -1000.0;
-	rz = typeof rz !== 'undefined' ? rz : -1000.0;
-	var out = CallNativeGDK( "MoveDynamicObject", "ifffffff", STREAMER_TAG_OBJECT objectid, x, y, z, speed, rx, ry, rz );
-	return out;
+function MoveDynamicObject(objectid, x, y, z, speed, rx, ry, rz)
+{
+	rx = typeof rx === 'undefined' ? -1000.0 : rx;
+	ry = typeof ry === 'undefined' ? -1000.0 : ry;
+	rz = typeof rz === 'undefined' ? -1000.0 : rz;
+	return CallNativeGDK("MoveDynamicObject", "ifffffff", objectid, x, y, z, speed, rx, ry, rz);
 }
+
 /**
  * StopDynamicObject
  * @see https://wiki.sa-mp.com/wiki/StopDynamicObject
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function StopDynamicObject( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "StopDynamicObject", "i", STREAMER_TAG_OBJECT objectid );
-	return out;
+function StopDynamicObject(objectid) {
+	return CallNativeGDK("StopDynamicObject", "i", objectid);
 }
+
 /**
  * IsDynamicObjectMoving
  * @see https://wiki.sa-mp.com/wiki/IsDynamicObjectMoving
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function IsDynamicObjectMoving( STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "IsDynamicObjectMoving", "i", STREAMER_TAG_OBJECT objectid );
-	return out;
+function IsDynamicObjectMoving(objectid) {
+	return CallNativeGDK("IsDynamicObjectMoving", "i", objectid);
 }
+
 /**
  * AttachCameraToDynamicObject
  * @see https://wiki.sa-mp.com/wiki/AttachCameraToDynamicObject
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function AttachCameraToDynamicObject( playerid, STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "AttachCameraToDynamicObject", "ii", playerid, STREAMER_TAG_OBJECT objectid );
-	return out;
+function AttachCameraToDynamicObject(playerid, objectid) {
+	return CallNativeGDK("AttachCameraToDynamicObject", "ii", playerid, objectid);
 }
+
 /**
  * AttachDynamicObjectToObject
  * @see https://wiki.sa-mp.com/wiki/AttachDynamicObjectToObject
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} attachtoid
  * @param {Number} offsetx
  * @param {Number} offsety
@@ -693,18 +717,19 @@ function AttachCameraToDynamicObject( playerid, STREAMER_TAG_OBJECT objectid ){
  * @param {Number} rx
  * @param {Number} ry
  * @param {Number} rz
- * @param {Number} syncrotation
+ * @param {Number} [syncrotation=1]
  * @return {Number} retval
  */
-function AttachDynamicObjectToObject( STREAMER_TAG_OBJECT objectid, attachtoid, offsetx, offsety, offsetz, rx, ry, rz, syncrotation ){
-	syncrotation = typeof syncrotation !== 'undefined' ? syncrotation : 1;
-	var out = CallNativeGDK( "AttachDynamicObjectToObject", "iiffffffi", STREAMER_TAG_OBJECT objectid, attachtoid, offsetx, offsety, offsetz, rx, ry, rz, syncrotation );
-	return out;
+function AttachDynamicObjectToObject(objectid, attachtoid, offsetx, offsety, offsetz, rx, ry, rz, syncrotation)
+{
+	syncrotation = typeof syncrotation === 'undefined' ? 1 : syncrotation;
+	return CallNativeGDK("AttachDynamicObjectToObject", "iiffffffi", objectid, attachtoid, offsetx, offsety, offsetz, rx, ry, rz, syncrotation);
 }
+
 /**
  * AttachDynamicObjectToPlayer
  * @see https://wiki.sa-mp.com/wiki/AttachDynamicObjectToPlayer
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} playerid
  * @param {Number} offsetx
  * @param {Number} offsety
@@ -714,14 +739,14 @@ function AttachDynamicObjectToObject( STREAMER_TAG_OBJECT objectid, attachtoid, 
  * @param {Number} rz
  * @return {Number} retval
  */
-function AttachDynamicObjectToPlayer( STREAMER_TAG_OBJECT objectid, playerid, offsetx, offsety, offsetz, rx, ry, rz ){
-	var out = CallNativeGDK( "AttachDynamicObjectToPlayer", "iiffffff", STREAMER_TAG_OBJECT objectid, playerid, offsetx, offsety, offsetz, rx, ry, rz );
-	return out;
+function AttachDynamicObjectToPlayer(objectid, playerid, offsetx, offsety, offsetz, rx, ry, rz) {
+	return CallNativeGDK("AttachDynamicObjectToPlayer", "iiffffff", objectid, playerid, offsetx, offsety, offsetz, rx, ry, rz);
 }
+
 /**
  * AttachDynamicObjectToVehicle
  * @see https://wiki.sa-mp.com/wiki/AttachDynamicObjectToVehicle
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} vehicleid
  * @param {Number} offsetx
  * @param {Number} offsety
@@ -731,115 +756,123 @@ function AttachDynamicObjectToPlayer( STREAMER_TAG_OBJECT objectid, playerid, of
  * @param {Number} rz
  * @return {Number} retval
  */
-function AttachDynamicObjectToVehicle( STREAMER_TAG_OBJECT objectid, vehicleid, offsetx, offsety, offsetz, rx, ry, rz ){
-	var out = CallNativeGDK( "AttachDynamicObjectToVehicle", "iiffffff", STREAMER_TAG_OBJECT objectid, vehicleid, offsetx, offsety, offsetz, rx, ry, rz );
-	return out;
+function AttachDynamicObjectToVehicle(objectid, vehicleid, offsetx, offsety, offsetz, rx, ry, rz) {
+	return CallNativeGDK("AttachDynamicObjectToVehicle", "iiffffff", objectid, vehicleid, offsetx, offsety, offsetz, rx, ry, rz);
 }
+
 /**
  * EditDynamicObject
  * @see https://wiki.sa-mp.com/wiki/EditDynamicObject
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @return {Number} retval
  */
-function EditDynamicObject( playerid, STREAMER_TAG_OBJECT objectid ){
-	var out = CallNativeGDK( "EditDynamicObject", "ii", playerid, STREAMER_TAG_OBJECT objectid );
-	return out;
+function EditDynamicObject(playerid, objectid) {
+	return CallNativeGDK("EditDynamicObject", "ii", playerid, objectid);
 }
+
 /**
  * IsDynamicObjectMaterialUsed
  * @see https://wiki.sa-mp.com/wiki/IsDynamicObjectMaterialUsed
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} materialindex
  * @return {Number} retval
  */
-function IsDynamicObjectMaterialUsed( STREAMER_TAG_OBJECT objectid, materialindex ){
-	var out = CallNativeGDK( "IsDynamicObjectMaterialUsed", "ii", STREAMER_TAG_OBJECT objectid, materialindex );
-	return out;
+function IsDynamicObjectMaterialUsed(objectid, materialindex) {
+	return CallNativeGDK("IsDynamicObjectMaterialUsed", "ii", objectid, materialindex);
 }
+
 /**
  * GetDynamicObjectMaterial
  * @see https://wiki.sa-mp.com/wiki/GetDynamicObjectMaterial
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} materialindex
- * @param {Number} maxtxdname
- * @param {Number} maxtexturename
- * @return {{ modelid: Number,  txdname: String,  texturename: String,  materialcolor: Number }}
+ * @param {Number} [maxtxdname=256]
+ * @param {Number} [maxtexturename=256]
+ * @return {modelid: Number, txdname: String, texturename: String, materialcolor: Number}
  */
-function GetDynamicObjectMaterial( STREAMER_TAG_OBJECT objectid, materialindex, maxtxdname, maxtexturename ){
-	maxtxdname = typeof maxtxdname !== 'undefined' ? maxtxdname : 256;
-	maxtexturename = typeof maxtexturename !== 'undefined' ? maxtexturename : 256;
-	var out = CallNativeGDK( "GetDynamicObjectMaterial", "iiISSIii", STREAMER_TAG_OBJECT objectid, materialindex, maxtxdname, maxtexturename, [ "modelid", "txdname", "texturename", "materialcolor" ] );
-	return {modelid: out[0],txdname: out[1],texturename: out[2],materialcolor: out[3]};
+function GetDynamicObjectMaterial(objectid, materialindex, maxtxdname, maxtexturename)
+{
+	maxtxdname = typeof maxtxdname === 'undefined' ? 256 : maxtxdname;
+	maxtexturename = typeof maxtexturename === 'undefined' ? 256 : maxtexturename;
+
+	let out = CallNativeGDK("GetDynamicObjectMaterial", "iiISSIii", objectid, materialindex, maxtxdname, maxtexturename);
+	return {modelid: out[0], txdname: out[1], texturename: out[2], materialcolor: out[3]};
 }
+
 /**
  * SetDynamicObjectMaterial
  * @see https://wiki.sa-mp.com/wiki/SetDynamicObjectMaterial
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} materialindex
  * @param {Number} modelid
  * @param {String} txdname
  * @param {String} texturename
- * @param {Number} materialcolor
+ * @param {Number} [materialcolor=0]
  * @return {Number} retval
  */
-function SetDynamicObjectMaterial( STREAMER_TAG_OBJECT objectid, materialindex, modelid, txdname, texturename, materialcolor ){
-	materialcolor = typeof materialcolor !== 'undefined' ? materialcolor : 0;
-	var out = CallNativeGDK( "SetDynamicObjectMaterial", "iiissi", STREAMER_TAG_OBJECT objectid, materialindex, modelid, txdname, texturename, materialcolor );
-	return out;
+function SetDynamicObjectMaterial(objectid, materialindex, modelid, txdname, texturename, materialcolor)
+{
+	materialcolor = typeof materialcolor === 'undefined' ? 0 : materialcolor;
+	return CallNativeGDK("SetDynamicObjectMaterial", "iiissi", objectid, materialindex, modelid, txdname, texturename, materialcolor);
 }
+
 /**
  * IsDynamicObjectMaterialTextUsed
  * @see https://wiki.sa-mp.com/wiki/IsDynamicObjectMaterialTextUsed
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} materialindex
  * @return {Number} retval
  */
-function IsDynamicObjectMaterialTextUsed( STREAMER_TAG_OBJECT objectid, materialindex ){
-	var out = CallNativeGDK( "IsDynamicObjectMaterialTextUsed", "ii", STREAMER_TAG_OBJECT objectid, materialindex );
-	return out;
+function IsDynamicObjectMaterialTextUsed(objectid, materialindex) {
+	return CallNativeGDK("IsDynamicObjectMaterialTextUsed", "ii", objectid, materialindex);
 }
+
 /**
  * GetDynamicObjectMaterialText
  * @see https://wiki.sa-mp.com/wiki/GetDynamicObjectMaterialText
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} materialindex
- * @param {Number} maxtext
- * @param {Number} maxfontface
- * @return {{ text: String,  materialsize: Number,  fontface: String,  fontsize: Number,  bold: Number,  fontcolor: Number,  backcolor: Number,  textalignment: Number }}
+ * @param {Number} [maxtext=256]
+ * @param {Number} [maxfontface=256]
+ * @return {text: String, materialsize: Number, fontface: String, fontsize: Number, bold: Number, fontcolor: Number, backcolor: Number, textalignment: Number}
  */
-function GetDynamicObjectMaterialText( STREAMER_TAG_OBJECT objectid, materialindex, maxtext, maxfontface ){
-	maxtext = typeof maxtext !== 'undefined' ? maxtext : 256;
-	maxfontface = typeof maxfontface !== 'undefined' ? maxfontface : 256;
-	var out = CallNativeGDK( "GetDynamicObjectMaterialText", "iiSISIIIIIii", STREAMER_TAG_OBJECT objectid, materialindex, maxtext, maxfontface, [ "text", "materialsize", "fontface", "fontsize", "bold", "fontcolor", "backcolor", "textalignment" ] );
-	return {text: out[0],materialsize: out[1],fontface: out[2],fontsize: out[3],bold: out[4],fontcolor: out[5],backcolor: out[6],textalignment: out[7]};
+function GetDynamicObjectMaterialText(objectid, materialindex, maxtext, maxfontface)
+{
+	maxtext = typeof maxtext === 'undefined' ? 256 : maxtext;
+	maxfontface = typeof maxfontface === 'undefined' ? 256 : maxfontface;
+
+	let out = CallNativeGDK("GetDynamicObjectMaterialText", "iiSISIIIIIii", objectid, materialindex, maxtext, maxfontface);
+	return {text: out[0], materialsize: out[1], fontface: out[2], fontsize: out[3], bold: out[4], fontcolor: out[5], backcolor: out[6], textalignment: out[7]};
 }
+
 /**
  * SetDynamicObjectMaterialText
  * @see https://wiki.sa-mp.com/wiki/SetDynamicObjectMaterialText
- * @param {Number} STREAMER_TAG_OBJECT objectid
+ * @param {Number} objectid
  * @param {Number} materialindex
  * @param {String} text
- * @param {Number} materialsize
- * @param {String} fontface
- * @param {Number} fontsize
- * @param {Number} bold
- * @param {Number} fontcolor
- * @param {Number} backcolor
- * @param {Number} textalignment
+ * @param {Number} [materialsize=OBJECT_MATERIAL_SIZE_256x128]
+ * @param {String} [fontface="Arial"]
+ * @param {Number} [fontsize=24]
+ * @param {Number} [bold=1]
+ * @param {Number} [fontcolor=0xFFFFFFFF]
+ * @param {Number} [backcolor=0]
+ * @param {Number} [textalignment=0]
  * @return {Number} retval
  */
-function SetDynamicObjectMaterialText( STREAMER_TAG_OBJECT objectid, materialindex, text, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment ){
-	materialsize = typeof materialsize !== 'undefined' ? materialsize : OBJECT_MATERIAL_SIZE_256x128;
-	fontface = typeof fontface !== 'undefined' ? fontface : "Arial";
-	fontsize = typeof fontsize !== 'undefined' ? fontsize : 24;
-	bold = typeof bold !== 'undefined' ? bold : 1;
-	fontcolor = typeof fontcolor !== 'undefined' ? fontcolor : 0xFFFFFFFF;
-	backcolor = typeof backcolor !== 'undefined' ? backcolor : 0;
-	textalignment = typeof textalignment !== 'undefined' ? textalignment : 0;
-	var out = CallNativeGDK( "SetDynamicObjectMaterialText", "iisisiiiii", STREAMER_TAG_OBJECT objectid, materialindex, text, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
-	return out;
+function SetDynamicObjectMaterialText(objectid, materialindex, text, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment)
+{
+	materialsize = typeof materialsize === 'undefined' ? OBJECT_MATERIAL_SIZE_256x128 : materialsize;
+	fontface = typeof fontface === 'undefined' ? "Arial" : fontface;
+	fontsize = typeof fontsize === 'undefined' ? 24 : fontsize;
+	bold = typeof bold === 'undefined' ? 1 : bold;
+	fontcolor = typeof fontcolor === 'undefined' ? 0xFFFFFFFF : fontcolor;
+	backcolor = typeof backcolor === 'undefined' ? 0 : backcolor;
+	textalignment = typeof textalignment === 'undefined' ? 0 : textalignment;
+	return CallNativeGDK("SetDynamicObjectMaterialText", "iisisiiiii", objectid, materialindex, text, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment);
 }
+
 /**
  * CreateDynamicPickup
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicPickup
@@ -848,40 +881,41 @@ function SetDynamicObjectMaterialText( STREAMER_TAG_OBJECT objectid, materialind
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
- * @param {Number} streamdistance
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
+ * @param {Number} [streamdistance=100.0]
  * @return {Number} retval
  */
-function CreateDynamicPickup( modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	var out = CallNativeGDK( "CreateDynamicPickup", "iifffiiif", modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance );
-	return out;
+function CreateDynamicPickup(modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	return CallNativeGDK("CreateDynamicPickup", "iifffiiif", modelid, type, x, y, z, worldid, interiorid, playerid, streamdistance);
 }
+
 /**
  * DestroyDynamicPickup
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamicPickup
- * @param {Number} STREAMER_TAG_PICKUP pickupid
+ * @param {Number} pickupid
  * @return {Number} retval
  */
-function DestroyDynamicPickup( STREAMER_TAG_PICKUP pickupid ){
-	var out = CallNativeGDK( "DestroyDynamicPickup", "i", STREAMER_TAG_PICKUP pickupid );
-	return out;
+function DestroyDynamicPickup(pickupid) {
+	return CallNativeGDK("DestroyDynamicPickup", "i", pickupid);
 }
+
 /**
  * IsValidDynamicPickup
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamicPickup
- * @param {Number} STREAMER_TAG_PICKUP pickupid
+ * @param {Number} pickupid
  * @return {Number} retval
  */
-function IsValidDynamicPickup( STREAMER_TAG_PICKUP pickupid ){
-	var out = CallNativeGDK( "IsValidDynamicPickup", "i", STREAMER_TAG_PICKUP pickupid );
-	return out;
+function IsValidDynamicPickup(pickupid) {
+	return CallNativeGDK("IsValidDynamicPickup", "i", pickupid);
 }
+
 /**
  * CreateDynamicCP
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCP
@@ -889,52 +923,53 @@ function IsValidDynamicPickup( STREAMER_TAG_PICKUP pickupid ){
  * @param {Number} y
  * @param {Number} z
  * @param {Number} size
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
- * @param {Number} streamdistance
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
+ * @param {Number} [streamdistance=100.0]
  * @return {Number} retval
  */
-function CreateDynamicCP( x, y, z, size, worldid, interiorid, playerid, streamdistance ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	var out = CallNativeGDK( "CreateDynamicCP", "ffffiiif", x, y, z, size, worldid, interiorid, playerid, streamdistance );
-	return out;
+function CreateDynamicCP(x, y, z, size, worldid, interiorid, playerid, streamdistance)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	return CallNativeGDK("CreateDynamicCP", "ffffiiif", x, y, z, size, worldid, interiorid, playerid, streamdistance);
 }
+
 /**
  * DestroyDynamicCP
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamicCP
- * @param {Number} STREAMER_TAG_CP checkpointid
+ * @param {Number} checkpointid
  * @return {Number} retval
  */
-function DestroyDynamicCP( STREAMER_TAG_CP checkpointid ){
-	var out = CallNativeGDK( "DestroyDynamicCP", "i", STREAMER_TAG_CP checkpointid );
-	return out;
+function DestroyDynamicCP(checkpointid) {
+	return CallNativeGDK("DestroyDynamicCP", "i", checkpointid);
 }
+
 /**
  * IsValidDynamicCP
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamicCP
- * @param {Number} STREAMER_TAG_CP checkpointid
+ * @param {Number} checkpointid
  * @return {Number} retval
  */
-function IsValidDynamicCP( STREAMER_TAG_CP checkpointid ){
-	var out = CallNativeGDK( "IsValidDynamicCP", "i", STREAMER_TAG_CP checkpointid );
-	return out;
+function IsValidDynamicCP(checkpointid) {
+	return CallNativeGDK("IsValidDynamicCP", "i", checkpointid);
 }
+
 /**
  * TogglePlayerDynamicCP
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerDynamicCP
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_CP checkpointid
+ * @param {Number} checkpointid
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerDynamicCP( playerid, STREAMER_TAG_CP checkpointid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerDynamicCP", "iii", playerid, STREAMER_TAG_CP checkpointid, toggle );
-	return out;
+function TogglePlayerDynamicCP(playerid, checkpointid, toggle) {
+	return CallNativeGDK("TogglePlayerDynamicCP", "iii", playerid, checkpointid, toggle);
 }
+
 /**
  * TogglePlayerAllDynamicCPs
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerAllDynamicCPs
@@ -942,31 +977,31 @@ function TogglePlayerDynamicCP( playerid, STREAMER_TAG_CP checkpointid, toggle )
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerAllDynamicCPs( playerid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerAllDynamicCPs", "ii", playerid, toggle );
-	return out;
+function TogglePlayerAllDynamicCPs(playerid, toggle) {
+	return CallNativeGDK("TogglePlayerAllDynamicCPs", "ii", playerid, toggle);
 }
+
 /**
  * IsPlayerInDynamicCP
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInDynamicCP
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_CP checkpointid
+ * @param {Number} checkpointid
  * @return {Number} retval
  */
-function IsPlayerInDynamicCP( playerid, STREAMER_TAG_CP checkpointid ){
-	var out = CallNativeGDK( "IsPlayerInDynamicCP", "ii", playerid, STREAMER_TAG_CP checkpointid );
-	return out;
+function IsPlayerInDynamicCP(playerid, checkpointid) {
+	return CallNativeGDK("IsPlayerInDynamicCP", "ii", playerid, checkpointid);
 }
+
 /**
  * GetPlayerVisibleDynamicCP
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVisibleDynamicCP
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerVisibleDynamicCP( playerid ){
-	var out = CallNativeGDK( "GetPlayerVisibleDynamicCP", "i", playerid );
-	return out;
+function GetPlayerVisibleDynamicCP(playerid) {
+	return CallNativeGDK("GetPlayerVisibleDynamicCP", "i", playerid);
 }
+
 /**
  * CreateDynamicRaceCP
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicRaceCP
@@ -978,52 +1013,53 @@ function GetPlayerVisibleDynamicCP( playerid ){
  * @param {Number} nexty
  * @param {Number} nextz
  * @param {Number} size
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
- * @param {Number} streamdistance
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
+ * @param {Number} [streamdistance=100.0]
  * @return {Number} retval
  */
-function CreateDynamicRaceCP( type, x, y, z, nextx, nexty, nextz, size, worldid, interiorid, playerid, streamdistance ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	var out = CallNativeGDK( "CreateDynamicRaceCP", "ifffffffiiif", type, x, y, z, nextx, nexty, nextz, size, worldid, interiorid, playerid, streamdistance );
-	return out;
+function CreateDynamicRaceCP(type, x, y, z, nextx, nexty, nextz, size, worldid, interiorid, playerid, streamdistance)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	return CallNativeGDK("CreateDynamicRaceCP", "ifffffffiiif", type, x, y, z, nextx, nexty, nextz, size, worldid, interiorid, playerid, streamdistance);
 }
+
 /**
  * DestroyDynamicRaceCP
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamicRaceCP
- * @param {Number} STREAMER_TAG_RACE_CP checkpointid
+ * @param {Number} checkpointid
  * @return {Number} retval
  */
-function DestroyDynamicRaceCP( STREAMER_TAG_RACE_CP checkpointid ){
-	var out = CallNativeGDK( "DestroyDynamicRaceCP", "i", STREAMER_TAG_RACE_CP checkpointid );
-	return out;
+function DestroyDynamicRaceCP(checkpointid) {
+	return CallNativeGDK("DestroyDynamicRaceCP", "i", checkpointid);
 }
+
 /**
  * IsValidDynamicRaceCP
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamicRaceCP
- * @param {Number} STREAMER_TAG_RACE_CP checkpointid
+ * @param {Number} checkpointid
  * @return {Number} retval
  */
-function IsValidDynamicRaceCP( STREAMER_TAG_RACE_CP checkpointid ){
-	var out = CallNativeGDK( "IsValidDynamicRaceCP", "i", STREAMER_TAG_RACE_CP checkpointid );
-	return out;
+function IsValidDynamicRaceCP(checkpointid) {
+	return CallNativeGDK("IsValidDynamicRaceCP", "i", checkpointid);
 }
+
 /**
  * TogglePlayerDynamicRaceCP
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerDynamicRaceCP
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_RACE_CP checkpointid
+ * @param {Number} checkpointid
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerDynamicRaceCP( playerid, STREAMER_TAG_RACE_CP checkpointid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerDynamicRaceCP", "iii", playerid, STREAMER_TAG_RACE_CP checkpointid, toggle );
-	return out;
+function TogglePlayerDynamicRaceCP(playerid, checkpointid, toggle) {
+	return CallNativeGDK("TogglePlayerDynamicRaceCP", "iii", playerid, checkpointid, toggle);
 }
+
 /**
  * TogglePlayerAllDynamicRaceCPs
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerAllDynamicRaceCPs
@@ -1031,31 +1067,31 @@ function TogglePlayerDynamicRaceCP( playerid, STREAMER_TAG_RACE_CP checkpointid,
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerAllDynamicRaceCPs( playerid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerAllDynamicRaceCPs", "ii", playerid, toggle );
-	return out;
+function TogglePlayerAllDynamicRaceCPs(playerid, toggle) {
+	return CallNativeGDK("TogglePlayerAllDynamicRaceCPs", "ii", playerid, toggle);
 }
+
 /**
  * IsPlayerInDynamicRaceCP
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInDynamicRaceCP
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_RACE_CP checkpointid
+ * @param {Number} checkpointid
  * @return {Number} retval
  */
-function IsPlayerInDynamicRaceCP( playerid, STREAMER_TAG_RACE_CP checkpointid ){
-	var out = CallNativeGDK( "IsPlayerInDynamicRaceCP", "ii", playerid, STREAMER_TAG_RACE_CP checkpointid );
-	return out;
+function IsPlayerInDynamicRaceCP(playerid, checkpointid) {
+	return CallNativeGDK("IsPlayerInDynamicRaceCP", "ii", playerid, checkpointid);
 }
+
 /**
  * GetPlayerVisibleDynamicRaceCP
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVisibleDynamicRaceCP
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerVisibleDynamicRaceCP( playerid ){
-	var out = CallNativeGDK( "GetPlayerVisibleDynamicRaceCP", "i", playerid );
-	return out;
+function GetPlayerVisibleDynamicRaceCP(playerid) {
+	return CallNativeGDK("GetPlayerVisibleDynamicRaceCP", "i", playerid);
 }
+
 /**
  * CreateDynamicMapIcon
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicMapIcon
@@ -1064,42 +1100,43 @@ function GetPlayerVisibleDynamicRaceCP( playerid ){
  * @param {Number} z
  * @param {Number} type
  * @param {Number} color
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
- * @param {Number} streamdistance
- * @param {Number} style
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
+ * @param {Number} [streamdistance=100.0]
+ * @param {Number} [style=MAPICON_LOCAL]
  * @return {Number} retval
  */
-function CreateDynamicMapIcon( x, y, z, type, color, worldid, interiorid, playerid, streamdistance, style ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	style = typeof style !== 'undefined' ? style : MAPICON_LOCAL;
-	var out = CallNativeGDK( "CreateDynamicMapIcon", "fffiiiiifi", x, y, z, type, color, worldid, interiorid, playerid, streamdistance, style );
-	return out;
+function CreateDynamicMapIcon(x, y, z, type, color, worldid, interiorid, playerid, streamdistance, style)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	style = typeof style === 'undefined' ? MAPICON_LOCAL : style;
+	return CallNativeGDK("CreateDynamicMapIcon", "fffiiiiifi", x, y, z, type, color, worldid, interiorid, playerid, streamdistance, style);
 }
+
 /**
  * DestroyDynamicMapIcon
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamicMapIcon
- * @param {Number} STREAMER_TAG_MAP_ICON iconid
+ * @param {Number} iconid
  * @return {Number} retval
  */
-function DestroyDynamicMapIcon( STREAMER_TAG_MAP_ICON iconid ){
-	var out = CallNativeGDK( "DestroyDynamicMapIcon", "i", STREAMER_TAG_MAP_ICON iconid );
-	return out;
+function DestroyDynamicMapIcon(iconid) {
+	return CallNativeGDK("DestroyDynamicMapIcon", "i", iconid);
 }
+
 /**
  * IsValidDynamicMapIcon
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamicMapIcon
- * @param {Number} STREAMER_TAG_MAP_ICON iconid
+ * @param {Number} iconid
  * @return {Number} retval
  */
-function IsValidDynamicMapIcon( STREAMER_TAG_MAP_ICON iconid ){
-	var out = CallNativeGDK( "IsValidDynamicMapIcon", "i", STREAMER_TAG_MAP_ICON iconid );
-	return out;
+function IsValidDynamicMapIcon(iconid) {
+	return CallNativeGDK("IsValidDynamicMapIcon", "i", iconid);
 }
+
 /**
  * CreateDynamic3DTextLabel
  * @see https://wiki.sa-mp.com/wiki/CreateDynamic3DTextLabel
@@ -1109,88 +1146,91 @@ function IsValidDynamicMapIcon( STREAMER_TAG_MAP_ICON iconid ){
  * @param {Number} y
  * @param {Number} z
  * @param {Number} drawdistance
- * @param {Number} attachedplayer
- * @param {Number} attachedvehicle
- * @param {Number} testlos
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
- * @param {Number} streamdistance
+ * @param {Number} [attachedplayer=INVALID_PLAYER_ID]
+ * @param {Number} [attachedvehicle=INVALID_VEHICLE_ID]
+ * @param {Number} [testlos=0]
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
+ * @param {Number} [streamdistance=100.0]
  * @return {Number} retval
  */
-function CreateDynamic3DTextLabel( text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, worldid, interiorid, playerid, streamdistance ){
-	attachedplayer = typeof attachedplayer !== 'undefined' ? attachedplayer : INVALID_PLAYER_ID;
-	attachedvehicle = typeof attachedvehicle !== 'undefined' ? attachedvehicle : INVALID_VEHICLE_ID;
-	testlos = typeof testlos !== 'undefined' ? testlos : 0;
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	var out = CallNativeGDK( "CreateDynamic3DTextLabel", "siffffiiiiiif", text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, worldid, interiorid, playerid, streamdistance );
-	return out;
+function CreateDynamic3DTextLabel(text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, worldid, interiorid, playerid, streamdistance)
+{
+	attachedplayer = typeof attachedplayer === 'undefined' ? INVALID_PLAYER_ID : attachedplayer;
+	attachedvehicle = typeof attachedvehicle === 'undefined' ? INVALID_VEHICLE_ID : attachedvehicle;
+	testlos = typeof testlos === 'undefined' ? 0 : testlos;
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	return CallNativeGDK("CreateDynamic3DTextLabel", "siffffiiiiiif", text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, worldid, interiorid, playerid, streamdistance);
 }
+
 /**
  * DestroyDynamic3DTextLabel
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamic3DTextLabel
- * @param {Number} STREAMER_TAG_3D_TEXT_LABEL id
+ * @param {Number} id
  * @return {Number} retval
  */
-function DestroyDynamic3DTextLabel( STREAMER_TAG_3D_TEXT_LABEL id ){
-	var out = CallNativeGDK( "DestroyDynamic3DTextLabel", "i", STREAMER_TAG_3D_TEXT_LABEL id );
-	return out;
+function DestroyDynamic3DTextLabel(id) {
+	return CallNativeGDK("DestroyDynamic3DTextLabel", "i", id);
 }
+
 /**
  * IsValidDynamic3DTextLabel
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamic3DTextLabel
- * @param {Number} STREAMER_TAG_3D_TEXT_LABEL id
+ * @param {Number} id
  * @return {Number} retval
  */
-function IsValidDynamic3DTextLabel( STREAMER_TAG_3D_TEXT_LABEL id ){
-	var out = CallNativeGDK( "IsValidDynamic3DTextLabel", "i", STREAMER_TAG_3D_TEXT_LABEL id );
-	return out;
+function IsValidDynamic3DTextLabel(id) {
+	return CallNativeGDK("IsValidDynamic3DTextLabel", "i", id);
 }
+
 /**
  * GetDynamic3DTextLabelText
  * @see https://wiki.sa-mp.com/wiki/GetDynamic3DTextLabelText
- * @param {Number} STREAMER_TAG_3D_TEXT_LABEL id
- * @param {Number} maxtext
+ * @param {Number} id
+ * @param {Number} [maxtext=256]
  * @return {String} text
  */
-function GetDynamic3DTextLabelText( STREAMER_TAG_3D_TEXT_LABEL id, maxtext ){
-	maxtext = typeof maxtext !== 'undefined' ? maxtext : 256;
-	var out = CallNativeGDK( "GetDynamic3DTextLabelText", "iSi", STREAMER_TAG_3D_TEXT_LABEL id, maxtext );
-	return out;
+function GetDynamic3DTextLabelText(id, maxtext)
+{
+	maxtext = typeof maxtext === 'undefined' ? 256 : maxtext;
+	return CallNativeGDK("GetDynamic3DTextLabelText", "iSi", id, maxtext);
 }
+
 /**
  * UpdateDynamic3DTextLabelText
  * @see https://wiki.sa-mp.com/wiki/UpdateDynamic3DTextLabelText
- * @param {Number} STREAMER_TAG_3D_TEXT_LABEL id
+ * @param {Number} id
  * @param {Number} color
  * @param {String} text
  * @return {Number} retval
  */
-function UpdateDynamic3DTextLabelText( STREAMER_TAG_3D_TEXT_LABEL id, color, text ){
-	var out = CallNativeGDK( "UpdateDynamic3DTextLabelText", "iis", STREAMER_TAG_3D_TEXT_LABEL id, color, text );
-	return out;
+function UpdateDynamic3DTextLabelText(id, color, text) {
+	return CallNativeGDK("UpdateDynamic3DTextLabelText", "iis", id, color, text);
 }
+
 /**
  * CreateDynamicCircle
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCircle
  * @param {Number} x
  * @param {Number} y
  * @param {Number} size
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicCircle( x, y, size, worldid, interiorid, playerid ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicCircle", "fffiii", x, y, size, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicCircle(x, y, size, worldid, interiorid, playerid)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicCircle", "fffiii", x, y, size, worldid, interiorid, playerid);
 }
+
 /**
  * CreateDynamicCylinder
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCylinder
@@ -1199,18 +1239,19 @@ function CreateDynamicCircle( x, y, size, worldid, interiorid, playerid ){
  * @param {Number} minz
  * @param {Number} maxz
  * @param {Number} size
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicCylinder( x, y, minz, maxz, size, worldid, interiorid, playerid ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicCylinder", "fffffiii", x, y, minz, maxz, size, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicCylinder(x, y, minz, maxz, size, worldid, interiorid, playerid)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicCylinder", "fffffiii", x, y, minz, maxz, size, worldid, interiorid, playerid);
 }
+
 /**
  * CreateDynamicSphere
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicSphere
@@ -1218,18 +1259,19 @@ function CreateDynamicCylinder( x, y, minz, maxz, size, worldid, interiorid, pla
  * @param {Number} y
  * @param {Number} z
  * @param {Number} size
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicSphere( x, y, z, size, worldid, interiorid, playerid ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicSphere", "ffffiii", x, y, z, size, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicSphere(x, y, z, size, worldid, interiorid, playerid)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicSphere", "ffffiii", x, y, z, size, worldid, interiorid, playerid);
 }
+
 /**
  * CreateDynamicRectangle
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicRectangle
@@ -1237,18 +1279,19 @@ function CreateDynamicSphere( x, y, z, size, worldid, interiorid, playerid ){
  * @param {Number} miny
  * @param {Number} maxx
  * @param {Number} maxy
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicRectangle( minx, miny, maxx, maxy, worldid, interiorid, playerid ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicRectangle", "ffffiii", minx, miny, maxx, maxy, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicRectangle(minx, miny, maxx, maxy, worldid, interiorid, playerid)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicRectangle", "ffffiii", minx, miny, maxx, maxy, worldid, interiorid, playerid);
 }
+
 /**
  * CreateDynamicCuboid
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCuboid
@@ -1258,18 +1301,19 @@ function CreateDynamicRectangle( minx, miny, maxx, maxy, worldid, interiorid, pl
  * @param {Number} maxx
  * @param {Number} maxy
  * @param {Number} maxz
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicCuboid( minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicCuboid", "ffffffiii", minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicCuboid(minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicCuboid", "ffffffiii", minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid);
 }
+
 /**
  * CreateDynamicCube
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCube
@@ -1279,95 +1323,97 @@ function CreateDynamicCuboid( minx, miny, minz, maxx, maxy, maxz, worldid, inter
  * @param {Number} maxx
  * @param {Number} maxy
  * @param {Number} maxz
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicCube( minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid ){
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicCube", "ffffffiii", minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicCube(minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid)
+{
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicCube", "ffffffiii", minx, miny, minz, maxx, maxy, maxz, worldid, interiorid, playerid);
 }
+
 /**
  * CreateDynamicPolygon
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicPolygon
- * @param {Number} points[]
- * @param {Number} minz
- * @param {Number} maxz
- * @param {Number} maxpoints
- * @param {Number} worldid
- * @param {Number} interiorid
- * @param {Number} playerid
+ * @param {String} points
+ * @param {Number} [minz=-FLOAT_INFINITY]
+ * @param {Number} [maxz=FLOAT_INFINITY]
+ * @param {Number} [maxpoints=256]
+ * @param {Number} [worldid=-1]
+ * @param {Number} [interiorid=-1]
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function CreateDynamicPolygon( points[], minz, maxz, maxpoints, worldid, interiorid, playerid ){
-	minz = typeof minz !== 'undefined' ? minz : -FLOAT_INFINITY;
-	maxz = typeof maxz !== 'undefined' ? maxz : FLOAT_INFINITY;
-	maxpoints = typeof maxpoints !== 'undefined' ? maxpoints : 256;
-	worldid = typeof worldid !== 'undefined' ? worldid : -1;
-	interiorid = typeof interiorid !== 'undefined' ? interiorid : -1;
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "CreateDynamicPolygon", "fffiiii", points[], minz, maxz, maxpoints, worldid, interiorid, playerid );
-	return out;
+function CreateDynamicPolygon(points, minz, maxz, maxpoints, worldid, interiorid, playerid)
+{
+	minz = typeof minz === 'undefined' ? -FLOAT_INFINITY : minz;
+	maxz = typeof maxz === 'undefined' ? FLOAT_INFINITY : maxz;
+	maxpoints = typeof maxpoints === 'undefined' ? 256 : maxpoints;
+	worldid = typeof worldid === 'undefined' ? -1 : worldid;
+	interiorid = typeof interiorid === 'undefined' ? -1 : interiorid;
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("CreateDynamicPolygon", "sffiiii", points, minz, maxz, maxpoints, worldid, interiorid, playerid);
 }
+
 /**
  * DestroyDynamicArea
  * @see https://wiki.sa-mp.com/wiki/DestroyDynamicArea
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @return {Number} retval
  */
-function DestroyDynamicArea( STREAMER_TAG_AREA areaid ){
-	var out = CallNativeGDK( "DestroyDynamicArea", "i", STREAMER_TAG_AREA areaid );
-	return out;
+function DestroyDynamicArea(areaid) {
+	return CallNativeGDK("DestroyDynamicArea", "i", areaid);
 }
+
 /**
  * IsValidDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsValidDynamicArea
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @return {Number} retval
  */
-function IsValidDynamicArea( STREAMER_TAG_AREA areaid ){
-	var out = CallNativeGDK( "IsValidDynamicArea", "i", STREAMER_TAG_AREA areaid );
-	return out;
+function IsValidDynamicArea(areaid) {
+	return CallNativeGDK("IsValidDynamicArea", "i", areaid);
 }
+
 /**
  * GetDynamicPolygonPoints
  * @see https://wiki.sa-mp.com/wiki/GetDynamicPolygonPoints
- * @param {Number} STREAMER_TAG_AREA areaid
- * @param {Number} points[]
- * @param {Number} maxpoints
- * @return {Number} retval
+ * @param {Number} areaid
+ * @param {Number} [maxpoints=256]
+ * @return {String} points
  */
-function GetDynamicPolygonPoints( STREAMER_TAG_AREA areaid, points[], maxpoints ){
-	maxpoints = typeof maxpoints !== 'undefined' ? maxpoints : 256;
-	var out = CallNativeGDK( "GetDynamicPolygonPoints", "ifi", STREAMER_TAG_AREA areaid, points[], maxpoints );
-	return out;
+function GetDynamicPolygonPoints(areaid, maxpoints)
+{
+	maxpoints = typeof maxpoints === 'undefined' ? 256 : maxpoints;
+	return CallNativeGDK("GetDynamicPolygonPoints", "iSi", areaid, maxpoints);
 }
+
 /**
  * GetDynamicPolygonNumberPoints
  * @see https://wiki.sa-mp.com/wiki/GetDynamicPolygonNumberPoints
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @return {Number} retval
  */
-function GetDynamicPolygonNumberPoints( STREAMER_TAG_AREA areaid ){
-	var out = CallNativeGDK( "GetDynamicPolygonNumberPoints", "i", STREAMER_TAG_AREA areaid );
-	return out;
+function GetDynamicPolygonNumberPoints(areaid) {
+	return CallNativeGDK("GetDynamicPolygonNumberPoints", "i", areaid);
 }
+
 /**
  * TogglePlayerDynamicArea
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerDynamicArea
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerDynamicArea( playerid, STREAMER_TAG_AREA areaid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerDynamicArea", "iii", playerid, STREAMER_TAG_AREA areaid, toggle );
-	return out;
+function TogglePlayerDynamicArea(playerid, areaid, toggle) {
+	return CallNativeGDK("TogglePlayerDynamicArea", "iii", playerid, areaid, toggle);
 }
+
 /**
  * TogglePlayerAllDynamicAreas
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerAllDynamicAreas
@@ -1375,94 +1421,98 @@ function TogglePlayerDynamicArea( playerid, STREAMER_TAG_AREA areaid, toggle ){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerAllDynamicAreas( playerid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerAllDynamicAreas", "ii", playerid, toggle );
-	return out;
+function TogglePlayerAllDynamicAreas(playerid, toggle) {
+	return CallNativeGDK("TogglePlayerAllDynamicAreas", "ii", playerid, toggle);
 }
+
 /**
  * IsPlayerInDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInDynamicArea
  * @param {Number} playerid
- * @param {Number} STREAMER_TAG_AREA areaid
- * @param {Number} recheck
+ * @param {Number} areaid
+ * @param {Number} [recheck=0]
  * @return {Number} retval
  */
-function IsPlayerInDynamicArea( playerid, STREAMER_TAG_AREA areaid, recheck ){
-	recheck = typeof recheck !== 'undefined' ? recheck : 0;
-	var out = CallNativeGDK( "IsPlayerInDynamicArea", "iii", playerid, STREAMER_TAG_AREA areaid, recheck );
-	return out;
+function IsPlayerInDynamicArea(playerid, areaid, recheck)
+{
+	recheck = typeof recheck === 'undefined' ? 0 : recheck;
+	return CallNativeGDK("IsPlayerInDynamicArea", "iii", playerid, areaid, recheck);
 }
+
 /**
  * IsPlayerInAnyDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInAnyDynamicArea
  * @param {Number} playerid
- * @param {Number} recheck
+ * @param {Number} [recheck=0]
  * @return {Number} retval
  */
-function IsPlayerInAnyDynamicArea( playerid, recheck ){
-	recheck = typeof recheck !== 'undefined' ? recheck : 0;
-	var out = CallNativeGDK( "IsPlayerInAnyDynamicArea", "ii", playerid, recheck );
-	return out;
+function IsPlayerInAnyDynamicArea(playerid, recheck)
+{
+	recheck = typeof recheck === 'undefined' ? 0 : recheck;
+	return CallNativeGDK("IsPlayerInAnyDynamicArea", "ii", playerid, recheck);
 }
+
 /**
  * IsAnyPlayerInDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsAnyPlayerInDynamicArea
- * @param {Number} STREAMER_TAG_AREA areaid
- * @param {Number} recheck
+ * @param {Number} areaid
+ * @param {Number} [recheck=0]
  * @return {Number} retval
  */
-function IsAnyPlayerInDynamicArea( STREAMER_TAG_AREA areaid, recheck ){
-	recheck = typeof recheck !== 'undefined' ? recheck : 0;
-	var out = CallNativeGDK( "IsAnyPlayerInDynamicArea", "ii", STREAMER_TAG_AREA areaid, recheck );
-	return out;
+function IsAnyPlayerInDynamicArea(areaid, recheck)
+{
+	recheck = typeof recheck === 'undefined' ? 0 : recheck;
+	return CallNativeGDK("IsAnyPlayerInDynamicArea", "ii", areaid, recheck);
 }
+
 /**
  * IsAnyPlayerInAnyDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsAnyPlayerInAnyDynamicArea
- * @param {Number} recheck
+ * @param {Number} [recheck=0]
  * @return {Number} retval
  */
-function IsAnyPlayerInAnyDynamicArea( recheck ){
-	recheck = typeof recheck !== 'undefined' ? recheck : 0;
-	var out = CallNativeGDK( "IsAnyPlayerInAnyDynamicArea", "i", recheck );
-	return out;
+function IsAnyPlayerInAnyDynamicArea(recheck)
+{
+	recheck = typeof recheck === 'undefined' ? 0 : recheck;
+	return CallNativeGDK("IsAnyPlayerInAnyDynamicArea", "i", recheck);
 }
+
 /**
  * GetPlayerDynamicAreas
  * @see https://wiki.sa-mp.com/wiki/GetPlayerDynamicAreas
  * @param {Number} playerid
- * @param {String} STREAMER_TAG_AREA areas
- * @param {Number} maxareas
- * @return {Number} retval
+ * @param {Number} [maxareas=256]
+ * @return {String} areas
  */
-function GetPlayerDynamicAreas( playerid, STREAMER_TAG_AREA areas, maxareas ){
-	maxareas = typeof maxareas !== 'undefined' ? maxareas : 256;
-	var out = CallNativeGDK( "GetPlayerDynamicAreas", "isi", playerid, STREAMER_TAG_AREA areas, maxareas );
-	return out;
+function GetPlayerDynamicAreas(playerid, maxareas)
+{
+	maxareas = typeof maxareas === 'undefined' ? 256 : maxareas;
+	return CallNativeGDK("GetPlayerDynamicAreas", "iSi", playerid, maxareas);
 }
+
 /**
  * GetPlayerNumberDynamicAreas
  * @see https://wiki.sa-mp.com/wiki/GetPlayerNumberDynamicAreas
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerNumberDynamicAreas( playerid ){
-	var out = CallNativeGDK( "GetPlayerNumberDynamicAreas", "i", playerid );
-	return out;
+function GetPlayerNumberDynamicAreas(playerid) {
+	return CallNativeGDK("GetPlayerNumberDynamicAreas", "i", playerid);
 }
+
 /**
  * IsPointInDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsPointInDynamicArea
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
  * @return {Number} retval
  */
-function IsPointInDynamicArea( STREAMER_TAG_AREA areaid, x, y, z ){
-	var out = CallNativeGDK( "IsPointInDynamicArea", "ifff", STREAMER_TAG_AREA areaid, x, y, z );
-	return out;
+function IsPointInDynamicArea(areaid, x, y, z) {
+	return CallNativeGDK("IsPointInDynamicArea", "ifff", areaid, x, y, z);
 }
+
 /**
  * IsPointInAnyDynamicArea
  * @see https://wiki.sa-mp.com/wiki/IsPointInAnyDynamicArea
@@ -1471,25 +1521,25 @@ function IsPointInDynamicArea( STREAMER_TAG_AREA areaid, x, y, z ){
  * @param {Number} z
  * @return {Number} retval
  */
-function IsPointInAnyDynamicArea( x, y, z ){
-	var out = CallNativeGDK( "IsPointInAnyDynamicArea", "fff", x, y, z );
-	return out;
+function IsPointInAnyDynamicArea(x, y, z) {
+	return CallNativeGDK("IsPointInAnyDynamicArea", "fff", x, y, z);
 }
+
 /**
  * GetDynamicAreasForPoint
  * @see https://wiki.sa-mp.com/wiki/GetDynamicAreasForPoint
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
- * @param {String} STREAMER_TAG_AREA areas
- * @param {Number} maxareas
- * @return {Number} retval
+ * @param {Number} [maxareas=256]
+ * @return {String} areas
  */
-function GetDynamicAreasForPoint( x, y, z, STREAMER_TAG_AREA areas, maxareas ){
-	maxareas = typeof maxareas !== 'undefined' ? maxareas : 256;
-	var out = CallNativeGDK( "GetDynamicAreasForPoint", "fffsi", x, y, z, STREAMER_TAG_AREA areas, maxareas );
-	return out;
+function GetDynamicAreasForPoint(x, y, z, maxareas)
+{
+	maxareas = typeof maxareas === 'undefined' ? 256 : maxareas;
+	return CallNativeGDK("GetDynamicAreasForPoint", "fffSi", x, y, z, maxareas);
 }
+
 /**
  * GetNumberDynamicAreasForPoint
  * @see https://wiki.sa-mp.com/wiki/GetNumberDynamicAreasForPoint
@@ -1498,47 +1548,48 @@ function GetDynamicAreasForPoint( x, y, z, STREAMER_TAG_AREA areas, maxareas ){
  * @param {Number} z
  * @return {Number} retval
  */
-function GetNumberDynamicAreasForPoint( x, y, z ){
-	var out = CallNativeGDK( "GetNumberDynamicAreasForPoint", "fff", x, y, z );
-	return out;
+function GetNumberDynamicAreasForPoint(x, y, z) {
+	return CallNativeGDK("GetNumberDynamicAreasForPoint", "fff", x, y, z);
 }
+
 /**
  * AttachDynamicAreaToObject
  * @see https://wiki.sa-mp.com/wiki/AttachDynamicAreaToObject
- * @param {Number} STREAMER_TAG_AREA areaid
- * @param {Number} STREAMER_ALL_TAGS objectid
- * @param {Number} type
- * @param {Number} playerid
+ * @param {Number} areaid
+ * @param {Number} objectid
+ * @param {Number} [type=STREAMER_OBJECT_TYPE_DYNAMIC]
+ * @param {Number} [playerid=INVALID_PLAYER_ID]
  * @return {Number} retval
  */
-function AttachDynamicAreaToObject( STREAMER_TAG_AREA areaid, STREAMER_ALL_TAGS objectid, type, playerid ){
-	type = typeof type !== 'undefined' ? type : STREAMER_OBJECT_TYPE_DYNAMIC;
-	playerid = typeof playerid !== 'undefined' ? playerid : INVALID_PLAYER_ID;
-	var out = CallNativeGDK( "AttachDynamicAreaToObject", "iiii", STREAMER_TAG_AREA areaid, STREAMER_ALL_TAGS objectid, type, playerid );
-	return out;
+function AttachDynamicAreaToObject(areaid, objectid, type, playerid)
+{
+	type = typeof type === 'undefined' ? STREAMER_OBJECT_TYPE_DYNAMIC : type;
+	playerid = typeof playerid === 'undefined' ? INVALID_PLAYER_ID : playerid;
+	return CallNativeGDK("AttachDynamicAreaToObject", "iiii", areaid, objectid, type, playerid);
 }
+
 /**
  * AttachDynamicAreaToPlayer
  * @see https://wiki.sa-mp.com/wiki/AttachDynamicAreaToPlayer
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @param {Number} playerid
  * @return {Number} retval
  */
-function AttachDynamicAreaToPlayer( STREAMER_TAG_AREA areaid, playerid ){
-	var out = CallNativeGDK( "AttachDynamicAreaToPlayer", "ii", STREAMER_TAG_AREA areaid, playerid );
-	return out;
+function AttachDynamicAreaToPlayer(areaid, playerid) {
+	return CallNativeGDK("AttachDynamicAreaToPlayer", "ii", areaid, playerid);
 }
+
 /**
  * AttachDynamicAreaToVehicle
  * @see https://wiki.sa-mp.com/wiki/AttachDynamicAreaToVehicle
- * @param {Number} STREAMER_TAG_AREA areaid
+ * @param {Number} areaid
  * @param {Number} vehicleid
  * @return {Number} retval
  */
-function AttachDynamicAreaToVehicle( STREAMER_TAG_AREA areaid, vehicleid ){
-	var out = CallNativeGDK( "AttachDynamicAreaToVehicle", "ii", STREAMER_TAG_AREA areaid, vehicleid );
-	return out;
+function AttachDynamicAreaToVehicle(areaid, vehicleid) {
+	return CallNativeGDK("AttachDynamicAreaToVehicle", "ii", areaid, vehicleid);
 }
+
 /**
  * CreateDynamicObjectEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicObjectEx
@@ -1549,25 +1600,29 @@ function AttachDynamicAreaToVehicle( STREAMER_TAG_AREA areaid, vehicleid ){
  * @param {Number} rx
  * @param {Number} ry
  * @param {Number} rz
- * @param {Number} drawdistance
- * @param {Number} streamdistance
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Number} [drawdistance=0.0]
+ * @param {Number} [streamdistance=200.0]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicObjectEx( modelid, x, y, z, rx, ry, rz, drawdistance, streamdistance, maxworlds, maxinteriors, maxplayers ){
-	drawdistance = typeof drawdistance !== 'undefined' ? drawdistance : 0.0;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 200.0;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicObjectEx", "iffffffffSSSiii", modelid, x, y, z, rx, ry, rz, drawdistance, streamdistance, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicObjectEx(modelid, x, y, z, rx, ry, rz, drawdistance, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	drawdistance = typeof drawdistance === 'undefined' ? 0.0 : drawdistance;
+	streamdistance = typeof streamdistance === 'undefined' ? 200.0 : streamdistance;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicObjectEx", "iffffffffaaaiii", modelid, x, y, z, rx, ry, rz, drawdistance, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicPickupEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicPickupEx
@@ -1576,23 +1631,27 @@ function CreateDynamicObjectEx( modelid, x, y, z, rx, ry, rz, drawdistance, stre
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
- * @param {Number} streamdistance
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Number} [streamdistance=100.0]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicPickupEx( modelid, type, x, y, z, streamdistance, maxworlds, maxinteriors, maxplayers ){
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicPickupEx", "iiffffSSSiii", modelid, type, x, y, z, streamdistance, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicPickupEx(modelid, type, x, y, z, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicPickupEx", "iiffffaaaiii", modelid, type, x, y, z, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicCPEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCPEx
@@ -1600,23 +1659,27 @@ function CreateDynamicPickupEx( modelid, type, x, y, z, streamdistance, maxworld
  * @param {Number} y
  * @param {Number} z
  * @param {Number} size
- * @param {Number} streamdistance
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Number} [streamdistance=100.0]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicCPEx( x, y, z, size, streamdistance, maxworlds, maxinteriors, maxplayers ){
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicCPEx", "fffffSSSiii", x, y, z, size, streamdistance, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicCPEx(x, y, z, size, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicCPEx", "fffffaaaiii", x, y, z, size, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicRaceCPEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicRaceCPEx
@@ -1628,23 +1691,27 @@ function CreateDynamicCPEx( x, y, z, size, streamdistance, maxworlds, maxinterio
  * @param {Number} nexty
  * @param {Number} nextz
  * @param {Number} size
- * @param {Number} streamdistance
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Number} [streamdistance=100.0]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicRaceCPEx( type, x, y, z, nextx, nexty, nextz, size, streamdistance, maxworlds, maxinteriors, maxplayers ){
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicRaceCPEx", "iffffffffSSSiii", type, x, y, z, nextx, nexty, nextz, size, streamdistance, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicRaceCPEx(type, x, y, z, nextx, nexty, nextz, size, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicRaceCPEx", "iffffffffaaaiii", type, x, y, z, nextx, nexty, nextz, size, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicMapIconEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicMapIconEx
@@ -1653,25 +1720,29 @@ function CreateDynamicRaceCPEx( type, x, y, z, nextx, nexty, nextz, size, stream
  * @param {Number} z
  * @param {Number} type
  * @param {Number} color
- * @param {Number} style
- * @param {Number} streamdistance
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Number} [style=MAPICON_LOCAL]
+ * @param {Number} [streamdistance=100.0]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicMapIconEx( x, y, z, type, color, style, streamdistance, maxworlds, maxinteriors, maxplayers ){
-	style = typeof style !== 'undefined' ? style : MAPICON_LOCAL;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicMapIconEx", "fffiiifSSSiii", x, y, z, type, color, style, streamdistance, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicMapIconEx(x, y, z, type, color, style, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	style = typeof style === 'undefined' ? MAPICON_LOCAL : style;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicMapIconEx", "fffiiifaaaiii", x, y, z, type, color, style, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamic3DTextLabelEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamic3DTextLabelEx
@@ -1681,50 +1752,58 @@ function CreateDynamicMapIconEx( x, y, z, type, color, style, streamdistance, ma
  * @param {Number} y
  * @param {Number} z
  * @param {Number} drawdistance
- * @param {Number} attachedplayer
- * @param {Number} attachedvehicle
- * @param {Number} testlos
- * @param {Number} streamdistance
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Number} [attachedplayer=INVALID_PLAYER_ID]
+ * @param {Number} [attachedvehicle=INVALID_VEHICLE_ID]
+ * @param {Number} [testlos=0]
+ * @param {Number} [streamdistance=100.0]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamic3DTextLabelEx( text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, streamdistance, maxworlds, maxinteriors, maxplayers ){
-	attachedplayer = typeof attachedplayer !== 'undefined' ? attachedplayer : INVALID_PLAYER_ID;
-	attachedvehicle = typeof attachedvehicle !== 'undefined' ? attachedvehicle : INVALID_VEHICLE_ID;
-	testlos = typeof testlos !== 'undefined' ? testlos : 0;
-	streamdistance = typeof streamdistance !== 'undefined' ? streamdistance : 100.0;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamic3DTextLabelEx", "siffffiiifSSSiii", text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, streamdistance, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamic3DTextLabelEx(text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	attachedplayer = typeof attachedplayer === 'undefined' ? INVALID_PLAYER_ID : attachedplayer;
+	attachedvehicle = typeof attachedvehicle === 'undefined' ? INVALID_VEHICLE_ID : attachedvehicle;
+	testlos = typeof testlos === 'undefined' ? 0 : testlos;
+	streamdistance = typeof streamdistance === 'undefined' ? 100.0 : streamdistance;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamic3DTextLabelEx", "siffffiiifaaaiii", text, color, x, y, z, drawdistance, attachedplayer, attachedvehicle, testlos, streamdistance, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicCircleEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCircleEx
  * @param {Number} x
  * @param {Number} y
  * @param {Number} size
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicCircleEx( x, y, size, maxworlds, maxinteriors, maxplayers ){
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicCircleEx", "fffSSSiii", x, y, size, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicCircleEx(x, y, size, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicCircleEx", "fffaaaiii", x, y, size, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicCylinderEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCylinderEx
@@ -1733,21 +1812,25 @@ function CreateDynamicCircleEx( x, y, size, maxworlds, maxinteriors, maxplayers 
  * @param {Number} minz
  * @param {Number} maxz
  * @param {Number} size
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicCylinderEx( x, y, minz, maxz, size, maxworlds, maxinteriors, maxplayers ){
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicCylinderEx", "fffffSSSiii", x, y, minz, maxz, size, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicCylinderEx(x, y, minz, maxz, size, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicCylinderEx", "fffffaaaiii", x, y, minz, maxz, size, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicSphereEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicSphereEx
@@ -1755,21 +1838,25 @@ function CreateDynamicCylinderEx( x, y, minz, maxz, size, maxworlds, maxinterior
  * @param {Number} y
  * @param {Number} z
  * @param {Number} size
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicSphereEx( x, y, z, size, maxworlds, maxinteriors, maxplayers ){
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicSphereEx", "ffffSSSiii", x, y, z, size, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicSphereEx(x, y, z, size, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicSphereEx", "ffffaaaiii", x, y, z, size, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicRectangleEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicRectangleEx
@@ -1777,21 +1864,25 @@ function CreateDynamicSphereEx( x, y, z, size, maxworlds, maxinteriors, maxplaye
  * @param {Number} miny
  * @param {Number} maxx
  * @param {Number} maxy
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicRectangleEx( minx, miny, maxx, maxy, maxworlds, maxinteriors, maxplayers ){
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicRectangleEx", "ffffSSSiii", minx, miny, maxx, maxy, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicRectangleEx(minx, miny, maxx, maxy, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicRectangleEx", "ffffaaaiii", minx, miny, maxx, maxy, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicCuboidEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCuboidEx
@@ -1801,21 +1892,25 @@ function CreateDynamicRectangleEx( minx, miny, maxx, maxy, maxworlds, maxinterio
  * @param {Number} maxx
  * @param {Number} maxy
  * @param {Number} maxz
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicCuboidEx( minx, miny, minz, maxx, maxy, maxz, maxworlds, maxinteriors, maxplayers ){
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicCuboidEx", "ffffffSSSiii", minx, miny, minz, maxx, maxy, maxz, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicCuboidEx(minx, miny, minz, maxx, maxy, maxz, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicCuboidEx", "ffffffaaaiii", minx, miny, minz, maxx, maxy, maxz, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicCubeEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicCubeEx
@@ -1825,56 +1920,64 @@ function CreateDynamicCuboidEx( minx, miny, minz, maxx, maxy, maxz, maxworlds, m
  * @param {Number} maxx
  * @param {Number} maxy
  * @param {Number} maxz
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicCubeEx( minx, miny, minz, maxx, maxy, maxz, maxworlds, maxinteriors, maxplayers ){
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicCubeEx", "ffffffSSSiii", minx, miny, minz, maxx, maxy, maxz, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicCubeEx(minx, miny, minz, maxx, maxy, maxz, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicCubeEx", "ffffffaaaiii", minx, miny, minz, maxx, maxy, maxz, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * CreateDynamicPolygonEx
  * @see https://wiki.sa-mp.com/wiki/CreateDynamicPolygonEx
- * @param {Number} points[]
- * @param {Number} minz
- * @param {Number} maxz
- * @param {Number} maxpoints
- * @param {Number} maxworlds
- * @param {Number} maxinteriors
- * @param {Number} maxplayers
- * @return {{ worlds: String,  interiors: String,  players: String }}
+ * @param {String} points
+ * @param {Number} [minz=-FLOAT_INFINITY]
+ * @param {Number} [maxz=FLOAT_INFINITY]
+ * @param {Number} [maxpoints=256]
+ * @param {Array} [worlds=[-1]]
+ * @param {Array} [interiors=[-1]]
+ * @param {Array} [players=[-1]]
+ * @param {Number} [maxworlds=256]
+ * @param {Number} [maxinteriors=256]
+ * @param {Number} [maxplayers=256]
+ * @return {Number} retval
  */
-function CreateDynamicPolygonEx( points[], minz, maxz, maxpoints, maxworlds, maxinteriors, maxplayers ){
-	minz = typeof minz !== 'undefined' ? minz : -FLOAT_INFINITY;
-	maxz = typeof maxz !== 'undefined' ? maxz : FLOAT_INFINITY;
-	maxpoints = typeof maxpoints !== 'undefined' ? maxpoints : 256;
-	worlds = typeof worlds !== 'undefined' ? worlds : { -1 };
-	interiors = typeof interiors !== 'undefined' ? interiors : { -1 };
-	players = typeof players !== 'undefined' ? players : { -1 };
-	maxworlds = typeof maxworlds !== 'undefined' ? maxworlds : 256;
-	maxinteriors = typeof maxinteriors !== 'undefined' ? maxinteriors : 256;
-	maxplayers = typeof maxplayers !== 'undefined' ? maxplayers : 256;
-	var out = CallNativeGDK( "CreateDynamicPolygonEx", "fffiSSSiii", points[], minz, maxz, maxpoints, maxworlds, maxinteriors, maxplayers, [ "worlds", "interiors", "players" ] );
-	return {worlds: out[0],interiors: out[1],players: out[2]};
+function CreateDynamicPolygonEx(points, minz, maxz, maxpoints, worlds, interiors, players, maxworlds, maxinteriors, maxplayers)
+{
+	minz = typeof minz === 'undefined' ? -FLOAT_INFINITY : minz;
+	maxz = typeof maxz === 'undefined' ? FLOAT_INFINITY : maxz;
+	maxpoints = typeof maxpoints === 'undefined' ? 256 : maxpoints;
+	worlds = typeof worlds === 'undefined' ? [-1] : worlds;
+	interiors = typeof interiors === 'undefined' ? [-1] : interiors;
+	players = typeof players === 'undefined' ? [-1] : players;
+	maxworlds = typeof maxworlds === 'undefined' ? 256 : maxworlds;
+	maxinteriors = typeof maxinteriors === 'undefined' ? 256 : maxinteriors;
+	maxplayers = typeof maxplayers === 'undefined' ? 256 : maxplayers;
+	return CallNativeGDK("CreateDynamicPolygonEx", "sffiaaaiii", points, minz, maxz, maxpoints, worlds, interiors, players, maxworlds, maxinteriors, maxplayers);
 }
+
 /**
  * Streamer_TickRate
  * @see https://wiki.sa-mp.com/wiki/Streamer_TickRate
  * @param {Number} rate
  * @return {Number} retval
  */
-function Streamer_TickRate( rate ){
-	var out = CallNativeGDK( "Streamer_TickRate", "i", rate );
-	return out;
+function Streamer_TickRate(rate) {
+	return CallNativeGDK("Streamer_TickRate", "i", rate);
 }
+
 /**
  * Streamer_MaxItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_MaxItems
@@ -1882,162 +1985,177 @@ function Streamer_TickRate( rate ){
  * @param {Number} items
  * @return {Number} retval
  */
-function Streamer_MaxItems( type, items ){
-	var out = CallNativeGDK( "Streamer_MaxItems", "ii", type, items );
-	return out;
+function Streamer_MaxItems(type, items) {
+	return CallNativeGDK("Streamer_MaxItems", "ii", type, items);
 }
+
 /**
  * Streamer_VisibleItems
  * @see https://wiki.sa-mp.com/wiki/Streamer_VisibleItems
  * @param {Number} type
  * @param {Number} items
- * @param {Number} playerid
+ * @param {Number} [playerid=-1]
  * @return {Number} retval
  */
-function Streamer_VisibleItems( type, items, playerid ){
-	playerid = typeof playerid !== 'undefined' ? playerid : -1;
-	var out = CallNativeGDK( "Streamer_VisibleItems", "iii", type, items, playerid );
-	return out;
+function Streamer_VisibleItems(type, items, playerid)
+{
+	playerid = typeof playerid === 'undefined' ? -1 : playerid;
+	return CallNativeGDK("Streamer_VisibleItems", "iii", type, items, playerid);
 }
+
 /**
  * Streamer_CellDistance
  * @see https://wiki.sa-mp.com/wiki/Streamer_CellDistance
  * @param {Number} distance
  * @return {Number} retval
  */
-function Streamer_CellDistance( distance ){
-	var out = CallNativeGDK( "Streamer_CellDistance", "f", distance );
-	return out;
+function Streamer_CellDistance(distance) {
+	return CallNativeGDK("Streamer_CellDistance", "f", distance);
 }
+
 /**
  * Streamer_CellSize
  * @see https://wiki.sa-mp.com/wiki/Streamer_CellSize
  * @param {Number} size
  * @return {Number} retval
  */
-function Streamer_CellSize( size ){
-	var out = CallNativeGDK( "Streamer_CellSize", "f", size );
-	return out;
+function Streamer_CellSize(size) {
+	return CallNativeGDK("Streamer_CellSize", "f", size);
 }
+
 /**
  * Streamer_CallbackHook
  * @see https://wiki.sa-mp.com/wiki/Streamer_CallbackHook
  * @param {Number} callback
+ * @param {Mixed} ...
  * @return {Number} retval
  */
-function Streamer_CallbackHook( callback ){
-	var out = CallNativeGDK( "Streamer_CallbackHook", "i", callback );
-	return out;
+function Streamer_CallbackHook(callback) {
+	return CallNativeGDK("Streamer_CallbackHook", "i", callback);
 }
+
 /**
  * DestroyAllDynamicObjects
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamicObjects
  * @return {Number} retval
  */
-function DestroyAllDynamicObjects(){
-	 return CallNativeGDK( "DestroyAllDynamicObjects" );
+function DestroyAllDynamicObjects() {
+	return CallNativeGDK("DestroyAllDynamicObjects");
 }
+
 /**
  * CountDynamicObjects
  * @see https://wiki.sa-mp.com/wiki/CountDynamicObjects
  * @return {Number} retval
  */
-function CountDynamicObjects(){
-	 return CallNativeGDK( "CountDynamicObjects" );
+function CountDynamicObjects() {
+	return CallNativeGDK("CountDynamicObjects");
 }
+
 /**
  * DestroyAllDynamicPickups
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamicPickups
  * @return {Number} retval
  */
-function DestroyAllDynamicPickups(){
-	 return CallNativeGDK( "DestroyAllDynamicPickups" );
+function DestroyAllDynamicPickups() {
+	return CallNativeGDK("DestroyAllDynamicPickups");
 }
+
 /**
  * CountDynamicPickups
  * @see https://wiki.sa-mp.com/wiki/CountDynamicPickups
  * @return {Number} retval
  */
-function CountDynamicPickups(){
-	 return CallNativeGDK( "CountDynamicPickups" );
+function CountDynamicPickups() {
+	return CallNativeGDK("CountDynamicPickups");
 }
+
 /**
  * DestroyAllDynamicCPs
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamicCPs
  * @return {Number} retval
  */
-function DestroyAllDynamicCPs(){
-	 return CallNativeGDK( "DestroyAllDynamicCPs" );
+function DestroyAllDynamicCPs() {
+	return CallNativeGDK("DestroyAllDynamicCPs");
 }
+
 /**
  * CountDynamicCPs
  * @see https://wiki.sa-mp.com/wiki/CountDynamicCPs
  * @return {Number} retval
  */
-function CountDynamicCPs(){
-	 return CallNativeGDK( "CountDynamicCPs" );
+function CountDynamicCPs() {
+	return CallNativeGDK("CountDynamicCPs");
 }
+
 /**
  * DestroyAllDynamicRaceCPs
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamicRaceCPs
  * @return {Number} retval
  */
-function DestroyAllDynamicRaceCPs(){
-	 return CallNativeGDK( "DestroyAllDynamicRaceCPs" );
+function DestroyAllDynamicRaceCPs() {
+	return CallNativeGDK("DestroyAllDynamicRaceCPs");
 }
+
 /**
  * CountDynamicRaceCPs
  * @see https://wiki.sa-mp.com/wiki/CountDynamicRaceCPs
  * @return {Number} retval
  */
-function CountDynamicRaceCPs(){
-	 return CallNativeGDK( "CountDynamicRaceCPs" );
+function CountDynamicRaceCPs() {
+	return CallNativeGDK("CountDynamicRaceCPs");
 }
+
 /**
  * DestroyAllDynamicMapIcons
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamicMapIcons
  * @return {Number} retval
  */
-function DestroyAllDynamicMapIcons(){
-	 return CallNativeGDK( "DestroyAllDynamicMapIcons" );
+function DestroyAllDynamicMapIcons() {
+	return CallNativeGDK("DestroyAllDynamicMapIcons");
 }
+
 /**
  * CountDynamicMapIcons
  * @see https://wiki.sa-mp.com/wiki/CountDynamicMapIcons
  * @return {Number} retval
  */
-function CountDynamicMapIcons(){
-	 return CallNativeGDK( "CountDynamicMapIcons" );
+function CountDynamicMapIcons() {
+	return CallNativeGDK("CountDynamicMapIcons");
 }
+
 /**
  * DestroyAllDynamic3DTextLabels
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamic3DTextLabels
  * @return {Number} retval
  */
-function DestroyAllDynamic3DTextLabels(){
-	 return CallNativeGDK( "DestroyAllDynamic3DTextLabels" );
+function DestroyAllDynamic3DTextLabels() {
+	return CallNativeGDK("DestroyAllDynamic3DTextLabels");
 }
+
 /**
  * CountDynamic3DTextLabels
  * @see https://wiki.sa-mp.com/wiki/CountDynamic3DTextLabels
  * @return {Number} retval
  */
-function CountDynamic3DTextLabels(){
-	 return CallNativeGDK( "CountDynamic3DTextLabels" );
+function CountDynamic3DTextLabels() {
+	return CallNativeGDK("CountDynamic3DTextLabels");
 }
+
 /**
  * DestroyAllDynamicAreas
  * @see https://wiki.sa-mp.com/wiki/DestroyAllDynamicAreas
  * @return {Number} retval
  */
-function DestroyAllDynamicAreas(){
-	 return CallNativeGDK( "DestroyAllDynamicAreas" );
+function DestroyAllDynamicAreas() {
+	return CallNativeGDK("DestroyAllDynamicAreas");
 }
+
 /**
  * CountDynamicAreas
  * @see https://wiki.sa-mp.com/wiki/CountDynamicAreas
  * @return {Number} retval
  */
-function CountDynamicAreas(){
-	 return CallNativeGDK( "CountDynamicAreas" );
+function CountDynamicAreas() {
+	return CallNativeGDK("CountDynamicAreas");
 }

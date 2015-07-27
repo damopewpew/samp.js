@@ -51,37 +51,18 @@ class Object
 		return SetObjectNoCameraCol(this.id);
 	}
 	
-	attachToVehicle(vehicle, offset, rot)
+	attach(attachTo, ox, oy, oz, rx, ry, rz, syncRot)
 	{
-		if(Array.isArray(offset)) {
-			offset = {x: offset[0], y: offset[1], z: offset[2]};
+		if(attachTo instanceof this.constructor) {
+			AttachObjectToObject(this.id, attachTo.id, ox, oy, oz, rx, ry, rz, syncRot);
 		}
-		if(Array.isArray(rot)) {
-			rot = {x: rot[0], y: rot[1], z: rot[2]};
+		else if(attachTo instanceof Player) {
+			AttachObjectToPlayer(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
 		}
-		return AttachObjectToVehicle(this.id, vehicle, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
-	}
-	
-	attachToObject(object, offset, rot, syncRot)
-	{
-		if(Array.isArray(offset)) {
-			offset = {x: offset[0], y: offset[1], z: offset[2]};
+		else if(attachTo instanceof Vehicle) {
+			AttachObjectToVehicle(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
 		}
-		if(Array.isArray(rot)) {
-			rot = {x: rot[0], y: rot[1], z: rot[2]};
-		}
-		return AttachObjectToObject(this.id, object, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z, syncRot);
-	}
-	
-	attachToPlayer(player, offset, rot)
-	{
-		if(Array.isArray(offset)) {
-			offset = {x: offset[0], y: offset[1], z: offset[2]};
-		}
-		if(Array.isArray(rot)) {
-			rot = {x: rot[0], y: rot[1], z: rot[2]};
-		}
-		return AttachObjectToPlayer(this.id, player, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
+		return this;
 	}
 	
 	setMaterial(matIndex, modelid, txdName, textureName, matColor) {
