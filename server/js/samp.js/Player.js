@@ -1146,7 +1146,7 @@ class Player extends Events {
 	}
 
 	objectGetPos(objectid) {
-		return GetPlayerObjectPos(this.id, objectid); //returns X, Y, Z object (yeah, uppercase =/)
+		return GetPlayerObjectPos(this.id, objectid);
 	}
 
 	objectSetRot(objectid, rot)
@@ -1158,7 +1158,7 @@ class Player extends Events {
 	}
 
 	objectGetRot(objectid) {
-		return GetPlayerObjectRot(this.id, objectid); //returns X, Y, Z object (yeah, uppercase =/)
+		return GetPlayerObjectRot(this.id, objectid);
 	}
 
 	objectModel(objectid) {
