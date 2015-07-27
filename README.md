@@ -1,4 +1,4 @@
-![samp.js - JavaScript for SA-MP](http://spiderc.net/samp.js/samp.js-logo.png)
+![samp.js - JavaScript for SA-MP](http://spiderc.net/samp.js/samp.js-new.png)
 
 samp.js is a plugin which allows you to write scripts and gamemodes for [San Andreas Multiplayer](http://sa-mp.com/) in JavaScript.
 
