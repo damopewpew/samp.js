@@ -1,4 +1,4 @@
-class Object
+class GlobalObject
 {
 	constructor(modelid, x, y, z, rx, ry, rz, drawDistance)
 	{
