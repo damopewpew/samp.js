@@ -1,34 +1,16 @@
-/**
- * @example
- * //Create a new GLOBAL textdraw:
- * var gTextDraw = new TextDraw(
- * {
- * 	   pos: [220.0, 320.0],
- *     text: 'Hello world!',
- *     color: 0xFF0000FF
- * });
- * gTextDraw.alignment = 2;
- * gTextDraw.showFor(player);
- * 
- * //Create a new PLAYER textdraw
- * player.td.example = new TextDraw(
- * {
- *     playerid: player,
- * 	   pos: [220.0, 320.0],
- *     text: 'Hello world!',
- *     color: 0xFF0000FF
- * });
- * player.td.example.alignment = 2;
- * player.td.example.show();
- */
-
-class TextDraw 
+class PlayerTextDraw 
 {
 	/**
 	 * Creates a new TextDraw object
+	 * @param {Number} playerid
+	 * @param {Number} x
+	 * @param {Number} y
+	 * @param {String} text
+	 *
+	 *
 	 * @param {Object|Array[2]} options.pos
-	 * @param {Number} [options.playerid]
-	 * @param {String} [options.text='']
+	 * @param {Number} options.playerid
+	 * @param {String} options.text
 	 * @param {Boolean} [options.selectable]
 	 * @param {Number} [options.color]
 	 * @param {Number} [options.boxColor]
@@ -48,24 +30,29 @@ class TextDraw
 	 */
 	constructor(options)
 	{
-		if(Array.isArray(options.pos)) {
-			options.pos = {x: options.pos[0], y: options.pos[1]};
-		}
-		this._pos = options.pos;
-		this._playerid = options.playerid;
-		this._text = options.hasOwnProperty('text') ? options.text : '';
-		
-		if(this.isGlobal()) {
-			this._id = TextDrawCreate(this._pos.x, this._pos.y, this._text);
-		}
-		else this._id = CreatePlayerTextDraw(this._playerid, this._pos.x, this._pos.y, this._text);
-		
-		for(let me in options) //plz let me in
+		if(arguments.length > 1)
 		{
-			if(me.charAt(0) == '_' || me == 'playerid' || me == 'pos' || me == 'text') {
+			this._playerid = arguments[0];
+			this._pos = {x: arguments[1], y: arguments[2]};
+			this._text = arguments[3];
+		}
+		else
+		{
+			if(Array.isArray(options.pos)) {
+				options.pos = {x: options.pos[0], y: options.pos[1]};
+			}
+			this._pos = options.pos;
+			this._playerid = options.playerid;
+			this._text = options.text;
+		}
+		this.id = CreatePlayerTextDraw(this._playerid, this._pos.x, this._pos.y, this._text);
+		
+		for(let opt in options)
+		{
+			if(opt.charAt(0) == '_' || opt == 'playerid' || opt == 'pos' || opt == 'text') {
 				continue;
 			}
-			this[me] = options[me];
+			this[opt] = options[opt];
 		}
 	}
 
@@ -74,7 +61,7 @@ class TextDraw
 	 * @description Shows the player-textdraw
 	 */
 	show() {
-		PlayerTextDrawShow(this._playerid, this._id);
+		return PlayerTextDrawShow(this._playerid, this.id);
 	}
 	
 	/**
@@ -82,51 +69,23 @@ class TextDraw
 	 * @description Hides the player-textdraw
 	 */
 	hide() {
-		PlayerTextDrawHide(this._playerid, this._id);
+		return PlayerTextDrawHide(this._playerid, this.id);
 	}
 	
 	/**
-	 * Shows the textdraw
-	 * @description Shows the global textdraw for player
-	 */
-	showFor(player) {
-		TextDrawShowForPlayer(player, this._id);
-	}
-	
-	/**
-	 * Hides the textdraw
-	 * @description Hides the global textdraw for player
-	 */
-	hideFor(player) {
-		TextDrawHideForPlayer(player, this._id);
-	}
-	
-	/**
-	 * Shows the textdraw for everyone
-	 * @description Shows the global textdraw for everyone
-	 */
-	showForAll() {
-		TextDrawShowForAll(this._id);
-	}
-	
-	/**
-	 * Hides the textdraw for everyone
-	 * @description Hides the global textdraw for everyone
-	 */
-	hideForAll() {
-		TextDrawHideForAll(this._id);
-	}
-	 
-	 /**
 	 * Destroys the textdraw
 	 */
-	destroy()
-	{
-		if(this.isGlobal()) {
-			TextDrawDestroy(this._id);
-		}
-		else PlayerTextDrawDestroy(this._playerid, this._id);
+	destroy() {
+		return PlayerTextDrawDestroy(this._playerid, this.id);
 	}
+	
+	/**
+	 * Returns the player textdraw id
+	 * @returns {Number} textdraw id
+	 */
+	 valueOf() {
+		 return this.id;
+	 }
 	
 	/**
 	 * Returns textdraw position
@@ -142,10 +101,7 @@ class TextDraw
 	 */
 	 set selectable(set)
 	 {
-		 if(this.isGlobal()) {
-			 TextDrawSetSelectable(this._id, set);
-		 }
-		 else PlayerTextDrawSetSelectable(this._playerid, this._id, set);
+		 PlayerTextDrawSetSelectable(this._playerid, this.id, set);
 		 this._selectable = !!set;
 	 }
 	 
@@ -163,10 +119,7 @@ class TextDraw
 	 */
 	set color(color) 
 	{
-		if(this.isGlobal()) {
-			TextDrawColor(this._id, color);
-		}
-		else PlayerTextDrawColor(this._playerid, this._id, color);
+		PlayerTextDrawColor(this._playerid, this.id, color);
 		this._color = color;
 	}
 	
@@ -181,18 +134,10 @@ class TextDraw
 	/**
 	 * Sets textdraw box color
 	 * @param {Number} color
-	 * @description Will auto-enable "useBox"
 	 */
 	set boxColor(color) 
 	{
-		if(this.isGlobal()) {
-			TextDrawBoxColor(this._id, color);
-		}
-		else PlayerTextDrawBoxColor(this._playerid, this._id, color);
-		
-		if(!this._useBox) {
-			this.useBox = true;
-		}
+		PlayerTextDrawBoxColor(this._playerid, this.id, color);
 		this._boxColor = color;
 	}
 	
@@ -210,10 +155,7 @@ class TextDraw
 	 */
 	set backgroundColor(color) 
 	{
-		if(this.isGlobal()) {
-			TextDrawBackgroundColor(this._id, color);
-		}
-		else PlayerTextDrawBackgroundColor(this._playerid, this._id, color);
+		PlayerTextDrawBackgroundColor(this._playerid, this.id, color);
 		this._backgroundColor = color;
 	}
 	
@@ -231,10 +173,7 @@ class TextDraw
 	 */
 	set alignment(align) 
 	{
-		if(this.isGlobal()) {
-			TextDrawAlignment(this._id, align);
-		}
-		else PlayerTextDrawAlignment(this._playerid, this._id, align);
+		PlayerTextDrawAlignment(this._playerid, this.id, align);
 		this._alignment = align;
 	}
 	
@@ -252,10 +191,7 @@ class TextDraw
 	 */
 	set font(font) 
 	{
-		if(this.isGlobal()) {
-			TextDrawFont(this._id, font);
-		}
-		else PlayerTextDrawFont(this._playerid, this._id, font);
+		PlayerTextDrawFont(this._playerid, this.id, font);
 		this._font = font;
 	}
 	
@@ -276,10 +212,7 @@ class TextDraw
 		if(Array.isArray(size)) {
 			size = {x: size[0], y: size[1]};
 		}
-		if(this.isGlobal()) {
-			TextDrawLetterSize(this._id, size.x, size.y);
-		}
-		else PlayerTextDrawLetterSize(this._playerid, this._id, size.x, size.y);
+		PlayerTextDrawLetterSize(this._playerid, this.id, size.x, size.y);
 		this._letterSize = size;
 	}
 	
@@ -300,10 +233,7 @@ class TextDraw
 		if(Array.isArray(size)) {
 			size = {x: size[0], y: size[1]};
 		}
-		if(this.isGlobal()) {
-			TextDrawTextSize(this._id, size.x, size.y);
-		}
-		else PlayerTextDrawTextSize(this._playerid, this._id, size.x, size.y);
+		PlayerTextDrawTextSize(this._playerid, this.id, size.x, size.y);
 		this._textSize = size;
 	}
 	
@@ -321,10 +251,7 @@ class TextDraw
 	 */
 	set outline(size)
 	{
-		if(this.isGlobal()) {
-			TextDrawSetOutline(this._id, size);
-		}
-		else PlayerTextDrawSetOutline(this._playerid, this._id, size);
+		PlayerTextDrawSetOutline(this._playerid, this.id, size);
 		this._outline = size;
 	}
 	
@@ -342,10 +269,7 @@ class TextDraw
 	 */
 	set shadow(size)
 	{
-		if(this.isGlobal()) {
-			TextDrawSetShadow(this._id, size);
-		}
-		else PlayerTextDrawSetShadow(this._playerid, this._id, size);
+		PlayerTextDrawSetShadow(this._playerid, this.id, size);
 		this._shadow = size;
 	}
 	
@@ -363,10 +287,7 @@ class TextDraw
 	 */
 	set proportional(set)
 	{
-		if(this.isGlobal()) {
-			TextDrawSetProportional(this._id, set);
-		}
-		else PlayerTextDrawSetProportional(this._playerid, this._id, set);
+		PlayerTextDrawSetProportional(this._playerid, this.id, set);
 		this._proportional = !!set;
 	}
 	
@@ -384,10 +305,7 @@ class TextDraw
 	 */
 	set useBox(set)
 	{
-		if(this.isGlobal()) {
-			TextDrawUseBox(this._id, set);
-		}
-		else PlayerTextDrawUseBox(this._playerid, this._id, set);
+		PlayerTextDrawUseBox(this._playerid, this.id, set);
 		this._useBox = !!set;
 	}
 	
@@ -402,18 +320,10 @@ class TextDraw
 	/**
 	 * Set the model for a textdraw model preview
 	 * @param {Number} modelindex
-	 * @description Will automatically change font to 4
 	 */
 	set previewModel(modelindex)
 	{
-		if(this.isGlobal()) {
-			TextDrawSetPreviewModel(this._id, modelindex);
-		}
-		else PlayerTextDrawSetPreviewModel(this._playerid, this._id, modelindex);
-		
-		if(this._font != TEXT_DRAW_FONT_MODEL_PREVIEW) {
-			this._font = TEXT_DRAW_FONT_MODEL_PREVIEW;
-		}
+		PlayerTextDrawSetPreviewModel(this._playerid, this.id, modelindex);
 		this._previewModel = modelindex;
 	}
 	
@@ -434,10 +344,7 @@ class TextDraw
 		if(Array.isArray(rot)) {
 			rot = {x: rot[0], y: rot[1], z: rot[2], zoom: rot[3]};
 		}
-		if(this.isGlobal()) {
-			TextDrawSetPreviewRot(this._id, rot.x, rot.y, rot.z, rot.zoom);
-		}
-		else PlayerTextDrawSetPreviewRot(this._playerid, this._id, rot.x, rot.y, rot.z, rot.zoom);
+		PlayerTextDrawSetPreviewRot(this._playerid, this.id, rot.x, rot.y, rot.z, rot.zoom);
 		this._previewRot = rot;
 	}
 	
@@ -458,10 +365,7 @@ class TextDraw
 		if(Array.isArray(col)) {
 			col = {color1: col[0], color2: col[1]};
 		}
-		if(this.isGlobal()) {
-			TextDrawSetPreviewVehCol(this._id, col.color1, col.color2);
-		}
-		else PlayerTextDrawSetPreviewVehCol(this._playerid, this._id, col.color1, col.color2);
+		PlayerTextDrawSetPreviewVehCol(this._playerid, this.id, col.color1, col.color2);
 		this._previewVehCol = col;
 	}
 	
@@ -479,10 +383,7 @@ class TextDraw
 	 */
 	set text(text)
 	{
-		if(this.isGlobal()) {
-			TextDrawSetString(this._id, text);
-		}
-		else PlayerTextDrawSetString(this._playerid, this._id, text);
+		PlayerTextDrawSetString(this._playerid, this.id, text);
 		this._text = text;
 	}
 	
@@ -492,21 +393,5 @@ class TextDraw
 	 */
 	get text() {
 		return this._text;
-	}
-	
-	/**
-	 * Returns the id of a textdraw
-	 * @returns {Boolean}
-	 */
-	get id() {
-		return this._id;
-	}
-	
-	/**
-	 * Checks if its a global textdraw
-	 * @returns {Boolean}
-	 */
-	isGlobal() {
-		return (this._playerid === undefined);
 	}
 };

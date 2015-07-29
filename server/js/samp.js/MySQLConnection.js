@@ -36,11 +36,15 @@ class MySQLConnection extends Events
 	
 	query(qry) 
 	{
-		if(arguments.length == 1) {
-			return this.internal.query(qry);
+		if(arguments.length == 1)
+		{
+			this.internal.query(qry);
+			return this;
 		}
-		if(typeof arguments[1] === 'function') {
-			return this.internal.query(qry, arguments[1]);
+		if(typeof arguments[1] === 'function')
+		{
+			this.internal.query(qry, arguments[1]);
+			return this;
 		}
 		let isObject;
 		
@@ -52,11 +56,14 @@ class MySQLConnection extends Events
 			;
 			qry = qry.replace(/\?/g, function() {return this.varEscape(isObject ? args : args[count++])}.bind(this));
 			
-			if(typeof arguments[2] === 'function') {
-				return this.internal.query(qry, arguments[2]);
+			if(typeof arguments[2] === 'function')
+			{
+				this.internal.query(qry, arguments[2]);
+				return this;
 			}
 		}
 		this.internal.query(qry);
+		return this;
 	}
 	
 	parseArray(array) 

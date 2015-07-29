@@ -54,15 +54,15 @@ class GlobalObject
 	attach(attachTo, ox, oy, oz, rx, ry, rz, syncRot)
 	{
 		if(attachTo instanceof this.constructor) {
-			AttachObjectToObject(this.id, attachTo.id, ox, oy, oz, rx, ry, rz, syncRot);
+			return AttachObjectToObject(this.id, attachTo.id, ox, oy, oz, rx, ry, rz, syncRot);
 		}
-		else if(attachTo instanceof Player) {
-			AttachObjectToPlayer(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
+		if(attachTo instanceof Player) {
+			return AttachObjectToPlayer(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
 		}
-		else if(attachTo instanceof Vehicle) {
-			AttachObjectToVehicle(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
+		if(attachTo instanceof Vehicle) {
+			return AttachObjectToVehicle(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
 		}
-		return this;
+		return 0;
 	}
 	
 	setMaterial(matIndex, modelid, txdName, textureName, matColor) {
