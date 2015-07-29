@@ -1,5 +1,7 @@
 ![samp.js - JavaScript for SA-MP](http://spiderc.net/samp.js/samp.js-new.png?t=5)
 
+![](http://damo.com.au/version.svg) ![](http://damo.com.au/updated.svg) ![](http://damo.com.au/downloads.svg) ![](http://damo.com.au/issues.svg) ![](http://damo.com.au/commits.svg) ![](http://damo.com.au/lastcommit.svg)
+
 samp.js is a plugin which allows you to write scripts and gamemodes for [San Andreas Multiplayer](http://sa-mp.com/) in JavaScript.
 
 samp.js is using version 4.3.61.23 of the V8 engine ( found in Chromium/Chrome ) and is very fast.
