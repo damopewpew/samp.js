@@ -35,6 +35,22 @@ class Server extends Events {
 		}
 		SendClientMessageToAll(color, message);
 	}
+	
+	gameText(text, time, style) {
+		return GameTextForAll(text, time, style);
+	}
+	
+	disableInteriorEnterExits() {
+		return DisableInteriorEnterExits();
+	}
+	
+	enableVehicleFriendlyFire() {
+		return EnableVehicleFriendlyFire();
+	}
+	
+	usePlayerPedAnims() {
+		return UsePlayerPedAnims();
+	}
 			
 	set time(hour){
 		this._time = hour;
