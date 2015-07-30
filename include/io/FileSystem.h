@@ -53,7 +53,7 @@ namespace sampjs {
 		static void appendFile(const FunctionCallbackInfo<Value>& args);
 		static void exists(const FunctionCallbackInfo<Value>& args);
 
-		Local<ArrayBuffer> FileSystem::readFile(std::string filename);
+		Local<ArrayBuffer> readFile(std::string filename);
 
 		std::map<unsigned int, JS_Callback*> _cbLocal;
 		int _cbLocalCount;
