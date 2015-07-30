@@ -9,8 +9,6 @@
 #include <map>
 
 
-#include <boost/filesystem/fstream.hpp>
-
 
 namespace sampjs {
 	struct JS_Callback {
@@ -62,9 +60,6 @@ namespace sampjs {
 		
 		int _bufferCount;
 		std::map<unsigned int,JS_AB*> buffers;
-
-		static std::vector<boost::filesystem::ifstream*> file_handles;
-
 	private:
 		Isolate *isolate;
 		Persistent<Context, CopyablePersistentTraits<Context>> context;

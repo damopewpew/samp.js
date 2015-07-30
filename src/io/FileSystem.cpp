@@ -121,7 +121,6 @@ int isUTF8(const char *data, size_t size)
 	return 1;
 }
 
-std::vector<fs::ifstream*> FileSystem::file_handles;
 
 void FileSystem::Init(Local<Context> ctx){
 	_cbLocalCount = 0;
