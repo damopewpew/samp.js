@@ -29,6 +29,27 @@ class GlobalTextDraw
 	 */
 	constructor(options)
 	{
+		/*
+		id
+		_pos
+		*/
+		this._selectable = null;
+		this._color = null;
+		this._boxColor = null;
+		this._backgroundColor = null;
+		this._alignment = null;
+		this._font = null;
+		this._letterSize = {x: null, y: null};
+		this._textSize = {x: null, y: null};
+		this._outline = null;
+		this._shadow = null;
+		this._proportional = null;
+		this._useBox = null;
+		this._previewModel = null;
+		this._previewRot = null;
+		this._previewVehCol = null;
+		this._text = null;
+		
 		if(arguments.length > 1)
 		{
 			this._pos = {x: arguments[0], y: arguments[1]};
@@ -46,7 +67,7 @@ class GlobalTextDraw
 		
 		for(let opt in options)
 		{
-			if(opt.charAt(0) == '_' || opt == 'pos' || opt == 'text') {
+			if(opt == 'pos' || opt == 'text' || !this.hasOwnProperty('_' + opt)) {
 				continue;
 			}
 			this[opt] = options[opt];

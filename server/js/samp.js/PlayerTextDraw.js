@@ -30,6 +30,28 @@ class PlayerTextDraw
 	 */
 	constructor(options)
 	{
+		/*
+		id
+		_playerid
+		_pos
+		*/
+		this._selectable = null;
+		this._color = null;
+		this._boxColor = null;
+		this._backgroundColor = null;
+		this._alignment = null;
+		this._font = null;
+		this._letterSize = {x: null, y: null};
+		this._textSize = {x: null, y: null};
+		this._outline = null;
+		this._shadow = null;
+		this._proportional = null;
+		this._useBox = null;
+		this._previewModel = null;
+		this._previewRot = null;
+		this._previewVehCol = null;
+		this._text = null;
+		
 		if(arguments.length > 1)
 		{
 			this._playerid = arguments[0];
@@ -49,7 +71,7 @@ class PlayerTextDraw
 		
 		for(let opt in options)
 		{
-			if(opt.charAt(0) == '_' || opt == 'playerid' || opt == 'pos' || opt == 'text') {
+			if(opt == 'playerid' || opt == 'pos' || opt == 'text' || !this.hasOwnProperty('_' + opt)) {
 				continue;
 			}
 			this[opt] = options[opt];
