@@ -91,7 +91,7 @@ class Player extends Events {
 /** Cached weather
  * @type {Number} */
 		this._weather = 0;
-		this._targetActor = INVALID_ACTOR_ID;
+		this._targetActor = 0;
 		this._drunkLevel = 0;
 		this._time = {hour: 0, minute: 0};
 		this._shopName = '';
