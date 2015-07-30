@@ -3,13 +3,13 @@
  * based of Grand Larceny by the SA-MP Team
  */
 
-include("js/include/a_samp.inc.js");
-include("js/include/a_players.inc.js");
-include("js/include/a_vehicles.inc.js");
-include("js/include/a_objects.inc.js");
-include("js/include/a_actor.inc.js");
+include("a_samp.inc.js");
+include("a_players.inc.js");
+include("a_vehicles.inc.js");
+include("a_objects.inc.js");
+include("a_actor.inc.js");
 
-var hm = require('heightmap').nobuffer('scriptfiles/SAfull.hmap');
+
 
 const CITY_LOS_SANTOS = 0;
 const CITY_SAN_FIERRO = 1;
@@ -29,6 +29,13 @@ $server.on('ScriptInit', function(){
 	print("\n---------------------------------------");
 	print("Running Grand Larceny for samp.js\n");
 	print("---------------------------------------\n");
+});
+
+$server.on('ScriptExit', function(){
+	for(let player of $players){
+		player.hideTextDraw(player.td.test);
+		TextDrawDestroy(player.td.test);
+	}
 });
 
 $server.on('PlayerConnect', function(player){
@@ -148,7 +155,6 @@ function ClassSel_InitTextDraws(){
 }
 
 function ClassSel_SetupSelectedCity(player){
-	CancelTimer(player.cityTimer);
 	
 	if(player.citySelection == -1){
 		player.citySelection = CITY_LOS_SANTOS;	
@@ -157,8 +163,13 @@ function ClassSel_SetupSelectedCity(player){
 	if(player.citySelection == CITY_LOS_SANTOS){
 		
 		player.interior = 0;
-		player.cameraPos = [ 1630.6136,-2286.0298,110.0 ];
-		player.cameraLookAt = [ 1887.6034,-1682.1442,47.6167 ];
+		//player.cameraPos = [ 1630.6136,-2286.0298,110.0 ];
+		//player.cameraLookAt = [ 1887.6034,-1682.1442,47.6167 ];
+		
+		var camPos = player.cameraPos;
+		var camLook = player.cameraLookAt;
+		InterpolateCameraPos(player.id,camPos.x,camPos.y,camPos.z, 1630.6136,-2286.0298,110.0, 10000, 1 );
+		InterpolateCameraLookAt( player.id, camLook.x, camLook.y, camLook.z, 1887.6034,-1682.1442,47.6167, 1000, 1 );
 		
 		player.showTextDraw(td.lossantos);
 		player.hideTextDraw(td.sanfierro);
@@ -167,8 +178,13 @@ function ClassSel_SetupSelectedCity(player){
 		
 	} else if(player.citySelection == CITY_SAN_FIERRO){
 		player.interior = 0;
-		player.cameraPos = [ -1300.8754,68.0546,129.4823 ];
-		player.cameraLookAt = [ -1817.9412,769.3878,132.6589 ];
+	//	player.cameraPos = [ -1300.8754,68.0546,129.4823 ];
+	//	player.cameraLookAt = [ -1817.9412,769.3878,132.6589 ];
+		
+		var camPos = player.cameraPos;
+		var camLook = player.cameraLookAt;
+		InterpolateCameraPos(player.id,camPos.x,camPos.y,camPos.z, -1300.8754,68.0546,129.4823, 10000, 1 );
+		InterpolateCameraLookAt( player.id, camLook.x, camLook.y, camLook.z, -1817.9412,769.3878,132.6589, 1000, 1 );
 		
 		player.showTextDraw(td.sanfierro);
 		player.hideTextDraw(td.lossantos);
@@ -176,17 +192,19 @@ function ClassSel_SetupSelectedCity(player){
 		
 	} else if(player.citySelection == CITY_LAS_VENTURAS){
 		player.interior = 0;
-		player.cameraPos = [ 1310.6155,1675.9182,110.7390];
-		player.cameraLookAt = [ 2285.2944,1919.3756,68.2275 ];
+		//player.cameraPos = [ 1310.6155,1675.9182,110.7390];
+		//player.cameraLookAt = [ 2285.2944,1919.3756,68.2275 ];
+		var camPos = player.cameraPos;
+		var camLook = player.cameraLookAt;
+		InterpolateCameraPos(player.id,camPos.x,camPos.y,camPos.z, 1310.6155,1675.9182,110.7390, 10000, 1 );
+		InterpolateCameraLookAt( player.id, camLook.x, camLook.y, camLook.z, 2285.2944,1919.3756,68.2275, 1000, 1 );
 		
 		player.showTextDraw(td.lasventuras);
 		player.hideTextDraw(td.lossantos);
 		player.hideTextDraw(td.sanfierro);
 	}
 	
-	player.cityTimer = SetTimer(function(player){
-		let cpos = player._cameraPos;
-	}.bind(this,player), 100, -1);
+	
 }
 
 function ClassSel_SwitchToNextCity(player){
