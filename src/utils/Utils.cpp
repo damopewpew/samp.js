@@ -85,7 +85,7 @@ void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Valu
 		wcstombs(sstr, wstr, slen + 1);
 		sjs::logger::printf("%s", sstr);
 
-		delete[] wstr;
+
 		delete[] sstr;
 		//printf("%s\n", n.c_str());
 		//wprintf(L"%s\n", n2);
