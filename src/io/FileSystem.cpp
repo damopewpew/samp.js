@@ -121,6 +121,8 @@ int isUTF8(const char *data, size_t size)
 	return 1;
 }
 
+std::vector<fs::ifstream*> FileSystem::file_handles;
+
 void FileSystem::Init(Local<Context> ctx){
 	_cbLocalCount = 0;
 	_bufferCount = 0;
@@ -241,6 +243,8 @@ void FileSystem::open(const FunctionCallbackInfo<Value>& args){
 	fs::path file(path);
 	fs::ifstream* infile = new fs::ifstream(file, std::ios::in | std::ios::binary | std::ios::ate);
 
+//	file_handles.push_back(infile);
+
 	Local<ObjectTemplate> obt = ObjectTemplate::New();
 	obt->SetInternalFieldCount(1);
 	
@@ -279,17 +283,19 @@ void FileSystem::read(const FunctionCallbackInfo<Value>& args){
 	
 	std::vector<char> buf(amount);
 	infile->read(buf.data(), buf.size());
-	
-	Local<ArrayBuffer> ab = ArrayBuffer::New(args.GetIsolate(), buf.data(), buf.size());
 
+	JS_AB *jab = new JS_AB();
+	jab->buffer = buf;
+
+	Local<ArrayBuffer> ab = ArrayBuffer::New(args.GetIsolate(), jab->buffer.data(), buf.size());
+	jab->ab.Reset(args.GetIsolate(), ab);
 	unsigned int id = fs->_bufferCount++;
-	fs->buffers[id] = new JS_AB();
-	fs->buffers[id]->ab.Reset(args.GetIsolate(), ab);
-	fs->buffers[id]->buffer = buf;
-	fs->buffers[id]->id = id;
-
+	jab->id = id;
+	fs->buffers[id] = jab;
+	jab->ab.SetWeak(jab, FileSystem::FreeCallback, WeakCallbackType::kParameter);
+	
 	args.GetIsolate()->AdjustAmountOfExternalAllocatedMemory(buf.size());
-	fs->buffers[id]->ab.SetWeak(fs->buffers[id], FileSystem::FreeCallback, WeakCallbackType::kParameter);
+	
 	args.GetReturnValue().Set(ab);
 }
 
@@ -423,6 +429,46 @@ void FileSystem::readdir(const FunctionCallbackInfo<Value>& args){
 	args.GetReturnValue().Set(files);
 }
 
+Local<ArrayBuffer> FileSystem::readFile(std::string filename){
+	fs::path file(filename);
+	fs::ifstream infile(file, std::ios::in | std::ios::binary | std::ios::ate);
+
+
+	infile.seekg(0, std::ios::end);
+	std::streampos length = infile.tellg();
+
+	std::vector<char> buffer((unsigned int)length);
+
+	infile.seekg(0, std::ios::beg);
+
+	infile.read(&buffer[0], length);
+
+	infile.close();
+
+
+	Locker locker(isolate);
+	Isolate::Scope isoscope(isolate);
+	EscapableHandleScope handle_scope(isolate);
+
+	Local<Context> ctx = Local<Context>::New(isolate, context);
+	Context::Scope cs(ctx);
+
+	JS_AB *jab = new JS_AB();
+	jab->buffer = buffer;
+
+	Local<ArrayBuffer> ab = ArrayBuffer::New(isolate, jab->buffer.data(), buffer.size());
+	jab->ab.Reset(isolate, ab);
+	unsigned int id = _bufferCount++;
+	jab->id = id;
+	buffers[id] = jab;
+	jab->ab.SetWeak(jab, FileSystem::FreeCallback, WeakCallbackType::kParameter);
+
+	isolate->AdjustAmountOfExternalAllocatedMemory(buffer.size());
+
+	return handle_scope.Escape(ab);
+
+}
+
 
 void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 	if (args.Length() < 1){
@@ -430,6 +476,10 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 		args.GetReturnValue().Set(false);
 		return;
 	}
+
+	auto wrap = Local<External>::Cast(args.Holder()->GetInternalField(0));
+	void *ptr = wrap->Value();
+	FileSystem* fs = static_cast<FileSystem*>(ptr);
 
 	const char *path;
 	const String::Utf8Value jsString(args[0]);
@@ -441,24 +491,14 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 		return;
 	}
 
-	if (args.Length() > 1){
-		std::string encoding = "utf8";
-		Local<Function> func;
-		if (args[1]->IsString()){
-			encoding = JS2STRING(args[1]);
-			func = Local<Function>::Cast(args[2]);
-		}
-		else {
-			func = Local<Function>::Cast(args[1]);
-		}
+	if (args[args.Length()-1]->IsFunction()){
+
+		Local<Function> func = Local<Function>::Cast(args[args.Length()-1]);
+	
 		// Async Callback mode
 
-		auto wrap = Local<External>::Cast(args.Holder()->GetInternalField(0));
-		void *ptr = wrap->Value();
-		FileSystem* fs = static_cast<FileSystem*>(ptr);
-
+		
 		JS_Callback *callback= new JS_Callback(func);
-		callback->encoding = encoding;
 
 		int lid = fs->_cbLocalCount;
 		fs->_cbLocal[fs->_cbLocalCount++] = callback;
@@ -469,8 +509,20 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 		thread( [fs, path2,lid](){
 			
 			JS_Callback *callback = fs->_cbLocal[lid];
-			
-			fs::path file(path2);
+
+			Locker locker(callback->isolate);
+			Isolate::Scope isoscope(callback->isolate);
+			HandleScope handle_scope(callback->isolate);
+
+			Local<Context> ctx = Local<Context>::New(callback->isolate, callback->context);
+			Context::Scope cs(ctx);
+
+
+			Local<Value> argv[1] = { String::NewFromUtf8(callback->isolate, "") };
+
+			Local<ArrayBuffer> ab = fs->readFile(path2);
+			argv[0] = ab;
+	/*		fs::path file(path2);
 			fs::ifstream infile(file, std::ios::in | std::ios::binary | std::ios::ate );
 
 
@@ -493,7 +545,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 			Local<Context> ctx = Local<Context>::New(callback->isolate, callback->context);
 			Context::Scope cs(ctx);
 
-			Local<Value> argv[1] = { String::NewFromUtf8(callback->isolate, "") };
+			
 
 			if (callback->encoding == "utf8"){
 				std::string data(buffer.data(),buffer.size());
@@ -534,7 +586,7 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 
 				callback->isolate->AdjustAmountOfExternalAllocatedMemory(buffer.size());
 			}
-			
+			*/
 
 		
 			Local<Function> func = Local<Function>::New(callback->isolate, callback->callback);
@@ -550,20 +602,20 @@ void FileSystem::readFile(const FunctionCallbackInfo<Value>& args){
 
 	}	
 	else {
-
-		fs::path file(path);
-
-		std::ifstream infile(file.native());
+		Local<ArrayBuffer> ab = fs->readFile(path);
+	/*	std::ifstream infile(file.native());
 
 		std::string data((std::istreambuf_iterator<char>(infile)), std::istreambuf_iterator<char>());
-		infile.close();
-
+		infile.close(); */
+		/*
 		if (!isUTF8(data.c_str(), data.length())){
 			sjs::logger::error("Error: $fs::readFile() - only UTF-8 encoding is supported (%s)", path);
 			args.GetReturnValue().Set(false);
 			return;
-		}
-		args.GetReturnValue().Set(String::NewFromUtf8(args.GetIsolate(), data.c_str()));
+		} */
+
+		
+		args.GetReturnValue().Set(ab);
 	}
 
 } 

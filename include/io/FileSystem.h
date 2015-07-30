@@ -17,7 +17,6 @@ namespace sampjs {
 		Isolate* isolate;
 		Persistent<Function, CopyablePersistentTraits<Function>> callback;
 		Persistent<Context, CopyablePersistentTraits<Context>> context;
-		std::string encoding = "";
 		JS_Callback(Local<Function> callback_){
 			this->isolate = callback_->CreationContext()->GetIsolate();
 			this->callback.Reset(callback_->CreationContext()->GetIsolate(), callback_);
@@ -56,11 +55,15 @@ namespace sampjs {
 		static void appendFile(const FunctionCallbackInfo<Value>& args);
 		static void exists(const FunctionCallbackInfo<Value>& args);
 
+		Local<ArrayBuffer> FileSystem::readFile(std::string filename);
+
 		std::map<unsigned int, JS_Callback*> _cbLocal;
 		int _cbLocalCount;
 		
 		int _bufferCount;
 		std::map<unsigned int,JS_AB*> buffers;
+
+		static std::vector<boost::filesystem::ifstream*> file_handles;
 
 	private:
 		Isolate *isolate;

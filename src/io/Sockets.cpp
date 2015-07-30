@@ -251,6 +251,7 @@ void Sockets::Do_Listen(int id){
 			string clientip = sock.remote_endpoint().address().to_string();
 			if (sock.is_open()){
 				sjs::logger::debug("Socket Open: %s", clientip.c_str());
+
 			}
 
 		}

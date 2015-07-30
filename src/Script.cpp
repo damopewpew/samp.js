@@ -331,6 +331,15 @@ $modules._cache[")" + safepath + R"("] = (function(){
 }
 
 Local<Value> sampjs::Script::LoadScript(string filename, Isolate *isolate,Local<Context> context){
+	
+	if (!fs::exists(filename)){
+		if (fs::exists("js/" + filename)){
+			filename = "js/" + filename;
+		}
+		else if (fs::exists("js/include/" + filename)){
+			filename = "js/include/" + filename;
+		}
+	}
 	ifstream file(filename);
 	if (!file){
 		sjs::logger::error("Failed to load script: %s", filename.c_str());

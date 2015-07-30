@@ -22,8 +22,9 @@
 
 
 #define VERSION_MAJOR 0
-#define VERSION_MINOR 2
-#define VERSION_BUGFIX 0
+#define VERSION_MINOR 1
+#define VERSION_BUGFIX 9
+#define VERSION_REVISION 5
 
 typedef void(*logprintf_t)(char* format, ...);
 logprintf_t logprintf;
@@ -75,7 +76,7 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData){
 	pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 	sjs::logger::printf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
 	sjs::logger::log("%s samp.js %s", std::string(30, '-').c_str(),std::string(30, '-').c_str());
-	sjs::logger::log("*** Loaded samp.js v%i.%i.%i by !damo!spiderman ***", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX);
+	sjs::logger::log("*** Loaded samp.js v%i.%i.%i.%i by !damo!spiderman ***", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_REVISION);
 	sjs::logger::log("%s", std::string(69, '-').c_str());
 	ReadConfig();
 
@@ -177,7 +178,6 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *pa
 		}
 	} 
 	bool ret = sampjs::SAMPJS::PublicCall(name, params, retval); 
-
 	return ret;
 }
 

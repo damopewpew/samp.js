@@ -116,13 +116,13 @@ bool SAMPJS::PublicCall(const char *name, cell *params, cell *retval){
 	if (Script::_publics.find(name) == Script::_publics.end()) return true;
 	for (auto script : scripts){
 		bool shouldReturn = false;
-		bool returnval = script.second->PublicCall(name, params, shouldReturn);
-		*retval = (cell)returnval;
+		int returnval = script.second->PublicCall(name, params, shouldReturn);
+		retval = (cell*)returnval;
 		if (shouldReturn){
 			return returnval;
 		}
 	}	
-	return NULL;
+	return true;
 }
 
 Local<Value> SAMPJS::ExecuteCode(Local<Context> context, string name, string code,int offset){

@@ -43,13 +43,13 @@ void Players::Init(Local<Context> ctx) {
 	std::string playersSource((std::istreambuf_iterator<char>(playersFile)), std::istreambuf_iterator<char>());
 	SAMPJS::ExecuteCode(ctx, "Players.js", playersSource);
 	
-	SAMPJS::ExecuteCode(ctx, "$players", R"(var $players = new Players(); 
+	SAMPJS::ExecuteCode(ctx, "$players", R"(var $__PLAYER__ = new Player(65535);
+var $players = new Players(); 
 $players[Symbol.iterator] = function* (){
 	for(var i in this){
 		yield this.getPlayer(i);	
 	}
-};
-)", 6);
+};)", 7);
 }
 
 void Players::Shutdown(){
@@ -78,7 +78,7 @@ Local<Object> Players::GetPlayerObject(int playerid){
 
 	JS_Object global(isolate->GetCallingContext()->Global());
 	if (playerid == 65535){ //INVALID_PLAYER_ID
-		Local<Object> val = global.getObject("$PLAYER");
+		Local<Object> val = global.getObject("$__PLAYER__");
 		return handle_scope.Escape(val);
 	}
 	Local<Value> val = global.getObject("$players")->Get(playerid);
