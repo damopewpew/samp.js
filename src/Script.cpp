@@ -389,14 +389,14 @@ Local<Value> sampjs::Script::LoadScript(string filename, Isolate *isolate,Local<
 }
 
 
-bool sampjs::Script::PublicCall(string name, cell *params, bool &shouldReturn){
+int sampjs::Script::PublicCall(string name, cell *params, bool &shouldReturn){
 	PublicDef* def = _publics[name];
 	int retval = server->FireNative(def->event, def->format, def->arg_names, params);
 	if ((retval >0) == def->cancel){
 		shouldReturn = true;
 	}
 	if (retval == -1) return !def->cancel;
-	return (retval > 0);
+	return retval;
 }
 
 shared_ptr<Server> sampjs::Script::Server(){

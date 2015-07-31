@@ -49,7 +49,7 @@ namespace sampjs {
 		static Local<Value> RequireScript(std::string name, Isolate *isolate, Local<Context> context);
 		static Local<Value> LoadScript(std::string filename, Isolate *isolate, Local<Context> context);
 		
-		bool PublicCall(std::string name, cell *params, bool & shouldReturn);
+		int PublicCall(std::string name, cell *params, bool & shouldReturn);
 
 		void LoadModules();
 		bool ModuleExists(std::string name);

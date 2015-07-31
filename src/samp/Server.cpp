@@ -367,7 +367,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 		case 'i':
 			{
 				param_value[i] = args[k]->Int32Value();
-				params[j++] = &param_value[i];
+				params[j++] = static_cast<void*>(&param_value[i]);
 				k++;
 				format_str += format[i];
 			
@@ -379,7 +379,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				if (!args[k]->IsUndefined()) val = args[k]->NumberValue();
 
 				param_value[i] = amx_ftoc(val);
-				params[j++] = &param_value[i];
+				params[j++] = static_cast<void*>(&param_value[i]);
 				k++;
 				format_str += format[i];
 			}
@@ -391,7 +391,14 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				size_t slen = args[k]->ToString()->Length();
 				//param_str.push_back(new char[slen + 1]);
 				//wcstombs(param_str.back(), wstr, slen+1);
-				params[j] = (void*)*jstring;
+				const char* str = ToCString(jstring);
+
+				char* mystr = new char[slen + 1];
+				for (int x = 0; x < slen; x++){
+					mystr[x] = str[x];
+				}
+				mystr[slen] = '\0';
+				params[j] = static_cast<void*>(mystr);
 				j++;
 				k++;
 				format_str += format[i];
@@ -422,7 +429,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				int sz = sprintf(buffer, "a[%i]", size);
 				buffer[sz] = '\0';
 				format_str += string(buffer);
-				params[j++] = value;
+				params[j++] = static_cast<void*>(value);
 				strs++;
 				
 			}
@@ -449,7 +456,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				int sz = sprintf(buffer, "a[%i]",size);
 				buffer[sz] = '\0';
 				format_str += string(buffer);
-				params[j++] = value;
+				params[j++] = static_cast<void*>(value);
 				strs++;
 
 			}
@@ -458,7 +465,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 		case 'I':
 			{
 				vars++;
-				params[j++] = &param_value[i];
+				params[j++] = static_cast<void*>(&param_value[i]);
 				format_str += 'R';
 			}
 			break;
@@ -471,7 +478,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				for (int c = 0; c < size; c++){
 					value[c] = 0;
 				}
-				params[j++] = value;
+				params[j++] = static_cast<void*>(value);
 				char buffer[10];
 				int bsize = sprintf(buffer, "A[%i]", size);
 				buffer[bsize] = '\0';
@@ -490,7 +497,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 					value[c] = amx_ftoc(fl);
 				}
 
-				params[j++] = value;
+				params[j++] = static_cast<void*>(value);
 				char buffer[10];
 				int bsize = sprintf(buffer, "A[%i]", size);
 				buffer[bsize] = '\0';
@@ -509,7 +516,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				int size = sprintf(buffer, "S[%i]", strlen);
 				buffer[size] = '\0';
 				format_str += string(buffer);
-				params[j++] = new cell[strlen+1]{'\0'};
+				char* mycell = new char[strlen + 1]{'\0'};
+				params[j++] = static_cast<void*>(mycell);
 				vars++;
 				i++;
 			}
@@ -517,8 +525,6 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 	
 		}
 	}	
-	
-
 	int retval = sampgdk::InvokeNativeArray(native, format_str.c_str(), params);
 
 	
@@ -551,8 +557,9 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				{
 					int size = param_size[j];
 					Local<Array> rArr = Array::New(args.GetIsolate(), size);
+					cell* prams = static_cast<cell*>(params[j]);
 					for (int c = 0; c < size; c++){
-						rArr->Set(c, Integer::New(args.GetIsolate(),((int *)params[j])[c]));
+						rArr->Set(c, Integer::New(args.GetIsolate(),prams[c]));
 					}
 
 					arr->Set(vars++, rArr);
@@ -562,7 +569,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 
 			case 'V':
 			{
-				cell * param_array = (cell*)params[j];
+				cell * param_array = static_cast<cell*>(params[j]);
 				int size = param_size[j];
 				Local<Array> rArr = Array::New(args.GetIsolate(), size);
 				for (int c = 0; c < size; c++){
@@ -574,14 +581,14 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 			break;
 			case 'I':
 				{
-					int val = *(int *)params[j++];
+					int val = *static_cast<cell*>(params[j++]);
 					arr->Set(vars++, Integer::New(args.GetIsolate(), val));
 
 				}
 				break;
 			case 'F':
 				{
-					float val = amx_ctof(*(cell *)params[j++]);
+					float val = amx_ctof(*static_cast<cell*>(params[j++]));
 					arr->Set(vars++, Number::New(args.GetIsolate(), val));
 				}
 				break;
@@ -589,14 +596,9 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				{
 
 					
-					size_t slen = strlen((char*)params[j]);
-					char* str = (char*)params[j];
-					str[slen] = '\0';
-
-					//sjs::logger::debug("%s: %s (%i)", name, str, slen);
+					size_t slen = strlen(static_cast<char*>(params[j]));
+					char* str = static_cast<char*>(params[j]);
 					arr->Set(vars++, String::NewFromUtf8(args.GetIsolate(), str));
-					//sjs::logger::log("String: %s", str);
-				//	delete[] params[j++];
 					i++;
 					delete[] params[j++];
 					

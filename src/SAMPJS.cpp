@@ -117,7 +117,8 @@ bool SAMPJS::PublicCall(const char *name, cell *params, cell *retval){
 	for (auto script : scripts){
 		bool shouldReturn = false;
 		int returnval = script.second->PublicCall(name, params, shouldReturn);
-		retval = (cell*)returnval;
+		sjs::logger::log("%s - %i", name, returnval);
+		*retval = (cell)returnval;
 		if (shouldReturn){
 			return returnval;
 		}
