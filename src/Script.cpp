@@ -78,6 +78,8 @@ sampjs::Script::Script(){
 
 	gbl.Set("$global", gbl.get());
 
+	
+
 }
 
 bool sampjs::Script::Init(std::string filename){
@@ -108,7 +110,7 @@ bool sampjs::Script::Init(std::string filename){
 	
 	LoadScript(filename, isolate, ctx);
 	this->ready = true;
-	server->FireEvent("ScriptInit");
+	//server->FireEvent("ScriptInit");
 	return true;
 }
 
@@ -200,7 +202,6 @@ void sampjs::Script::JS_RegisterPublic(const FunctionCallbackInfo<Value> & args)
 	string event;
 	string format;
 	bool cancel = false;
-
 	name = JS2STRING(args[0]);
 	format = JS2STRING(args[1]);
 	event = JS2STRING(args[2]);
@@ -209,6 +210,8 @@ void sampjs::Script::JS_RegisterPublic(const FunctionCallbackInfo<Value> & args)
 		if (args[3]->IsBoolean()){
 			cancel = args[3]->BooleanValue();
 		}
+
+		
 	}
 	
 	
@@ -395,7 +398,7 @@ int sampjs::Script::PublicCall(string name, cell *params, bool &shouldReturn){
 	if ((retval >0) == def->cancel){
 		shouldReturn = true;
 	}
-	if (retval == -1) return !def->cancel;
+	if (retval == -1) return (!def->cancel);
 	return retval;
 }
 
@@ -423,3 +426,10 @@ void sampjs::Script::JS_SetLocale(const FunctionCallbackInfo<Value> & args){
 	}
 }
 
+Isolate *sampjs::Script::GetIsolate(){
+	return this->isolate;
+}
+
+Persistent<Context, CopyablePersistentTraits<Context>> sampjs::Script::GetContext(){
+	return this->context;
+}

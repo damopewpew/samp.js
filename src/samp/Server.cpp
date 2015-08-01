@@ -65,6 +65,7 @@ void Server::Init(Local<Context> ctx){
 	memory.Set("peak", Server::JS_PeakMemory);
 	
 	server.Set("Debug", Utils::JS_Debug);
+	server.Set("emit", SAMPJS::JS_GlobalEvent);
 
 	
 
@@ -376,7 +377,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 		case 'f':
 			{
 				float val = 0.0;
-				if (!args[k]->IsUndefined()) val = args[k]->NumberValue();
+				if (!args[k]->IsUndefined()) val = static_cast<float>(args[k]->NumberValue());
 
 				param_value[i] = amx_ftoc(val);
 				params[j++] = static_cast<void*>(&param_value[i]);
@@ -394,7 +395,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				const char* str = ToCString(jstring);
 
 				char* mystr = new char[slen + 1];
-				for (int x = 0; x < slen; x++){
+				for (size_t x = 0; x < slen; x++){
 					mystr[x] = str[x];
 				}
 				mystr[slen] = '\0';
@@ -420,7 +421,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 
 				cell *value = new cell[size];
 
-				for (int b = 0; b < size; b++){
+				for (size_t b = 0; b < size; b++){
 					value[b] = a->Get(b)->Int32Value();
 				}
 
@@ -447,8 +448,8 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 
 				cell *value = new cell[size];
 
-				for (int b = 0; b < size; b++){
-					float val = a->Get(b)->NumberValue();
+				for (size_t b = 0; b < size; b++){
+					float val = static_cast<float>(a->Get(b)->NumberValue());
 					value[b] = amx_ftoc(val);
 					
 				}
@@ -509,7 +510,7 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 		case 'S':
 			{
 
-				const int strlen = args[k++]->Int32Value();
+				const unsigned int strlen = args[k++]->Int32Value();
 				param_size[j] = strlen;
 			
 				char buffer[10];
@@ -517,6 +518,9 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				buffer[size] = '\0';
 				format_str += string(buffer);
 				char* mycell = new char[strlen + 1]{'\0'};
+				for (size_t x = 0; x < strlen; x++){
+					mycell[x] = '\0';
+				}
 				params[j++] = static_cast<void*>(mycell);
 				vars++;
 				i++;
@@ -594,9 +598,6 @@ void Server::JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args){
 				break;
 			case 'S':
 				{
-
-					
-					size_t slen = strlen(static_cast<char*>(params[j]));
 					char* str = static_cast<char*>(params[j]);
 					arr->Set(vars++, String::NewFromUtf8(args.GetIsolate(), str));
 					i++;
@@ -756,6 +757,8 @@ int Server::FireNative(std::string name, std::string param_types, std::vector<st
 					else {
 						auto getPlayer = Local<Function>::Cast(players.getValue("getPlayer"));
 						Local<Value> argv[1] = { Integer::New(isolate, playerid) };
+
+					
 						player = getPlayer->Call(players.get(), 1, argv);
 						if (trycatch.HasCaught()){
 							Utils::PrintException(&trycatch);

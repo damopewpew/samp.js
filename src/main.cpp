@@ -97,6 +97,8 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 
 #include "samp/Natives.h"
 
+#include <chrono>
+#include <thread>
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	int res = 0;
 	if ((res = amx_Register(amx, PluginNatives, -1))){
@@ -113,6 +115,7 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 				sampjs::SAMPJS::CreateScript(js_scripts[i]);
 			}
 			std::cout << std::endl;
+			sampjs::SAMPJS::ScriptInit();
 		}
 		else {
 			std::cout << "[samp.js] No JS Scripts configured. Add jsfiles to your server.cfg" << std::endl;
@@ -152,8 +155,9 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 }
 
 
-
+ bool first = false;
 PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *params, cell *retval){
+
 	sampjs::SAMPJS::amx = amx;
 	if (string(name) == "OnRconCommand"){
 		cell* maddr = NULL;
@@ -177,8 +181,8 @@ PLUGIN_EXPORT bool PLUGIN_CALL OnPublicCall(AMX *amx, const char *name, cell *pa
 			return true;
 		}
 	} 
-	bool ret = sampjs::SAMPJS::PublicCall(name, params, retval); 
-	return ret;
+	int ret = sampjs::SAMPJS::PublicCall(name, params, retval); 
+	return (ret > 0);
 }
 
 
@@ -198,7 +202,6 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *amx){
 	} */
 	return AMX_ERR_NONE;
 } 
-
 PLUGIN_EXPORT void PLUGIN_CALL ProcessTick(){
 	sampjs::SAMPJS::ProcessTick();
 	sampgdk::ProcessTick();

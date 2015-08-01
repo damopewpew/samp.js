@@ -21,7 +21,7 @@ namespace sampjs {
 		std::string format;
 		std::vector<std::string> arg_names;
 		bool cancel = false;
-		PublicDef(std::string namex="", std::string eventx="", std::string formatx="", bool cancelx=false) :
+		PublicDef(std::string namex="", std::string eventx="", std::string formatx="", bool cancelx=false ) :
 			name(namex), event(eventx), format(formatx), cancel(cancelx) {
 			
 		}
@@ -49,7 +49,7 @@ namespace sampjs {
 		static Local<Value> RequireScript(std::string name, Isolate *isolate, Local<Context> context);
 		static Local<Value> LoadScript(std::string filename, Isolate *isolate, Local<Context> context);
 		
-		int PublicCall(std::string name, cell *params, bool & shouldReturn);
+		int PublicCall(std::string name, cell *params, bool & shouldReturn );
 
 		void LoadModules();
 		bool ModuleExists(std::string name);
@@ -57,6 +57,9 @@ namespace sampjs {
 		Local<Value> ExecuteCode(std::string name, std::string code);
 
 		std::shared_ptr<sampjs::Server> Server();
+
+		Isolate *GetIsolate();
+		v8::Persistent<v8::Context, CopyablePersistentTraits<Context>> GetContext();
 
 	private:
 		bool ready;

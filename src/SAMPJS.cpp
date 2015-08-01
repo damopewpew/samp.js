@@ -12,7 +12,7 @@
 
 using namespace sampjs;
 
-AMX *SAMPJS::amx;
+AMX *SAMPJS::amx = NULL;
 AMX_HEADER *SAMPJS::amx_hdr;
 string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax --harmony --harmony-modules --use_strict ";
 Platform *SAMPJS::platform;
@@ -73,6 +73,7 @@ void SAMPJS::CreateScript(string filename){
 	}
 }
 
+
 void SAMPJS::RemoveScript(string filename){
 	if (ScriptLoaded(filename)){
 		scripts[filename]->Unload();
@@ -86,6 +87,13 @@ void SAMPJS::RemoveScript(string filename){
 
 bool SAMPJS::ScriptLoaded(string filename){
 	return (scripts.find(filename) != scripts.end());
+}
+
+
+void SAMPJS::ScriptInit(){
+	for (auto script : scripts){
+		script.second->Server()->FireEvent("ScriptInit");
+	}
 }
 
 void SAMPJS::SetAMX(AMX *amx){
@@ -112,13 +120,37 @@ void SAMPJS::JS_Reload(const FunctionCallbackInfo<Value> & args){
 	CreateScript(file);
 }
 
-bool SAMPJS::PublicCall(const char *name, cell *params, cell *retval){
+void SAMPJS::JS_GlobalEvent(const FunctionCallbackInfo<Value> &args){
+	for (auto script : scripts){
+		//Isolate *isolate = script.second->GetIsolate();
+	//	Local<Context> context = Local<Context>::New(isolate, script.second->GetContext());
+		
+		string name;
+		if (args.Length() > 0){
+			if (!args[0]->IsString()){
+				return;
+			}
+
+			name = JS2STRING(args[0]);
+			Local<Value> * argv = NULL;
+			int argc = args.Length() - 1;
+			if (args.Length() > 1){
+				argv = new Local<Value>[args.Length() - 1];
+				for (size_t i = 1; i < args.Length(); i++){
+					argv[i-1] = args[i];
+				}
+			}
+			script.second->Server()->FireEvent(name, argc, argv );
+		}
+	}
+}
+
+int SAMPJS::PublicCall(const char *name, cell *params, cell *retval){
 	if (Script::_publics.find(name) == Script::_publics.end()) return true;
 	for (auto script : scripts){
 		bool shouldReturn = false;
 		int returnval = script.second->PublicCall(name, params, shouldReturn);
-		sjs::logger::log("%s - %i", name, returnval);
-		*retval = (cell)returnval;
+		if(retval != nullptr)*retval = static_cast<cell>(returnval);
 		if (shouldReturn){
 			return returnval;
 		}

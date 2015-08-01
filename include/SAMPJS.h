@@ -41,13 +41,17 @@ namespace sampjs {
 		static void RemoveScript( string filename );
 		static bool ScriptLoaded( string filename );
 
+		static void ScriptInit();
+
 		static void SetAMX(AMX *amx);
 
 		static void JS_Load(const FunctionCallbackInfo<Value> & args);
 		static void JS_Unload(const FunctionCallbackInfo<Value> & args);
 		static void JS_Reload(const FunctionCallbackInfo<Value> & args);
 
-		static bool PublicCall(const char *name, cell *params, cell *retval);
+		static void JS_GlobalEvent(const FunctionCallbackInfo<Value> & args);
+
+		static int PublicCall(const char *name, cell *params, cell *retval);
 
 		static Local<Value> ExecuteCode(Local<Context> context, string name, string code, int offset=1);
 
