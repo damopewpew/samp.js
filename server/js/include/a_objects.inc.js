@@ -15,24 +15,26 @@ const OBJECT_MATERIAL_SIZE_512x512 = 140;
 const OBJECT_MATERIAL_TEXT_ALIGN_LEFT = 0;
 const OBJECT_MATERIAL_TEXT_ALIGN_CENTER = 1;
 const OBJECT_MATERIAL_TEXT_ALIGN_RIGHT = 2;
+
 /**
  * CreateObject
  * @see https://wiki.sa-mp.com/wiki/CreateObject
  * @param {Number} modelid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @param {Number} rX
  * @param {Number} rY
  * @param {Number} rZ
- * @param {Number} DrawDistance
+ * @param {Number} [drawDistance=0.0]
  * @return {Number} retval
  */
-function CreateObject( modelid, X, Y, Z, rX, rY, rZ, DrawDistance ){
-	DrawDistance = typeof DrawDistance !== 'undefined' ? DrawDistance : 0.0;
-	var out = CallNativeGDK( "CreateObject", "ifffffff", modelid, X, Y, Z, rX, rY, rZ, DrawDistance );
-	return out;
+function CreateObject(modelid, x, y, z, rX, rY, rZ, drawDistance)
+{
+	drawDistance = typeof drawDistance === 'undefined' ? 0.0 : drawDistance;
+	return CallNativeGDK("CreateObject", "ifffffff", modelid, x, y, z, rX, rY, rZ, drawDistance);
 }
+
 /**
  * AttachObjectToVehicle
  * @see https://wiki.sa-mp.com/wiki/AttachObjectToVehicle
@@ -46,10 +48,10 @@ function CreateObject( modelid, X, Y, Z, rX, rY, rZ, DrawDistance ){
  * @param {Number} RotZ
  * @return {Number} retval
  */
-function AttachObjectToVehicle( objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ ){
-	var out = CallNativeGDK( "AttachObjectToVehicle", "iiffffff", objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ );
-	return out;
+function AttachObjectToVehicle(objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ) {
+	return CallNativeGDK("AttachObjectToVehicle", "iiffffff", objectid, vehicleid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ);
 }
+
 /**
  * AttachObjectToObject
  * @see https://wiki.sa-mp.com/wiki/AttachObjectToObject
@@ -61,14 +63,15 @@ function AttachObjectToVehicle( objectid, vehicleid, OffsetX, OffsetY, OffsetZ, 
  * @param {Number} RotX
  * @param {Number} RotY
  * @param {Number} RotZ
- * @param {Number} SyncRotation
+ * @param {Number} [syncRotation=1]
  * @return {Number} retval
  */
-function AttachObjectToObject( objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, SyncRotation ){
-	SyncRotation = typeof SyncRotation !== 'undefined' ? SyncRotation : 1;
-	var out = CallNativeGDK( "AttachObjectToObject", "iiffffffi", objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, SyncRotation );
-	return out;
+function AttachObjectToObject(objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, syncRotation)
+{
+	syncRotation = typeof syncRotation === 'undefined' ? 1 : syncRotation;
+	return CallNativeGDK("AttachObjectToObject", "iiffffffi", objectid, attachtoid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ, syncRotation);
 }
+
 /**
  * AttachObjectToPlayer
  * @see https://wiki.sa-mp.com/wiki/AttachObjectToPlayer
@@ -82,33 +85,35 @@ function AttachObjectToObject( objectid, attachtoid, OffsetX, OffsetY, OffsetZ, 
  * @param {Number} RotZ
  * @return {Number} retval
  */
-function AttachObjectToPlayer( objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ ){
-	var out = CallNativeGDK( "AttachObjectToPlayer", "iiffffff", objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ );
-	return out;
+function AttachObjectToPlayer(objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ) {
+	return CallNativeGDK("AttachObjectToPlayer", "iiffffff", objectid, playerid, OffsetX, OffsetY, OffsetZ, RotX, RotY, RotZ);
 }
+
 /**
  * SetObjectPos
  * @see https://wiki.sa-mp.com/wiki/SetObjectPos
  * @param {Number} objectid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @return {Number} retval
  */
-function SetObjectPos( objectid, X, Y, Z ){
-	var out = CallNativeGDK( "SetObjectPos", "ifff", objectid, X, Y, Z );
-	return out;
+function SetObjectPos(objectid, x, y, z) {
+	return CallNativeGDK("SetObjectPos", "ifff", objectid, x, y, z);
 }
+
 /**
  * GetObjectPos
  * @see https://wiki.sa-mp.com/wiki/GetObjectPos
  * @param {Number} objectid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetObjectPos( objectid ){
-	var out = CallNativeGDK( "GetObjectPos", "iFFF", objectid, [ "x", "y", "z" ] );
-	return {X: out[0],Y: out[1],Z: out[2]};
+function GetObjectPos(objectid)
+{
+	let out = CallNativeGDK("GetObjectPos", "iFFF", objectid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * SetObjectRot
  * @see https://wiki.sa-mp.com/wiki/SetObjectRot
@@ -118,100 +123,103 @@ function GetObjectPos( objectid ){
  * @param {Number} RotZ
  * @return {Number} retval
  */
-function SetObjectRot( objectid, RotX, RotY, RotZ ){
-	var out = CallNativeGDK( "SetObjectRot", "ifff", objectid, RotX, RotY, RotZ );
-	return out;
+function SetObjectRot(objectid, RotX, RotY, RotZ) {
+	return CallNativeGDK("SetObjectRot", "ifff", objectid, RotX, RotY, RotZ);
 }
+
 /**
  * GetObjectRot
  * @see https://wiki.sa-mp.com/wiki/GetObjectRot
  * @param {Number} objectid
- * @return {{ rotx: Number,  roty: Number,  rotz: Number }}
+ * @return {RotX: Number, RotY: Number, RotZ: Number}
  */
-function GetObjectRot( objectid ){
-	var out = CallNativeGDK( "GetObjectRot", "iFFF", objectid, [ "rotx", "roty", "rotz" ] );
-	return {RotX: out[0],RotY: out[1],RotZ: out[2]};
+function GetObjectRot(objectid)
+{
+	let out = CallNativeGDK("GetObjectRot", "iFFF", objectid);
+	return {RotX: out[0], RotY: out[1], RotZ: out[2]};
 }
+
 /**
  * GetObjectModel
  * @see https://wiki.sa-mp.com/wiki/GetObjectModel
  * @param {Number} objectid
  * @return {Number} retval
  */
-function GetObjectModel( objectid ){
-	var out = CallNativeGDK( "GetObjectModel", "i", objectid );
-	return out;
+function GetObjectModel(objectid) {
+	return CallNativeGDK("GetObjectModel", "i", objectid);
 }
+
 /**
  * SetObjectNoCameraCol
  * @see https://wiki.sa-mp.com/wiki/SetObjectNoCameraCol
  * @param {Number} objectid
  * @return {Number} retval
  */
-function SetObjectNoCameraCol( objectid ){
-	var out = CallNativeGDK( "SetObjectNoCameraCol", "i", objectid );
-	return out;
+function SetObjectNoCameraCol(objectid) {
+	return CallNativeGDK("SetObjectNoCameraCol", "i", objectid);
 }
+
 /**
  * IsValidObject
  * @see https://wiki.sa-mp.com/wiki/IsValidObject
  * @param {Number} objectid
  * @return {Number} retval
  */
-function IsValidObject( objectid ){
-	var out = CallNativeGDK( "IsValidObject", "i", objectid );
-	return out;
+function IsValidObject(objectid) {
+	return CallNativeGDK("IsValidObject", "i", objectid);
 }
+
 /**
  * DestroyObject
  * @see https://wiki.sa-mp.com/wiki/DestroyObject
  * @param {Number} objectid
  * @return {Number} retval
  */
-function DestroyObject( objectid ){
-	var out = CallNativeGDK( "DestroyObject", "i", objectid );
-	return out;
+function DestroyObject(objectid) {
+	return CallNativeGDK("DestroyObject", "i", objectid);
 }
+
 /**
  * MoveObject
  * @see https://wiki.sa-mp.com/wiki/MoveObject
  * @param {Number} objectid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
- * @param {Number} Speed
- * @param {Number} RotX
- * @param {Number} RotY
- * @param {Number} RotZ
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} speed
+ * @param {Number} [RotX=-1000.0]
+ * @param {Number} [RotY=-1000.0]
+ * @param {Number} [RotZ=-1000.0]
  * @return {Number} retval
  */
-function MoveObject( objectid, X, Y, Z, Speed, RotX, RotY, RotZ ){
-	RotX = typeof RotX !== 'undefined' ? RotX : -1000.0;
-	RotY = typeof RotY !== 'undefined' ? RotY : -1000.0;
-	RotZ = typeof RotZ !== 'undefined' ? RotZ : -1000.0;
-	var out = CallNativeGDK( "MoveObject", "ifffffff", objectid, X, Y, Z, Speed, RotX, RotY, RotZ );
-	return out;
+function MoveObject(objectid, x, y, z, speed, RotX, RotY, RotZ)
+{
+	RotX = typeof RotX === 'undefined' ? -1000.0 : RotX;
+	RotY = typeof RotY === 'undefined' ? -1000.0 : RotY;
+	RotZ = typeof RotZ === 'undefined' ? -1000.0 : RotZ;
+	return CallNativeGDK("MoveObject", "ifffffff", objectid, x, y, z, speed, RotX, RotY, RotZ);
 }
+
 /**
  * StopObject
  * @see https://wiki.sa-mp.com/wiki/StopObject
  * @param {Number} objectid
  * @return {Number} retval
  */
-function StopObject( objectid ){
-	var out = CallNativeGDK( "StopObject", "i", objectid );
-	return out;
+function StopObject(objectid) {
+	return CallNativeGDK("StopObject", "i", objectid);
 }
+
 /**
  * IsObjectMoving
  * @see https://wiki.sa-mp.com/wiki/IsObjectMoving
  * @param {Number} objectid
  * @return {Number} retval
  */
-function IsObjectMoving( objectid ){
-	var out = CallNativeGDK( "IsObjectMoving", "i", objectid );
-	return out;
+function IsObjectMoving(objectid) {
+	return CallNativeGDK("IsObjectMoving", "i", objectid);
 }
+
 /**
  * EditObject
  * @see https://wiki.sa-mp.com/wiki/EditObject
@@ -219,10 +227,10 @@ function IsObjectMoving( objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function EditObject( playerid, objectid ){
-	var out = CallNativeGDK( "EditObject", "ii", playerid, objectid );
-	return out;
+function EditObject(playerid, objectid) {
+	return CallNativeGDK("EditObject", "ii", playerid, objectid);
 }
+
 /**
  * EditPlayerObject
  * @see https://wiki.sa-mp.com/wiki/EditPlayerObject
@@ -230,49 +238,50 @@ function EditObject( playerid, objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function EditPlayerObject( playerid, objectid ){
-	var out = CallNativeGDK( "EditPlayerObject", "ii", playerid, objectid );
-	return out;
+function EditPlayerObject(playerid, objectid) {
+	return CallNativeGDK("EditPlayerObject", "ii", playerid, objectid);
 }
+
 /**
  * SelectObject
  * @see https://wiki.sa-mp.com/wiki/SelectObject
  * @param {Number} playerid
  * @return {Number} retval
  */
-function SelectObject( playerid ){
-	var out = CallNativeGDK( "SelectObject", "i", playerid );
-	return out;
+function SelectObject(playerid) {
+	return CallNativeGDK("SelectObject", "i", playerid);
 }
+
 /**
  * CancelEdit
  * @see https://wiki.sa-mp.com/wiki/CancelEdit
  * @param {Number} playerid
  * @return {Number} retval
  */
-function CancelEdit( playerid ){
-	var out = CallNativeGDK( "CancelEdit", "i", playerid );
-	return out;
+function CancelEdit(playerid) {
+	return CallNativeGDK("CancelEdit", "i", playerid);
 }
+
 /**
  * CreatePlayerObject
  * @see https://wiki.sa-mp.com/wiki/CreatePlayerObject
  * @param {Number} playerid
  * @param {Number} modelid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @param {Number} rX
  * @param {Number} rY
  * @param {Number} rZ
- * @param {Number} DrawDistance
+ * @param {Number} [drawDistance=0.0]
  * @return {Number} retval
  */
-function CreatePlayerObject( playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistance ){
-	DrawDistance = typeof DrawDistance !== 'undefined' ? DrawDistance : 0.0;
-	var out = CallNativeGDK( "CreatePlayerObject", "iifffffff", playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistance );
-	return out;
+function CreatePlayerObject(playerid, modelid, x, y, z, rX, rY, rZ, drawDistance)
+{
+	drawDistance = typeof drawDistance === 'undefined' ? 0.0 : drawDistance;
+	return CallNativeGDK("CreatePlayerObject", "iifffffff", playerid, modelid, x, y, z, rX, rY, rZ, drawDistance);
 }
+
 /**
  * AttachPlayerObjectToVehicle
  * @see https://wiki.sa-mp.com/wiki/AttachPlayerObjectToVehicle
@@ -287,35 +296,37 @@ function CreatePlayerObject( playerid, modelid, X, Y, Z, rX, rY, rZ, DrawDistanc
  * @param {Number} RotZ
  * @return {Number} retval
  */
-function AttachPlayerObjectToVehicle( playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ ){
-	var out = CallNativeGDK( "AttachPlayerObjectToVehicle", "iiiffffff", playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ );
-	return out;
+function AttachPlayerObjectToVehicle(playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ) {
+	return CallNativeGDK("AttachPlayerObjectToVehicle", "iiiffffff", playerid, objectid, vehicleid, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, RotZ);
 }
+
 /**
  * SetPlayerObjectPos
  * @see https://wiki.sa-mp.com/wiki/SetPlayerObjectPos
  * @param {Number} playerid
  * @param {Number} objectid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @return {Number} retval
  */
-function SetPlayerObjectPos( playerid, objectid, X, Y, Z ){
-	var out = CallNativeGDK( "SetPlayerObjectPos", "iifff", playerid, objectid, X, Y, Z );
-	return out;
+function SetPlayerObjectPos(playerid, objectid, x, y, z) {
+	return CallNativeGDK("SetPlayerObjectPos", "iifff", playerid, objectid, x, y, z);
 }
+
 /**
  * GetPlayerObjectPos
  * @see https://wiki.sa-mp.com/wiki/GetPlayerObjectPos
  * @param {Number} playerid
  * @param {Number} objectid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetPlayerObjectPos( playerid, objectid ){
-	var out = CallNativeGDK( "GetPlayerObjectPos", "iiFFF", playerid, objectid, [ "x", "y", "z" ] );
-	return {X: out[0],Y: out[1],Z: out[2]};
+function GetPlayerObjectPos(playerid, objectid)
+{
+	let out = CallNativeGDK("GetPlayerObjectPos", "iiFFF", playerid, objectid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * SetPlayerObjectRot
  * @see https://wiki.sa-mp.com/wiki/SetPlayerObjectRot
@@ -326,21 +337,23 @@ function GetPlayerObjectPos( playerid, objectid ){
  * @param {Number} RotZ
  * @return {Number} retval
  */
-function SetPlayerObjectRot( playerid, objectid, RotX, RotY, RotZ ){
-	var out = CallNativeGDK( "SetPlayerObjectRot", "iifff", playerid, objectid, RotX, RotY, RotZ );
-	return out;
+function SetPlayerObjectRot(playerid, objectid, RotX, RotY, RotZ) {
+	return CallNativeGDK("SetPlayerObjectRot", "iifff", playerid, objectid, RotX, RotY, RotZ);
 }
+
 /**
  * GetPlayerObjectRot
  * @see https://wiki.sa-mp.com/wiki/GetPlayerObjectRot
  * @param {Number} playerid
  * @param {Number} objectid
- * @return {{ rotx: Number,  roty: Number,  rotz: Number }}
+ * @return {RotX: Number, RotY: Number, RotZ: Number}
  */
-function GetPlayerObjectRot( playerid, objectid ){
-	var out = CallNativeGDK( "GetPlayerObjectRot", "iiFFF", playerid, objectid, [ "rotx", "roty", "rotz" ] );
-	return {RotX: out[0],RotY: out[1],RotZ: out[2]};
+function GetPlayerObjectRot(playerid, objectid)
+{
+	let out = CallNativeGDK("GetPlayerObjectRot", "iiFFF", playerid, objectid);
+	return {RotX: out[0], RotY: out[1], RotZ: out[2]};
 }
+
 /**
  * GetPlayerObjectModel
  * @see https://wiki.sa-mp.com/wiki/GetPlayerObjectModel
@@ -348,10 +361,10 @@ function GetPlayerObjectRot( playerid, objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function GetPlayerObjectModel( playerid, objectid ){
-	var out = CallNativeGDK( "GetPlayerObjectModel", "ii", playerid, objectid );
-	return out;
+function GetPlayerObjectModel(playerid, objectid) {
+	return CallNativeGDK("GetPlayerObjectModel", "ii", playerid, objectid);
 }
+
 /**
  * SetPlayerObjectNoCameraCol
  * @see https://wiki.sa-mp.com/wiki/SetPlayerObjectNoCameraCol
@@ -359,10 +372,10 @@ function GetPlayerObjectModel( playerid, objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function SetPlayerObjectNoCameraCol( playerid, objectid ){
-	var out = CallNativeGDK( "SetPlayerObjectNoCameraCol", "ii", playerid, objectid );
-	return out;
+function SetPlayerObjectNoCameraCol(playerid, objectid) {
+	return CallNativeGDK("SetPlayerObjectNoCameraCol", "ii", playerid, objectid);
 }
+
 /**
  * IsValidPlayerObject
  * @see https://wiki.sa-mp.com/wiki/IsValidPlayerObject
@@ -370,10 +383,10 @@ function SetPlayerObjectNoCameraCol( playerid, objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function IsValidPlayerObject( playerid, objectid ){
-	var out = CallNativeGDK( "IsValidPlayerObject", "ii", playerid, objectid );
-	return out;
+function IsValidPlayerObject(playerid, objectid) {
+	return CallNativeGDK("IsValidPlayerObject", "ii", playerid, objectid);
 }
+
 /**
  * DestroyPlayerObject
  * @see https://wiki.sa-mp.com/wiki/DestroyPlayerObject
@@ -381,31 +394,32 @@ function IsValidPlayerObject( playerid, objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function DestroyPlayerObject( playerid, objectid ){
-	var out = CallNativeGDK( "DestroyPlayerObject", "ii", playerid, objectid );
-	return out;
+function DestroyPlayerObject(playerid, objectid) {
+	return CallNativeGDK("DestroyPlayerObject", "ii", playerid, objectid);
 }
+
 /**
  * MovePlayerObject
  * @see https://wiki.sa-mp.com/wiki/MovePlayerObject
  * @param {Number} playerid
  * @param {Number} objectid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
- * @param {Number} Speed
- * @param {Number} RotX
- * @param {Number} RotY
- * @param {Number} RotZ
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} speed
+ * @param {Number} [RotX=-1000.0]
+ * @param {Number} [RotY=-1000.0]
+ * @param {Number} [RotZ=-1000.0]
  * @return {Number} retval
  */
-function MovePlayerObject( playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ ){
-	RotX = typeof RotX !== 'undefined' ? RotX : -1000.0;
-	RotY = typeof RotY !== 'undefined' ? RotY : -1000.0;
-	RotZ = typeof RotZ !== 'undefined' ? RotZ : -1000.0;
-	var out = CallNativeGDK( "MovePlayerObject", "iifffffff", playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ );
-	return out;
+function MovePlayerObject(playerid, objectid, x, y, z, speed, RotX, RotY, RotZ)
+{
+	RotX = typeof RotX === 'undefined' ? -1000.0 : RotX;
+	RotY = typeof RotY === 'undefined' ? -1000.0 : RotY;
+	RotZ = typeof RotZ === 'undefined' ? -1000.0 : RotZ;
+	return CallNativeGDK("MovePlayerObject", "iifffffff", playerid, objectid, x, y, z, speed, RotX, RotY, RotZ);
 }
+
 /**
  * StopPlayerObject
  * @see https://wiki.sa-mp.com/wiki/StopPlayerObject
@@ -413,10 +427,10 @@ function MovePlayerObject( playerid, objectid, X, Y, Z, Speed, RotX, RotY, RotZ 
  * @param {Number} objectid
  * @return {Number} retval
  */
-function StopPlayerObject( playerid, objectid ){
-	var out = CallNativeGDK( "StopPlayerObject", "ii", playerid, objectid );
-	return out;
+function StopPlayerObject(playerid, objectid) {
+	return CallNativeGDK("StopPlayerObject", "ii", playerid, objectid);
 }
+
 /**
  * IsPlayerObjectMoving
  * @see https://wiki.sa-mp.com/wiki/IsPlayerObjectMoving
@@ -424,10 +438,10 @@ function StopPlayerObject( playerid, objectid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function IsPlayerObjectMoving( playerid, objectid ){
-	var out = CallNativeGDK( "IsPlayerObjectMoving", "ii", playerid, objectid );
-	return out;
+function IsPlayerObjectMoving(playerid, objectid) {
+	return CallNativeGDK("IsPlayerObjectMoving", "ii", playerid, objectid);
 }
+
 /**
  * AttachPlayerObjectToPlayer
  * @see https://wiki.sa-mp.com/wiki/AttachPlayerObjectToPlayer
@@ -442,10 +456,10 @@ function IsPlayerObjectMoving( playerid, objectid ){
  * @param {Number} rZ
  * @return {Number} retval
  */
-function AttachPlayerObjectToPlayer( objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ ){
-	var out = CallNativeGDK( "AttachPlayerObjectToPlayer", "iiiffffff", objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ );
-	return out;
+function AttachPlayerObjectToPlayer(objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ) {
+	return CallNativeGDK("AttachPlayerObjectToPlayer", "iiiffffff", objectplayer, objectid, attachplayer, OffsetX, OffsetY, OffsetZ, rX, rY, rZ);
 }
+
 /**
  * SetObjectMaterial
  * @see https://wiki.sa-mp.com/wiki/SetObjectMaterial
@@ -454,14 +468,15 @@ function AttachPlayerObjectToPlayer( objectplayer, objectid, attachplayer, Offse
  * @param {Number} modelid
  * @param {String} txdname
  * @param {String} texturename
- * @param {Number} materialcolor
+ * @param {Number} [materialcolor=0]
  * @return {Number} retval
  */
-function SetObjectMaterial( objectid, materialindex, modelid, txdname, texturename, materialcolor ){
-	materialcolor = typeof materialcolor !== 'undefined' ? materialcolor : 0;
-	var out = CallNativeGDK( "SetObjectMaterial", "iiissi", objectid, materialindex, modelid, txdname, texturename, materialcolor );
-	return out;
+function SetObjectMaterial(objectid, materialindex, modelid, txdname, texturename, materialcolor)
+{
+	materialcolor = typeof materialcolor === 'undefined' ? 0 : materialcolor;
+	return CallNativeGDK("SetObjectMaterial", "iiissi", objectid, materialindex, modelid, txdname, texturename, materialcolor);
 }
+
 /**
  * SetPlayerObjectMaterial
  * @see https://wiki.sa-mp.com/wiki/SetPlayerObjectMaterial
@@ -471,76 +486,78 @@ function SetObjectMaterial( objectid, materialindex, modelid, txdname, texturena
  * @param {Number} modelid
  * @param {String} txdname
  * @param {String} texturename
- * @param {Number} materialcolor
+ * @param {Number} [materialcolor=0]
  * @return {Number} retval
  */
-function SetPlayerObjectMaterial( playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor ){
-	materialcolor = typeof materialcolor !== 'undefined' ? materialcolor : 0;
-	var out = CallNativeGDK( "SetPlayerObjectMaterial", "iiiissi", playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor );
-	return out;
+function SetPlayerObjectMaterial(playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor)
+{
+	materialcolor = typeof materialcolor === 'undefined' ? 0 : materialcolor;
+	return CallNativeGDK("SetPlayerObjectMaterial", "iiiissi", playerid, objectid, materialindex, modelid, txdname, texturename, materialcolor);
 }
+
 /**
  * SetObjectMaterialText
  * @see https://wiki.sa-mp.com/wiki/SetObjectMaterialText
  * @param {Number} objectid
  * @param {String} text
- * @param {Number} materialindex
- * @param {Number} materialsize
- * @param {String} fontface
- * @param {Number} fontsize
- * @param {Number} bold
- * @param {Number} fontcolor
- * @param {Number} backcolor
- * @param {Number} textalignment
+ * @param {Number} [materialindex=0]
+ * @param {Number} [materialsize=OBJECT_MATERIAL_SIZE_256x128]
+ * @param {String} [fontface="Arial"]
+ * @param {Number} [fontsize=24]
+ * @param {Number} [bold=1]
+ * @param {Number} [fontcolor=0xFFFFFFFF]
+ * @param {Number} [backcolor=0]
+ * @param {Number} [textalignment=0]
  * @return {Number} retval
  */
-function SetObjectMaterialText( objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment ){
-	materialindex = typeof materialindex !== 'undefined' ? materialindex : 0;
-	materialsize = typeof materialsize !== 'undefined' ? materialsize : OBJECT_MATERIAL_SIZE_256x128;
-	fontface = typeof fontface !== 'undefined' ? fontface : "Arial";
-	fontsize = typeof fontsize !== 'undefined' ? fontsize : 24;
-	bold = typeof bold !== 'undefined' ? bold : 1;
-	fontcolor = typeof fontcolor !== 'undefined' ? fontcolor : 0xFFFFFFFF;
-	backcolor = typeof backcolor !== 'undefined' ? backcolor : 0;
-	textalignment = typeof textalignment !== 'undefined' ? textalignment : 0;
-	var out = CallNativeGDK( "SetObjectMaterialText", "isiisiiiii", objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
-	return out;
+function SetObjectMaterialText(objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment)
+{
+	materialindex = typeof materialindex === 'undefined' ? 0 : materialindex;
+	materialsize = typeof materialsize === 'undefined' ? OBJECT_MATERIAL_SIZE_256x128 : materialsize;
+	fontface = typeof fontface === 'undefined' ? "Arial" : fontface;
+	fontsize = typeof fontsize === 'undefined' ? 24 : fontsize;
+	bold = typeof bold === 'undefined' ? 1 : bold;
+	fontcolor = typeof fontcolor === 'undefined' ? 0xFFFFFFFF : fontcolor;
+	backcolor = typeof backcolor === 'undefined' ? 0 : backcolor;
+	textalignment = typeof textalignment === 'undefined' ? 0 : textalignment;
+	return CallNativeGDK("SetObjectMaterialText", "isiisiiiii", objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment);
 }
+
 /**
  * SetPlayerObjectMaterialText
  * @see https://wiki.sa-mp.com/wiki/SetPlayerObjectMaterialText
  * @param {Number} playerid
  * @param {Number} objectid
  * @param {String} text
- * @param {Number} materialindex
- * @param {Number} materialsize
- * @param {String} fontface
- * @param {Number} fontsize
- * @param {Number} bold
- * @param {Number} fontcolor
- * @param {Number} backcolor
- * @param {Number} textalignment
+ * @param {Number} [materialindex=0]
+ * @param {Number} [materialsize=OBJECT_MATERIAL_SIZE_256x128]
+ * @param {String} [fontface="Arial"]
+ * @param {Number} [fontsize=24]
+ * @param {Number} [bold=1]
+ * @param {Number} [fontcolor=0xFFFFFFFF]
+ * @param {Number} [backcolor=0]
+ * @param {Number} [textalignment=0]
  * @return {Number} retval
  */
-function SetPlayerObjectMaterialText( playerid, objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment ){
-	materialindex = typeof materialindex !== 'undefined' ? materialindex : 0;
-	materialsize = typeof materialsize !== 'undefined' ? materialsize : OBJECT_MATERIAL_SIZE_256x128;
-	fontface = typeof fontface !== 'undefined' ? fontface : "Arial";
-	fontsize = typeof fontsize !== 'undefined' ? fontsize : 24;
-	bold = typeof bold !== 'undefined' ? bold : 1;
-	fontcolor = typeof fontcolor !== 'undefined' ? fontcolor : 0xFFFFFFFF;
-	backcolor = typeof backcolor !== 'undefined' ? backcolor : 0;
-	textalignment = typeof textalignment !== 'undefined' ? textalignment : 0;
-	var out = CallNativeGDK( "SetPlayerObjectMaterialText", "iisiisiiiii", playerid, objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment );
-	return out;
+function SetPlayerObjectMaterialText(playerid, objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment)
+{
+	materialindex = typeof materialindex === 'undefined' ? 0 : materialindex;
+	materialsize = typeof materialsize === 'undefined' ? OBJECT_MATERIAL_SIZE_256x128 : materialsize;
+	fontface = typeof fontface === 'undefined' ? "Arial" : fontface;
+	fontsize = typeof fontsize === 'undefined' ? 24 : fontsize;
+	bold = typeof bold === 'undefined' ? 1 : bold;
+	fontcolor = typeof fontcolor === 'undefined' ? 0xFFFFFFFF : fontcolor;
+	backcolor = typeof backcolor === 'undefined' ? 0 : backcolor;
+	textalignment = typeof textalignment === 'undefined' ? 0 : textalignment;
+	return CallNativeGDK("SetPlayerObjectMaterialText", "iisiisiiiii", playerid, objectid, text, materialindex, materialsize, fontface, fontsize, bold, fontcolor, backcolor, textalignment);
 }
+
 /**
  * SetObjectsDefaultCameraCol
  * @see https://wiki.sa-mp.com/wiki/SetObjectsDefaultCameraCol
  * @param {Number} disable
  * @return {Number} retval
  */
-function SetObjectsDefaultCameraCol( disable ){
-	var out = CallNativeGDK( "SetObjectsDefaultCameraCol", "i", disable );
-	return out;
+function SetObjectsDefaultCameraCol(disable) {
+	return CallNativeGDK("SetObjectsDefaultCameraCol", "i", disable);
 }
