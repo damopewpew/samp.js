@@ -17,8 +17,9 @@ cell AMX_NATIVE_CALL Callbacks::ExecuteJS(AMX *amx, cell* params){
 	char* val = new char[len + 2];
 	amx_GetString(val, addr, 0, len + 2);
 
-	for (auto& script : SAMPJS::GetScripts()){
-		script.second->ExecuteCode("[PAWN]", val);
+	for (auto scriptv : SAMPJS::scripts){
+		auto script = SAMPJS::scripts_map[scriptv];
+		script->ExecuteCode("[PAWN]", val);
 	}
 	return 1;
 }

@@ -18,12 +18,9 @@ using namespace std;
 Sockets::Sockets() :mService() {
 	socket_id = 0;
 	work = std::make_shared<io_service::work>(mService);
-	sjs::logger::debug("Sockets Created");
-	thread = std::thread([this](){
-		sjs::logger::debug("Thread Started");
-		
+	thread = std::thread([this](){		
 		this->mService.run();
-		sjs::logger::debug("Running Finished");
+		
 	});
 }
 
@@ -73,10 +70,8 @@ Sockets *Sockets::Instance(Local<Object> holder){
 }
 
 void Sockets::JS_Socket(const FunctionCallbackInfo<Value> & args){
-	sjs::logger::debug("Creating Socket!!!");
 	auto sockets = Instance(args.Holder());
 
-	sjs::logger::debug("Calling Socket Function");
 	Local<Object> sock = sockets->CreateSocket();
 	args.GetReturnValue().Set(sock);
 }
@@ -118,7 +113,6 @@ void Sockets::JS_Listen(const FunctionCallbackInfo<Value> & args){
 		return;
 	}
 
-	sjs::logger::debug("Listening JS");
 	auto sockets = Instance(args.Holder());
 	int id = args.Holder()->Get(String::NewFromUtf8(args.GetIsolate(), "socket_id"))->Int32Value();
 	int port = args[0]->Int32Value();
@@ -145,7 +139,6 @@ void Sockets::JS_Send(const FunctionCallbackInfo<Value> & args){
 
 
 Local<Object> Sockets::CreateSocket(){
-	sjs::logger::debug("Creating Socket???");
 	int id = socket_id++;
 
 	Socket* sock = new Socket(id);
@@ -174,7 +167,6 @@ Local<Object> Sockets::CreateSocket(){
 
 	// Need to create the ids array for events due to a class extends quirk
 	sock->self.Reset(isolate, socket.get());
-	sjs::logger::debug("Created Socket with ID: %i", id);
 	return hs.Escape(socket.get());
 }
 
@@ -194,14 +186,14 @@ void Sockets::Connect(int id, string hostname, string port, Socket_Settings sett
 	auto endpoint_iterator = resolver.resolve(query, ec);
 
 	if (ec){
-		sjs::logger::debug("Query %s:%s could not be resolved", csocket->hostname.c_str(), csocket->port.c_str());
+		sjs::logger::error("Query %s:%s could not be resolved", csocket->hostname.c_str(), csocket->port.c_str());
 	}
 	else {
-		sjs::logger::debug("Query Resolved %s:%s", csocket->hostname.c_str(), csocket->port.c_str());
+		//sjs::logger::debug("Query Resolved %s:%s", csocket->hostname.c_str(), csocket->port.c_str());
 
 		async_connect(csocket->socket, endpoint_iterator, [this,csocket](boost::system::error_code ec, tcp::resolver::iterator it){
 			if (!ec){
-				sjs::logger::debug("Socket Connected");
+			
 				
 				V8PCONTEXT(isolate, context)
 				auto self = Local<Object>::New(isolate, csocket->self);
@@ -224,7 +216,6 @@ void Sockets::Connect(int id, string hostname, string port, Socket_Settings sett
 				Local<Value> argv[1] = { String::NewFromUtf8(isolate, ec.message().c_str()) };
 				auto self = Local<Object>::New(isolate, csocket->self);
 				JS_Fire(self, "connect", 1, argv);
-				sjs::logger::debug("Could not connect");
 			}
 		});
 	}

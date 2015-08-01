@@ -135,6 +135,10 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	if (args[0] == "loadjs"){
 		if (args.size() > 1){
 			sampjs::SAMPJS::CreateScript(args[1]);
+			auto script = sampjs::SAMPJS::GetScript(args[1]);
+			if (script != nullptr){
+				script->Server()->FireEvent("ScriptInit");
+			}
 		}
 		return true;
 	}
@@ -148,6 +152,18 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 		if (args.size() > 1){
 			sampjs::SAMPJS::RemoveScript(args[1]);
 			sampjs::SAMPJS::CreateScript(args[1]);
+			auto script = sampjs::SAMPJS::GetScript(args[1]);
+			if (script != nullptr){
+				script->Server()->FireEvent("ScriptInit");
+			}
+		}
+		return true;
+	}
+
+	else if (args[0] == "listjs"){
+		sjs::logger::log("Loaded JS Scripts:");
+		for (auto scriptv : sampjs::SAMPJS::scripts){
+			sjs::logger::log("%s", scriptv.c_str());
 		}
 		return true;
 	}

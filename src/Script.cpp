@@ -110,6 +110,7 @@ bool sampjs::Script::Init(std::string filename){
 	
 	LoadScript(filename, isolate, ctx);
 	this->ready = true;
+	sjs::logger::log("Loaded script: %s", filename.c_str());
 	//server->FireEvent("ScriptInit");
 	return true;
 }
@@ -138,18 +139,6 @@ bool sampjs::Script::IsReady(){
 }
 
 void sampjs::Script::LoadModules(){
-	/*modules["$utils"] = make_shared<sampjs::Utils>();
-	modules["$timers"] = make_shared<sampjs::Timers>();
-	modules["$events"] = make_shared<sampjs::Events>();
-	modules["$players"] = make_shared<sampjs::Players>();
-	modules["$fs"] = make_shared<sampjs::FileSystem>();
-	modules["$io"] = make_shared<sampjs::Sockets>();
-	modules["$HTTP"] = make_shared<sampjs::HTTP>();
-	modules["$mysql"] = make_shared<sampjs::MySQL>();
-
-	this->server = make_shared<sampjs::Server>();
-	modules["$server"] = server; */
-
 	modules.push_back(make_shared<sampjs::Utils>());
 	modules.push_back(make_shared<sampjs::Timers>());
 	modules.push_back(make_shared<sampjs::Events>());
@@ -171,7 +160,7 @@ void sampjs::Script::LoadModules(){
 	TryCatch try_catch;
 	ctx->Enter();
 	for (auto module : modules){
-		sjs::logger::log("Loading Module: %s", module->Name().c_str());
+		sjs::logger::debug("Loading Module: %s", module->Name().c_str());
 		module->Init(ctx);
 	}
 

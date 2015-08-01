@@ -74,7 +74,6 @@ void Server::Init(Local<Context> ctx){
 
 void Server::Shutdown(){
 	context.Reset();
-	sjs::logger::debug("Server Shutdown");
 }
 
 
@@ -127,11 +126,7 @@ void Server::JS_CallNative(const FunctionCallbackInfo<Value> & args){
 	
 		bool multi = false;
 		if ((S_oc + I_oc + F_oc) > 1) multi = true;
-	//	if (!args[args.Length() - 1]->IsArray() && multi){
-		//	sjs::logger::error("CallNative %s, you must supply an array of strings for functions with multiple references", func_name.c_str());
-	//		return;
-	//	}
-	//
+
 		unsigned int count = (format.length()), variables = 0;
 
 		cell *physAddr[6];

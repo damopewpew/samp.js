@@ -56,9 +56,14 @@ namespace sampjs {
 		static Local<Value> ExecuteCode(Local<Context> context, string name, string code, int offset=1);
 
 
-		static map<string, shared_ptr<Script>> GetScripts();
+		static vector<string> GetScripts();
+
+		static shared_ptr<Script> GetScript(string name);
+
 		
-		static map<string, shared_ptr<Script>> scripts;
+	
+		static vector<string> scripts;
+		static unordered_map<string, shared_ptr<Script>> scripts_map;
 	};
 };
 
