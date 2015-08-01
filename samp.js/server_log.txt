@@ -1,0 +1,36 @@
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[01:43:49] Unable to exec file 'server.cfg'.
+[01:43:49] Error: Your password must be changed from the default password, please change it.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[00:37:01] Unable to exec file 'server.cfg'.
+[00:37:01] Error: Your password must be changed from the default password, please change it.
+
+----------
+Loaded log file: "server_log.txt".
+----------
+
+SA-MP Dedicated Server
+----------------------
+v0.3.7, (C)2005-2015 SA-MP Team
+
+[03:00:12] Unable to exec file 'server.cfg'.
+[03:00:12] Error: Your password must be changed from the default password, please change it.
+
+
+

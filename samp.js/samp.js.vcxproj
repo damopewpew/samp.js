@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="ReleaseSAMP|Win32">
+      <Configuration>ReleaseSAMP</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{65CF10AD-A6C8-496C-A3CC-ADBA875176C3}</ProjectGuid>
+    <RootNamespace>sampjs</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSAMP|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v120</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSAMP|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>E:\Projects\git\samp.js\include;E:\Projects\git\samp.js\lib;E:\Projects\git\samp.js\v8;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Projects\depot_tools\v8\build\Release\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSAMP|Win32'">
+    <IncludePath>E:\Projects\git\samp.js\include;E:\Projects\git\samp.js\lib;E:\Projects\git\samp.js\v8;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Projects\depot_tools\v8\build\Release\lib;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>..\include;..\lib;..\deps\v8;..\deps\boost_1_58_0;..\lib\mysql-connector-c-6.1.6-win32\include;..\lib\samp\SDK;$(IncludePath)</IncludePath>
+    <LibraryPath>..\deps\boost_1_58_0\stage\lib;..\lib\mysql-connector-c-6.1.6-win32\lib;$(LibraryPath)</LibraryPath>
+    <TargetExt>.dll</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseSAMP|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <OutputFile>..\bin/$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <CallingConvention>Cdecl</CallingConvention>
+      <PreprocessorDefinitions>WIN32;__WIN32;_CRT_SECURE_NO_WARNINGS;_WIN32_WINNT=0x0601;_WINSOCK_DEPRECATED_NO_WARNINGS;SAMPGDK_AMALGAMATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/Ox %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>../src/samp.js.def</ModuleDefinitionFile>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;advapi32.lib;iphlpapi.lib;psapi.lib;shell32.lib;UserEnv.Lib;libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "..\bin\$(ProjectName).dll"
+copy /Y "$(TargetDir)$(ProjectName).dll" "E:\samp-server\plugins\$(ProjectName).dll"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\lib\sampgdk\sampgdk.c" />
+    <ClCompile Include="..\lib\samp\SDK\amxplugin.cpp" />
+    <ClCompile Include="..\src\io\FileSystem.cpp" />
+    <ClCompile Include="..\src\io\HTTP.cpp" />
+    <ClCompile Include="..\src\io\MySQL.cpp" />
+    <ClCompile Include="..\src\io\Sockets.cpp" />
+    <ClCompile Include="..\src\io\Timers.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\SAMPJS.cpp" />
+    <ClCompile Include="..\src\samp\Callbacks.cpp" />
+    <ClCompile Include="..\src\samp\Events.cpp" />
+    <ClCompile Include="..\src\samp\Players.cpp" />
+    <ClCompile Include="..\src\samp\Server.cpp" />
+    <ClCompile Include="..\src\Script.cpp" />
+    <ClCompile Include="..\src\utils\Helpers.cpp" />
+    <ClCompile Include="..\src\utils\Utils.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\samp.js.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\io\FileSystem.h" />
+    <ClInclude Include="..\include\io\HTTP.h" />
+    <ClInclude Include="..\include\io\MySQL.h" />
+    <ClInclude Include="..\include\io\Sockets.h" />
+    <ClInclude Include="..\include\io\Timers.h" />
+    <ClInclude Include="..\include\io\UriParser.hpp" />
+    <ClInclude Include="..\include\SAMPJS.h" />
+    <ClInclude Include="..\include\samp\Callbacks.h" />
+    <ClInclude Include="..\include\samp\Events.h" />
+    <ClInclude Include="..\include\samp\Natives.h" />
+    <ClInclude Include="..\include\samp\Players.h" />
+    <ClInclude Include="..\include\samp\Server.h" />
+    <ClInclude Include="..\include\Script.h" />
+    <ClInclude Include="..\include\Module.h" />
+    <ClInclude Include="..\include\sdk.h" />
+    <ClInclude Include="..\include\utils\Helpers.h" />
+    <ClInclude Include="..\include\utils\SysInfo.h" />
+    <ClInclude Include="..\include\utils\Utils.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\deps\v8\third_party\icu\icudata.vcxproj">
+      <Project>{9285f0f7-9198-278a-75a2-fddb47e82fdc}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\third_party\icu\icui18n.vcxproj">
+      <Project>{749d232f-e853-1097-0412-0e9737d54a8e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\third_party\icu\icuuc.vcxproj">
+      <Project>{98b652db-c141-8440-dc50-13738f30dc30}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\tools\gyp\js2c.vcxproj">
+      <Project>{ca16cb5e-2afb-285e-4098-b933157313c3}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\tools\gyp\v8.vcxproj">
+      <Project>{60e52323-1ec8-1efc-3916-52b2ef5b2800}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\tools\gyp\v8_base.vcxproj">
+      <Project>{c77aa447-f92c-461b-7266-9c2c667e6daf}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\tools\gyp\v8_libbase.vcxproj">
+      <Project>{aa8fa2cd-113f-c8c7-8710-cf09e51261d1}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\tools\gyp\v8_libplatform.vcxproj">
+      <Project>{98af5438-1d9d-9548-e4f8-c7f065536728}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\deps\v8\tools\gyp\v8_nosnapshot.vcxproj">
+      <Project>{1fad5775-1701-2974-d996-c9792be324bc}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="samp.js.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{c76b16c2-4f6b-42cf-a495-5c5ed32dad5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\io">
+      <UniqueIdentifier>{0b219003-cd2c-4fc6-98f8-b3843b3f663d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\samp">
+      <UniqueIdentifier>{84b649ea-8f73-464e-8944-ed7beb91d29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\io">
+      <UniqueIdentifier>{2f6b6b59-2329-4e95-8197-901239991041}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{bb95e5f0-ab68-47f8-97bd-74bac915cd7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\samp">
+      <UniqueIdentifier>{1d93edd1-c7ef-4c16-be9e-4fb95477520d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lib">
+      <UniqueIdentifier>{ff4bbf90-3611-4696-bc2b-2e83a1f9e1c4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\samp\SDK\amxplugin.cpp">
+      <Filter>Source Files\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\Helpers.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\FileSystem.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\samp\Players.cpp">
+      <Filter>Source Files\samp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\utils\Utils.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\samp\Events.cpp">
+      <Filter>Source Files\samp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\samp\Callbacks.cpp">
+      <Filter>Source Files\samp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\Sockets.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\SAMPJS.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Script.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\samp\Server.cpp">
+      <Filter>Source Files\samp</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\Timers.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\HTTP.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\io\MySQL.cpp">
+      <Filter>Source Files\io</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\sampgdk\sampgdk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\samp.js.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\sdk.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\utils\Helpers.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\io\FileSystem.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\samp\Players.h">
+      <Filter>Header Files\samp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\samp\Events.h">
+      <Filter>Header Files\samp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\utils\Utils.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\samp\Callbacks.h">
+      <Filter>Header Files\samp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\samp\Natives.h">
+      <Filter>Header Files\samp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\io\Sockets.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\utils\SysInfo.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Script.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\SAMPJS.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\samp\Server.h">
+      <Filter>Header Files\samp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\io\Timers.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\io\HTTP.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\io\UriParser.hpp">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\io\MySQL.h">
+      <Filter>Header Files\io</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="samp.js.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
