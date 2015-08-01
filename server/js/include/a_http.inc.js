@@ -7,6 +7,7 @@ const HTTP_ERROR_CANT_CONNECT = 3;
 const HTTP_ERROR_CANT_WRITE = 4;
 const HTTP_ERROR_CONTENT_TOO_BIG = 5;
 const HTTP_ERROR_MALFORMED_RESPONSE = 6;
+
 /**
  * HTTP
  * @see https://wiki.sa-mp.com/wiki/HTTP
@@ -17,7 +18,6 @@ const HTTP_ERROR_MALFORMED_RESPONSE = 6;
  * @param {String} callback
  * @return {Number} retval
  */
-function HTTP( index, type, url, data, callback ){
-	var out = CallNativeGDK( "HTTP", "iisss", index, type, url, data, callback );
-	return out;
+function HTTP(index, type, url, data, callback) {
+	return CallNativeGDK("HTTP", "iisss", index, type, url, data, callback);
 }

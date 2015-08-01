@@ -24,7 +24,7 @@
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
 #define VERSION_BUGFIX 9
-#define VERSION_REVISION 5
+#define VERSION_REVISION 6
 
 typedef void(*logprintf_t)(char* format, ...);
 logprintf_t logprintf;

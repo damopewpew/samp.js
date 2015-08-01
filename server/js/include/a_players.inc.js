@@ -39,16 +39,16 @@ const WEAPONSTATE_NO_BULLETS = 0;
 const WEAPONSTATE_LAST_BULLET = 1;
 const WEAPONSTATE_MORE_BULLETS = 2;
 const WEAPONSTATE_RELOADING = 3;
-const MAX_PLAYER_ATTACHED_OBJECTS = 10 // This is the number of attached indexes available ie 10 = 0-9;
+const MAX_PLAYER_ATTACHED_OBJECTS = 10; // This is the number of attached indexes available ie 10 = 0-9
 const PLAYER_VARTYPE_NONE = 0;
 const PLAYER_VARTYPE_INT = 1;
 const PLAYER_VARTYPE_STRING = 2;
 const PLAYER_VARTYPE_FLOAT = 3;
 const MAX_CHATBUBBLE_LENGTH = 144;
-const MAPICON_LOCAL = 0 // displays in the player's local are;
-const MAPICON_GLOBAL = 1 // displays always;
-const MAPICON_LOCAL_CHECKPOINT = 2 // displays in the player's local area and has a checkpoint marker;
-const MAPICON_GLOBAL_CHECKPOINT = 3 // displays always and has a checkpoint marker;
+const MAPICON_LOCAL = 0; // displays in the player's local are
+const MAPICON_GLOBAL = 1; // displays always
+const MAPICON_LOCAL_CHECKPOINT = 2; // displays in the player's local area and has a checkpoint marker
+const MAPICON_GLOBAL_CHECKPOINT = 3; // displays always and has a checkpoint marker
 const CAMERA_CUT = 2;
 const CAMERA_MOVE = 1;
 const SPECTATE_MODE_NORMAL = 1;
@@ -57,6 +57,7 @@ const SPECTATE_MODE_SIDE = 3;
 const PLAYER_RECORDING_TYPE_NONE = 0;
 const PLAYER_RECORDING_TYPE_DRIVER = 1;
 const PLAYER_RECORDING_TYPE_ONFOOT = 2;
+
 /**
  * SetSpawnInfo
  * @see https://wiki.sa-mp.com/wiki/SetSpawnInfo
@@ -75,20 +76,20 @@ const PLAYER_RECORDING_TYPE_ONFOOT = 2;
  * @param {Number} weapon3_ammo
  * @return {Number} retval
  */
-function SetSpawnInfo( playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo ){
-	var out = CallNativeGDK( "SetSpawnInfo", "iiiffffiiiiii", playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo );
-	return out;
+function SetSpawnInfo(playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo) {
+	return CallNativeGDK("SetSpawnInfo", "iiiffffiiiiii", playerid, team, skin, x, y, z, rotation, weapon1, weapon1_ammo, weapon2, weapon2_ammo, weapon3, weapon3_ammo);
 }
+
 /**
  * SpawnPlayer
  * @see https://wiki.sa-mp.com/wiki/SpawnPlayer
  * @param {Number} playerid
  * @return {Number} retval
  */
-function SpawnPlayer( playerid ){
-	var out = CallNativeGDK( "SpawnPlayer", "i", playerid );
-	return out;
+function SpawnPlayer(playerid) {
+	return CallNativeGDK("SpawnPlayer", "i", playerid);
 }
+
 /**
  * SetPlayerPos
  * @see https://wiki.sa-mp.com/wiki/SetPlayerPos
@@ -98,10 +99,10 @@ function SpawnPlayer( playerid ){
  * @param {Number} z
  * @return {Number} retval
  */
-function SetPlayerPos( playerid, x, y, z ){
-	var out = CallNativeGDK( "SetPlayerPos", "ifff", playerid, x, y, z );
-	return out;
+function SetPlayerPos(playerid, x, y, z) {
+	return CallNativeGDK("SetPlayerPos", "ifff", playerid, x, y, z);
 }
+
 /**
  * SetPlayerPosFindZ
  * @see https://wiki.sa-mp.com/wiki/SetPlayerPosFindZ
@@ -111,20 +112,22 @@ function SetPlayerPos( playerid, x, y, z ){
  * @param {Number} z
  * @return {Number} retval
  */
-function SetPlayerPosFindZ( playerid, x, y, z ){
-	var out = CallNativeGDK( "SetPlayerPosFindZ", "ifff", playerid, x, y, z );
-	return out;
+function SetPlayerPosFindZ(playerid, x, y, z) {
+	return CallNativeGDK("SetPlayerPosFindZ", "ifff", playerid, x, y, z);
 }
+
 /**
  * GetPlayerPos
  * @see https://wiki.sa-mp.com/wiki/GetPlayerPos
  * @param {Number} playerid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetPlayerPos( playerid ){
-	var out = CallNativeGDK( "GetPlayerPos", "iFFF", playerid, [ "x", "y", "z" ] );
-	return {x: out[0],y: out[1],z: out[2]};
+function GetPlayerPos(playerid)
+{
+	let out = CallNativeGDK("GetPlayerPos", "iFFF", playerid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * SetPlayerFacingAngle
  * @see https://wiki.sa-mp.com/wiki/SetPlayerFacingAngle
@@ -132,20 +135,20 @@ function GetPlayerPos( playerid ){
  * @param {Number} ang
  * @return {Number} retval
  */
-function SetPlayerFacingAngle( playerid, ang ){
-	var out = CallNativeGDK( "SetPlayerFacingAngle", "if", playerid, ang );
-	return out;
+function SetPlayerFacingAngle(playerid, ang) {
+	return CallNativeGDK("SetPlayerFacingAngle", "if", playerid, ang);
 }
+
 /**
  * GetPlayerFacingAngle
  * @see https://wiki.sa-mp.com/wiki/GetPlayerFacingAngle
  * @param {Number} playerid
  * @return {Number} ang
  */
-function GetPlayerFacingAngle( playerid ){
-	var out = CallNativeGDK( "GetPlayerFacingAngle", "iF", playerid );
-	return out;
+function GetPlayerFacingAngle(playerid) {
+	return CallNativeGDK("GetPlayerFacingAngle", "iF", playerid);
 }
+
 /**
  * IsPlayerInRangeOfPoint
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInRangeOfPoint
@@ -156,23 +159,23 @@ function GetPlayerFacingAngle( playerid ){
  * @param {Number} z
  * @return {Number} retval
  */
-function IsPlayerInRangeOfPoint( playerid, range, x, y, z ){
-	var out = CallNativeGDK( "IsPlayerInRangeOfPoint", "iffff", playerid, range, x, y, z );
-	return out;
+function IsPlayerInRangeOfPoint(playerid, range, x, y, z) {
+	return CallNativeGDK("IsPlayerInRangeOfPoint", "iffff", playerid, range, x, y, z);
 }
+
 /**
  * GetPlayerDistanceFromPoint
  * @see https://wiki.sa-mp.com/wiki/GetPlayerDistanceFromPoint
  * @param {Number} playerid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @return {Number} retval
  */
-function GetPlayerDistanceFromPoint( playerid, X, Y, Z ){
-	var out = CallNativeGDK( "GetPlayerDistanceFromPoint", "ifff", playerid, X, Y, Z );
-	return out;
+function GetPlayerDistanceFromPoint(playerid, x, y, z) {
+	return CallNativeGDK("GetPlayerDistanceFromPoint", "ifff", playerid, x, y, z);
 }
+
 /**
  * IsPlayerStreamedIn
  * @see https://wiki.sa-mp.com/wiki/IsPlayerStreamedIn
@@ -180,10 +183,10 @@ function GetPlayerDistanceFromPoint( playerid, X, Y, Z ){
  * @param {Number} forplayerid
  * @return {Number} retval
  */
-function IsPlayerStreamedIn( playerid, forplayerid ){
-	var out = CallNativeGDK( "IsPlayerStreamedIn", "ii", playerid, forplayerid );
-	return out;
+function IsPlayerStreamedIn(playerid, forplayerid) {
+	return CallNativeGDK("IsPlayerStreamedIn", "ii", playerid, forplayerid);
 }
+
 /**
  * SetPlayerInterior
  * @see https://wiki.sa-mp.com/wiki/SetPlayerInterior
@@ -191,20 +194,20 @@ function IsPlayerStreamedIn( playerid, forplayerid ){
  * @param {Number} interiorid
  * @return {Number} retval
  */
-function SetPlayerInterior( playerid, interiorid ){
-	var out = CallNativeGDK( "SetPlayerInterior", "ii", playerid, interiorid );
-	return out;
+function SetPlayerInterior(playerid, interiorid) {
+	return CallNativeGDK("SetPlayerInterior", "ii", playerid, interiorid);
 }
+
 /**
  * GetPlayerInterior
  * @see https://wiki.sa-mp.com/wiki/GetPlayerInterior
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerInterior( playerid ){
-	var out = CallNativeGDK( "GetPlayerInterior", "i", playerid );
-	return out;
+function GetPlayerInterior(playerid) {
+	return CallNativeGDK("GetPlayerInterior", "i", playerid);
 }
+
 /**
  * SetPlayerHealth
  * @see https://wiki.sa-mp.com/wiki/SetPlayerHealth
@@ -212,20 +215,20 @@ function GetPlayerInterior( playerid ){
  * @param {Number} health
  * @return {Number} retval
  */
-function SetPlayerHealth( playerid, health ){
-	var out = CallNativeGDK( "SetPlayerHealth", "if", playerid, health );
-	return out;
+function SetPlayerHealth(playerid, health) {
+	return CallNativeGDK("SetPlayerHealth", "if", playerid, health);
 }
+
 /**
  * GetPlayerHealth
  * @see https://wiki.sa-mp.com/wiki/GetPlayerHealth
  * @param {Number} playerid
  * @return {Number} health
  */
-function GetPlayerHealth( playerid ){
-	var out = CallNativeGDK( "GetPlayerHealth", "iF", playerid );
-	return out;
+function GetPlayerHealth(playerid) {
+	return CallNativeGDK("GetPlayerHealth", "iF", playerid);
 }
+
 /**
  * SetPlayerArmour
  * @see https://wiki.sa-mp.com/wiki/SetPlayerArmour
@@ -233,20 +236,20 @@ function GetPlayerHealth( playerid ){
  * @param {Number} armour
  * @return {Number} retval
  */
-function SetPlayerArmour( playerid, armour ){
-	var out = CallNativeGDK( "SetPlayerArmour", "if", playerid, armour );
-	return out;
+function SetPlayerArmour(playerid, armour) {
+	return CallNativeGDK("SetPlayerArmour", "if", playerid, armour);
 }
+
 /**
  * GetPlayerArmour
  * @see https://wiki.sa-mp.com/wiki/GetPlayerArmour
  * @param {Number} playerid
  * @return {Number} armour
  */
-function GetPlayerArmour( playerid ){
-	var out = CallNativeGDK( "GetPlayerArmour", "iF", playerid );
-	return out;
+function GetPlayerArmour(playerid) {
+	return CallNativeGDK("GetPlayerArmour", "iF", playerid);
 }
+
 /**
  * SetPlayerAmmo
  * @see https://wiki.sa-mp.com/wiki/SetPlayerAmmo
@@ -255,50 +258,50 @@ function GetPlayerArmour( playerid ){
  * @param {Number} ammo
  * @return {Number} retval
  */
-function SetPlayerAmmo( playerid, weaponslot, ammo ){
-	var out = CallNativeGDK( "SetPlayerAmmo", "iii", playerid, weaponslot, ammo );
-	return out;
+function SetPlayerAmmo(playerid, weaponslot, ammo) {
+	return CallNativeGDK("SetPlayerAmmo", "iii", playerid, weaponslot, ammo);
 }
+
 /**
  * GetPlayerAmmo
  * @see https://wiki.sa-mp.com/wiki/GetPlayerAmmo
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerAmmo( playerid ){
-	var out = CallNativeGDK( "GetPlayerAmmo", "i", playerid );
-	return out;
+function GetPlayerAmmo(playerid) {
+	return CallNativeGDK("GetPlayerAmmo", "i", playerid);
 }
+
 /**
  * GetPlayerWeaponState
  * @see https://wiki.sa-mp.com/wiki/GetPlayerWeaponState
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerWeaponState( playerid ){
-	var out = CallNativeGDK( "GetPlayerWeaponState", "i", playerid );
-	return out;
+function GetPlayerWeaponState(playerid) {
+	return CallNativeGDK("GetPlayerWeaponState", "i", playerid);
 }
+
 /**
  * GetPlayerTargetPlayer
  * @see https://wiki.sa-mp.com/wiki/GetPlayerTargetPlayer
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerTargetPlayer( playerid ){
-	var out = CallNativeGDK( "GetPlayerTargetPlayer", "i", playerid );
-	return out;
+function GetPlayerTargetPlayer(playerid) {
+	return CallNativeGDK("GetPlayerTargetPlayer", "i", playerid);
 }
+
 /**
  * GetPlayerTargetActor
  * @see https://wiki.sa-mp.com/wiki/GetPlayerTargetActor
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerTargetActor( playerid ){
-	var out = CallNativeGDK( "GetPlayerTargetActor", "i", playerid );
-	return out;
+function GetPlayerTargetActor(playerid) {
+	return CallNativeGDK("GetPlayerTargetActor", "i", playerid);
 }
+
 /**
  * SetPlayerTeam
  * @see https://wiki.sa-mp.com/wiki/SetPlayerTeam
@@ -306,20 +309,20 @@ function GetPlayerTargetActor( playerid ){
  * @param {Number} teamid
  * @return {Number} retval
  */
-function SetPlayerTeam( playerid, teamid ){
-	var out = CallNativeGDK( "SetPlayerTeam", "ii", playerid, teamid );
-	return out;
+function SetPlayerTeam(playerid, teamid) {
+	return CallNativeGDK("SetPlayerTeam", "ii", playerid, teamid);
 }
+
 /**
  * GetPlayerTeam
  * @see https://wiki.sa-mp.com/wiki/GetPlayerTeam
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerTeam( playerid ){
-	var out = CallNativeGDK( "GetPlayerTeam", "i", playerid );
-	return out;
+function GetPlayerTeam(playerid) {
+	return CallNativeGDK("GetPlayerTeam", "i", playerid);
 }
+
 /**
  * SetPlayerScore
  * @see https://wiki.sa-mp.com/wiki/SetPlayerScore
@@ -327,30 +330,30 @@ function GetPlayerTeam( playerid ){
  * @param {Number} score
  * @return {Number} retval
  */
-function SetPlayerScore( playerid, score ){
-	var out = CallNativeGDK( "SetPlayerScore", "ii", playerid, score );
-	return out;
+function SetPlayerScore(playerid, score) {
+	return CallNativeGDK("SetPlayerScore", "ii", playerid, score);
 }
+
 /**
  * GetPlayerScore
  * @see https://wiki.sa-mp.com/wiki/GetPlayerScore
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerScore( playerid ){
-	var out = CallNativeGDK( "GetPlayerScore", "i", playerid );
-	return out;
+function GetPlayerScore(playerid) {
+	return CallNativeGDK("GetPlayerScore", "i", playerid);
 }
+
 /**
  * GetPlayerDrunkLevel
  * @see https://wiki.sa-mp.com/wiki/GetPlayerDrunkLevel
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerDrunkLevel( playerid ){
-	var out = CallNativeGDK( "GetPlayerDrunkLevel", "i", playerid );
-	return out;
+function GetPlayerDrunkLevel(playerid) {
+	return CallNativeGDK("GetPlayerDrunkLevel", "i", playerid);
 }
+
 /**
  * SetPlayerDrunkLevel
  * @see https://wiki.sa-mp.com/wiki/SetPlayerDrunkLevel
@@ -358,10 +361,10 @@ function GetPlayerDrunkLevel( playerid ){
  * @param {Number} level
  * @return {Number} retval
  */
-function SetPlayerDrunkLevel( playerid, level ){
-	var out = CallNativeGDK( "SetPlayerDrunkLevel", "ii", playerid, level );
-	return out;
+function SetPlayerDrunkLevel(playerid, level) {
+	return CallNativeGDK("SetPlayerDrunkLevel", "ii", playerid, level);
 }
+
 /**
  * SetPlayerColor
  * @see https://wiki.sa-mp.com/wiki/SetPlayerColor
@@ -369,20 +372,20 @@ function SetPlayerDrunkLevel( playerid, level ){
  * @param {Number} color
  * @return {Number} retval
  */
-function SetPlayerColor( playerid, color ){
-	var out = CallNativeGDK( "SetPlayerColor", "ii", playerid, color );
-	return out;
+function SetPlayerColor(playerid, color) {
+	return CallNativeGDK("SetPlayerColor", "ii", playerid, color);
 }
+
 /**
  * GetPlayerColor
  * @see https://wiki.sa-mp.com/wiki/GetPlayerColor
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerColor( playerid ){
-	var out = CallNativeGDK( "GetPlayerColor", "i", playerid );
-	return out;
+function GetPlayerColor(playerid) {
+	return CallNativeGDK("GetPlayerColor", "i", playerid);
 }
+
 /**
  * SetPlayerSkin
  * @see https://wiki.sa-mp.com/wiki/SetPlayerSkin
@@ -390,20 +393,20 @@ function GetPlayerColor( playerid ){
  * @param {Number} skinid
  * @return {Number} retval
  */
-function SetPlayerSkin( playerid, skinid ){
-	var out = CallNativeGDK( "SetPlayerSkin", "ii", playerid, skinid );
-	return out;
+function SetPlayerSkin(playerid, skinid) {
+	return CallNativeGDK("SetPlayerSkin", "ii", playerid, skinid);
 }
+
 /**
  * GetPlayerSkin
  * @see https://wiki.sa-mp.com/wiki/GetPlayerSkin
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerSkin( playerid ){
-	var out = CallNativeGDK( "GetPlayerSkin", "i", playerid );
-	return out;
+function GetPlayerSkin(playerid) {
+	return CallNativeGDK("GetPlayerSkin", "i", playerid);
 }
+
 /**
  * GivePlayerWeapon
  * @see https://wiki.sa-mp.com/wiki/GivePlayerWeapon
@@ -412,20 +415,20 @@ function GetPlayerSkin( playerid ){
  * @param {Number} ammo
  * @return {Number} retval
  */
-function GivePlayerWeapon( playerid, weaponid, ammo ){
-	var out = CallNativeGDK( "GivePlayerWeapon", "iii", playerid, weaponid, ammo );
-	return out;
+function GivePlayerWeapon(playerid, weaponid, ammo) {
+	return CallNativeGDK("GivePlayerWeapon", "iii", playerid, weaponid, ammo);
 }
+
 /**
  * ResetPlayerWeapons
  * @see https://wiki.sa-mp.com/wiki/ResetPlayerWeapons
  * @param {Number} playerid
  * @return {Number} retval
  */
-function ResetPlayerWeapons( playerid ){
-	var out = CallNativeGDK( "ResetPlayerWeapons", "i", playerid );
-	return out;
+function ResetPlayerWeapons(playerid) {
+	return CallNativeGDK("ResetPlayerWeapons", "i", playerid);
 }
+
 /**
  * SetPlayerArmedWeapon
  * @see https://wiki.sa-mp.com/wiki/SetPlayerArmedWeapon
@@ -433,21 +436,23 @@ function ResetPlayerWeapons( playerid ){
  * @param {Number} weaponid
  * @return {Number} retval
  */
-function SetPlayerArmedWeapon( playerid, weaponid ){
-	var out = CallNativeGDK( "SetPlayerArmedWeapon", "ii", playerid, weaponid );
-	return out;
+function SetPlayerArmedWeapon(playerid, weaponid) {
+	return CallNativeGDK("SetPlayerArmedWeapon", "ii", playerid, weaponid);
 }
+
 /**
  * GetPlayerWeaponData
  * @see https://wiki.sa-mp.com/wiki/GetPlayerWeaponData
  * @param {Number} playerid
  * @param {Number} slot
- * @return {{ weapons: Number,  ammo: Number }}
+ * @return {weapons: Number, ammo: Number}
  */
-function GetPlayerWeaponData( playerid, slot ){
-	var out = CallNativeGDK( "GetPlayerWeaponData", "iiII", playerid, slot, [ "weapons", "ammo" ] );
-	return {weapons: out[0],ammo: out[1]};
+function GetPlayerWeaponData(playerid, slot)
+{
+	let out = CallNativeGDK("GetPlayerWeaponData", "iiII", playerid, slot);
+	return {weapons: out[0], ammo: out[1]};
 }
+
 /**
  * GivePlayerMoney
  * @see https://wiki.sa-mp.com/wiki/GivePlayerMoney
@@ -455,20 +460,20 @@ function GetPlayerWeaponData( playerid, slot ){
  * @param {Number} money
  * @return {Number} retval
  */
-function GivePlayerMoney( playerid, money ){
-	var out = CallNativeGDK( "GivePlayerMoney", "ii", playerid, money );
-	return out;
+function GivePlayerMoney(playerid, money) {
+	return CallNativeGDK("GivePlayerMoney", "ii", playerid, money);
 }
+
 /**
  * ResetPlayerMoney
  * @see https://wiki.sa-mp.com/wiki/ResetPlayerMoney
  * @param {Number} playerid
  * @return {Number} retval
  */
-function ResetPlayerMoney( playerid ){
-	var out = CallNativeGDK( "ResetPlayerMoney", "i", playerid );
-	return out;
+function ResetPlayerMoney(playerid) {
+	return CallNativeGDK("ResetPlayerMoney", "i", playerid);
 }
+
 /**
  * SetPlayerName
  * @see https://wiki.sa-mp.com/wiki/SetPlayerName
@@ -476,84 +481,88 @@ function ResetPlayerMoney( playerid ){
  * @param {String} name
  * @return {Number} retval
  */
-function SetPlayerName( playerid, name ){
-	var out = CallNativeGDK( "SetPlayerName", "is", playerid, name );
-	return out;
+function SetPlayerName(playerid, name) {
+	return CallNativeGDK("SetPlayerName", "is", playerid, name);
 }
+
 /**
  * GetPlayerMoney
  * @see https://wiki.sa-mp.com/wiki/GetPlayerMoney
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerMoney( playerid ){
-	var out = CallNativeGDK( "GetPlayerMoney", "i", playerid );
-	return out;
+function GetPlayerMoney(playerid) {
+	return CallNativeGDK("GetPlayerMoney", "i", playerid);
 }
+
 /**
  * GetPlayerState
  * @see https://wiki.sa-mp.com/wiki/GetPlayerState
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerState( playerid ){
-	var out = CallNativeGDK( "GetPlayerState", "i", playerid );
-	return out;
+function GetPlayerState(playerid) {
+	return CallNativeGDK("GetPlayerState", "i", playerid);
 }
+
 /**
  * GetPlayerIp
  * @see https://wiki.sa-mp.com/wiki/GetPlayerIp
  * @param {Number} playerid
- * @param {Number} [len]
+ * @param {Number} [len=256]
  * @return {String} name
  */
-function GetPlayerIp( playerid, len ){
-	len = typeof len !== 'undefined' ? len : 256;
-	var out = CallNativeGDK( "GetPlayerIp", "iSi", playerid, len );
-	return out;
+function GetPlayerIp(playerid, len)
+{
+	len = typeof len === 'undefined' ? 256 : len;
+	return CallNativeGDK("GetPlayerIp", "iSi", playerid, len);
 }
+
 /**
  * GetPlayerPing
  * @see https://wiki.sa-mp.com/wiki/GetPlayerPing
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerPing( playerid ){
-	var out = CallNativeGDK( "GetPlayerPing", "i", playerid );
-	return out;
+function GetPlayerPing(playerid) {
+	return CallNativeGDK("GetPlayerPing", "i", playerid);
 }
+
 /**
  * GetPlayerWeapon
  * @see https://wiki.sa-mp.com/wiki/GetPlayerWeapon
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerWeapon( playerid ){
-	var out = CallNativeGDK( "GetPlayerWeapon", "i", playerid );
-	return out;
+function GetPlayerWeapon(playerid) {
+	return CallNativeGDK("GetPlayerWeapon", "i", playerid);
 }
+
 /**
  * GetPlayerKeys
  * @see https://wiki.sa-mp.com/wiki/GetPlayerKeys
  * @param {Number} playerid
- * @return {{ keys: Number,  updown: Number,  leftright: Number }}
+ * @return {keys: Number, updown: Number, leftright: Number}
  */
-function GetPlayerKeys( playerid ){
-	var out = CallNativeGDK( "GetPlayerKeys", "iIII", playerid, [ "keys", "updown", "leftright" ] );
-	return {keys: out[0],updown: out[1],leftright: out[2]};
+function GetPlayerKeys(playerid)
+{
+	let out = CallNativeGDK("GetPlayerKeys", "iIII", playerid);
+	return {keys: out[0], updown: out[1], leftright: out[2]};
 }
+
 /**
  * GetPlayerName
  * @see https://wiki.sa-mp.com/wiki/GetPlayerName
  * @param {Number} playerid
- * @param {Number} [len]
+ * @param {Number} [len=256]
  * @return {String} name
  */
-function GetPlayerName( playerid, len ){
-	len = typeof len !== 'undefined' ? len : 256;
-	var out = CallNativeGDK( "GetPlayerName", "iSi", playerid, len );
-	return out;
+function GetPlayerName(playerid, len)
+{
+	len = typeof len === 'undefined' ? 256 : len;
+	return CallNativeGDK("GetPlayerName", "iSi", playerid, len);
 }
+
 /**
  * SetPlayerTime
  * @see https://wiki.sa-mp.com/wiki/SetPlayerTime
@@ -562,20 +571,22 @@ function GetPlayerName( playerid, len ){
  * @param {Number} minute
  * @return {Number} retval
  */
-function SetPlayerTime( playerid, hour, minute ){
-	var out = CallNativeGDK( "SetPlayerTime", "iii", playerid, hour, minute );
-	return out;
+function SetPlayerTime(playerid, hour, minute) {
+	return CallNativeGDK("SetPlayerTime", "iii", playerid, hour, minute);
 }
+
 /**
  * GetPlayerTime
  * @see https://wiki.sa-mp.com/wiki/GetPlayerTime
  * @param {Number} playerid
- * @return {{ hour: Number,  minute: Number }}
+ * @return {hour: Number, minute: Number}
  */
-function GetPlayerTime( playerid ){
-	var out = CallNativeGDK( "GetPlayerTime", "iII", playerid, [ "hour", "minute" ] );
-	return {hour: out[0],minute: out[1]};
+function GetPlayerTime(playerid)
+{
+	let out = CallNativeGDK("GetPlayerTime", "iII", playerid);
+	return {hour: out[0], minute: out[1]};
 }
+
 /**
  * TogglePlayerClock
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerClock
@@ -583,10 +594,10 @@ function GetPlayerTime( playerid ){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerClock( playerid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerClock", "ii", playerid, toggle );
-	return out;
+function TogglePlayerClock(playerid, toggle) {
+	return CallNativeGDK("TogglePlayerClock", "ii", playerid, toggle);
 }
+
 /**
  * SetPlayerWeather
  * @see https://wiki.sa-mp.com/wiki/SetPlayerWeather
@@ -594,20 +605,20 @@ function TogglePlayerClock( playerid, toggle ){
  * @param {Number} weather
  * @return {Number} retval
  */
-function SetPlayerWeather( playerid, weather ){
-	var out = CallNativeGDK( "SetPlayerWeather", "ii", playerid, weather );
-	return out;
+function SetPlayerWeather(playerid, weather) {
+	return CallNativeGDK("SetPlayerWeather", "ii", playerid, weather);
 }
+
 /**
  * ForceClassSelection
  * @see https://wiki.sa-mp.com/wiki/ForceClassSelection
  * @param {Number} playerid
  * @return {Number} retval
  */
-function ForceClassSelection( playerid ){
-	var out = CallNativeGDK( "ForceClassSelection", "i", playerid );
-	return out;
+function ForceClassSelection(playerid) {
+	return CallNativeGDK("ForceClassSelection", "i", playerid);
 }
+
 /**
  * SetPlayerWantedLevel
  * @see https://wiki.sa-mp.com/wiki/SetPlayerWantedLevel
@@ -615,20 +626,20 @@ function ForceClassSelection( playerid ){
  * @param {Number} level
  * @return {Number} retval
  */
-function SetPlayerWantedLevel( playerid, level ){
-	var out = CallNativeGDK( "SetPlayerWantedLevel", "ii", playerid, level );
-	return out;
+function SetPlayerWantedLevel(playerid, level) {
+	return CallNativeGDK("SetPlayerWantedLevel", "ii", playerid, level);
 }
+
 /**
  * GetPlayerWantedLevel
  * @see https://wiki.sa-mp.com/wiki/GetPlayerWantedLevel
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerWantedLevel( playerid ){
-	var out = CallNativeGDK( "GetPlayerWantedLevel", "i", playerid );
-	return out;
+function GetPlayerWantedLevel(playerid) {
+	return CallNativeGDK("GetPlayerWantedLevel", "i", playerid);
 }
+
 /**
  * SetPlayerFightingStyle
  * @see https://wiki.sa-mp.com/wiki/SetPlayerFightingStyle
@@ -636,43 +647,45 @@ function GetPlayerWantedLevel( playerid ){
  * @param {Number} style
  * @return {Number} retval
  */
-function SetPlayerFightingStyle( playerid, style ){
-	var out = CallNativeGDK( "SetPlayerFightingStyle", "ii", playerid, style );
-	return out;
+function SetPlayerFightingStyle(playerid, style) {
+	return CallNativeGDK("SetPlayerFightingStyle", "ii", playerid, style);
 }
+
 /**
  * GetPlayerFightingStyle
  * @see https://wiki.sa-mp.com/wiki/GetPlayerFightingStyle
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerFightingStyle( playerid ){
-	var out = CallNativeGDK( "GetPlayerFightingStyle", "i", playerid );
-	return out;
+function GetPlayerFightingStyle(playerid) {
+	return CallNativeGDK("GetPlayerFightingStyle", "i", playerid);
 }
+
 /**
  * SetPlayerVelocity
  * @see https://wiki.sa-mp.com/wiki/SetPlayerVelocity
  * @param {Number} playerid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @return {Number} retval
  */
-function SetPlayerVelocity( playerid, X, Y, Z ){
-	var out = CallNativeGDK( "SetPlayerVelocity", "ifff", playerid, X, Y, Z );
-	return out;
+function SetPlayerVelocity(playerid, x, y, z) {
+	return CallNativeGDK("SetPlayerVelocity", "ifff", playerid, x, y, z);
 }
+
 /**
  * GetPlayerVelocity
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVelocity
  * @param {Number} playerid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetPlayerVelocity( playerid ){
-	var out = CallNativeGDK( "GetPlayerVelocity", "iFFF", playerid, [ "x", "y", "z" ] );
-	return {X: out[0],Y: out[1],Z: out[2]};
+function GetPlayerVelocity(playerid)
+{
+	let out = CallNativeGDK("GetPlayerVelocity", "iFFF", playerid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * PlayCrimeReportForPlayer
  * @see https://wiki.sa-mp.com/wiki/PlayCrimeReportForPlayer
@@ -681,41 +694,42 @@ function GetPlayerVelocity( playerid ){
  * @param {Number} crime
  * @return {Number} retval
  */
-function PlayCrimeReportForPlayer( playerid, suspectid, crime ){
-	var out = CallNativeGDK( "PlayCrimeReportForPlayer", "iii", playerid, suspectid, crime );
-	return out;
+function PlayCrimeReportForPlayer(playerid, suspectid, crime) {
+	return CallNativeGDK("PlayCrimeReportForPlayer", "iii", playerid, suspectid, crime);
 }
+
 /**
  * PlayAudioStreamForPlayer
  * @see https://wiki.sa-mp.com/wiki/PlayAudioStreamForPlayer
  * @param {Number} playerid
  * @param {String} url
- * @param {Number} posX
- * @param {Number} posY
- * @param {Number} posZ
- * @param {Number} distance
- * @param {Number} usepos
+ * @param {Number} [posX=0.0]
+ * @param {Number} [posY=0.0]
+ * @param {Number} [posZ=0.0]
+ * @param {Number} [distance=50.0]
+ * @param {Number} [usepos=0]
  * @return {Number} retval
  */
-function PlayAudioStreamForPlayer( playerid, url, posX, posY, posZ, distance, usepos ){
-	posX = typeof posX !== 'undefined' ? posX : 0.0;
-	posY = typeof posY !== 'undefined' ? posY : 0.0;
-	posZ = typeof posZ !== 'undefined' ? posZ : 0.0;
-	distance = typeof distance !== 'undefined' ? distance : 50.0;
-	usepos = typeof usepos !== 'undefined' ? usepos : 0;
-	var out = CallNativeGDK( "PlayAudioStreamForPlayer", "isffffi", playerid, url, posX, posY, posZ, distance, usepos );
-	return out;
+function PlayAudioStreamForPlayer(playerid, url, posX, posY, posZ, distance, usepos)
+{
+	posX = typeof posX === 'undefined' ? 0.0 : posX;
+	posY = typeof posY === 'undefined' ? 0.0 : posY;
+	posZ = typeof posZ === 'undefined' ? 0.0 : posZ;
+	distance = typeof distance === 'undefined' ? 50.0 : distance;
+	usepos = typeof usepos === 'undefined' ? 0 : usepos;
+	return CallNativeGDK("PlayAudioStreamForPlayer", "isffffi", playerid, url, posX, posY, posZ, distance, usepos);
 }
+
 /**
  * StopAudioStreamForPlayer
  * @see https://wiki.sa-mp.com/wiki/StopAudioStreamForPlayer
  * @param {Number} playerid
  * @return {Number} retval
  */
-function StopAudioStreamForPlayer( playerid ){
-	var out = CallNativeGDK( "StopAudioStreamForPlayer", "i", playerid );
-	return out;
+function StopAudioStreamForPlayer(playerid) {
+	return CallNativeGDK("StopAudioStreamForPlayer", "i", playerid);
 }
+
 /**
  * SetPlayerShopName
  * @see https://wiki.sa-mp.com/wiki/SetPlayerShopName
@@ -723,10 +737,10 @@ function StopAudioStreamForPlayer( playerid ){
  * @param {String} shopname
  * @return {Number} retval
  */
-function SetPlayerShopName( playerid, shopname ){
-	var out = CallNativeGDK( "SetPlayerShopName", "is", playerid, shopname );
-	return out;
+function SetPlayerShopName(playerid, shopname) {
+	return CallNativeGDK("SetPlayerShopName", "is", playerid, shopname);
 }
+
 /**
  * SetPlayerSkillLevel
  * @see https://wiki.sa-mp.com/wiki/SetPlayerSkillLevel
@@ -735,30 +749,30 @@ function SetPlayerShopName( playerid, shopname ){
  * @param {Number} level
  * @return {Number} retval
  */
-function SetPlayerSkillLevel( playerid, skill, level ){
-	var out = CallNativeGDK( "SetPlayerSkillLevel", "iii", playerid, skill, level );
-	return out;
+function SetPlayerSkillLevel(playerid, skill, level) {
+	return CallNativeGDK("SetPlayerSkillLevel", "iii", playerid, skill, level);
 }
+
 /**
  * GetPlayerSurfingVehicleID
  * @see https://wiki.sa-mp.com/wiki/GetPlayerSurfingVehicleID
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerSurfingVehicleID( playerid ){
-	var out = CallNativeGDK( "GetPlayerSurfingVehicleID", "i", playerid );
-	return out;
+function GetPlayerSurfingVehicleID(playerid) {
+	return CallNativeGDK("GetPlayerSurfingVehicleID", "i", playerid);
 }
+
 /**
  * GetPlayerSurfingObjectID
  * @see https://wiki.sa-mp.com/wiki/GetPlayerSurfingObjectID
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerSurfingObjectID( playerid ){
-	var out = CallNativeGDK( "GetPlayerSurfingObjectID", "i", playerid );
-	return out;
+function GetPlayerSurfingObjectID(playerid) {
+	return CallNativeGDK("GetPlayerSurfingObjectID", "i", playerid);
 }
+
 /**
  * RemoveBuildingForPlayer
  * @see https://wiki.sa-mp.com/wiki/RemoveBuildingForPlayer
@@ -770,20 +784,22 @@ function GetPlayerSurfingObjectID( playerid ){
  * @param {Number} fRadius
  * @return {Number} retval
  */
-function RemoveBuildingForPlayer( playerid, modelid, fX, fY, fZ, fRadius ){
-	var out = CallNativeGDK( "RemoveBuildingForPlayer", "iiffff", playerid, modelid, fX, fY, fZ, fRadius );
-	return out;
+function RemoveBuildingForPlayer(playerid, modelid, fX, fY, fZ, fRadius) {
+	return CallNativeGDK("RemoveBuildingForPlayer", "iiffff", playerid, modelid, fX, fY, fZ, fRadius);
 }
+
 /**
  * GetPlayerLastShotVectors
  * @see https://wiki.sa-mp.com/wiki/GetPlayerLastShotVectors
  * @param {Number} playerid
- * @return {{ foriginx: Number,  foriginy: Number,  foriginz: Number,  fhitposx: Number,  fhitposy: Number,  fhitposz: Number }}
+ * @return {fOriginX: Number, fOriginY: Number, fOriginZ: Number, fHitPosX: Number, fHitPosY: Number, fHitPosZ: Number}
  */
-function GetPlayerLastShotVectors( playerid ){
-	var out = CallNativeGDK( "GetPlayerLastShotVectors", "iFFFFFF", playerid, [ "foriginx", "foriginy", "foriginz", "fhitposx", "fhitposy", "fhitposz" ] );
-	return {fOriginX: out[0],fOriginY: out[1],fOriginZ: out[2],fHitPosX: out[3],fHitPosY: out[4],fHitPosZ: out[5]};
+function GetPlayerLastShotVectors(playerid)
+{
+	let out = CallNativeGDK("GetPlayerLastShotVectors", "iFFFFFF", playerid);
+	return {fOriginX: out[0], fOriginY: out[1], fOriginZ: out[2], fHitPosX: out[3], fHitPosY: out[4], fHitPosZ: out[5]};
 }
+
 /**
  * SetPlayerAttachedObject
  * @see https://wiki.sa-mp.com/wiki/SetPlayerAttachedObject
@@ -791,34 +807,35 @@ function GetPlayerLastShotVectors( playerid ){
  * @param {Number} index
  * @param {Number} modelid
  * @param {Number} bone
- * @param {Number} fOffsetX
- * @param {Number} fOffsetY
- * @param {Number} fOffsetZ
- * @param {Number} fRotX
- * @param {Number} fRotY
- * @param {Number} fRotZ
- * @param {Number} fScaleX
- * @param {Number} fScaleY
- * @param {Number} fScaleZ
- * @param {Number} materialcolor1
- * @param {Number} materialcolor2
+ * @param {Number} [fOffsetX=0.0]
+ * @param {Number} [fOffsetY=0.0]
+ * @param {Number} [fOffsetZ=0.0]
+ * @param {Number} [fRotX=0.0]
+ * @param {Number} [fRotY=0.0]
+ * @param {Number} [fRotZ=0.0]
+ * @param {Number} [fScaleX=1.0]
+ * @param {Number} [fScaleY=1.0]
+ * @param {Number} [fScaleZ=1.0]
+ * @param {Number} [materialcolor1=0]
+ * @param {Number} [materialcolor2=0]
  * @return {Number} retval
  */
-function SetPlayerAttachedObject( playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2 ){
-	fOffsetX = typeof fOffsetX !== 'undefined' ? fOffsetX : 0.0;
-	fOffsetY = typeof fOffsetY !== 'undefined' ? fOffsetY : 0.0;
-	fOffsetZ = typeof fOffsetZ !== 'undefined' ? fOffsetZ : 0.0;
-	fRotX = typeof fRotX !== 'undefined' ? fRotX : 0.0;
-	fRotY = typeof fRotY !== 'undefined' ? fRotY : 0.0;
-	fRotZ = typeof fRotZ !== 'undefined' ? fRotZ : 0.0;
-	fScaleX = typeof fScaleX !== 'undefined' ? fScaleX : 1.0;
-	fScaleY = typeof fScaleY !== 'undefined' ? fScaleY : 1.0;
-	fScaleZ = typeof fScaleZ !== 'undefined' ? fScaleZ : 1.0;
-	materialcolor1 = typeof materialcolor1 !== 'undefined' ? materialcolor1 : 0;
-	materialcolor2 = typeof materialcolor2 !== 'undefined' ? materialcolor2 : 0;
-	var out = CallNativeGDK( "SetPlayerAttachedObject", "iiiifffffffffii", playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2 );
-	return out;
+function SetPlayerAttachedObject(playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2)
+{
+	fOffsetX = typeof fOffsetX === 'undefined' ? 0.0 : fOffsetX;
+	fOffsetY = typeof fOffsetY === 'undefined' ? 0.0 : fOffsetY;
+	fOffsetZ = typeof fOffsetZ === 'undefined' ? 0.0 : fOffsetZ;
+	fRotX = typeof fRotX === 'undefined' ? 0.0 : fRotX;
+	fRotY = typeof fRotY === 'undefined' ? 0.0 : fRotY;
+	fRotZ = typeof fRotZ === 'undefined' ? 0.0 : fRotZ;
+	fScaleX = typeof fScaleX === 'undefined' ? 1.0 : fScaleX;
+	fScaleY = typeof fScaleY === 'undefined' ? 1.0 : fScaleY;
+	fScaleZ = typeof fScaleZ === 'undefined' ? 1.0 : fScaleZ;
+	materialcolor1 = typeof materialcolor1 === 'undefined' ? 0 : materialcolor1;
+	materialcolor2 = typeof materialcolor2 === 'undefined' ? 0 : materialcolor2;
+	return CallNativeGDK("SetPlayerAttachedObject", "iiiifffffffffii", playerid, index, modelid, bone, fOffsetX, fOffsetY, fOffsetZ, fRotX, fRotY, fRotZ, fScaleX, fScaleY, fScaleZ, materialcolor1, materialcolor2);
 }
+
 /**
  * RemovePlayerAttachedObject
  * @see https://wiki.sa-mp.com/wiki/RemovePlayerAttachedObject
@@ -826,10 +843,10 @@ function SetPlayerAttachedObject( playerid, index, modelid, bone, fOffsetX, fOff
  * @param {Number} index
  * @return {Number} retval
  */
-function RemovePlayerAttachedObject( playerid, index ){
-	var out = CallNativeGDK( "RemovePlayerAttachedObject", "ii", playerid, index );
-	return out;
+function RemovePlayerAttachedObject(playerid, index) {
+	return CallNativeGDK("RemovePlayerAttachedObject", "ii", playerid, index);
 }
+
 /**
  * IsPlayerAttachedObjectSlotUsed
  * @see https://wiki.sa-mp.com/wiki/IsPlayerAttachedObjectSlotUsed
@@ -837,10 +854,10 @@ function RemovePlayerAttachedObject( playerid, index ){
  * @param {Number} index
  * @return {Number} retval
  */
-function IsPlayerAttachedObjectSlotUsed( playerid, index ){
-	var out = CallNativeGDK( "IsPlayerAttachedObjectSlotUsed", "ii", playerid, index );
-	return out;
+function IsPlayerAttachedObjectSlotUsed(playerid, index) {
+	return CallNativeGDK("IsPlayerAttachedObjectSlotUsed", "ii", playerid, index);
 }
+
 /**
  * EditAttachedObject
  * @see https://wiki.sa-mp.com/wiki/EditAttachedObject
@@ -848,10 +865,10 @@ function IsPlayerAttachedObjectSlotUsed( playerid, index ){
  * @param {Number} index
  * @return {Number} retval
  */
-function EditAttachedObject( playerid, index ){
-	var out = CallNativeGDK( "EditAttachedObject", "ii", playerid, index );
-	return out;
+function EditAttachedObject(playerid, index) {
+	return CallNativeGDK("EditAttachedObject", "ii", playerid, index);
 }
+
 /**
  * CreatePlayerTextDraw
  * @see https://wiki.sa-mp.com/wiki/CreatePlayerTextDraw
@@ -861,10 +878,10 @@ function EditAttachedObject( playerid, index ){
  * @param {String} text
  * @return {Number} retval
  */
-function CreatePlayerTextDraw( playerid, x, y, text ){
-	var out = CallNativeGDK( "CreatePlayerTextDraw", "iffs", playerid, x, y, text );
-	return out;
+function CreatePlayerTextDraw(playerid, x, y, text) {
+	return CallNativeGDK("CreatePlayerTextDraw", "iffs", playerid, x, y, text);
 }
+
 /**
  * PlayerTextDrawDestroy
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawDestroy
@@ -872,10 +889,10 @@ function CreatePlayerTextDraw( playerid, x, y, text ){
  * @param {Number} text
  * @return {Number} retval
  */
-function PlayerTextDrawDestroy( playerid, text ){
-	var out = CallNativeGDK( "PlayerTextDrawDestroy", "ii", playerid, text );
-	return out;
+function PlayerTextDrawDestroy(playerid, text) {
+	return CallNativeGDK("PlayerTextDrawDestroy", "ii", playerid, text);
 }
+
 /**
  * PlayerTextDrawLetterSize
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawLetterSize
@@ -885,10 +902,10 @@ function PlayerTextDrawDestroy( playerid, text ){
  * @param {Number} y
  * @return {Number} retval
  */
-function PlayerTextDrawLetterSize( playerid, text, x, y ){
-	var out = CallNativeGDK( "PlayerTextDrawLetterSize", "iiff", playerid, text, x, y );
-	return out;
+function PlayerTextDrawLetterSize(playerid, text, x, y) {
+	return CallNativeGDK("PlayerTextDrawLetterSize", "iiff", playerid, text, x, y);
 }
+
 /**
  * PlayerTextDrawTextSize
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawTextSize
@@ -898,10 +915,10 @@ function PlayerTextDrawLetterSize( playerid, text, x, y ){
  * @param {Number} y
  * @return {Number} retval
  */
-function PlayerTextDrawTextSize( playerid, text, x, y ){
-	var out = CallNativeGDK( "PlayerTextDrawTextSize", "iiff", playerid, text, x, y );
-	return out;
+function PlayerTextDrawTextSize(playerid, text, x, y) {
+	return CallNativeGDK("PlayerTextDrawTextSize", "iiff", playerid, text, x, y);
 }
+
 /**
  * PlayerTextDrawAlignment
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawAlignment
@@ -910,10 +927,10 @@ function PlayerTextDrawTextSize( playerid, text, x, y ){
  * @param {Number} alignment
  * @return {Number} retval
  */
-function PlayerTextDrawAlignment( playerid, text, alignment ){
-	var out = CallNativeGDK( "PlayerTextDrawAlignment", "iii", playerid, text, alignment );
-	return out;
+function PlayerTextDrawAlignment(playerid, text, alignment) {
+	return CallNativeGDK("PlayerTextDrawAlignment", "iii", playerid, text, alignment);
 }
+
 /**
  * PlayerTextDrawColor
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawColor
@@ -922,10 +939,10 @@ function PlayerTextDrawAlignment( playerid, text, alignment ){
  * @param {Number} color
  * @return {Number} retval
  */
-function PlayerTextDrawColor( playerid, text, color ){
-	var out = CallNativeGDK( "PlayerTextDrawColor", "iii", playerid, text, color );
-	return out;
+function PlayerTextDrawColor(playerid, text, color) {
+	return CallNativeGDK("PlayerTextDrawColor", "iii", playerid, text, color);
 }
+
 /**
  * PlayerTextDrawUseBox
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawUseBox
@@ -934,10 +951,10 @@ function PlayerTextDrawColor( playerid, text, color ){
  * @param {Number} use
  * @return {Number} retval
  */
-function PlayerTextDrawUseBox( playerid, text, use ){
-	var out = CallNativeGDK( "PlayerTextDrawUseBox", "iii", playerid, text, use );
-	return out;
+function PlayerTextDrawUseBox(playerid, text, use) {
+	return CallNativeGDK("PlayerTextDrawUseBox", "iii", playerid, text, use);
 }
+
 /**
  * PlayerTextDrawBoxColor
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawBoxColor
@@ -946,10 +963,10 @@ function PlayerTextDrawUseBox( playerid, text, use ){
  * @param {Number} color
  * @return {Number} retval
  */
-function PlayerTextDrawBoxColor( playerid, text, color ){
-	var out = CallNativeGDK( "PlayerTextDrawBoxColor", "iii", playerid, text, color );
-	return out;
+function PlayerTextDrawBoxColor(playerid, text, color) {
+	return CallNativeGDK("PlayerTextDrawBoxColor", "iii", playerid, text, color);
 }
+
 /**
  * PlayerTextDrawSetShadow
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetShadow
@@ -958,10 +975,10 @@ function PlayerTextDrawBoxColor( playerid, text, color ){
  * @param {Number} size
  * @return {Number} retval
  */
-function PlayerTextDrawSetShadow( playerid, text, size ){
-	var out = CallNativeGDK( "PlayerTextDrawSetShadow", "iii", playerid, text, size );
-	return out;
+function PlayerTextDrawSetShadow(playerid, text, size) {
+	return CallNativeGDK("PlayerTextDrawSetShadow", "iii", playerid, text, size);
 }
+
 /**
  * PlayerTextDrawSetOutline
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetOutline
@@ -970,10 +987,10 @@ function PlayerTextDrawSetShadow( playerid, text, size ){
  * @param {Number} size
  * @return {Number} retval
  */
-function PlayerTextDrawSetOutline( playerid, text, size ){
-	var out = CallNativeGDK( "PlayerTextDrawSetOutline", "iii", playerid, text, size );
-	return out;
+function PlayerTextDrawSetOutline(playerid, text, size) {
+	return CallNativeGDK("PlayerTextDrawSetOutline", "iii", playerid, text, size);
 }
+
 /**
  * PlayerTextDrawBackgroundColor
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawBackgroundColor
@@ -982,10 +999,10 @@ function PlayerTextDrawSetOutline( playerid, text, size ){
  * @param {Number} color
  * @return {Number} retval
  */
-function PlayerTextDrawBackgroundColor( playerid, text, color ){
-	var out = CallNativeGDK( "PlayerTextDrawBackgroundColor", "iii", playerid, text, color );
-	return out;
+function PlayerTextDrawBackgroundColor(playerid, text, color) {
+	return CallNativeGDK("PlayerTextDrawBackgroundColor", "iii", playerid, text, color);
 }
+
 /**
  * PlayerTextDrawFont
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawFont
@@ -994,10 +1011,10 @@ function PlayerTextDrawBackgroundColor( playerid, text, color ){
  * @param {Number} font
  * @return {Number} retval
  */
-function PlayerTextDrawFont( playerid, text, font ){
-	var out = CallNativeGDK( "PlayerTextDrawFont", "iii", playerid, text, font );
-	return out;
+function PlayerTextDrawFont(playerid, text, font) {
+	return CallNativeGDK("PlayerTextDrawFont", "iii", playerid, text, font);
 }
+
 /**
  * PlayerTextDrawSetProportional
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetProportional
@@ -1006,10 +1023,10 @@ function PlayerTextDrawFont( playerid, text, font ){
  * @param {Number} set
  * @return {Number} retval
  */
-function PlayerTextDrawSetProportional( playerid, text, set ){
-	var out = CallNativeGDK( "PlayerTextDrawSetProportional", "iii", playerid, text, set );
-	return out;
+function PlayerTextDrawSetProportional(playerid, text, set) {
+	return CallNativeGDK("PlayerTextDrawSetProportional", "iii", playerid, text, set);
 }
+
 /**
  * PlayerTextDrawSetSelectable
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetSelectable
@@ -1018,10 +1035,10 @@ function PlayerTextDrawSetProportional( playerid, text, set ){
  * @param {Number} set
  * @return {Number} retval
  */
-function PlayerTextDrawSetSelectable( playerid, text, set ){
-	var out = CallNativeGDK( "PlayerTextDrawSetSelectable", "iii", playerid, text, set );
-	return out;
+function PlayerTextDrawSetSelectable(playerid, text, set) {
+	return CallNativeGDK("PlayerTextDrawSetSelectable", "iii", playerid, text, set);
 }
+
 /**
  * PlayerTextDrawShow
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawShow
@@ -1029,10 +1046,10 @@ function PlayerTextDrawSetSelectable( playerid, text, set ){
  * @param {Number} text
  * @return {Number} retval
  */
-function PlayerTextDrawShow( playerid, text ){
-	var out = CallNativeGDK( "PlayerTextDrawShow", "ii", playerid, text );
-	return out;
+function PlayerTextDrawShow(playerid, text) {
+	return CallNativeGDK("PlayerTextDrawShow", "ii", playerid, text);
 }
+
 /**
  * PlayerTextDrawHide
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawHide
@@ -1040,10 +1057,10 @@ function PlayerTextDrawShow( playerid, text ){
  * @param {Number} text
  * @return {Number} retval
  */
-function PlayerTextDrawHide( playerid, text ){
-	var out = CallNativeGDK( "PlayerTextDrawHide", "ii", playerid, text );
-	return out;
+function PlayerTextDrawHide(playerid, text) {
+	return CallNativeGDK("PlayerTextDrawHide", "ii", playerid, text);
 }
+
 /**
  * PlayerTextDrawSetString
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetString
@@ -1052,10 +1069,10 @@ function PlayerTextDrawHide( playerid, text ){
  * @param {String} string
  * @return {Number} retval
  */
-function PlayerTextDrawSetString( playerid, text, string ){
-	var out = CallNativeGDK( "PlayerTextDrawSetString", "iis", playerid, text, string );
-	return out;
+function PlayerTextDrawSetString(playerid, text, string) {
+	return CallNativeGDK("PlayerTextDrawSetString", "iis", playerid, text, string);
 }
+
 /**
  * PlayerTextDrawSetPreviewModel
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetPreviewModel
@@ -1064,10 +1081,10 @@ function PlayerTextDrawSetString( playerid, text, string ){
  * @param {Number} modelindex
  * @return {Number} retval
  */
-function PlayerTextDrawSetPreviewModel( playerid, text, modelindex ){
-	var out = CallNativeGDK( "PlayerTextDrawSetPreviewModel", "iii", playerid, text, modelindex );
-	return out;
+function PlayerTextDrawSetPreviewModel(playerid, text, modelindex) {
+	return CallNativeGDK("PlayerTextDrawSetPreviewModel", "iii", playerid, text, modelindex);
 }
+
 /**
  * PlayerTextDrawSetPreviewRot
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetPreviewRot
@@ -1076,14 +1093,15 @@ function PlayerTextDrawSetPreviewModel( playerid, text, modelindex ){
  * @param {Number} fRotX
  * @param {Number} fRotY
  * @param {Number} fRotZ
- * @param {Number} fZoom
+ * @param {Number} [fZoom=1.0]
  * @return {Number} retval
  */
-function PlayerTextDrawSetPreviewRot( playerid, text, fRotX, fRotY, fRotZ, fZoom ){
-	fZoom = typeof fZoom !== 'undefined' ? fZoom : 1.0;
-	var out = CallNativeGDK( "PlayerTextDrawSetPreviewRot", "iiffff", playerid, text, fRotX, fRotY, fRotZ, fZoom );
-	return out;
+function PlayerTextDrawSetPreviewRot(playerid, text, fRotX, fRotY, fRotZ, fZoom)
+{
+	fZoom = typeof fZoom === 'undefined' ? 1.0 : fZoom;
+	return CallNativeGDK("PlayerTextDrawSetPreviewRot", "iiffff", playerid, text, fRotX, fRotY, fRotZ, fZoom);
 }
+
 /**
  * PlayerTextDrawSetPreviewVehCol
  * @see https://wiki.sa-mp.com/wiki/PlayerTextDrawSetPreviewVehCol
@@ -1093,10 +1111,10 @@ function PlayerTextDrawSetPreviewRot( playerid, text, fRotX, fRotY, fRotZ, fZoom
  * @param {Number} color2
  * @return {Number} retval
  */
-function PlayerTextDrawSetPreviewVehCol( playerid, text, color1, color2 ){
-	var out = CallNativeGDK( "PlayerTextDrawSetPreviewVehCol", "iiii", playerid, text, color1, color2 );
-	return out;
+function PlayerTextDrawSetPreviewVehCol(playerid, text, color1, color2) {
+	return CallNativeGDK("PlayerTextDrawSetPreviewVehCol", "iiii", playerid, text, color1, color2);
 }
+
 /**
  * SetPVarInt
  * @see https://wiki.sa-mp.com/wiki/SetPVarInt
@@ -1105,10 +1123,10 @@ function PlayerTextDrawSetPreviewVehCol( playerid, text, color1, color2 ){
  * @param {Number} int_value
  * @return {Number} retval
  */
-function SetPVarInt( playerid, varname, int_value ){
-	var out = CallNativeGDK( "SetPVarInt", "isi", playerid, varname, int_value );
-	return out;
+function SetPVarInt(playerid, varname, int_value) {
+	return CallNativeGDK("SetPVarInt", "isi", playerid, varname, int_value);
 }
+
 /**
  * GetPVarInt
  * @see https://wiki.sa-mp.com/wiki/GetPVarInt
@@ -1116,10 +1134,10 @@ function SetPVarInt( playerid, varname, int_value ){
  * @param {String} varname
  * @return {Number} retval
  */
-function GetPVarInt( playerid, varname ){
-	var out = CallNativeGDK( "GetPVarInt", "is", playerid, varname );
-	return out;
+function GetPVarInt(playerid, varname) {
+	return CallNativeGDK("GetPVarInt", "is", playerid, varname);
 }
+
 /**
  * SetPVarString
  * @see https://wiki.sa-mp.com/wiki/SetPVarString
@@ -1128,23 +1146,24 @@ function GetPVarInt( playerid, varname ){
  * @param {String} string_value
  * @return {Number} retval
  */
-function SetPVarString( playerid, varname, string_value ){
-	var out = CallNativeGDK( "SetPVarString", "iss", playerid, varname, string_value );
-	return out;
+function SetPVarString(playerid, varname, string_value) {
+	return CallNativeGDK("SetPVarString", "iss", playerid, varname, string_value);
 }
+
 /**
  * GetPVarString
  * @see https://wiki.sa-mp.com/wiki/GetPVarString
  * @param {Number} playerid
  * @param {String} varname
- * @param {Number} [len]
+ * @param {Number} [len=256]
  * @return {String} string_return
  */
-function GetPVarString( playerid, varname, len ){
-	len = typeof len !== 'undefined' ? len : 256;
-	var out = CallNativeGDK( "GetPVarString", "isSi", playerid, varname, len );
-	return out;
+function GetPVarString(playerid, varname, len)
+{
+	len = typeof len === 'undefined' ? 256 : len;
+	return CallNativeGDK("GetPVarString", "isSi", playerid, varname, len);
 }
+
 /**
  * SetPVarFloat
  * @see https://wiki.sa-mp.com/wiki/SetPVarFloat
@@ -1153,10 +1172,10 @@ function GetPVarString( playerid, varname, len ){
  * @param {Number} float_value
  * @return {Number} retval
  */
-function SetPVarFloat( playerid, varname, float_value ){
-	var out = CallNativeGDK( "SetPVarFloat", "isf", playerid, varname, float_value );
-	return out;
+function SetPVarFloat(playerid, varname, float_value) {
+	return CallNativeGDK("SetPVarFloat", "isf", playerid, varname, float_value);
 }
+
 /**
  * GetPVarFloat
  * @see https://wiki.sa-mp.com/wiki/GetPVarFloat
@@ -1164,10 +1183,10 @@ function SetPVarFloat( playerid, varname, float_value ){
  * @param {String} varname
  * @return {Number} retval
  */
-function GetPVarFloat( playerid, varname ){
-	var out = CallNativeGDK( "GetPVarFloat", "is", playerid, varname );
-	return out;
+function GetPVarFloat(playerid, varname) {
+	return CallNativeGDK("GetPVarFloat", "is", playerid, varname);
 }
+
 /**
  * DeletePVar
  * @see https://wiki.sa-mp.com/wiki/DeletePVar
@@ -1175,33 +1194,34 @@ function GetPVarFloat( playerid, varname ){
  * @param {String} varname
  * @return {Number} retval
  */
-function DeletePVar( playerid, varname ){
-	var out = CallNativeGDK( "DeletePVar", "is", playerid, varname );
-	return out;
+function DeletePVar(playerid, varname) {
+	return CallNativeGDK("DeletePVar", "is", playerid, varname);
 }
+
 /**
  * GetPVarsUpperIndex
  * @see https://wiki.sa-mp.com/wiki/GetPVarsUpperIndex
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPVarsUpperIndex( playerid ){
-	var out = CallNativeGDK( "GetPVarsUpperIndex", "i", playerid );
-	return out;
+function GetPVarsUpperIndex(playerid) {
+	return CallNativeGDK("GetPVarsUpperIndex", "i", playerid);
 }
+
 /**
  * GetPVarNameAtIndex
  * @see https://wiki.sa-mp.com/wiki/GetPVarNameAtIndex
  * @param {Number} playerid
  * @param {Number} index
- * @param {String} ret_varname
- * @param {Number} ret_len
- * @return {Number} retval
+ * @param {Number} [ret_len=256]
+ * @return {String} ret_varname
  */
-function GetPVarNameAtIndex( playerid, index, ret_varname, ret_len ){
-	var out = CallNativeGDK( "GetPVarNameAtIndex", "iisi", playerid, index, ret_varname, ret_len );
-	return out;
+function GetPVarNameAtIndex(playerid, index, ret_len)
+{
+	ret_len = typeof ret_len === 'undefined' ? 256 : ret_len;
+	return CallNativeGDK("GetPVarNameAtIndex", "iiSi", playerid, index, ret_len);
 }
+
 /**
  * GetPVarType
  * @see https://wiki.sa-mp.com/wiki/GetPVarType
@@ -1209,10 +1229,10 @@ function GetPVarNameAtIndex( playerid, index, ret_varname, ret_len ){
  * @param {String} varname
  * @return {Number} retval
  */
-function GetPVarType( playerid, varname ){
-	var out = CallNativeGDK( "GetPVarType", "is", playerid, varname );
-	return out;
+function GetPVarType(playerid, varname) {
+	return CallNativeGDK("GetPVarType", "is", playerid, varname);
 }
+
 /**
  * SetPlayerChatBubble
  * @see https://wiki.sa-mp.com/wiki/SetPlayerChatBubble
@@ -1223,10 +1243,10 @@ function GetPVarType( playerid, varname ){
  * @param {Number} expiretime
  * @return {Number} retval
  */
-function SetPlayerChatBubble( playerid, text, color, drawdistance, expiretime ){
-	var out = CallNativeGDK( "SetPlayerChatBubble", "isifi", playerid, text, color, drawdistance, expiretime );
-	return out;
+function SetPlayerChatBubble(playerid, text, color, drawdistance, expiretime) {
+	return CallNativeGDK("SetPlayerChatBubble", "isifi", playerid, text, color, drawdistance, expiretime);
 }
+
 /**
  * PutPlayerInVehicle
  * @see https://wiki.sa-mp.com/wiki/PutPlayerInVehicle
@@ -1235,40 +1255,40 @@ function SetPlayerChatBubble( playerid, text, color, drawdistance, expiretime ){
  * @param {Number} seatid
  * @return {Number} retval
  */
-function PutPlayerInVehicle( playerid, vehicleid, seatid ){
-	var out = CallNativeGDK( "PutPlayerInVehicle", "iii", playerid, vehicleid, seatid );
-	return out;
+function PutPlayerInVehicle(playerid, vehicleid, seatid) {
+	return CallNativeGDK("PutPlayerInVehicle", "iii", playerid, vehicleid, seatid);
 }
+
 /**
  * GetPlayerVehicleID
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVehicleID
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerVehicleID( playerid ){
-	var out = CallNativeGDK( "GetPlayerVehicleID", "i", playerid );
-	return out;
+function GetPlayerVehicleID(playerid) {
+	return CallNativeGDK("GetPlayerVehicleID", "i", playerid);
 }
+
 /**
  * GetPlayerVehicleSeat
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVehicleSeat
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerVehicleSeat( playerid ){
-	var out = CallNativeGDK( "GetPlayerVehicleSeat", "i", playerid );
-	return out;
+function GetPlayerVehicleSeat(playerid) {
+	return CallNativeGDK("GetPlayerVehicleSeat", "i", playerid);
 }
+
 /**
  * RemovePlayerFromVehicle
  * @see https://wiki.sa-mp.com/wiki/RemovePlayerFromVehicle
  * @param {Number} playerid
  * @return {Number} retval
  */
-function RemovePlayerFromVehicle( playerid ){
-	var out = CallNativeGDK( "RemovePlayerFromVehicle", "i", playerid );
-	return out;
+function RemovePlayerFromVehicle(playerid) {
+	return CallNativeGDK("RemovePlayerFromVehicle", "i", playerid);
 }
+
 /**
  * TogglePlayerControllable
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerControllable
@@ -1276,10 +1296,10 @@ function RemovePlayerFromVehicle( playerid ){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerControllable( playerid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerControllable", "ii", playerid, toggle );
-	return out;
+function TogglePlayerControllable(playerid, toggle) {
+	return CallNativeGDK("TogglePlayerControllable", "ii", playerid, toggle);
 }
+
 /**
  * PlayerPlaySound
  * @see https://wiki.sa-mp.com/wiki/PlayerPlaySound
@@ -1290,10 +1310,10 @@ function TogglePlayerControllable( playerid, toggle ){
  * @param {Number} z
  * @return {Number} retval
  */
-function PlayerPlaySound( playerid, soundid, x, y, z ){
-	var out = CallNativeGDK( "PlayerPlaySound", "iifff", playerid, soundid, x, y, z );
-	return out;
+function PlayerPlaySound(playerid, soundid, x, y, z) {
+	return CallNativeGDK("PlayerPlaySound", "iifff", playerid, soundid, x, y, z);
 }
+
 /**
  * ApplyAnimation
  * @see https://wiki.sa-mp.com/wiki/ApplyAnimation
@@ -1306,60 +1326,65 @@ function PlayerPlaySound( playerid, soundid, x, y, z ){
  * @param {Number} locky
  * @param {Number} freeze
  * @param {Number} time
- * @param {Number} forcesync
+ * @param {Number} [forcesync=0]
  * @return {Number} retval
  */
-function ApplyAnimation( playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync ){
-	forcesync = typeof forcesync !== 'undefined' ? forcesync : 0;
-	var out = CallNativeGDK( "ApplyAnimation", "issfiiiiii", playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync );
-	return out;
+function ApplyAnimation(playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync)
+{
+	forcesync = typeof forcesync === 'undefined' ? 0 : forcesync;
+	return CallNativeGDK("ApplyAnimation", "issfiiiiii", playerid, animlib, animname, fDelta, loop, lockx, locky, freeze, time, forcesync);
 }
+
 /**
  * ClearAnimations
  * @see https://wiki.sa-mp.com/wiki/ClearAnimations
  * @param {Number} playerid
- * @param {Number} forcesync
+ * @param {Number} [forcesync=0]
  * @return {Number} retval
  */
-function ClearAnimations( playerid, forcesync ){
-	forcesync = typeof forcesync !== 'undefined' ? forcesync : 0;
-	var out = CallNativeGDK( "ClearAnimations", "ii", playerid, forcesync );
-	return out;
+function ClearAnimations(playerid, forcesync)
+{
+	forcesync = typeof forcesync === 'undefined' ? 0 : forcesync;
+	return CallNativeGDK("ClearAnimations", "ii", playerid, forcesync);
 }
+
 /**
  * GetPlayerAnimationIndex
  * @see https://wiki.sa-mp.com/wiki/GetPlayerAnimationIndex
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerAnimationIndex( playerid ){
-	var out = CallNativeGDK( "GetPlayerAnimationIndex", "i", playerid );
-	return out;
+function GetPlayerAnimationIndex(playerid) {
+	return CallNativeGDK("GetPlayerAnimationIndex", "i", playerid);
 }
+
 /**
  * GetAnimationName
  * @see https://wiki.sa-mp.com/wiki/GetAnimationName
  * @param {Number} index
- * @param {String} animlib
- * @param {Number} len1
- * @param {String} animname
- * @param {Number} len2
- * @return {Number} retval
+ * @param {Number} [len1=256]
+ * @param {Number} [len2=256]
+ * @return {animlib: String, animname: String}
  */
-function GetAnimationName( index, animlib, len1, animname, len2 ){
-	var out = CallNativeGDK( "GetAnimationName", "isisi", index, animlib, len1, animname, len2 );
-	return out;
+function GetAnimationName(index, len1, len2)
+{
+	len1 = typeof len1 === 'undefined' ? 256 : len1;
+	len2 = typeof len2 === 'undefined' ? 256 : len2;
+
+	let out = CallNativeGDK("GetAnimationName", "iSiSi", index, len1, len2);
+	return {animlib: out[0], animname: out[1]};
 }
+
 /**
  * GetPlayerSpecialAction
  * @see https://wiki.sa-mp.com/wiki/GetPlayerSpecialAction
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerSpecialAction( playerid ){
-	var out = CallNativeGDK( "GetPlayerSpecialAction", "i", playerid );
-	return out;
+function GetPlayerSpecialAction(playerid) {
+	return CallNativeGDK("GetPlayerSpecialAction", "i", playerid);
 }
+
 /**
  * SetPlayerSpecialAction
  * @see https://wiki.sa-mp.com/wiki/SetPlayerSpecialAction
@@ -1367,10 +1392,10 @@ function GetPlayerSpecialAction( playerid ){
  * @param {Number} actionid
  * @return {Number} retval
  */
-function SetPlayerSpecialAction( playerid, actionid ){
-	var out = CallNativeGDK( "SetPlayerSpecialAction", "ii", playerid, actionid );
-	return out;
+function SetPlayerSpecialAction(playerid, actionid) {
+	return CallNativeGDK("SetPlayerSpecialAction", "ii", playerid, actionid);
 }
+
 /**
  * DisableRemoteVehicleCollisions
  * @see https://wiki.sa-mp.com/wiki/DisableRemoteVehicleCollisions
@@ -1378,10 +1403,10 @@ function SetPlayerSpecialAction( playerid, actionid ){
  * @param {Number} disable
  * @return {Number} retval
  */
-function DisableRemoteVehicleCollisions( playerid, disable ){
-	var out = CallNativeGDK( "DisableRemoteVehicleCollisions", "ii", playerid, disable );
-	return out;
+function DisableRemoteVehicleCollisions(playerid, disable) {
+	return CallNativeGDK("DisableRemoteVehicleCollisions", "ii", playerid, disable);
 }
+
 /**
  * SetPlayerCheckpoint
  * @see https://wiki.sa-mp.com/wiki/SetPlayerCheckpoint
@@ -1392,20 +1417,20 @@ function DisableRemoteVehicleCollisions( playerid, disable ){
  * @param {Number} size
  * @return {Number} retval
  */
-function SetPlayerCheckpoint( playerid, x, y, z, size ){
-	var out = CallNativeGDK( "SetPlayerCheckpoint", "iffff", playerid, x, y, z, size );
-	return out;
+function SetPlayerCheckpoint(playerid, x, y, z, size) {
+	return CallNativeGDK("SetPlayerCheckpoint", "iffff", playerid, x, y, z, size);
 }
+
 /**
  * DisablePlayerCheckpoint
  * @see https://wiki.sa-mp.com/wiki/DisablePlayerCheckpoint
  * @param {Number} playerid
  * @return {Number} retval
  */
-function DisablePlayerCheckpoint( playerid ){
-	var out = CallNativeGDK( "DisablePlayerCheckpoint", "i", playerid );
-	return out;
+function DisablePlayerCheckpoint(playerid) {
+	return CallNativeGDK("DisablePlayerCheckpoint", "i", playerid);
 }
+
 /**
  * SetPlayerRaceCheckpoint
  * @see https://wiki.sa-mp.com/wiki/SetPlayerRaceCheckpoint
@@ -1420,20 +1445,20 @@ function DisablePlayerCheckpoint( playerid ){
  * @param {Number} size
  * @return {Number} retval
  */
-function SetPlayerRaceCheckpoint( playerid, type, x, y, z, nextx, nexty, nextz, size ){
-	var out = CallNativeGDK( "SetPlayerRaceCheckpoint", "iifffffff", playerid, type, x, y, z, nextx, nexty, nextz, size );
-	return out;
+function SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size) {
+	return CallNativeGDK("SetPlayerRaceCheckpoint", "iifffffff", playerid, type, x, y, z, nextx, nexty, nextz, size);
 }
+
 /**
  * DisablePlayerRaceCheckpoint
  * @see https://wiki.sa-mp.com/wiki/DisablePlayerRaceCheckpoint
  * @param {Number} playerid
  * @return {Number} retval
  */
-function DisablePlayerRaceCheckpoint( playerid ){
-	var out = CallNativeGDK( "DisablePlayerRaceCheckpoint", "i", playerid );
-	return out;
+function DisablePlayerRaceCheckpoint(playerid) {
+	return CallNativeGDK("DisablePlayerRaceCheckpoint", "i", playerid);
 }
+
 /**
  * SetPlayerWorldBounds
  * @see https://wiki.sa-mp.com/wiki/SetPlayerWorldBounds
@@ -1444,10 +1469,10 @@ function DisablePlayerRaceCheckpoint( playerid ){
  * @param {Number} y_min
  * @return {Number} retval
  */
-function SetPlayerWorldBounds( playerid, x_max, x_min, y_max, y_min ){
-	var out = CallNativeGDK( "SetPlayerWorldBounds", "iffff", playerid, x_max, x_min, y_max, y_min );
-	return out;
+function SetPlayerWorldBounds(playerid, x_max, x_min, y_max, y_min) {
+	return CallNativeGDK("SetPlayerWorldBounds", "iffff", playerid, x_max, x_min, y_max, y_min);
 }
+
 /**
  * SetPlayerMarkerForPlayer
  * @see https://wiki.sa-mp.com/wiki/SetPlayerMarkerForPlayer
@@ -1456,10 +1481,10 @@ function SetPlayerWorldBounds( playerid, x_max, x_min, y_max, y_min ){
  * @param {Number} color
  * @return {Number} retval
  */
-function SetPlayerMarkerForPlayer( playerid, showplayerid, color ){
-	var out = CallNativeGDK( "SetPlayerMarkerForPlayer", "iii", playerid, showplayerid, color );
-	return out;
+function SetPlayerMarkerForPlayer(playerid, showplayerid, color) {
+	return CallNativeGDK("SetPlayerMarkerForPlayer", "iii", playerid, showplayerid, color);
 }
+
 /**
  * ShowPlayerNameTagForPlayer
  * @see https://wiki.sa-mp.com/wiki/ShowPlayerNameTagForPlayer
@@ -1468,10 +1493,10 @@ function SetPlayerMarkerForPlayer( playerid, showplayerid, color ){
  * @param {Number} show
  * @return {Number} retval
  */
-function ShowPlayerNameTagForPlayer( playerid, showplayerid, show ){
-	var out = CallNativeGDK( "ShowPlayerNameTagForPlayer", "iii", playerid, showplayerid, show );
-	return out;
+function ShowPlayerNameTagForPlayer(playerid, showplayerid, show) {
+	return CallNativeGDK("ShowPlayerNameTagForPlayer", "iii", playerid, showplayerid, show);
 }
+
 /**
  * SetPlayerMapIcon
  * @see https://wiki.sa-mp.com/wiki/SetPlayerMapIcon
@@ -1482,14 +1507,15 @@ function ShowPlayerNameTagForPlayer( playerid, showplayerid, show ){
  * @param {Number} z
  * @param {Number} markertype
  * @param {Number} color
- * @param {Number} style
+ * @param {Number} [style=MAPICON_LOCAL]
  * @return {Number} retval
  */
-function SetPlayerMapIcon( playerid, iconid, x, y, z, markertype, color, style ){
-	style = typeof style !== 'undefined' ? style : MAPICON_LOCAL;
-	var out = CallNativeGDK( "SetPlayerMapIcon", "iifffiii", playerid, iconid, x, y, z, markertype, color, style );
-	return out;
+function SetPlayerMapIcon(playerid, iconid, x, y, z, markertype, color, style)
+{
+	style = typeof style === 'undefined' ? MAPICON_LOCAL : style;
+	return CallNativeGDK("SetPlayerMapIcon", "iifffiii", playerid, iconid, x, y, z, markertype, color, style);
 }
+
 /**
  * RemovePlayerMapIcon
  * @see https://wiki.sa-mp.com/wiki/RemovePlayerMapIcon
@@ -1497,10 +1523,10 @@ function SetPlayerMapIcon( playerid, iconid, x, y, z, markertype, color, style )
  * @param {Number} iconid
  * @return {Number} retval
  */
-function RemovePlayerMapIcon( playerid, iconid ){
-	var out = CallNativeGDK( "RemovePlayerMapIcon", "ii", playerid, iconid );
-	return out;
+function RemovePlayerMapIcon(playerid, iconid) {
+	return CallNativeGDK("RemovePlayerMapIcon", "ii", playerid, iconid);
 }
+
 /**
  * AllowPlayerTeleport
  * @see https://wiki.sa-mp.com/wiki/AllowPlayerTeleport
@@ -1508,10 +1534,10 @@ function RemovePlayerMapIcon( playerid, iconid ){
  * @param {Number} allow
  * @return {Number} retval
  */
-function AllowPlayerTeleport( playerid, allow ){
-	var out = CallNativeGDK( "AllowPlayerTeleport", "ii", playerid, allow );
-	return out;
+function AllowPlayerTeleport(playerid, allow) {
+	return CallNativeGDK("AllowPlayerTeleport", "ii", playerid, allow);
 }
+
 /**
  * SetPlayerCameraPos
  * @see https://wiki.sa-mp.com/wiki/SetPlayerCameraPos
@@ -1521,10 +1547,10 @@ function AllowPlayerTeleport( playerid, allow ){
  * @param {Number} z
  * @return {Number} retval
  */
-function SetPlayerCameraPos( playerid, x, y, z ){
-	var out = CallNativeGDK( "SetPlayerCameraPos", "ifff", playerid, x, y, z );
-	return out;
+function SetPlayerCameraPos(playerid, x, y, z) {
+	return CallNativeGDK("SetPlayerCameraPos", "ifff", playerid, x, y, z);
 }
+
 /**
  * SetPlayerCameraLookAt
  * @see https://wiki.sa-mp.com/wiki/SetPlayerCameraLookAt
@@ -1532,54 +1558,59 @@ function SetPlayerCameraPos( playerid, x, y, z ){
  * @param {Number} x
  * @param {Number} y
  * @param {Number} z
- * @param {Number} cut
+ * @param {Number} [cut=CAMERA_CUT]
  * @return {Number} retval
  */
-function SetPlayerCameraLookAt( playerid, x, y, z, cut ){
-	cut = typeof cut !== 'undefined' ? cut : CAMERA_CUT;
-	var out = CallNativeGDK( "SetPlayerCameraLookAt", "ifffi", playerid, x, y, z, cut );
-	return out;
+function SetPlayerCameraLookAt(playerid, x, y, z, cut)
+{
+	cut = typeof cut === 'undefined' ? CAMERA_CUT : cut;
+	return CallNativeGDK("SetPlayerCameraLookAt", "ifffi", playerid, x, y, z, cut);
 }
+
 /**
  * SetCameraBehindPlayer
  * @see https://wiki.sa-mp.com/wiki/SetCameraBehindPlayer
  * @param {Number} playerid
  * @return {Number} retval
  */
-function SetCameraBehindPlayer( playerid ){
-	var out = CallNativeGDK( "SetCameraBehindPlayer", "i", playerid );
-	return out;
+function SetCameraBehindPlayer(playerid) {
+	return CallNativeGDK("SetCameraBehindPlayer", "i", playerid);
 }
+
 /**
  * GetPlayerCameraPos
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraPos
  * @param {Number} playerid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetPlayerCameraPos( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraPos", "iFFF", playerid, [ "x", "y", "z" ] );
-	return {x: out[0],y: out[1],z: out[2]};
+function GetPlayerCameraPos(playerid)
+{
+	let out = CallNativeGDK("GetPlayerCameraPos", "iFFF", playerid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * GetPlayerCameraFrontVector
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraFrontVector
  * @param {Number} playerid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetPlayerCameraFrontVector( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraFrontVector", "iFFF", playerid, [ "x", "y", "z" ] );
-	return {x: out[0],y: out[1],z: out[2]};
+function GetPlayerCameraFrontVector(playerid)
+{
+	let out = CallNativeGDK("GetPlayerCameraFrontVector", "iFFF", playerid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * GetPlayerCameraMode
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraMode
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraMode( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraMode", "i", playerid );
-	return out;
+function GetPlayerCameraMode(playerid) {
+	return CallNativeGDK("GetPlayerCameraMode", "i", playerid);
 }
+
 /**
  * EnablePlayerCameraTarget
  * @see https://wiki.sa-mp.com/wiki/EnablePlayerCameraTarget
@@ -1587,70 +1618,70 @@ function GetPlayerCameraMode( playerid ){
  * @param {Number} enable
  * @return {Number} retval
  */
-function EnablePlayerCameraTarget( playerid, enable ){
-	var out = CallNativeGDK( "EnablePlayerCameraTarget", "ii", playerid, enable );
-	return out;
+function EnablePlayerCameraTarget(playerid, enable) {
+	return CallNativeGDK("EnablePlayerCameraTarget", "ii", playerid, enable);
 }
+
 /**
  * GetPlayerCameraTargetObject
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetObject
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraTargetObject( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraTargetObject", "i", playerid );
-	return out;
+function GetPlayerCameraTargetObject(playerid) {
+	return CallNativeGDK("GetPlayerCameraTargetObject", "i", playerid);
 }
+
 /**
  * GetPlayerCameraTargetVehicle
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetVehicle
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraTargetVehicle( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraTargetVehicle", "i", playerid );
-	return out;
+function GetPlayerCameraTargetVehicle(playerid) {
+	return CallNativeGDK("GetPlayerCameraTargetVehicle", "i", playerid);
 }
+
 /**
  * GetPlayerCameraTargetPlayer
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetPlayer
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraTargetPlayer( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraTargetPlayer", "i", playerid );
-	return out;
+function GetPlayerCameraTargetPlayer(playerid) {
+	return CallNativeGDK("GetPlayerCameraTargetPlayer", "i", playerid);
 }
+
 /**
  * GetPlayerCameraTargetActor
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraTargetActor
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraTargetActor( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraTargetActor", "i", playerid );
-	return out;
+function GetPlayerCameraTargetActor(playerid) {
+	return CallNativeGDK("GetPlayerCameraTargetActor", "i", playerid);
 }
+
 /**
  * GetPlayerCameraAspectRatio
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraAspectRatio
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraAspectRatio( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraAspectRatio", "i", playerid );
-	return out;
+function GetPlayerCameraAspectRatio(playerid) {
+	return CallNativeGDK("GetPlayerCameraAspectRatio", "i", playerid);
 }
+
 /**
  * GetPlayerCameraZoom
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraZoom
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerCameraZoom( playerid ){
-	var out = CallNativeGDK( "GetPlayerCameraZoom", "i", playerid );
-	return out;
+function GetPlayerCameraZoom(playerid) {
+	return CallNativeGDK("GetPlayerCameraZoom", "i", playerid);
 }
+
 /**
  * AttachCameraToObject
  * @see https://wiki.sa-mp.com/wiki/AttachCameraToObject
@@ -1658,10 +1689,10 @@ function GetPlayerCameraZoom( playerid ){
  * @param {Number} objectid
  * @return {Number} retval
  */
-function AttachCameraToObject( playerid, objectid ){
-	var out = CallNativeGDK( "AttachCameraToObject", "ii", playerid, objectid );
-	return out;
+function AttachCameraToObject(playerid, objectid) {
+	return CallNativeGDK("AttachCameraToObject", "ii", playerid, objectid);
 }
+
 /**
  * AttachCameraToPlayerObject
  * @see https://wiki.sa-mp.com/wiki/AttachCameraToPlayerObject
@@ -1669,10 +1700,10 @@ function AttachCameraToObject( playerid, objectid ){
  * @param {Number} playerobjectid
  * @return {Number} retval
  */
-function AttachCameraToPlayerObject( playerid, playerobjectid ){
-	var out = CallNativeGDK( "AttachCameraToPlayerObject", "ii", playerid, playerobjectid );
-	return out;
+function AttachCameraToPlayerObject(playerid, playerobjectid) {
+	return CallNativeGDK("AttachCameraToPlayerObject", "ii", playerid, playerobjectid);
 }
+
 /**
  * InterpolateCameraPos
  * @see https://wiki.sa-mp.com/wiki/InterpolateCameraPos
@@ -1684,14 +1715,15 @@ function AttachCameraToPlayerObject( playerid, playerobjectid ){
  * @param {Number} ToY
  * @param {Number} ToZ
  * @param {Number} time
- * @param {Number} cut
+ * @param {Number} [cut=CAMERA_CUT]
  * @return {Number} retval
  */
-function InterpolateCameraPos( playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut ){
-	cut = typeof cut !== 'undefined' ? cut : CAMERA_CUT;
-	var out = CallNativeGDK( "InterpolateCameraPos", "iffffffii", playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut );
-	return out;
+function InterpolateCameraPos(playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut)
+{
+	cut = typeof cut === 'undefined' ? CAMERA_CUT : cut;
+	return CallNativeGDK("InterpolateCameraPos", "iffffffii", playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut);
 }
+
 /**
  * InterpolateCameraLookAt
  * @see https://wiki.sa-mp.com/wiki/InterpolateCameraLookAt
@@ -1703,24 +1735,25 @@ function InterpolateCameraPos( playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, tim
  * @param {Number} ToY
  * @param {Number} ToZ
  * @param {Number} time
- * @param {Number} cut
+ * @param {Number} [cut=CAMERA_CUT]
  * @return {Number} retval
  */
-function InterpolateCameraLookAt( playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut ){
-	cut = typeof cut !== 'undefined' ? cut : CAMERA_CUT;
-	var out = CallNativeGDK( "InterpolateCameraLookAt", "iffffffii", playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut );
-	return out;
+function InterpolateCameraLookAt(playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut)
+{
+	cut = typeof cut === 'undefined' ? CAMERA_CUT : cut;
+	return CallNativeGDK("InterpolateCameraLookAt", "iffffffii", playerid, FromX, FromY, FromZ, ToX, ToY, ToZ, time, cut);
 }
+
 /**
  * IsPlayerConnected
  * @see https://wiki.sa-mp.com/wiki/IsPlayerConnected
  * @param {Number} playerid
  * @return {Number} retval
  */
-function IsPlayerConnected( playerid ){
-	var out = CallNativeGDK( "IsPlayerConnected", "i", playerid );
-	return out;
+function IsPlayerConnected(playerid) {
+	return CallNativeGDK("IsPlayerConnected", "i", playerid);
 }
+
 /**
  * IsPlayerInVehicle
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInVehicle
@@ -1728,40 +1761,40 @@ function IsPlayerConnected( playerid ){
  * @param {Number} vehicleid
  * @return {Number} retval
  */
-function IsPlayerInVehicle( playerid, vehicleid ){
-	var out = CallNativeGDK( "IsPlayerInVehicle", "ii", playerid, vehicleid );
-	return out;
+function IsPlayerInVehicle(playerid, vehicleid) {
+	return CallNativeGDK("IsPlayerInVehicle", "ii", playerid, vehicleid);
 }
+
 /**
  * IsPlayerInAnyVehicle
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInAnyVehicle
  * @param {Number} playerid
  * @return {Number} retval
  */
-function IsPlayerInAnyVehicle( playerid ){
-	var out = CallNativeGDK( "IsPlayerInAnyVehicle", "i", playerid );
-	return out;
+function IsPlayerInAnyVehicle(playerid) {
+	return CallNativeGDK("IsPlayerInAnyVehicle", "i", playerid);
 }
+
 /**
  * IsPlayerInCheckpoint
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInCheckpoint
  * @param {Number} playerid
  * @return {Number} retval
  */
-function IsPlayerInCheckpoint( playerid ){
-	var out = CallNativeGDK( "IsPlayerInCheckpoint", "i", playerid );
-	return out;
+function IsPlayerInCheckpoint(playerid) {
+	return CallNativeGDK("IsPlayerInCheckpoint", "i", playerid);
 }
+
 /**
  * IsPlayerInRaceCheckpoint
  * @see https://wiki.sa-mp.com/wiki/IsPlayerInRaceCheckpoint
  * @param {Number} playerid
  * @return {Number} retval
  */
-function IsPlayerInRaceCheckpoint( playerid ){
-	var out = CallNativeGDK( "IsPlayerInRaceCheckpoint", "i", playerid );
-	return out;
+function IsPlayerInRaceCheckpoint(playerid) {
+	return CallNativeGDK("IsPlayerInRaceCheckpoint", "i", playerid);
 }
+
 /**
  * SetPlayerVirtualWorld
  * @see https://wiki.sa-mp.com/wiki/SetPlayerVirtualWorld
@@ -1769,20 +1802,20 @@ function IsPlayerInRaceCheckpoint( playerid ){
  * @param {Number} worldid
  * @return {Number} retval
  */
-function SetPlayerVirtualWorld( playerid, worldid ){
-	var out = CallNativeGDK( "SetPlayerVirtualWorld", "ii", playerid, worldid );
-	return out;
+function SetPlayerVirtualWorld(playerid, worldid) {
+	return CallNativeGDK("SetPlayerVirtualWorld", "ii", playerid, worldid);
 }
+
 /**
  * GetPlayerVirtualWorld
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVirtualWorld
  * @param {Number} playerid
  * @return {Number} retval
  */
-function GetPlayerVirtualWorld( playerid ){
-	var out = CallNativeGDK( "GetPlayerVirtualWorld", "i", playerid );
-	return out;
+function GetPlayerVirtualWorld(playerid) {
+	return CallNativeGDK("GetPlayerVirtualWorld", "i", playerid);
 }
+
 /**
  * EnableStuntBonusForPlayer
  * @see https://wiki.sa-mp.com/wiki/EnableStuntBonusForPlayer
@@ -1790,20 +1823,20 @@ function GetPlayerVirtualWorld( playerid ){
  * @param {Number} enable
  * @return {Number} retval
  */
-function EnableStuntBonusForPlayer( playerid, enable ){
-	var out = CallNativeGDK( "EnableStuntBonusForPlayer", "ii", playerid, enable );
-	return out;
+function EnableStuntBonusForPlayer(playerid, enable) {
+	return CallNativeGDK("EnableStuntBonusForPlayer", "ii", playerid, enable);
 }
+
 /**
  * EnableStuntBonusForAll
  * @see https://wiki.sa-mp.com/wiki/EnableStuntBonusForAll
  * @param {Number} enable
  * @return {Number} retval
  */
-function EnableStuntBonusForAll( enable ){
-	var out = CallNativeGDK( "EnableStuntBonusForAll", "i", enable );
-	return out;
+function EnableStuntBonusForAll(enable) {
+	return CallNativeGDK("EnableStuntBonusForAll", "i", enable);
 }
+
 /**
  * TogglePlayerSpectating
  * @see https://wiki.sa-mp.com/wiki/TogglePlayerSpectating
@@ -1811,36 +1844,38 @@ function EnableStuntBonusForAll( enable ){
  * @param {Number} toggle
  * @return {Number} retval
  */
-function TogglePlayerSpectating( playerid, toggle ){
-	var out = CallNativeGDK( "TogglePlayerSpectating", "ii", playerid, toggle );
-	return out;
+function TogglePlayerSpectating(playerid, toggle) {
+	return CallNativeGDK("TogglePlayerSpectating", "ii", playerid, toggle);
 }
+
 /**
  * PlayerSpectatePlayer
  * @see https://wiki.sa-mp.com/wiki/PlayerSpectatePlayer
  * @param {Number} playerid
  * @param {Number} targetplayerid
- * @param {Number} mode
+ * @param {Number} [mode=SPECTATE_MODE_NORMAL]
  * @return {Number} retval
  */
-function PlayerSpectatePlayer( playerid, targetplayerid, mode ){
-	mode = typeof mode !== 'undefined' ? mode : SPECTATE_MODE_NORMAL;
-	var out = CallNativeGDK( "PlayerSpectatePlayer", "iii", playerid, targetplayerid, mode );
-	return out;
+function PlayerSpectatePlayer(playerid, targetplayerid, mode)
+{
+	mode = typeof mode === 'undefined' ? SPECTATE_MODE_NORMAL : mode;
+	return CallNativeGDK("PlayerSpectatePlayer", "iii", playerid, targetplayerid, mode);
 }
+
 /**
  * PlayerSpectateVehicle
  * @see https://wiki.sa-mp.com/wiki/PlayerSpectateVehicle
  * @param {Number} playerid
  * @param {Number} targetvehicleid
- * @param {Number} mode
+ * @param {Number} [mode=SPECTATE_MODE_NORMAL]
  * @return {Number} retval
  */
-function PlayerSpectateVehicle( playerid, targetvehicleid, mode ){
-	mode = typeof mode !== 'undefined' ? mode : SPECTATE_MODE_NORMAL;
-	var out = CallNativeGDK( "PlayerSpectateVehicle", "iii", playerid, targetvehicleid, mode );
-	return out;
+function PlayerSpectateVehicle(playerid, targetvehicleid, mode)
+{
+	mode = typeof mode === 'undefined' ? SPECTATE_MODE_NORMAL : mode;
+	return CallNativeGDK("PlayerSpectateVehicle", "iii", playerid, targetvehicleid, mode);
 }
+
 /**
  * StartRecordingPlayerData
  * @see https://wiki.sa-mp.com/wiki/StartRecordingPlayerData
@@ -1849,20 +1884,20 @@ function PlayerSpectateVehicle( playerid, targetvehicleid, mode ){
  * @param {String} recordname
  * @return {Number} retval
  */
-function StartRecordingPlayerData( playerid, recordtype, recordname ){
-	var out = CallNativeGDK( "StartRecordingPlayerData", "iis", playerid, recordtype, recordname );
-	return out;
+function StartRecordingPlayerData(playerid, recordtype, recordname) {
+	return CallNativeGDK("StartRecordingPlayerData", "iis", playerid, recordtype, recordname);
 }
+
 /**
  * StopRecordingPlayerData
  * @see https://wiki.sa-mp.com/wiki/StopRecordingPlayerData
  * @param {Number} playerid
  * @return {Number} retval
  */
-function StopRecordingPlayerData( playerid ){
-	var out = CallNativeGDK( "StopRecordingPlayerData", "i", playerid );
-	return out;
+function StopRecordingPlayerData(playerid) {
+	return CallNativeGDK("StopRecordingPlayerData", "i", playerid);
 }
+
 /**
  * SelectTextDraw
  * @see https://wiki.sa-mp.com/wiki/SelectTextDraw
@@ -1870,32 +1905,31 @@ function StopRecordingPlayerData( playerid ){
  * @param {Number} hovercolor
  * @return {Number} retval
  */
-function SelectTextDraw( playerid, hovercolor ){
-	var out = CallNativeGDK( "SelectTextDraw", "ii", playerid, hovercolor );
-	return out;
+function SelectTextDraw(playerid, hovercolor) {
+	return CallNativeGDK("SelectTextDraw", "ii", playerid, hovercolor);
 }
+
 /**
  * CancelSelectTextDraw
  * @see https://wiki.sa-mp.com/wiki/CancelSelectTextDraw
  * @param {Number} playerid
  * @return {Number} retval
  */
-function CancelSelectTextDraw( playerid ){
-	var out = CallNativeGDK( "CancelSelectTextDraw", "i", playerid );
-	return out;
+function CancelSelectTextDraw(playerid) {
+	return CallNativeGDK("CancelSelectTextDraw", "i", playerid);
 }
+
 /**
  * CreateExplosionForPlayer
  * @see https://wiki.sa-mp.com/wiki/CreateExplosionForPlayer
  * @param {Number} playerid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @param {Number} type
- * @param {Number} Radius
+ * @param {Number} radius
  * @return {Number} retval
  */
-function CreateExplosionForPlayer( playerid, X, Y, Z, type, Radius ){
-	var out = CallNativeGDK( "CreateExplosionForPlayer", "ifffif", playerid, X, Y, Z, type, Radius );
-	return out;
+function CreateExplosionForPlayer(playerid, x, y, z, type, radius) {
+	return CallNativeGDK("CreateExplosionForPlayer", "ifffif", playerid, x, y, z, type, radius);
 }

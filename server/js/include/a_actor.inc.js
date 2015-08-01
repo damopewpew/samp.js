@@ -2,26 +2,26 @@
  * CreateActor
  * @see https://wiki.sa-mp.com/wiki/CreateActor
  * @param {Number} modelid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
- * @param {Number} Rotation
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
+ * @param {Number} rotation
  * @return {Number} retval
  */
-function CreateActor( modelid, X, Y, Z, Rotation ){
-	var out = CallNativeGDK( "CreateActor", "iffff", modelid, X, Y, Z, Rotation );
-	return out;
+function CreateActor(modelid, x, y, z, rotation) {
+	return CallNativeGDK("CreateActor", "iffff", modelid, x, y, z, rotation);
 }
+
 /**
  * DestroyActor
  * @see https://wiki.sa-mp.com/wiki/DestroyActor
  * @param {Number} actorid
  * @return {Number} retval
  */
-function DestroyActor( actorid ){
-	var out = CallNativeGDK( "DestroyActor", "i", actorid );
-	return out;
+function DestroyActor(actorid) {
+	return CallNativeGDK("DestroyActor", "i", actorid);
 }
+
 /**
  * IsActorStreamedIn
  * @see https://wiki.sa-mp.com/wiki/IsActorStreamedIn
@@ -29,10 +29,10 @@ function DestroyActor( actorid ){
  * @param {Number} forplayerid
  * @return {Number} retval
  */
-function IsActorStreamedIn( actorid, forplayerid ){
-	var out = CallNativeGDK( "IsActorStreamedIn", "ii", actorid, forplayerid );
-	return out;
+function IsActorStreamedIn(actorid, forplayerid) {
+	return CallNativeGDK("IsActorStreamedIn", "ii", actorid, forplayerid);
 }
+
 /**
  * SetActorVirtualWorld
  * @see https://wiki.sa-mp.com/wiki/SetActorVirtualWorld
@@ -40,20 +40,20 @@ function IsActorStreamedIn( actorid, forplayerid ){
  * @param {Number} vworld
  * @return {Number} retval
  */
-function SetActorVirtualWorld( actorid, vworld ){
-	var out = CallNativeGDK( "SetActorVirtualWorld", "ii", actorid, vworld );
-	return out;
+function SetActorVirtualWorld(actorid, vworld) {
+	return CallNativeGDK("SetActorVirtualWorld", "ii", actorid, vworld);
 }
+
 /**
  * GetActorVirtualWorld
  * @see https://wiki.sa-mp.com/wiki/GetActorVirtualWorld
  * @param {Number} actorid
  * @return {Number} retval
  */
-function GetActorVirtualWorld( actorid ){
-	var out = CallNativeGDK( "GetActorVirtualWorld", "i", actorid );
-	return out;
+function GetActorVirtualWorld(actorid) {
+	return CallNativeGDK("GetActorVirtualWorld", "i", actorid);
 }
+
 /**
  * ApplyActorAnimation
  * @see https://wiki.sa-mp.com/wiki/ApplyActorAnimation
@@ -68,43 +68,45 @@ function GetActorVirtualWorld( actorid ){
  * @param {Number} time
  * @return {Number} retval
  */
-function ApplyActorAnimation( actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time ){
-	var out = CallNativeGDK( "ApplyActorAnimation", "issfiiiii", actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time );
-	return out;
+function ApplyActorAnimation(actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time) {
+	return CallNativeGDK("ApplyActorAnimation", "issfiiiii", actorid, animlib, animname, fDelta, loop, lockx, locky, freeze, time);
 }
+
 /**
  * ClearActorAnimations
  * @see https://wiki.sa-mp.com/wiki/ClearActorAnimations
  * @param {Number} actorid
  * @return {Number} retval
  */
-function ClearActorAnimations( actorid ){
-	var out = CallNativeGDK( "ClearActorAnimations", "i", actorid );
-	return out;
+function ClearActorAnimations(actorid) {
+	return CallNativeGDK("ClearActorAnimations", "i", actorid);
 }
+
 /**
  * SetActorPos
  * @see https://wiki.sa-mp.com/wiki/SetActorPos
  * @param {Number} actorid
- * @param {Number} X
- * @param {Number} Y
- * @param {Number} Z
+ * @param {Number} x
+ * @param {Number} y
+ * @param {Number} z
  * @return {Number} retval
  */
-function SetActorPos( actorid, X, Y, Z ){
-	var out = CallNativeGDK( "SetActorPos", "ifff", actorid, X, Y, Z );
-	return out;
+function SetActorPos(actorid, x, y, z) {
+	return CallNativeGDK("SetActorPos", "ifff", actorid, x, y, z);
 }
+
 /**
  * GetActorPos
  * @see https://wiki.sa-mp.com/wiki/GetActorPos
  * @param {Number} actorid
- * @return {{ x: Number,  y: Number,  z: Number }}
+ * @return {x: Number, y: Number, z: Number}
  */
-function GetActorPos( actorid ){
-	var out = CallNativeGDK( "GetActorPos", "iFFF", actorid, [ "x", "y", "z" ] );
-	return {X: out[0],Y: out[1],Z: out[2]};
+function GetActorPos(actorid)
+{
+	let out = CallNativeGDK("GetActorPos", "iFFF", actorid);
+	return {x: out[0], y: out[1], z: out[2]};
 }
+
 /**
  * SetActorFacingAngle
  * @see https://wiki.sa-mp.com/wiki/SetActorFacingAngle
@@ -112,20 +114,20 @@ function GetActorPos( actorid ){
  * @param {Number} ang
  * @return {Number} retval
  */
-function SetActorFacingAngle( actorid, ang ){
-	var out = CallNativeGDK( "SetActorFacingAngle", "if", actorid, ang );
-	return out;
+function SetActorFacingAngle(actorid, ang) {
+	return CallNativeGDK("SetActorFacingAngle", "if", actorid, ang);
 }
+
 /**
  * GetActorFacingAngle
  * @see https://wiki.sa-mp.com/wiki/GetActorFacingAngle
  * @param {Number} actorid
  * @return {Number} ang
  */
-function GetActorFacingAngle( actorid ){
-	var out = CallNativeGDK( "GetActorFacingAngle", "iF", actorid );
-	return out;
+function GetActorFacingAngle(actorid) {
+	return CallNativeGDK("GetActorFacingAngle", "iF", actorid);
 }
+
 /**
  * SetActorHealth
  * @see https://wiki.sa-mp.com/wiki/SetActorHealth
@@ -133,49 +135,49 @@ function GetActorFacingAngle( actorid ){
  * @param {Number} health
  * @return {Number} retval
  */
-function SetActorHealth( actorid, health ){
-	var out = CallNativeGDK( "SetActorHealth", "if", actorid, health );
-	return out;
+function SetActorHealth(actorid, health) {
+	return CallNativeGDK("SetActorHealth", "if", actorid, health);
 }
+
 /**
  * GetActorHealth
  * @see https://wiki.sa-mp.com/wiki/GetActorHealth
  * @param {Number} actorid
  * @return {Number} health
  */
-function GetActorHealth( actorid ){
-	var out = CallNativeGDK( "GetActorHealth", "iF", actorid );
-	return out;
+function GetActorHealth(actorid) {
+	return CallNativeGDK("GetActorHealth", "iF", actorid);
 }
+
 /**
  * SetActorInvulnerable
  * @see https://wiki.sa-mp.com/wiki/SetActorInvulnerable
  * @param {Number} actorid
- * @param {Number} invulnerable
+ * @param {Number} [invulnerable=true]
  * @return {Number} retval
  */
-function SetActorInvulnerable( actorid, invulnerable ){
-	invulnerable = typeof invulnerable !== 'undefined' ? invulnerable : true;
-	var out = CallNativeGDK( "SetActorInvulnerable", "ii", actorid, invulnerable );
-	return out;
+function SetActorInvulnerable(actorid, invulnerable)
+{
+	invulnerable = typeof invulnerable === 'undefined' ? true : invulnerable;
+	return CallNativeGDK("SetActorInvulnerable", "ii", actorid, invulnerable);
 }
+
 /**
  * IsActorInvulnerable
  * @see https://wiki.sa-mp.com/wiki/IsActorInvulnerable
  * @param {Number} actorid
  * @return {Number} retval
  */
-function IsActorInvulnerable( actorid ){
-	var out = CallNativeGDK( "IsActorInvulnerable", "i", actorid );
-	return out;
+function IsActorInvulnerable(actorid) {
+	return CallNativeGDK("IsActorInvulnerable", "i", actorid);
 }
+
 /**
  * IsValidActor
  * @see https://wiki.sa-mp.com/wiki/IsValidActor
  * @param {Number} actorid
  * @return {Number} retval
  */
-function IsValidActor( actorid ){
-	var out = CallNativeGDK( "IsValidActor", "i", actorid );
-	return out;
+function IsValidActor(actorid) {
+	return CallNativeGDK("IsValidActor", "i", actorid);
 }
