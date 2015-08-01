@@ -20,6 +20,10 @@ class Players {
  * @returns {Player} Player object
  */
 	getPlayer(playerid){
+		if(!this.hasOwnProperty(playerid)){
+			var p = new Player(65535);
+			return p;
+		}
 		return this[playerid];
 	}
 	
