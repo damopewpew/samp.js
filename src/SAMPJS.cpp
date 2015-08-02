@@ -87,15 +87,17 @@ bool SAMPJS::CreateScript(string filename){
 
 void SAMPJS::RemoveScript(string filename){
 	if (ScriptLoaded(filename)){
+		scripts.erase(std::remove(scripts.begin(), scripts.end(), filename), scripts.end());
 		scripts_map[filename]->Unload();
 		scripts_map.erase(filename);
-		scripts.erase(std::remove(scripts.begin(), scripts.end(), filename), scripts.end());
+		
 		sjs::logger::log("Unloaded script: %s", filename.c_str());
 	}
 	else if (ScriptLoaded("js/" + filename)){
+		scripts.erase(std::remove(scripts.begin(), scripts.end(), "js/" + filename), scripts.end());
 		scripts_map["js/" + filename]->Unload();
 		scripts_map.erase("js/" + filename);
-		scripts.erase(std::remove(scripts.begin(), scripts.end(), "js/"+filename), scripts.end());
+		
 		sjs::logger::log("Unloaded script: %s", ("js/" + filename).c_str());
 	}
 	else {
