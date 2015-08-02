@@ -59,7 +59,7 @@ void SAMPJS::Shutdown(){
 void SAMPJS::ProcessTick(){
 	for (auto scriptv : scripts){
 		auto script = scripts_map[scriptv];
-		if (script->IsReady()){
+		if (script && script->IsReady()){
 			script->Tick();
 		}
 	}
