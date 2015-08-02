@@ -37,7 +37,7 @@ namespace sampjs {
 		static void Shutdown();
 		static void ProcessTick();
 
-		static void CreateScript( string filename );
+		static bool CreateScript( string filename );
 		static void RemoveScript( string filename );
 		static bool ScriptLoaded( string filename );
 

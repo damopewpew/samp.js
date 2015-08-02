@@ -134,10 +134,11 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	std::vector<std::string> args = sjs::string::split(cmd);
 	if (args[0] == "loadjs"){
 		if (args.size() > 1){
-			sampjs::SAMPJS::CreateScript(args[1]);
-			auto script = sampjs::SAMPJS::GetScript(args[1]);
-			if (script != nullptr){
-				script->Server()->FireEvent("ScriptInit");
+			if (sampjs::SAMPJS::CreateScript(args[1])){
+				auto script = sampjs::SAMPJS::GetScript(args[1]);
+				if (script){
+					script->Server()->FireEvent("ScriptInit");
+				}
 			}
 		}
 		return true;
@@ -151,10 +152,11 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 	else if (args[0] == "reloadjs"){
 		if (args.size() > 1){
 			sampjs::SAMPJS::RemoveScript(args[1]);
-			sampjs::SAMPJS::CreateScript(args[1]);
-			auto script = sampjs::SAMPJS::GetScript(args[1]);
-			if (script != nullptr){
-				script->Server()->FireEvent("ScriptInit");
+			if (sampjs::SAMPJS::CreateScript(args[1])){
+				auto script = sampjs::SAMPJS::GetScript(args[1]);
+				if (script){
+					script->Server()->FireEvent("ScriptInit");
+				}
 			}
 		}
 		return true;

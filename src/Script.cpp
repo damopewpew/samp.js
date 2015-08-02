@@ -86,7 +86,7 @@ bool sampjs::Script::Init(std::string filename){
 	this->filename = filename;
 	std::ifstream t(filename);
 	if (!t){
-		sjs::logger::error("Script does not exists: %s", filename.c_str());
+		sjs::logger::error("Script does not exist: %s", filename.c_str());
 		return false;
 	}
 	LoadModules();

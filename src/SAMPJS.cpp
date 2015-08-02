@@ -67,19 +67,21 @@ void SAMPJS::ProcessTick(){
 
 
 
-void SAMPJS::CreateScript(string filename){
+bool SAMPJS::CreateScript(string filename){
 	if (ScriptLoaded(filename) || ScriptLoaded("js/"+filename)){
 		sjs::logger::log("Script: %s, already loaded", filename.c_str());
-		return;
+		return false;
 	}
 	filename = "js/" + filename;
 	scripts_map[filename] = make_shared<Script>();
 	if (!scripts_map[filename]->Init(filename)){
 		scripts_map.erase(filename);
-		scripts.erase(std::remove(scripts.begin(), scripts.end(), filename), scripts.end());
+		//scripts.erase(std::remove(scripts.begin(), scripts.end(), filename), scripts.end());
+		return false;
 	}
 
 	scripts.push_back(filename);
+	return true;
 }
 
 
@@ -95,6 +97,9 @@ void SAMPJS::RemoveScript(string filename){
 		scripts_map.erase("js/" + filename);
 		scripts.erase(std::remove(scripts.begin(), scripts.end(), "js/"+filename), scripts.end());
 		sjs::logger::log("Unloaded script: %s", ("js/" + filename).c_str());
+	}
+	else {
+		sjs::logger::error("Script does not exist: %s", filename.c_str());
 	}
 }
 
