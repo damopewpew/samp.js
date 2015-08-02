@@ -236,7 +236,10 @@ vector<string> SAMPJS::GetScripts(){
 
 shared_ptr<sampjs::Script> SAMPJS::GetScript(string name){
 	if (!ScriptLoaded(name)){
-		return nullptr;
+		if (!ScriptLoaded("js/" + name)){
+			return nullptr;
+		}
+		return scripts_map["js/" + name];
 	}
 	return scripts_map[name];
 }
