@@ -61,7 +61,7 @@ cmds.set('slap', function(player, data)
 	$server.message(`${target.name}: HOW CAN SHE SLAP!?`);
 });
 
-cmds.set('rape', function(player, data) {
+cmds.add(['rape', 'raep'], function(player, data) {
 	let target = $players.getPlayer(data.args[0]);
 	
 	if(!data.text) {

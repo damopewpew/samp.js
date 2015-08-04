@@ -1,4 +1,19 @@
-let cmds = exports = new Map();
+class CmdMap extends Map
+{
+	add(key, value)
+	{
+		if(Array.isArray(key))
+		{
+			for(let i = 0, len = key.length; i < len; i++) {
+				this.set(key[i], value);
+			}
+			return this;
+		}
+		this.set(key, value);
+		return this;
+	}
+}
+let cmds = exports = new CmdMap();
 
 $server.on('PlayerCommandText', function(player, cmdtext)
 {
