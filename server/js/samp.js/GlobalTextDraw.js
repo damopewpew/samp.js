@@ -78,39 +78,47 @@ class GlobalTextDraw
 	 * Shows the textdraw
 	 * @description Shows the global textdraw for player
 	 */
-	showFor(player) {
-		return TextDrawShowForPlayer(player, this.id);
+	showFor(player) 
+	{
+		TextDrawShowForPlayer(player, this.id);
+		return this;
 	}
 	
 	/**
 	 * Hides the textdraw
 	 * @description Hides the global textdraw for player
 	 */
-	hideFor(player) {
-		return TextDrawHideForPlayer(player, this.id);
+	hideFor(player)
+	{
+		TextDrawHideForPlayer(player, this.id);
+		return this;
 	}
 	
 	/**
 	 * Shows the textdraw for everyone
 	 * @description Shows the global textdraw for everyone
 	 */
-	showForAll() {
-		return TextDrawShowForAll(this.id);
+	showForAll() 
+	{
+		TextDrawShowForAll(this.id);
+		return this;
 	}
 	
 	/**
 	 * Hides the textdraw for everyone
 	 * @description Hides the global textdraw for everyone
 	 */
-	hideForAll() {
-		return TextDrawHideForAll(this.id);
+	hideForAll()
+	{
+		TextDrawHideForAll(this.id);
+		return this;
 	}
 	 
 	 /**
 	 * Destroys the textdraw
 	 */
 	destroy() {
-		return TextDrawDestroy(this.id);
+		TextDrawDestroy(this.id);
 	}
 	
 	/**

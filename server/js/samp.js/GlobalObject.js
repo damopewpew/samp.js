@@ -25,52 +25,57 @@ class GlobalObject
 		return IsObjectMoving(this.id);
 	}
 	
-	move(pos, speed, rot)
+	move(x, y, z, speed, rx, ry, rz)
 	{
-		if(Array.isArray(pos)) {
-			pos = {x: pos[0], y: pos[1], z: pos[2]};
-		}
-		this._pos = pos;
+		this._pos = {x: x, y: y, z: z};
+		this._rot = {x: rx, y: ry, z: rz};
 		
-		if(Array.isArray(rot)) {
-			rot = {x: rot[0], y: rot[1], z: rot[2]};
-		}
-		this._rot = rot;
-		return MoveObject(this.id, pos.x, pos.y, pos.z, speed, rot.x, rot.y, rot.z);
+		MoveObject(this.id, this._pos.x, this._pos.y, this._pos.z, speed, this._rot.x, this._rot.y, this._rot.z);
+		return this;
 	}
 	
-	stop() {
-		return StopObject(this.id);
+	stop() 
+	{
+		StopObject(this.id);
+		return this;
 	}
 	
-	edit(player) {
+	edit(player) 
+	{
 		EditObject(this.id, player);
+		return this;
 	}
 	
-	setNoCameraCol() {
-		return SetObjectNoCameraCol(this.id);
+	setNoCameraCol()
+	{
+		SetObjectNoCameraCol(this.id);
+		return this;
 	}
 	
 	attach(attachTo, ox, oy, oz, rx, ry, rz, syncRot)
 	{
 		if(attachTo instanceof this.constructor) {
-			return AttachObjectToObject(this.id, attachTo.id, ox, oy, oz, rx, ry, rz, syncRot);
+			AttachObjectToObject(this.id, attachTo.id, ox, oy, oz, rx, ry, rz, syncRot);
 		}
 		if(attachTo instanceof Player) {
-			return AttachObjectToPlayer(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
+			AttachObjectToPlayer(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
 		}
 		if(attachTo instanceof Vehicle) {
-			return AttachObjectToVehicle(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
+			AttachObjectToVehicle(this.id, attachTo.id, ox, oy, oz, rx, ry, rz);
 		}
-		return 0;
+		return this;
 	}
 	
-	setMaterial(matIndex, modelid, txdName, textureName, matColor) {
-		return SetObjectMaterial(this.id, matIndex, modelid, txdName, textureName, matColor);
+	setMaterial(matIndex, modelid, txdName, textureName, matColor) 
+	{
+		SetObjectMaterial(this.id, matIndex, modelid, txdName, textureName, matColor);
+		return this;
 	}
 	
-	setMaterialText(text, matIndex, matSize, fontFace, fontSize, bold, fontColor, backColor, textAlign) {
-		return SetObjectMaterialText(this.id, matIndex, matSize, fontFace, fontSize, bold, fontColor, backColor, textAlign);
+	setMaterialText(text, matIndex, matSize, fontFace, fontSize, bold, fontColor, backColor, textAlign)
+	{
+		SetObjectMaterialText(this.id, matIndex, matSize, fontFace, fontSize, bold, fontColor, backColor, textAlign);
+		return this;
 	}
 
 	get isValid() {

@@ -82,23 +82,27 @@ class PlayerTextDraw
 	 * Shows the textdraw
 	 * @description Shows the player-textdraw
 	 */
-	show() {
-		return PlayerTextDrawShow(this._playerid, this.id);
+	show() 
+	{
+		PlayerTextDrawShow(this._playerid, this.id);
+		return this;
 	}
 	
 	/**
 	 * Hides the textdraw
 	 * @description Hides the player-textdraw
 	 */
-	hide() {
-		return PlayerTextDrawHide(this._playerid, this.id);
+	hide() 
+	{
+		PlayerTextDrawHide(this._playerid, this.id);
+		return this;
 	}
 	
 	/**
 	 * Destroys the textdraw
 	 */
 	destroy() {
-		return PlayerTextDrawDestroy(this._playerid, this.id);
+		PlayerTextDrawDestroy(this._playerid, this.id);
 	}
 	
 	/**

@@ -10,16 +10,22 @@ class Vehicle
 		this._addSiren = addSiren;
 	}
 	
-	create() {
-		return (this.id = CreateVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren));
+	create()
+	{
+		this.id = CreateVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren);
+		return this;
 	}
 	
-	createStatic() {
-		return (this.id = AddStaticVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2));
+	createStatic() 
+	{
+		this.id = AddStaticVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2);
+		return this;
 	}
 	
-	createStaticEx() {
-		return (this.id = AddStaticVehicleEx(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren));
+	createStaticEx() 
+	{
+		this.id = AddStaticVehicleEx(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren);
+		return this;
 	}
 	
 	destroy() {
@@ -39,7 +45,7 @@ class Vehicle
 	}
 	
 	hasTrailer() {
-		return IsTrailerAttachedToVehicle(this._id);
+		return IsTrailerAttachedToVehicle(this.id);
 	}
 	
 	distanceFromPoint(point)
@@ -53,28 +59,38 @@ class Vehicle
 		return GetVehicleDistanceFromPoint(this.id, point.x, point.y, point.z);
 	}
 	
-	addComponent(componentid) {
-		return AddVehicleComponent(this.id, componentid);
+	addComponent(componentid) 
+	{
+		AddVehicleComponent(this.id, componentid);
+		return this;
 	}
 	
-	removeComponent(componentid) {
-		return RemoveVehicleComponent(this.id, componentid);
+	removeComponent(componentid) 
+	{
+		RemoveVehicleComponent(this.id, componentid);
+		return this;
 	}
 	
-	respawn() {
-		return SetVehicleToRespawn(this.id);
+	respawn()
+	{
+		SetVehicleToRespawn(this.id);
+		return this;
 	}
 	
-	repair() {
-		return RepairVehicle(this.id);
+	repair() 
+	{
+		RepairVehicle(this.id);
+		return this;
 	}
 	
 	modelInfo(infoType) {
-		GetVehicleModelInfo(this.model, infoType);
+		return GetVehicleModelInfo(this.model, infoType);
 	}
 	
-	detachTrailer() {
-		return DetachTrailerFromVehicle(this.id);
+	detachTrailer() 
+	{
+		DetachTrailerFromVehicle(this.id);
+		return this;
 	}
 	
 	componentInSlot(slot) {
