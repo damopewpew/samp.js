@@ -19,7 +19,7 @@ namespace sampjs {
 			this->context.Reset(this->isolate, callback_->CreationContext());
 		}
 	};
-	class HTTP : public Module {
+	class HTTPJS : public Module {
 	public:
 		virtual void Init(Local<Context> context);
 		virtual void Shutdown();

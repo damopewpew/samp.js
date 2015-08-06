@@ -14,16 +14,16 @@ using namespace sampjs;
 using namespace boost::asio::ip;
 using namespace std;
 
-std::map<int, HTTP_Request*> HTTP::requests;
-int HTTP::requests_id = 0;
+std::map<int, HTTP_Request*> HTTPJS::requests;
+int HTTPJS::requests_id = 0;
 
-void HTTP::Init(Local<Context> context){
+void HTTPJS::Init(Local<Context> context){
 	V8CONTEXT(context->GetIsolate(), context)
 	JS_Object global(context->Global());
-	global.Set("$get", HTTP::JS_Get);
+	global.Set("$get", HTTPJS::JS_Get);
 }
 
-void HTTP::Shutdown(){
+void HTTPJS::Shutdown(){
 	for (auto request : requests){
 		request.second->callback.Reset();
 		request.second->context.Reset();
@@ -31,7 +31,7 @@ void HTTP::Shutdown(){
 	}
 }
 
-void HTTP::JS_Get(const FunctionCallbackInfo<Value> & args){
+void HTTPJS::JS_Get(const FunctionCallbackInfo<Value> & args){
 	if (args.Length() < 1){
 		return;
 	}
@@ -44,8 +44,8 @@ void HTTP::JS_Get(const FunctionCallbackInfo<Value> & args){
 		requests[id] = new HTTP_Request(url, Local<Function>::Cast(args[1]));
 
 		async(launch::async, [id](){
-			HTTP_Request *request = HTTP::requests[id];
-			string data = HTTP::Get(request->url);
+			HTTP_Request *request = HTTPJS::requests[id];
+			string data = HTTPJS::Get(request->url);
 			
 			V8PCONTEXT(request->isolate, request->context)
 
@@ -54,7 +54,7 @@ void HTTP::JS_Get(const FunctionCallbackInfo<Value> & args){
 			Local<Value> argv[1] = { String::NewFromUtf8(request->isolate, data.c_str()) };
 			func->Call(func, 1, argv);
 
-			HTTP::requests.erase(id);
+			HTTPJS::requests.erase(id);
 		});
 		return;
 	}
@@ -62,7 +62,7 @@ void HTTP::JS_Get(const FunctionCallbackInfo<Value> & args){
 	args.GetReturnValue().Set(String::NewFromUtf8(args.GetIsolate(),Get(url).c_str()));
 }
 
-string HTTP::Get(string url){
+string HTTPJS::Get(string url){
 	http::url parsed = http::ParseHttpUrl(url);
 
 	if (parsed.protocol == "")parsed.protocol = "http";

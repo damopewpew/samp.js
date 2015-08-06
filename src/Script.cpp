@@ -145,7 +145,7 @@ void sampjs::Script::LoadModules(){
 	modules.push_back(make_shared<sampjs::Players>());
 	modules.push_back(make_shared<sampjs::FileSystem>());
 	modules.push_back(make_shared<sampjs::Sockets>());
-	modules.push_back(make_shared<sampjs::HTTP>());
+	modules.push_back(make_shared<sampjs::HTTPJS>());
 	modules.push_back(make_shared<sampjs::MySQL>());
 
 	this->server = make_shared<sampjs::Server>();
