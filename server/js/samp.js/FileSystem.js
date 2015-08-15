@@ -100,7 +100,7 @@ class FileSystem {
  * @param   {String}  path Filename/Directory
  * @returns {Boolean} True if it exists False if it does not exist		
  */
-	exits(path){
+	exists(path){
 		return this.internal.exists(path);	
 	}
 	
