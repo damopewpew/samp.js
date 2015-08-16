@@ -1118,7 +1118,7 @@ class Player extends Events {
 		return AttachPlayerObjectToVehicle(this.id, objectid, vehicleid, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
 	}
 
-	objectAttachCamera(playerid, objectid) {
+	objectAttachCamera(objectid) {
 		return AttachCameraToPlayerObject(this.id, objectid);
 	}
 
