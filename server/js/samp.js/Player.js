@@ -1063,7 +1063,7 @@ class Player extends Events {
 		return SendPlayerMessageToPlayer(this.id, target, message);
 	}
 
-	sendDeathMessageToPlayer(killer, victim, weapon) {
+	sendDeathMessage(killer, victim, weapon) {
 		return SendDeathMessageToPlayer(this.id, killer, victim, weapon);
 	}
 
