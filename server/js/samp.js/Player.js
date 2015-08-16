@@ -864,7 +864,7 @@ class Player extends Events {
 		TogglePlayerControllable(this.id, toggle);
 	}
 
-	set disableRemoteVehicleCollisions(diable) {
+	set disableRemoteVehicleCollisions(disable) {
 		DisableRemoteVehicleCollisions(this.id, disable);
 	}
 
