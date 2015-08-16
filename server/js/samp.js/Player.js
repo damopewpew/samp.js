@@ -1540,7 +1540,7 @@ class Player extends Events {
 	textDrawSetPreviewVehCol(textDraw, color)
 	{
 		if(arguments.length > 2) {
-			previewRot = {color1: arguments[1], color2: arguments[2]};
+			color = {color1: arguments[1], color2: arguments[2]};
 		}
 		if(Array.isArray(color)) {
 			color = {color1: color[0], color2: color[1]};
