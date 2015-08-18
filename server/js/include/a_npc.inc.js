@@ -140,7 +140,7 @@ function GetPlayerState(playerid) {
  * GetPlayerPos
  * @see https://wiki.sa-mp.com/wiki/GetPlayerPos
  * @param {Number} playerid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetPlayerPos(playerid)
 {
@@ -222,7 +222,7 @@ function IsVehicleStreamedIn(vehicleid) {
  * GetPlayerKeys
  * @see https://wiki.sa-mp.com/wiki/GetPlayerKeys
  * @param {Number} playerid
- * @return {keys: Number, updown: Number, leftright: Number}
+ * @return {{keys: Number, updown: Number, leftright: Number}}
  */
 function GetPlayerKeys(playerid)
 {
@@ -243,7 +243,7 @@ function GetPlayerFacingAngle(playerid) {
 /**
  * GetMyPos
  * @see https://wiki.sa-mp.com/wiki/GetMyPos
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetMyPos()
 {

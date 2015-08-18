@@ -18,16 +18,16 @@ const INVALID_STREAMER_ID = 0;
 const FLOAT_INFINITY = 0x7F800000;
 
 RegisterPublic("OnDynamicObjectMoved", "i", "DynamicObjectMoved", ['objectid']);
-RegisterPublic("OnPlayerEditDynamicObject", "iiiffffff", "PlayerEditDynamicObject", ['playerid', 'objectid', 'response', 'x', 'y', 'z', 'rx', 'ry', 'rz']);
-RegisterPublic("OnPlayerSelectDynamicObject", "iiifff", "PlayerSelectDynamicObject", ['playerid', 'objectid', 'modelid', 'x', 'y', 'z']);
-RegisterPublic("OnPlayerShootDynamicObject", "iiifff", "PlayerShootDynamicObject", ['playerid', 'weaponid', 'objectid', 'x', 'y', 'z']);
-RegisterPublic("OnPlayerPickUpDynamicPickup", "ii", "PlayerPickUpDynamicPickup", ['playerid', 'pickupid']);
-RegisterPublic("OnPlayerEnterDynamicCP", "ii", "PlayerEnterDynamicCP", ['playerid', 'checkpointid']);
-RegisterPublic("OnPlayerLeaveDynamicCP", "ii", "PlayerLeaveDynamicCP", ['playerid', 'checkpointid']);
-RegisterPublic("OnPlayerEnterDynamicRaceCP", "ii", "PlayerEnterDynamicRaceCP", ['playerid', 'checkpointid']);
-RegisterPublic("OnPlayerLeaveDynamicRaceCP", "ii", "PlayerLeaveDynamicRaceCP", ['playerid', 'checkpointid']);
-RegisterPublic("OnPlayerEnterDynamicArea", "ii", "PlayerEnterDynamicArea", ['playerid', 'areaid']);
-RegisterPublic("OnPlayerLeaveDynamicArea", "ii", "PlayerLeaveDynamicArea", ['playerid', 'areaid']);
+RegisterPublic("OnPlayerEditDynamicObject", "Piiffffff", "PlayerEditDynamicObject", ['playerid', 'objectid', 'response', 'x', 'y', 'z', 'rx', 'ry', 'rz']);
+RegisterPublic("OnPlayerSelectDynamicObject", "Piifff", "PlayerSelectDynamicObject", ['playerid', 'objectid', 'modelid', 'x', 'y', 'z']);
+RegisterPublic("OnPlayerShootDynamicObject", "Piifff", "PlayerShootDynamicObject", ['playerid', 'weaponid', 'objectid', 'x', 'y', 'z']);
+RegisterPublic("OnPlayerPickUpDynamicPickup", "Pi", "PlayerPickUpDynamicPickup", ['playerid', 'pickupid']);
+RegisterPublic("OnPlayerEnterDynamicCP", "Pi", "PlayerEnterDynamicCP", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerLeaveDynamicCP", "Pi", "PlayerLeaveDynamicCP", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerEnterDynamicRaceCP", "Pi", "PlayerEnterDynamicRaceCP", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerLeaveDynamicRaceCP", "Pi", "PlayerLeaveDynamicRaceCP", ['playerid', 'checkpointid']);
+RegisterPublic("OnPlayerEnterDynamicArea", "Pi", "PlayerEnterDynamicArea", ['playerid', 'areaid']);
+RegisterPublic("OnPlayerLeaveDynamicArea", "Pi", "PlayerLeaveDynamicArea", ['playerid', 'areaid']);
 RegisterPublic("Streamer_OnPluginError", "s", "Streamer_OnPluginError", ['error']);
 
 /**
@@ -611,7 +611,7 @@ function SetDynamicObjectPos(objectid, x, y, z) {
  * GetDynamicObjectPos
  * @see https://wiki.sa-mp.com/wiki/GetDynamicObjectPos
  * @param {Number} objectid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetDynamicObjectPos(objectid)
 {
@@ -636,7 +636,7 @@ function SetDynamicObjectRot(objectid, rx, ry, rz) {
  * GetDynamicObjectRot
  * @see https://wiki.sa-mp.com/wiki/GetDynamicObjectRot
  * @param {Number} objectid
- * @return {rx: Number, ry: Number, rz: Number}
+ * @return {{rx: Number, ry: Number, rz: Number}}
  */
 function GetDynamicObjectRot(objectid)
 {
@@ -789,7 +789,7 @@ function IsDynamicObjectMaterialUsed(objectid, materialindex) {
  * @param {Number} materialindex
  * @param {Number} [maxtxdname=256]
  * @param {Number} [maxtexturename=256]
- * @return {modelid: Number, txdname: String, texturename: String, materialcolor: Number}
+ * @return {{modelid: Number, txdname: String, texturename: String, materialcolor: Number}}
  */
 function GetDynamicObjectMaterial(objectid, materialindex, maxtxdname, maxtexturename)
 {
@@ -835,7 +835,7 @@ function IsDynamicObjectMaterialTextUsed(objectid, materialindex) {
  * @param {Number} materialindex
  * @param {Number} [maxtext=256]
  * @param {Number} [maxfontface=256]
- * @return {text: String, materialsize: Number, fontface: String, fontsize: Number, bold: Number, fontcolor: Number, backcolor: Number, textalignment: Number}
+ * @return {{text: String, materialsize: Number, fontface: String, fontsize: Number, bold: Number, fontcolor: Number, backcolor: Number, textalignment: Number}}
  */
 function GetDynamicObjectMaterialText(objectid, materialindex, maxtext, maxfontface)
 {

@@ -508,42 +508,6 @@ function AddPlayerClassEx(teamid, modelid, spawn_x, spawn_y, spawn_z, z_angle, w
 }
 
 /**
- * AddStaticVehicle
- * @see https://wiki.sa-mp.com/wiki/AddStaticVehicle
- * @param {Number} modelid
- * @param {Number} spawn_x
- * @param {Number} spawn_y
- * @param {Number} spawn_z
- * @param {Number} z_angle
- * @param {Number} color1
- * @param {Number} color2
- * @return {Number} retval
- */
-function AddStaticVehicle(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2) {
-	return CallNativeGDK("AddStaticVehicle", "iffffii", modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2);
-}
-
-/**
- * AddStaticVehicleEx
- * @see https://wiki.sa-mp.com/wiki/AddStaticVehicleEx
- * @param {Number} modelid
- * @param {Number} spawn_x
- * @param {Number} spawn_y
- * @param {Number} spawn_z
- * @param {Number} z_angle
- * @param {Number} color1
- * @param {Number} color2
- * @param {Number} respawn_delay
- * @param {Number} [addsiren=0]
- * @return {Number} retval
- */
-function AddStaticVehicleEx(modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren)
-{
-	addsiren = typeof addsiren === 'undefined' ? 0 : addsiren;
-	return CallNativeGDK("AddStaticVehicleEx", "iffffiiii", modelid, spawn_x, spawn_y, spawn_z, z_angle, color1, color2, respawn_delay, addsiren);
-}
-
-/**
  * AddStaticPickup
  * @see https://wiki.sa-mp.com/wiki/AddStaticPickup
  * @param {Number} model
