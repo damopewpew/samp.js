@@ -27,29 +27,17 @@ void Players::Init(Local<Context> ctx) {
 	Context::Scope context_scope(ctx);
 
 
-	ifstream playerFile("js/samp.js/Player.js", std::ios::in);
-	if (!playerFile){
-		sjs::logger::error("Missing required file Player.js");
-		SAMPJS::Shutdown();
-	}
-	std::string playerSource((std::istreambuf_iterator<char>(playerFile)), std::istreambuf_iterator<char>());
-	SAMPJS::ExecuteCode(ctx, "Player.js", playerSource);
 
-	ifstream playersFile("js/samp.js/Players.js", std::ios::in);
-	if (!playersFile){
-		sjs::logger::error("Missing required file Players.js");
-		SAMPJS::Shutdown();
-	}
-	std::string playersSource((std::istreambuf_iterator<char>(playersFile)), std::istreambuf_iterator<char>());
-	SAMPJS::ExecuteCode(ctx, "Players.js", playersSource);
-	
+	Script::LoadScript("js/samp.js/Player.js", isolate, ctx);
+	Script::LoadScript("js/samp.js/Players.js", isolate, ctx);
+
 	SAMPJS::ExecuteCode(ctx, "$players", R"(var $__PLAYER__ = new Player(65535);
 var $players = new Players(); 
-$players[Symbol.iterator] = function* (){
+/*$players[Symbol.iterator] = function* (){
 	for(var i in this){
 		yield this.getPlayer(i);	
 	}
-};)", 7);
+};*/)", 7);
 }
 
 void Players::Shutdown(){

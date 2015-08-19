@@ -18,9 +18,11 @@ namespace sampjs {
 
 		virtual std::string Name(){ return "Server"; };
 
-		static void JS_CallNative(const FunctionCallbackInfo<Value> & args);
-		
 		static void JS_CallNativeGDK(const FunctionCallbackInfo<Value> & args);
+
+		static void JS_CreateVehicle(const FunctionCallbackInfo<Value> & args);
+		static void JS_AddStaticVehicle(const FunctionCallbackInfo<Value> & args);
+		static void JS_DestroyVehicle(const FunctionCallbackInfo<Value> & args);
 
 		static void JS_CurrentMemory(const FunctionCallbackInfo<Value> & args);
 		static void JS_PeakMemory(const FunctionCallbackInfo<Value> & args);

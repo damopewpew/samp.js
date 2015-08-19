@@ -80,6 +80,16 @@ namespace sampjs {
 			return object;
 		}
 
+		Local<Value> Call(std::string funcname, int argc, Local<Value> argv[]){
+			Local<Value> func = object->Get(
+				String::NewFromUtf8(object->GetIsolate(), funcname.c_str()));
+			if (!func->IsUndefined() && func->IsFunction()){
+				Local<Function> f = Local<Function>::Cast(func);
+				return f->Call(object, argc, argv);
+			}
+			return Boolean::New(object->GetIsolate(), false);
+		}
+
 		JS_Object* SetUndefined(std::string name){
 			object->Set(
 				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
@@ -100,6 +110,15 @@ namespace sampjs {
 			object->Set(
 				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
 				FunctionTemplate::New(isolate, callback)->GetFunction()
+				);
+			return this;
+		}
+
+		JS_Object* Set(std::string name, FunctionCallback callback, PropertyAttribute attribute){
+			object->ForceSet(
+				String::NewFromUtf8(object->GetIsolate(), name.c_str()),
+				FunctionTemplate::New(isolate, callback)->GetFunction(),
+				attribute
 				);
 			return this;
 		}

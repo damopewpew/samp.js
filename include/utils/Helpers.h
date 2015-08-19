@@ -20,8 +20,6 @@ namespace sjs {
 		static inline void log(const char* format, ...){
 			va_list args;
 			va_start(args, format);
-
-	
 			char buffer[4048];
 			vsnprintf(buffer, 4048, format, args);
 			logger::printf((char*)std::string("[samp.js] " + std::string(buffer)).c_str());

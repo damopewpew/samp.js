@@ -45,24 +45,29 @@ void HTTPJS::JS_Get(const FunctionCallbackInfo<Value> & args){
 
 		async(launch::async, [id](){
 			HTTP_Request *request = HTTPJS::requests[id];
-			string data = HTTPJS::Get(request->url);
-			
-			V8PCONTEXT(request->isolate, request->context)
+			HTTPJS::Get(request->url, [id,request](string err, string data){
 
-			Local<Function> func = Local<Function>::New(request->isolate, request->callback);
+				V8PCONTEXT(request->isolate, request->context)
 
-			Local<Value> argv[1] = { String::NewFromUtf8(request->isolate, data.c_str()) };
-			func->Call(func, 1, argv);
+				Local<Function> func = Local<Function>::New(request->isolate, request->callback);
 
-			HTTPJS::requests.erase(id);
+				Local<Value> argv[1] = { String::NewFromUtf8(request->isolate, data.c_str()) };
+				func->Call(func, 1, argv);
+
+				HTTPJS::requests.erase(id);
+			});
 		});
 		return;
 	}
+	Get(url, [&](string err, string result){
+		args.GetReturnValue().Set(String::NewFromUtf8(args.GetIsolate(), result.c_str()));
+	});
 	
-	args.GetReturnValue().Set(String::NewFromUtf8(args.GetIsolate(),Get(url).c_str()));
 }
 
-string HTTPJS::Get(string url){
+void HTTPJS::Get(string url, function<void(string,string)> callback){
+	std::string err = "";
+	string data;
 	http::url parsed = http::ParseHttpUrl(url);
 
 	if (parsed.protocol == "")parsed.protocol = "http";
@@ -71,17 +76,20 @@ string HTTPJS::Get(string url){
 	tcp::iostream s(parsed.host, parsed.protocol);
 
 	if (!s){
-		sjs::logger::error("Could not connect to %s", parsed.host.c_str());
+		err = "Could not connect to host: " + parsed.host;
 	}
-	s << "GET " << parsed.path << " HTTP/1.0\r\n"
-		<< "Host: " << parsed.host << "\r\n"
-		<< "Accept: */*\r\n"
-		<< "Connection: close\r\n\r\n";
-	string header;
-	while (getline(s, header) && header != "\r");
+	else {
+		s << "GET " << parsed.path << " HTTP/1.0\r\n"
+			<< "Host: " << parsed.host << "\r\n"
+			<< "Accept: */*\r\n"
+			<< "Connection: close\r\n\r\n";
+		string header;
+		while (getline(s, header) && header != "\r");
 
-	stringstream ss;
-	ss << s.rdbuf();
-	string data = ss.str();
-	return data;
+		stringstream ss;
+		ss << s.rdbuf();
+		data = ss.str();
+	}
+
+	callback(err, data);
 }

@@ -1,31 +1,37 @@
-class Vehicle
+
+class Vehicle extends Events
 {
 	constructor(modelid, x, y, z, a, color1, color2, respawnDelay, addSiren)
 	{
-		this._modelid = modelid;
-		this._pos = {x: x, y: y, z: z};
-		this._angle = a;
-		this._color = {color1: color1, color2: color2};
-		this._respawnDelay = respawnDelay;
-		this._addSiren = addSiren;
+		super();
+		if(arguments.length ==1){
+			this.id = arguments[0];
+			this._model = null;
+			this._pos = { x:0,y:0,z:0};
+			this._angle = a;
+			this._color = {color1: 0, color2: 0};
+			this._respawnDelay = 0;
+			this._addSiren = addSiren;
+		} else {
+			this._modelid = modelid;
+			this._pos = {x: x, y: y, z: z};
+			this._angle = a;
+			this._color = {color1: color1, color2: color2};
+			this._respawnDelay = respawnDelay;
+			this._addSiren = addSiren;
+		}
 	}
 	
-	create()
-	{
-		this.id = CreateVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren);
-		return this;
+	create() {
+		return (this.id = CreateVehicle(this));
 	}
 	
-	createStatic() 
-	{
-		this.id = AddStaticVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2);
-		return this;
+	createStatic() {
+		return (this.id = AddStaticVehicle(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2));
 	}
 	
-	createStaticEx() 
-	{
-		this.id = AddStaticVehicleEx(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren);
-		return this;
+	createStaticEx() {
+		return (this.id = AddStaticVehicleEx(this._modelid, this._pos.x, this._pos.y, this._pos.z, this._pos.a, this._color.color1, this._color.color2, this._respawnDelay, this._addSiren));
 	}
 	
 	destroy() {
@@ -45,7 +51,7 @@ class Vehicle
 	}
 	
 	hasTrailer() {
-		return IsTrailerAttachedToVehicle(this.id);
+		return IsTrailerAttachedToVehicle(this._id);
 	}
 	
 	distanceFromPoint(point)
@@ -59,38 +65,28 @@ class Vehicle
 		return GetVehicleDistanceFromPoint(this.id, point.x, point.y, point.z);
 	}
 	
-	addComponent(componentid) 
-	{
-		AddVehicleComponent(this.id, componentid);
-		return this;
+	addComponent(componentid) {
+		return AddVehicleComponent(this.id, componentid);
 	}
 	
-	removeComponent(componentid) 
-	{
-		RemoveVehicleComponent(this.id, componentid);
-		return this;
+	removeComponent(componentid) {
+		return RemoveVehicleComponent(this.id, componentid);
 	}
 	
-	respawn()
-	{
-		SetVehicleToRespawn(this.id);
-		return this;
+	respawn() {
+		return SetVehicleToRespawn(this.id);
 	}
 	
-	repair() 
-	{
-		RepairVehicle(this.id);
-		return this;
+	repair() {
+		return RepairVehicle(this.id);
 	}
 	
 	modelInfo(infoType) {
-		return GetVehicleModelInfo(this.model, infoType);
+		GetVehicleModelInfo(this._model, infoType);
 	}
 	
-	detachTrailer() 
-	{
-		DetachTrailerFromVehicle(this.id);
-		return this;
+	detachTrailer() {
+		return DetachTrailerFromVehicle(this.id);
 	}
 	
 	componentInSlot(slot) {
@@ -116,7 +112,7 @@ class Vehicle
 	set color(color)
 	{
 		if(Array.isArray(color)) {
-			color = {color1: color[0], color2; color[1]};
+			color = {color1: color[0], color2: color[1]};
 		}
 		ChangeVehicleColor(this.id, color.color1, color.color2);
 	}
@@ -138,7 +134,7 @@ class Vehicle
 	}
 	
 	get model() {
-		return this._modelid;
+		return this._modelid | (this._modelid = GetVehicleModel(this.id));
 	}
 	
 	set pos(pos)

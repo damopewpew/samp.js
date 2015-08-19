@@ -11,8 +11,17 @@
 using namespace sampjs;
 
 void sampjs::Utils::Init(Local<Context> ctx){
+	
 	JS_Object obj(ctx->Global());
 	obj.Set("print", sampjs::Utils::Print);
+
+	JS_Object console(ctx->GetIsolate());
+
+	console.Set("log", JS_ConsoleLog);
+	console.Set("debug", JS_ConsoleDebug);
+	console.Set("error", JS_ConsoleError);
+
+	obj.Set("console", console.get());
 }
 
 void sampjs::Utils::Shutdown(){
@@ -41,16 +50,89 @@ void sampjs::Utils::Print(const FunctionCallbackInfo<Value> & args){
 		Local<String> name = STRING2JS(args.GetIsolate(), "");
 		//std::string n = JS2STRING(name);
 		//sjs::logger::printf("%s", n.c_str());
-		PrintObject(args.GetIsolate(), name, args[i], 0);
+		PrintObject(args.GetIsolate(), name, args[i], 0, CONSOLE_NORMAL);
 	}
 	args.GetReturnValue().SetEmptyString();
 }
 
-void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Value> value, int level){
+void sampjs::Utils::JS_ConsoleLog(const FunctionCallbackInfo<Value> & args){
+	JS_SCOPE(args.GetIsolate());
+	bool first = true;
+	for (int i = 0; i < args.Length(); i++)
+	{
+		if (first)
+			first = false;
+		else
+			sjs::logger::log(" ");
+
+		std::string t("");
+		Local<String> name = STRING2JS(args.GetIsolate(), "");
+		//std::string n = JS2STRING(name);
+		//sjs::logger::printf("%s", n.c_str());
+		PrintObject(args.GetIsolate(), name, args[i], 0, CONSOLE_LOG);
+	}
+	args.GetReturnValue().SetEmptyString();
+}
+
+void sampjs::Utils::JS_ConsoleDebug(const FunctionCallbackInfo<Value> & args){
+	JS_SCOPE(args.GetIsolate());
+	bool first = true;
+	for (int i = 0; i < args.Length(); i++)
+	{
+		if (first)
+			first = false;
+		else
+			sjs::logger::debug(" ");
+
+		std::string t("");
+		Local<String> name = STRING2JS(args.GetIsolate(), "");
+		//std::string n = JS2STRING(name);
+		//sjs::logger::printf("%s", n.c_str());
+		PrintObject(args.GetIsolate(), name, args[i], 0, CONSOLE_DEBUG);
+	}
+	args.GetReturnValue().SetEmptyString();
+}
+
+
+void sampjs::Utils::JS_ConsoleError(const FunctionCallbackInfo<Value> & args){
+	JS_SCOPE(args.GetIsolate());
+	bool first = true;
+	for (int i = 0; i < args.Length(); i++)
+	{
+		if (first)
+			first = false;
+		else
+			sjs::logger::error(" ");
+
+		std::string t("");
+		Local<String> name = STRING2JS(args.GetIsolate(), "");
+		//std::string n = JS2STRING(name);
+		//sjs::logger::printf("%s", n.c_str());
+		PrintObject(args.GetIsolate(), name, args[i], 0, CONSOLE_ERROR );
+	}
+	args.GetReturnValue().SetEmptyString();
+}
+
+void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Value> value, int level, int mode=CONSOLE_NORMAL){
 	if (value->IsObject()){
 		std::string rpt = std::string(level * 4, ' ');
 		std::string name2 = JS2STRING(name_);
-		sjs::logger::printf("%s%s {", rpt.c_str(), name2.c_str());
+		
+		switch (mode){
+		case CONSOLE_NORMAL:
+			sjs::logger::printf("%s%s {", rpt.c_str(), name2.c_str());
+			break;
+		case CONSOLE_LOG:
+			sjs::logger::log("%s%s {", rpt.c_str(), name2.c_str());
+			break;
+		case CONSOLE_DEBUG:
+			sjs::logger::debug("%s%s {", rpt.c_str(), name2.c_str());
+			break;
+		case CONSOLE_ERROR:
+			sjs::logger::error("%s%s {", rpt.c_str(), name2.c_str());
+			break;
+		}
+
 		Local<Object> obj = value->ToObject();
 		Local<v8::Array> ar = obj->GetPropertyNames();
 		uint32_t length = ar->Length();
@@ -58,15 +140,43 @@ void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Valu
 			Local<Value> name = ar->Get(Int32::New(isolate, j));
 			Local<Value> val = obj->Get(name);
 			if (val->IsObject()){
-				PrintObject(isolate, name, val, level + 1);
+				PrintObject(isolate, name, val, level + 1, mode);
 			}
 			else {
 				std::string name1 = JS2STRING(name);
 				std::string value1 = JS2STRING(val);
-				sjs::logger::printf("%s    %s: %s", rpt.c_str(), name1.c_str(), value1.c_str());
+				switch (mode){
+				case CONSOLE_NORMAL:
+					sjs::logger::printf("%s    %s: %s", rpt.c_str(), name1.c_str(), value1.c_str());
+					break;
+				case CONSOLE_LOG:
+					sjs::logger::log("%s    %s: %s", rpt.c_str(), name1.c_str(), value1.c_str());
+					break;
+				case CONSOLE_DEBUG:
+					sjs::logger::debug("%s    %s: %s", rpt.c_str(), name1.c_str(), value1.c_str());
+					break;
+				case CONSOLE_ERROR:
+					sjs::logger::error("%s    %s: %s", rpt.c_str(), name1.c_str(), value1.c_str());
+					break;
+				}
+				
 			}
 		}
-		sjs::logger::printf("%s}", rpt.c_str());
+		switch (mode){
+		case CONSOLE_NORMAL:
+			sjs::logger::printf("%s}", rpt.c_str());
+			break;
+		case CONSOLE_LOG:
+			sjs::logger::log("%s}", rpt.c_str());
+			break;
+		case CONSOLE_DEBUG:
+			sjs::logger::debug("%s}", rpt.c_str());
+			break;
+		case CONSOLE_ERROR:
+			sjs::logger::error("%s}", rpt.c_str());
+			break;
+		}
+		
 	}
 	else {
 	//	setlocale(LC_ALL, "Russian");
@@ -83,8 +193,21 @@ void sampjs::Utils::PrintObject(Isolate* isolate, Local<Value> name_, Local<Valu
 		size_t slen = value->ToString()->Length();
 		char* sstr = new char[slen + 1];
 		wcstombs(sstr, wstr, slen + 1);
-		sjs::logger::printf("%s", sstr);
-
+		
+		switch (mode){
+		case CONSOLE_NORMAL:
+			sjs::logger::printf("%s", sstr);
+			break;
+		case CONSOLE_LOG:
+			sjs::logger::log("%s", sstr);
+			break;
+		case CONSOLE_DEBUG:
+			sjs::logger::debug("%s", sstr);
+			break;
+		case CONSOLE_ERROR:
+			sjs::logger::error("%s", sstr);
+			break;
+		}
 
 		delete[] sstr;
 		//printf("%s\n", n.c_str());
