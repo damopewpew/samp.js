@@ -620,7 +620,12 @@ int Server::FireNative(std::string name, std::string param_types, std::vector<st
 			// Object
 			case 'O':
 			{
+				int objectid = params[i];
+				JS_Object objects(global.getObject("$objects"));
 
+				Local<Value> args[1] = { Integer::New(isolate, objectid) };
+				auto object = objects.Call("getObject", 1, argv);
+				argv[i] = object;
 				break;
 			}
 

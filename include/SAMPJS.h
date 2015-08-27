@@ -12,15 +12,6 @@
 
 using namespace std;
 
-class ArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
-public:
-	virtual void* Allocate(size_t length) {
-		void* data = AllocateUninitialized(length);
-		return data == NULL ? data : memset(data, 0, length);
-	}
-	virtual void* AllocateUninitialized(size_t length) { return malloc(length); }
-	virtual void Free(void* data, size_t) {  free(data); }
-};
 
 
 namespace sampjs {
@@ -31,7 +22,6 @@ namespace sampjs {
 		static AMX *amx;
 		static AMX_HEADER *amx_hdr;
 		static string v8flags;
-		static ArrayBufferAllocator array_buffer_allocator;
 
 		static void Init();
 		static void Shutdown();
