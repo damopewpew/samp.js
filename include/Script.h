@@ -1,6 +1,7 @@
 #ifndef __SCRIPT__
 #define __SCRIPT__
 
+#include <cstring>
 #include <string>
 #include <vector>
 #include <map>
