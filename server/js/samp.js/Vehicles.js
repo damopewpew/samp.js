@@ -1,4 +1,3 @@
-
 class Vehicles {
 	getVehicle(vehicleid){
 		if(!this.hasOwnProperty(vehicleid)){
@@ -6,8 +5,7 @@ class Vehicles {
 				this[vehicleid] = new Vehicle(vehicleid); 
 				return this[vehicleid];
 			}
-			var p = new Vehicle(65535);
-			return p;
+			return new Vehicle(65535);
 		}
 		return this[vehicleid];
 	}
@@ -24,22 +22,11 @@ class Vehicles {
 		this[vehid] = vehicle;	
 		return vehicle;
 	}
-/**
- * Adds a new player - Internal use only
- * @param   {Number} playerid Players sa-mp id
- * @returns {Player} Player object
- */
-	addPlayer(playerid){
-		if(this[playerid]) return this[playerid];
-		var player = new Player(playerid);
-		this[playerid] = player;
-		return player;
-	}
 
 /**
- * Removes a player - Internal use only
- * @param   {Number} playerid Players sa-mp id
- * @returns {Player} Player object
+ * Removes a vehicle - Internal use only
+ * @param   {Number} vehicleid Vehicles id
+ * @returns {Vehicle} Vehicle object
  */
 	removeVehicle(vehicleid){
 		var vehicle = this.getVehicle(vehicleid);
@@ -70,8 +57,8 @@ class Vehicles {
 	
 
 /**
- * Returns the total amount of players
- * @returns {Number} Amount of connected players
+ * Returns the total amount of vehicles
+ * @returns {Number} Amount of created vehicles
  */
 	get length(){
 		return Object.keys(this).length;	
