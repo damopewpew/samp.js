@@ -28,7 +28,7 @@
 #define VERSION_MAJOR 0
 #define VERSION_MINOR 1
 #define VERSION_BUGFIX 9
-#define VERSION_REVISION 6
+#define VERSION_REVISION 7
 
 typedef void(*logprintf_t)(char* format, ...);
 logprintf_t logprintf;
@@ -84,21 +84,20 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData){
 	sjs::logger::log("%s", std::string(69, '-').c_str());
 	ReadConfig();
 	
-	string version = sampjs::HTTPJS::Get("http://damo.com.au/version");
+	sampjs::HTTPJS::Get("http://damo.com.au/version", [](string err, string version){
+		char cversion[20];
+		sprintf(cversion, "v%i.%i.%i.%i", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_REVISION);
 
-	char cversion[20];
-	sprintf(cversion, "v%i.%i.%i.%i", VERSION_MAJOR, VERSION_MINOR, VERSION_BUGFIX, VERSION_REVISION);
-
-	if (version != string(cversion)){
-		sjs::logger::log("*** Warning: Your version of samp.js is out of date. Latest version: %s ***", version.c_str());
-	}
-	else {
-		sjs::logger::log("*** samp.js is up to date ***");
-	}
-
-	
-
-	
+		if (err != ""){
+			sjs::logger::log("*** Warning: Failed to check for latest version of samp.js ***");
+		}
+		else if (version != string(cversion)){
+			sjs::logger::log("*** Warning: Your version of samp.js is out of date. Latest version: %s ***", version.c_str());
+		}
+		else {
+			sjs::logger::log("*** samp.js is up to date ***");
+		}
+	});
 	return true;
 }
 
@@ -119,13 +118,6 @@ PLUGIN_EXPORT void PLUGIN_CALL Unload(){
 #include <chrono>
 #include <thread>
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
-	char t[256] = "";
-	AMX_NATIVE native = sampgdk::FindNative("SHA256_PassHash");
-	if (!native) sjs::logger::log("Could not find SHA256 Native");
-	else {
-		sampgdk::InvokeNative(native, "ssS[256]", "Test", "Test", &t);
-		printf("SHA256: %s", t);
-	}
 	int res = 0;
 	if ((res = amx_Register(amx, PluginNatives, -1))){
 		printf("Failed to register samp.js natives.\n");
@@ -147,11 +139,6 @@ PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *amx){
 			std::cout << "[samp.js] No JS Scripts configured. Add jsfiles to your server.cfg" << std::endl;
 		}
 	}
-	/*int idx;
-	if (!amx_FindPublic(amx, "SAMPJS_Init", &idx)){
-		sampjs::SAMPJS::SetAMX(amx);
-		
-	}*/
 	return 1;
 }
 

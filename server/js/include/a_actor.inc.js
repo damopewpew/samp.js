@@ -99,7 +99,7 @@ function SetActorPos(actorid, x, y, z) {
  * GetActorPos
  * @see https://wiki.sa-mp.com/wiki/GetActorPos
  * @param {Number} actorid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetActorPos(actorid)
 {

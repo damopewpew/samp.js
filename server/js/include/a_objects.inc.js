@@ -106,7 +106,7 @@ function SetObjectPos(objectid, x, y, z) {
  * GetObjectPos
  * @see https://wiki.sa-mp.com/wiki/GetObjectPos
  * @param {Number} objectid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetObjectPos(objectid)
 {
@@ -131,7 +131,7 @@ function SetObjectRot(objectid, RotX, RotY, RotZ) {
  * GetObjectRot
  * @see https://wiki.sa-mp.com/wiki/GetObjectRot
  * @param {Number} objectid
- * @return {RotX: Number, RotY: Number, RotZ: Number}
+ * @return {{RotX: Number, RotY: Number, RotZ: Number}}
  */
 function GetObjectRot(objectid)
 {
@@ -319,7 +319,7 @@ function SetPlayerObjectPos(playerid, objectid, x, y, z) {
  * @see https://wiki.sa-mp.com/wiki/GetPlayerObjectPos
  * @param {Number} playerid
  * @param {Number} objectid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetPlayerObjectPos(playerid, objectid)
 {
@@ -346,7 +346,7 @@ function SetPlayerObjectRot(playerid, objectid, RotX, RotY, RotZ) {
  * @see https://wiki.sa-mp.com/wiki/GetPlayerObjectRot
  * @param {Number} playerid
  * @param {Number} objectid
- * @return {RotX: Number, RotY: Number, RotZ: Number}
+ * @return {{RotX: Number, RotY: Number, RotZ: Number}}
  */
 function GetPlayerObjectRot(playerid, objectid)
 {

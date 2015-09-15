@@ -864,7 +864,7 @@ class Player extends Events {
 		TogglePlayerControllable(this.id, toggle);
 	}
 
-	set disableRemoteVehicleCollisions(diable) {
+	set disableRemoteVehicleCollisions(disable) {
 		DisableRemoteVehicleCollisions(this.id, disable);
 	}
 
@@ -1063,7 +1063,7 @@ class Player extends Events {
 		return SendPlayerMessageToPlayer(this.id, target, message);
 	}
 
-	sendDeathMessageToPlayer(killer, victim, weapon) {
+	sendDeathMessage(killer, victim, weapon) {
 		return SendDeathMessageToPlayer(this.id, killer, victim, weapon);
 	}
 
@@ -1118,7 +1118,7 @@ class Player extends Events {
 		return AttachPlayerObjectToVehicle(this.id, objectid, vehicleid, offset.x, offset.y, offset.z, rot.x, rot.y, rot.z);
 	}
 
-	objectAttachCamera(playerid, objectid) {
+	objectAttachCamera(objectid) {
 		return AttachCameraToPlayerObject(this.id, objectid);
 	}
 
@@ -1540,7 +1540,7 @@ class Player extends Events {
 	textDrawSetPreviewVehCol(textDraw, color)
 	{
 		if(arguments.length > 2) {
-			previewRot = {color1: arguments[1], color2: arguments[2]};
+			color = {color1: arguments[1], color2: arguments[2]};
 		}
 		if(Array.isArray(color)) {
 			color = {color1: color[0], color2: color[1]};

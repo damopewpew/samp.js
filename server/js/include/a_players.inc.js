@@ -120,7 +120,7 @@ function SetPlayerPosFindZ(playerid, x, y, z) {
  * GetPlayerPos
  * @see https://wiki.sa-mp.com/wiki/GetPlayerPos
  * @param {Number} playerid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetPlayerPos(playerid)
 {
@@ -445,7 +445,7 @@ function SetPlayerArmedWeapon(playerid, weaponid) {
  * @see https://wiki.sa-mp.com/wiki/GetPlayerWeaponData
  * @param {Number} playerid
  * @param {Number} slot
- * @return {weapons: Number, ammo: Number}
+ * @return {{weapons: Number, ammo: Number}}
  */
 function GetPlayerWeaponData(playerid, slot)
 {
@@ -542,7 +542,7 @@ function GetPlayerWeapon(playerid) {
  * GetPlayerKeys
  * @see https://wiki.sa-mp.com/wiki/GetPlayerKeys
  * @param {Number} playerid
- * @return {keys: Number, updown: Number, leftright: Number}
+ * @return {{keys: Number, updown: Number, leftright: Number}}
  */
 function GetPlayerKeys(playerid)
 {
@@ -579,7 +579,7 @@ function SetPlayerTime(playerid, hour, minute) {
  * GetPlayerTime
  * @see https://wiki.sa-mp.com/wiki/GetPlayerTime
  * @param {Number} playerid
- * @return {hour: Number, minute: Number}
+ * @return {{hour: Number, minute: Number}}
  */
 function GetPlayerTime(playerid)
 {
@@ -678,7 +678,7 @@ function SetPlayerVelocity(playerid, x, y, z) {
  * GetPlayerVelocity
  * @see https://wiki.sa-mp.com/wiki/GetPlayerVelocity
  * @param {Number} playerid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetPlayerVelocity(playerid)
 {
@@ -792,7 +792,7 @@ function RemoveBuildingForPlayer(playerid, modelid, fX, fY, fZ, fRadius) {
  * GetPlayerLastShotVectors
  * @see https://wiki.sa-mp.com/wiki/GetPlayerLastShotVectors
  * @param {Number} playerid
- * @return {fOriginX: Number, fOriginY: Number, fOriginZ: Number, fHitPosX: Number, fHitPosY: Number, fHitPosZ: Number}
+ * @return {{fOriginX: Number, fOriginY: Number, fOriginZ: Number, fHitPosX: Number, fHitPosY: Number, fHitPosZ: Number}}
  */
 function GetPlayerLastShotVectors(playerid)
 {
@@ -1364,7 +1364,7 @@ function GetPlayerAnimationIndex(playerid) {
  * @param {Number} index
  * @param {Number} [len1=256]
  * @param {Number} [len2=256]
- * @return {animlib: String, animname: String}
+ * @return {{animlib: String, animname: String}}
  */
 function GetAnimationName(index, len1, len2)
 {
@@ -1581,7 +1581,7 @@ function SetCameraBehindPlayer(playerid) {
  * GetPlayerCameraPos
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraPos
  * @param {Number} playerid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetPlayerCameraPos(playerid)
 {
@@ -1593,7 +1593,7 @@ function GetPlayerCameraPos(playerid)
  * GetPlayerCameraFrontVector
  * @see https://wiki.sa-mp.com/wiki/GetPlayerCameraFrontVector
  * @param {Number} playerid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetPlayerCameraFrontVector(playerid)
 {

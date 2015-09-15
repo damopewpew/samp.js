@@ -1,6 +1,7 @@
 #ifndef __SCRIPT__
 #define __SCRIPT__
 
+#include <cstring>
 #include <string>
 #include <vector>
 #include <map>
@@ -13,6 +14,17 @@
 #include "samp/Server.h"
 
 #include <sdk.h>
+
+class ArrayBufferAllocator : public v8::ArrayBuffer::Allocator {
+public:
+	virtual void* Allocate(size_t length) {
+		void* data = AllocateUninitialized(length);
+		return data == NULL ? data : memset(data, 0, length);
+	}
+	virtual void* AllocateUninitialized(size_t length) { return malloc(length); }
+	virtual void Free(void* data, size_t) { free(data); }
+};
+
 
 namespace sampjs {
 	struct PublicDef {
@@ -42,6 +54,7 @@ namespace sampjs {
 		static void JS_LoadScript(const FunctionCallbackInfo<Value> & args);
 
 		static void JS_SetLocale(const FunctionCallbackInfo<Value> & args);
+		static void JS_System(const FunctionCallbackInfo<Value> & args);
 
 		static void JS_RegisterPublic(const FunctionCallbackInfo<Value> & args);
 		
@@ -63,7 +76,7 @@ namespace sampjs {
 
 	private:
 		bool ready;
-
+		ArrayBufferAllocator allocator;
 		Isolate *isolate;
 		v8::Persistent<v8::Context,CopyablePersistentTraits<Context>> context;
 		std::string filename;

@@ -16,7 +16,6 @@ AMX *SAMPJS::amx = NULL;
 AMX_HEADER *SAMPJS::amx_hdr;
 string SAMPJS::v8flags = "--expose-gc --allow_natives_syntax --harmony --harmony-modules --use_strict ";
 Platform *SAMPJS::platform;
-ArrayBufferAllocator SAMPJS::array_buffer_allocator;
 
 vector<string> SAMPJS::scripts;
 unordered_map<string, shared_ptr<sampjs::Script>> SAMPJS::scripts_map;
@@ -33,7 +32,8 @@ void SAMPJS::Init(){
 	V8::InitializePlatform(platform);
 	V8::Initialize();
 
-	V8::SetArrayBufferAllocator(&array_buffer_allocator);
+
+	//V8::SetArrayBufferAllocator(&array_buffer_allocator);
 
 	sjs::logger::log("v8 Engine version %s loaded.", V8::GetVersion());
 	

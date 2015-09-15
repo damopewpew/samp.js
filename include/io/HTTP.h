@@ -5,6 +5,8 @@
 
 #include <map>
 
+#include <functional>
+
 
 namespace sampjs {
 	struct HTTP_Request {
@@ -29,7 +31,7 @@ namespace sampjs {
 
 		static void JS_Get(const FunctionCallbackInfo<Value> & args);
 
-		static std::string Get(std::string url);
+		static void Get(std::string url, std::function<void(std::string, std::string)> callback);
 
 		static std::map<int, HTTP_Request*> requests;
 		static int requests_id;

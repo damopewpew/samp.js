@@ -49,6 +49,14 @@ class Players {
 		delete this[playerid];
 		return player;
 	}
+	
+		
+	*[Symbol.iterator]() {
+		for(let i in this){
+			yield this.getPlayer(i);	
+		}
+	
+	}
 
 /**
  * Returns the total amount of players

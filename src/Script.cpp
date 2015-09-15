@@ -35,7 +35,10 @@ std::unordered_map<std::string, PublicDef*> sampjs::Script::_publics;
 sampjs::Script::Script(){
 	ready = false;
 	Isolate::CreateParams create_params;
+	create_params.array_buffer_allocator = &allocator;
 	isolate = Isolate::New(create_params);
+
+	
 
 	Locker v8Locker(isolate);
 	Isolate::Scope isolate_scope(isolate);
@@ -67,6 +70,8 @@ sampjs::Script::Script(){
 	gbl.Set("include", sampjs::Script::JS_LoadScript);
 
 	gbl.Set("setlocale", sampjs::Script::JS_SetLocale);
+
+	gbl.Set("system", sampjs::Script::JS_System);
 
 	gbl.Set("RegisterPublic", sampjs::Script::JS_RegisterPublic);
 
@@ -412,6 +417,15 @@ void sampjs::Script::JS_SetLocale(const FunctionCallbackInfo<Value> & args){
 	if (args.Length() > 0 && args[0]->IsString()){
 		std::string locale = JS2STRING(args[0]);
 		setlocale(LC_ALL, locale.c_str());
+	}
+}
+
+void sampjs::Script::JS_System(const FunctionCallbackInfo<Value> & args){
+	if (args.Length() > 0){
+		std::string cmd = JS2STRING(args[0]);
+		int ret = std::system(cmd.c_str());
+
+		args.GetReturnValue().Set(ret);
 	}
 }
 

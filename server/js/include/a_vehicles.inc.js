@@ -26,36 +26,6 @@ const VEHICLE_MODEL_INFO_FRONT_BUMPER_Z = 8;
 const VEHICLE_MODEL_INFO_REAR_BUMPER_Z = 9;
 
 /**
- * CreateVehicle
- * @see https://wiki.sa-mp.com/wiki/CreateVehicle
- * @param {Number} vehicletype
- * @param {Number} x
- * @param {Number} y
- * @param {Number} z
- * @param {Number} rotation
- * @param {Number} color1
- * @param {Number} color2
- * @param {Number} respawn_delay
- * @param {Number} [addsiren=0]
- * @return {Number} retval
- */
-function CreateVehicle(vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren)
-{
-	addsiren = typeof addsiren === 'undefined' ? 0 : addsiren;
-	return CallNativeGDK("CreateVehicle", "iffffiiii", vehicletype, x, y, z, rotation, color1, color2, respawn_delay, addsiren);
-}
-
-/**
- * DestroyVehicle
- * @see https://wiki.sa-mp.com/wiki/DestroyVehicle
- * @param {Number} vehicleid
- * @return {Number} retval
- */
-function DestroyVehicle(vehicleid) {
-	return CallNativeGDK("DestroyVehicle", "i", vehicleid);
-}
-
-/**
  * IsVehicleStreamedIn
  * @see https://wiki.sa-mp.com/wiki/IsVehicleStreamedIn
  * @param {Number} vehicleid
@@ -70,7 +40,7 @@ function IsVehicleStreamedIn(vehicleid, forplayerid) {
  * GetVehiclePos
  * @see https://wiki.sa-mp.com/wiki/GetVehiclePos
  * @param {Number} vehicleid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetVehiclePos(vehicleid)
 {
@@ -105,7 +75,7 @@ function GetVehicleZAngle(vehicleid) {
  * GetVehicleRotationQuat
  * @see https://wiki.sa-mp.com/wiki/GetVehicleRotationQuat
  * @param {Number} vehicleid
- * @return {w: Number, x: Number, y: Number, z: Number}
+ * @return {{w: Number, x: Number, y: Number, z: Number}}
  */
 function GetVehicleRotationQuat(vehicleid)
 {
@@ -180,7 +150,7 @@ function SetVehicleParamsEx(vehicleid, engine, lights, alarm, doors, bonnet, boo
  * GetVehicleParamsEx
  * @see https://wiki.sa-mp.com/wiki/GetVehicleParamsEx
  * @param {Number} vehicleid
- * @return {engine: Number, lights: Number, alarm: Number, doors: Number, bonnet: Number, boot: Number, objective: Number}
+ * @return {{engine: Number, lights: Number, alarm: Number, doors: Number, bonnet: Number, boot: Number, objective: Number}}
  */
 function GetVehicleParamsEx(vehicleid)
 {
@@ -216,7 +186,7 @@ function SetVehicleParamsCarDoors(vehicleid, driver, passenger, backleft, backri
  * GetVehicleParamsCarDoors
  * @see https://wiki.sa-mp.com/wiki/GetVehicleParamsCarDoors
  * @param {Number} vehicleid
- * @return {driver: Number, passenger: Number, backleft: Number, backright: Number}
+ * @return {{driver: Number, passenger: Number, backleft: Number, backright: Number}}
  */
 function GetVehicleParamsCarDoors(vehicleid)
 {
@@ -242,7 +212,7 @@ function SetVehicleParamsCarWindows(vehicleid, driver, passenger, backleft, back
  * GetVehicleParamsCarWindows
  * @see https://wiki.sa-mp.com/wiki/GetVehicleParamsCarWindows
  * @param {Number} vehicleid
- * @return {driver: Number, passenger: Number, backleft: Number, backright: Number}
+ * @return {{driver: Number, passenger: Number, backleft: Number, backright: Number}}
  */
 function GetVehicleParamsCarWindows(vehicleid)
 {
@@ -434,7 +404,7 @@ function RepairVehicle(vehicleid) {
  * GetVehicleVelocity
  * @see https://wiki.sa-mp.com/wiki/GetVehicleVelocity
  * @param {Number} vehicleid
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetVehicleVelocity(vehicleid)
 {
@@ -472,7 +442,7 @@ function SetVehicleAngularVelocity(vehicleid, x, y, z) {
  * GetVehicleDamageStatus
  * @see https://wiki.sa-mp.com/wiki/GetVehicleDamageStatus
  * @param {Number} vehicleid
- * @return {panels: Number, doors: Number, lights: Number, tires: Number}
+ * @return {{panels: Number, doors: Number, lights: Number, tires: Number}}
  */
 function GetVehicleDamageStatus(vehicleid)
 {
@@ -499,7 +469,7 @@ function UpdateVehicleDamageStatus(vehicleid, panels, doors, lights, tires) {
  * @see https://wiki.sa-mp.com/wiki/GetVehicleModelInfo
  * @param {Number} vehiclemodel
  * @param {Number} infotype
- * @return {x: Number, y: Number, z: Number}
+ * @return {{x: Number, y: Number, z: Number}}
  */
 function GetVehicleModelInfo(vehiclemodel, infotype)
 {
