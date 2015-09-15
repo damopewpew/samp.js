@@ -1,12 +1,9 @@
-
-class Vehicle extends Events
-{
-	constructor(modelid, x, y, z, a, color1, color2, respawnDelay, addSiren)
-	{
+class Vehicle extends Events {
+	constructor(modelid, x, y, z, a, color1, color2, respawnDelay, addSiren) {
 		super();
-		if(arguments.length ==1){
+		if(arguments.length == 1){
 			this.id = arguments[0];
-			this._model = null;
+			this._modelid = null;
 			this._pos = { x:0,y:0,z:0};
 			this._angle = a;
 			this._color = {color1: 0, color2: 0};
@@ -82,7 +79,7 @@ class Vehicle extends Events
 	}
 	
 	modelInfo(infoType) {
-		GetVehicleModelInfo(this._model, infoType);
+		GetVehicleModelInfo(this._modelid, infoType);
 	}
 	
 	detachTrailer() {
