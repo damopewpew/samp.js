@@ -48,7 +48,7 @@ class Vehicle extends Events {
 	}
 	
 	hasTrailer() {
-		return IsTrailerAttachedToVehicle(this._id);
+		return IsTrailerAttachedToVehicle(this.id);
 	}
 	
 	distanceFromPoint(point) {
