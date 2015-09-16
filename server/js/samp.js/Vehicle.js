@@ -1,13 +1,10 @@
-
-class Vehicle extends Events
-{
-	constructor(modelid, x, y, z, a, color1, color2, respawnDelay, addSiren)
-	{
+class Vehicle extends Events {
+	constructor(modelid, x, y, z, a, color1, color2, respawnDelay, addSiren) {
 		super();
-		if(arguments.length ==1){
+		if(arguments.length == 1) {
 			this.id = arguments[0];
-			this._model = null;
-			this._pos = { x:0,y:0,z:0};
+			this._modelid = null;
+			this._pos = { x: 0, y: 0, z: 0};
 			this._angle = a;
 			this._color = {color1: 0, color2: 0};
 			this._respawnDelay = 0;
@@ -51,11 +48,10 @@ class Vehicle extends Events
 	}
 	
 	hasTrailer() {
-		return IsTrailerAttachedToVehicle(this._id);
+		return IsTrailerAttachedToVehicle(this.id);
 	}
 	
-	distanceFromPoint(point)
-	{
+	distanceFromPoint(point) {
 		if(arguments.length > 1) {
 			return GetVehicleDistanceFromPoint(this.id, arguments[0], arguments[1], arguments[2]);
 		}
@@ -82,7 +78,7 @@ class Vehicle extends Events
 	}
 	
 	modelInfo(infoType) {
-		GetVehicleModelInfo(this._model, infoType);
+		return GetVehicleModelInfo(this._modelid, infoType);
 	}
 	
 	detachTrailer() {
@@ -101,16 +97,14 @@ class Vehicle extends Events
 		SetVehicleNumberPlate(this.id, text);
 	}
 	
-	set angularVelocity(pos)
-	{
+	set angularVelocity(pos) {
 		if(Array.isArray(pos)) {
 			pos = {x: pos[0], y: pos[1], z: pos[2]};
 		}
 		SetVehicleAngularVelocity(this.id, pos.x, pos.y, pos.z);
 	}
 	
-	set color(color)
-	{
+	set color(color) {
 		if(Array.isArray(color)) {
 			color = {color1: color[0], color2: color[1]};
 		}
@@ -137,10 +131,8 @@ class Vehicle extends Events
 		return this._modelid | (this._modelid = GetVehicleModel(this.id));
 	}
 	
-	set pos(pos)
-	{
-		if(Array.isArray(pos))
-		{
+	set pos(pos) {
+		if(Array.isArray(pos)) {
 			if(pos.length > 3) {
 				this.zAngle = pos[3]
 			}
@@ -172,8 +164,7 @@ class Vehicle extends Events
 		return GetVehicleVirtualWorld(this.id);
 	}
 	
-	set paramsEx(params)
-	{
+	set paramsEx(params) {
 		if(Array.isArray(params)) {
 			params = {engine: params[0], lights: params[1], alarm: params[2], doors: params[3], bonnet: params[4], boot: params[5], objective: params[6]};
 		}
@@ -184,8 +175,7 @@ class Vehicle extends Events
 		return GetVehicleParamsEx(this.id);
 	}
 	
-	set doors(door)
-	{
+	set doors(door) {
 		if(Array.isArray(door)) {
 			door = {driver: door[0], passenger: door[1], backleft: door[2], backright: door[3]};
 		}
@@ -196,8 +186,7 @@ class Vehicle extends Events
 		return GetVehicleParamsCarDoors(this.id);
 	}
 	
-	set windows(window)
-	{
+	set windows(window) {
 		if(Array.isArray(window)) {
 			window = {driver: window[0], passenger: window[1], backleft: window[2], backright: window[3]};
 		}
@@ -224,8 +213,7 @@ class Vehicle extends Events
 		return GetVehicleTrailer(this.id);
 	}
 	
-	set velocity(pos)
-	{
+	set velocity(pos) {
 		if(Array.isArray(pos)) {
 			pos = {x: pos[0], y: pos[1], z: pos[2]};
 		}
@@ -236,8 +224,7 @@ class Vehicle extends Events
 		return GetVehicleVelocity(this.id);
 	}
 	
-	set damageStatus(damage)
-	{
+	set damageStatus(damage) {
 		if(Array.isArray(damage)) {
 			damage = {panels: damage[0], doors: damage[1], lights: damage[2], tires: damage[3]};
 		}
